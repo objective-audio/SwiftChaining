@@ -1,0 +1,854 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04F43E8328EBF518D009886E433840FD /* ForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C28841C35DE1FFFA68A74B40C01434 /* ForEach.swift */; };
+		0C56054C08A5331F72F1807AECFE74AD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
+		1535D33807C33F4830EE6FA466863287 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED78C57CCD4AEA7C423F150E2BC17D /* Chain.swift */; };
+		333CC44CB55596113DB4BCB6A7642F82 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958F51CDBB6F6D98D12BFCD697232649 /* Observer.swift */; };
+		406652B36F092534460D15D7FE47B7CA /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843527E91364C4ADF6C7C243CFF50F35 /* Weak.swift */; };
+		40846D9B5948662E7BBDB272BB9E4391 /* Sendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268A2AB0CFD447F3C5788FF2B2B860F7 /* Sendable.swift */; };
+		47644505F9AF9F625957B43BE7891A52 /* KVOAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A3ECEB253EEDE8E235752A181C7604 /* KVOAlias.swift */; };
+		496E030B5379C670FE37F8258C4EF155 /* Merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A652EA4B825F59CF3416A02952AE43 /* Merge.swift */; };
+		54B4DFFFB1FF28A47C833E5F9893B0C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
+		5540BA5DC5C9850BBC663E49E3636AA6 /* End.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC27727D8D4DC2C92E411B60B4A4FF /* End.swift */; };
+		604EE9D4529B587AC9D8C7FF027DC91F /* Receivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA2EEFD69477F2FD75F83F64DBA7211 /* Receivable.swift */; };
+		6B10AE94092D6FCEC2FE313464F6A019 /* SwiftChaining-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F4CE76F20A1E8359A897479C84AEB33 /* SwiftChaining-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		777349C7E8D52B345D642C1F0125FE9B /* Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95A9A6751505D37588A3A040E572DD6 /* Do.swift */; };
+		84E169FABACA067269CE8FE82F29EAB4 /* Pods-SwiftChaining_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D2791876E3E9BB7D7049D80E53AC32F2 /* Pods-SwiftChaining_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		87383EE9A4BB3B154354C27F7C5900E2 /* Pods-SwiftChaining_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 14300A04CB7D401DC0286A7D47189764 /* Pods-SwiftChaining_Example-dummy.m */; };
+		876714A0FCB9FC65A1E6172E0E4A14B9 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6899535FF8C310F1786FA88557BC5797 /* Fetcher.swift */; };
+		88982EEF5DE88164E9FE8E12EE3DF4ED /* Fetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F8E777B747B55EA4A5C98682057328 /* Fetchable.swift */; };
+		9A508610229889F966D54C8C7F3C350D /* Pods-SwiftChaining_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F634FB2F9C3635E40A2469A9F8334D1D /* Pods-SwiftChaining_Tests-dummy.m */; };
+		C1651D5A9D3AADCE0EE0C0A7BA7EA288 /* Holder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07026750CC9EE2F329298C3CF2C1958 /* Holder.swift */; };
+		C8A59951A504F5E48AF1454F6339BD3E /* Pods-SwiftChaining_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 450C8FC472738C118EAFA764DB64943C /* Pods-SwiftChaining_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9E9E1E86E8224C03717865CBED4E3E3 /* UIControlAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831F9EAA30FE966669FBBCB8FB94B79D /* UIControlAlias.swift */; };
+		CA432F03BB777617F044306E6689D719 /* To.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786289C34FB39AE8176CBC0D6818C657 /* To.swift */; };
+		D16234A8F83581EB3E612CACFBF8B987 /* Joint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ECC47AEDA4072521A5DA3C2250B850 /* Joint.swift */; };
+		D282E3C0F29E9AD9B4AB709F1039BF09 /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70986E91EB16381C868BD88DB42998AA /* Combine.swift */; };
+		DC33F9DFD3905C879D1880D273A7B9F5 /* Guard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB7D1D037B584ABAE926F27A1CBD83E /* Guard.swift */; };
+		DE680DBCB6FC17F8153E186031D3BCA9 /* ArrayHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B5051D0A3D2B6E0B7282D242B8DA2 /* ArrayHolder.swift */; };
+		E13E2F9244AF3FEA35D8D5CE568BC227 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
+		E5F84C054CC36D3626BC134E0B8E5D4A /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04737F9AA28FA1D40A847F3A733374A /* Notifier.swift */; };
+		FCD26F6FAF34CD09D548B9361C7F71ED /* NotificationAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB145D3BA6FFC341EA484B66D8E82C3 /* NotificationAlias.swift */; };
+		FD2403BEAA9A91E7F4FB4DAB97ADC102 /* SwiftChaining-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEF0C865652EBE4FBB384A232C7381D /* SwiftChaining-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		76021C0CD67C5983DF430BB0FF166662 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 245E5819972878D7BA3737F8FF935659;
+			remoteInfo = "Pods-SwiftChaining_Example";
+		};
+		CC32910C0BF46A4EAC81EB31810FAAD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FBD1BDDC82FCABCC29084E5202AFDB4F;
+			remoteInfo = SwiftChaining;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0F4CE76F20A1E8359A897479C84AEB33 /* SwiftChaining-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftChaining-umbrella.h"; sourceTree = "<group>"; };
+		0FF2E4B3B1D18CCA8837737DEEE4EC71 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		118E40334968A4550D8CF6F1DAF05859 /* Pods-SwiftChaining_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SwiftChaining_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		14300A04CB7D401DC0286A7D47189764 /* Pods-SwiftChaining_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SwiftChaining_Example-dummy.m"; sourceTree = "<group>"; };
+		1763686F3C0F4311415C363E0564915A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		268A2AB0CFD447F3C5788FF2B2B860F7 /* Sendable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Sendable.swift; sourceTree = "<group>"; };
+		2EAAA85C0C9774E2340CC73AE1FB5179 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33101A094A27F1F91AAAA188F6EE6733 /* Pods-SwiftChaining_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwiftChaining_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		3679135A0A0A1B04A6092E8208C1D8D6 /* SwiftChaining.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftChaining.xcconfig; sourceTree = "<group>"; };
+		3D48E8154A2D7AD1FC178E8606EA5955 /* Pods_SwiftChaining_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftChaining_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		450C8FC472738C118EAFA764DB64943C /* Pods-SwiftChaining_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SwiftChaining_Example-umbrella.h"; sourceTree = "<group>"; };
+		4C007AACA455EF3D824461D9F861A9A5 /* Pods-SwiftChaining_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwiftChaining_Example-resources.sh"; sourceTree = "<group>"; };
+		51ACD671C1F85AF879B48CCC08D4D5B3 /* SwiftChaining.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = SwiftChaining.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		5AAC27727D8D4DC2C92E411B60B4A4FF /* End.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = End.swift; sourceTree = "<group>"; };
+		62DF2CB51A25BC9FD3A8E78771310DEF /* Pods-SwiftChaining_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwiftChaining_Tests-resources.sh"; sourceTree = "<group>"; };
+		6899535FF8C310F1786FA88557BC5797 /* Fetcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
+		69ECFFC87DC713ED8733B9D059D83B78 /* Pods-SwiftChaining_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwiftChaining_Example-frameworks.sh"; sourceTree = "<group>"; };
+		6C18BFCDA36507A491E77B119D86E0C7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		70986E91EB16381C868BD88DB42998AA /* Combine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Combine.swift; sourceTree = "<group>"; };
+		73D5790F98B9C0AF9668112D9C52E3A0 /* Pods-SwiftChaining_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SwiftChaining_Example.modulemap"; sourceTree = "<group>"; };
+		74433599196BE603F9D9210B5DBBB921 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		786289C34FB39AE8176CBC0D6818C657 /* To.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = To.swift; sourceTree = "<group>"; };
+		7BC2B2DADF94B5E79A4ECB0A2A4A2174 /* SwiftChaining-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftChaining-prefix.pch"; sourceTree = "<group>"; };
+		7FB145D3BA6FFC341EA484B66D8E82C3 /* NotificationAlias.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationAlias.swift; sourceTree = "<group>"; };
+		831F9EAA30FE966669FBBCB8FB94B79D /* UIControlAlias.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIControlAlias.swift; sourceTree = "<group>"; };
+		843527E91364C4ADF6C7C243CFF50F35 /* Weak.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
+		85ECC47AEDA4072521A5DA3C2250B850 /* Joint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Joint.swift; sourceTree = "<group>"; };
+		8A1C3EC7F95D0BB1772028F29BFB8160 /* Pods-SwiftChaining_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwiftChaining_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		8CEF0C865652EBE4FBB384A232C7381D /* SwiftChaining-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftChaining-dummy.m"; sourceTree = "<group>"; };
+		902B5051D0A3D2B6E0B7282D242B8DA2 /* ArrayHolder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ArrayHolder.swift; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		958F51CDBB6F6D98D12BFCD697232649 /* Observer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
+		95DDC74D82B0BB12ED52B7002EABE90D /* Pods_SwiftChaining_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftChaining_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9754053E487B6ECF25B65D8D9815E4A5 /* Pods-SwiftChaining_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SwiftChaining_Tests.modulemap"; sourceTree = "<group>"; };
+		A07026750CC9EE2F329298C3CF2C1958 /* Holder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Holder.swift; sourceTree = "<group>"; };
+		A78B39D0F6837F835AE254F38CCD0350 /* SwiftChaining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftChaining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7F8E777B747B55EA4A5C98682057328 /* Fetchable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Fetchable.swift; sourceTree = "<group>"; };
+		B56E873BA9A47E6E864ED82E31860B91 /* Pods-SwiftChaining_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SwiftChaining_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		B95A9A6751505D37588A3A040E572DD6 /* Do.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Do.swift; sourceTree = "<group>"; };
+		C04737F9AA28FA1D40A847F3A733374A /* Notifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
+		C9762771FA64B1A515CB3458B9872634 /* Pods-SwiftChaining_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwiftChaining_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		D2791876E3E9BB7D7049D80E53AC32F2 /* Pods-SwiftChaining_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SwiftChaining_Tests-umbrella.h"; sourceTree = "<group>"; };
+		D56DA27F090E36E9E2E8AE32DB1D9D77 /* Pods-SwiftChaining_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SwiftChaining_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		E6A3ECEB253EEDE8E235752A181C7604 /* KVOAlias.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KVOAlias.swift; sourceTree = "<group>"; };
+		E8CE7854FE6E2A54C30624426921F6AB /* Pods-SwiftChaining_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SwiftChaining_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		F0A652EA4B825F59CF3416A02952AE43 /* Merge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Merge.swift; sourceTree = "<group>"; };
+		F12CA1E56FC36F0C3C420A4612412BA8 /* Pods-SwiftChaining_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwiftChaining_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		F17FF7CD74B25C3E1B46B2DCAF469B6D /* Pods-SwiftChaining_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwiftChaining_Example.release.xcconfig"; sourceTree = "<group>"; };
+		F4ED78C57CCD4AEA7C423F150E2BC17D /* Chain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
+		F634FB2F9C3635E40A2469A9F8334D1D /* Pods-SwiftChaining_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SwiftChaining_Tests-dummy.m"; sourceTree = "<group>"; };
+		F8C28841C35DE1FFFA68A74B40C01434 /* ForEach.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ForEach.swift; sourceTree = "<group>"; };
+		F99F5EED909B8A83D1185761A7AC0C16 /* SwiftChaining.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftChaining.modulemap; sourceTree = "<group>"; };
+		FAA2EEFD69477F2FD75F83F64DBA7211 /* Receivable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Receivable.swift; sourceTree = "<group>"; };
+		FEB7D1D037B584ABAE926F27A1CBD83E /* Guard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Guard.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D23FA1623104CA542605ADC88AAEA8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54B4DFFFB1FF28A47C833E5F9893B0C1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2CA660CAD9B1A130B83ECC1EF2CA356 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C56054C08A5331F72F1807AECFE74AD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E07A79BC89CBC0937F2A677F427EFAFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E13E2F9244AF3FEA35D8D5CE568BC227 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		391A68E49A524884126CB12924F37017 /* SwiftChaining */ = {
+			isa = PBXGroup;
+			children = (
+				4F97730F329DCAF9C450A112FDDF3F99 /* Cocoa */,
+				EC8E866A5E6F97777EA34E9D40A4E81C /* Core */,
+				4F2F58E8307A78F60FDED4159A6DD7B2 /* Pod */,
+				A2FDA3C96B218649109BD8C8E3AD5D57 /* Support Files */,
+			);
+			name = SwiftChaining;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		4F2F58E8307A78F60FDED4159A6DD7B2 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				6C18BFCDA36507A491E77B119D86E0C7 /* LICENSE */,
+				0FF2E4B3B1D18CCA8837737DEEE4EC71 /* README.md */,
+				51ACD671C1F85AF879B48CCC08D4D5B3 /* SwiftChaining.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		4F97730F329DCAF9C450A112FDDF3F99 /* Cocoa */ = {
+			isa = PBXGroup;
+			children = (
+				E6A3ECEB253EEDE8E235752A181C7604 /* KVOAlias.swift */,
+				7FB145D3BA6FFC341EA484B66D8E82C3 /* NotificationAlias.swift */,
+				831F9EAA30FE966669FBBCB8FB94B79D /* UIControlAlias.swift */,
+			);
+			name = Cocoa;
+			path = SwiftChaining/Classes/Cocoa;
+			sourceTree = "<group>";
+		};
+		5E0D919E635D23B70123790B8308F8EF /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				A8649763717C48026E9AF77B55B60A23 /* Development Pods */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				F4CF611820A945EEFA900929811D0CF8 /* Products */,
+				C4190F25B6882C00BF165A4D4272EB50 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8CA69C68615B4BF51A308097210134C6 /* Pods-SwiftChaining_Example */ = {
+			isa = PBXGroup;
+			children = (
+				74433599196BE603F9D9210B5DBBB921 /* Info.plist */,
+				73D5790F98B9C0AF9668112D9C52E3A0 /* Pods-SwiftChaining_Example.modulemap */,
+				D56DA27F090E36E9E2E8AE32DB1D9D77 /* Pods-SwiftChaining_Example-acknowledgements.markdown */,
+				E8CE7854FE6E2A54C30624426921F6AB /* Pods-SwiftChaining_Example-acknowledgements.plist */,
+				14300A04CB7D401DC0286A7D47189764 /* Pods-SwiftChaining_Example-dummy.m */,
+				69ECFFC87DC713ED8733B9D059D83B78 /* Pods-SwiftChaining_Example-frameworks.sh */,
+				4C007AACA455EF3D824461D9F861A9A5 /* Pods-SwiftChaining_Example-resources.sh */,
+				450C8FC472738C118EAFA764DB64943C /* Pods-SwiftChaining_Example-umbrella.h */,
+				8A1C3EC7F95D0BB1772028F29BFB8160 /* Pods-SwiftChaining_Example.debug.xcconfig */,
+				F17FF7CD74B25C3E1B46B2DCAF469B6D /* Pods-SwiftChaining_Example.release.xcconfig */,
+			);
+			name = "Pods-SwiftChaining_Example";
+			path = "Target Support Files/Pods-SwiftChaining_Example";
+			sourceTree = "<group>";
+		};
+		A2FDA3C96B218649109BD8C8E3AD5D57 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1763686F3C0F4311415C363E0564915A /* Info.plist */,
+				F99F5EED909B8A83D1185761A7AC0C16 /* SwiftChaining.modulemap */,
+				3679135A0A0A1B04A6092E8208C1D8D6 /* SwiftChaining.xcconfig */,
+				8CEF0C865652EBE4FBB384A232C7381D /* SwiftChaining-dummy.m */,
+				7BC2B2DADF94B5E79A4ECB0A2A4A2174 /* SwiftChaining-prefix.pch */,
+				0F4CE76F20A1E8359A897479C84AEB33 /* SwiftChaining-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/SwiftChaining";
+			sourceTree = "<group>";
+		};
+		A8649763717C48026E9AF77B55B60A23 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				391A68E49A524884126CB12924F37017 /* SwiftChaining */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		AA1A74B758B1B404556835D2815B81E7 /* Pods-SwiftChaining_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				2EAAA85C0C9774E2340CC73AE1FB5179 /* Info.plist */,
+				9754053E487B6ECF25B65D8D9815E4A5 /* Pods-SwiftChaining_Tests.modulemap */,
+				B56E873BA9A47E6E864ED82E31860B91 /* Pods-SwiftChaining_Tests-acknowledgements.markdown */,
+				118E40334968A4550D8CF6F1DAF05859 /* Pods-SwiftChaining_Tests-acknowledgements.plist */,
+				F634FB2F9C3635E40A2469A9F8334D1D /* Pods-SwiftChaining_Tests-dummy.m */,
+				33101A094A27F1F91AAAA188F6EE6733 /* Pods-SwiftChaining_Tests-frameworks.sh */,
+				62DF2CB51A25BC9FD3A8E78771310DEF /* Pods-SwiftChaining_Tests-resources.sh */,
+				D2791876E3E9BB7D7049D80E53AC32F2 /* Pods-SwiftChaining_Tests-umbrella.h */,
+				F12CA1E56FC36F0C3C420A4612412BA8 /* Pods-SwiftChaining_Tests.debug.xcconfig */,
+				C9762771FA64B1A515CB3458B9872634 /* Pods-SwiftChaining_Tests.release.xcconfig */,
+			);
+			name = "Pods-SwiftChaining_Tests";
+			path = "Target Support Files/Pods-SwiftChaining_Tests";
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5E0D919E635D23B70123790B8308F8EF /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C4190F25B6882C00BF165A4D4272EB50 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8CA69C68615B4BF51A308097210134C6 /* Pods-SwiftChaining_Example */,
+				AA1A74B758B1B404556835D2815B81E7 /* Pods-SwiftChaining_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		EC8E866A5E6F97777EA34E9D40A4E81C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				902B5051D0A3D2B6E0B7282D242B8DA2 /* ArrayHolder.swift */,
+				F4ED78C57CCD4AEA7C423F150E2BC17D /* Chain.swift */,
+				70986E91EB16381C868BD88DB42998AA /* Combine.swift */,
+				B95A9A6751505D37588A3A040E572DD6 /* Do.swift */,
+				5AAC27727D8D4DC2C92E411B60B4A4FF /* End.swift */,
+				A7F8E777B747B55EA4A5C98682057328 /* Fetchable.swift */,
+				6899535FF8C310F1786FA88557BC5797 /* Fetcher.swift */,
+				F8C28841C35DE1FFFA68A74B40C01434 /* ForEach.swift */,
+				FEB7D1D037B584ABAE926F27A1CBD83E /* Guard.swift */,
+				A07026750CC9EE2F329298C3CF2C1958 /* Holder.swift */,
+				85ECC47AEDA4072521A5DA3C2250B850 /* Joint.swift */,
+				F0A652EA4B825F59CF3416A02952AE43 /* Merge.swift */,
+				C04737F9AA28FA1D40A847F3A733374A /* Notifier.swift */,
+				958F51CDBB6F6D98D12BFCD697232649 /* Observer.swift */,
+				FAA2EEFD69477F2FD75F83F64DBA7211 /* Receivable.swift */,
+				268A2AB0CFD447F3C5788FF2B2B860F7 /* Sendable.swift */,
+				786289C34FB39AE8176CBC0D6818C657 /* To.swift */,
+				843527E91364C4ADF6C7C243CFF50F35 /* Weak.swift */,
+			);
+			name = Core;
+			path = SwiftChaining/Classes/Core;
+			sourceTree = "<group>";
+		};
+		F4CF611820A945EEFA900929811D0CF8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				95DDC74D82B0BB12ED52B7002EABE90D /* Pods_SwiftChaining_Example.framework */,
+				3D48E8154A2D7AD1FC178E8606EA5955 /* Pods_SwiftChaining_Tests.framework */,
+				A78B39D0F6837F835AE254F38CCD0350 /* SwiftChaining.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		6CA71C78ECF891B87BF4CB61BEC7F608 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8A59951A504F5E48AF1454F6339BD3E /* Pods-SwiftChaining_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7337A5BA24B235455606657770C02361 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84E169FABACA067269CE8FE82F29EAB4 /* Pods-SwiftChaining_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76BFDA9E639FCC61AA7CCE58287BABAC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B10AE94092D6FCEC2FE313464F6A019 /* SwiftChaining-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		0CA1FD6269C38B54C0D853EDEF8CD6C6 /* Pods-SwiftChaining_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC9ABFA59796DFC8DB659BC5F0F4BCF6 /* Build configuration list for PBXNativeTarget "Pods-SwiftChaining_Tests" */;
+			buildPhases = (
+				494085C715A70365B19EF56A64A4DA15 /* Sources */,
+				1D23FA1623104CA542605ADC88AAEA8E /* Frameworks */,
+				7337A5BA24B235455606657770C02361 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				29FC4C4ED8F8236B89E32BCB8F84221B /* PBXTargetDependency */,
+			);
+			name = "Pods-SwiftChaining_Tests";
+			productName = "Pods-SwiftChaining_Tests";
+			productReference = 3D48E8154A2D7AD1FC178E8606EA5955 /* Pods_SwiftChaining_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		245E5819972878D7BA3737F8FF935659 /* Pods-SwiftChaining_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CE56B0DEA8AE480CB6F7A8EE94D374A /* Build configuration list for PBXNativeTarget "Pods-SwiftChaining_Example" */;
+			buildPhases = (
+				8D281221612179323B751506F74E2385 /* Sources */,
+				D2CA660CAD9B1A130B83ECC1EF2CA356 /* Frameworks */,
+				6CA71C78ECF891B87BF4CB61BEC7F608 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F74DC55F79B72E85E6414C0ABB32ACC7 /* PBXTargetDependency */,
+			);
+			name = "Pods-SwiftChaining_Example";
+			productName = "Pods-SwiftChaining_Example";
+			productReference = 95DDC74D82B0BB12ED52B7002EABE90D /* Pods_SwiftChaining_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FBD1BDDC82FCABCC29084E5202AFDB4F /* SwiftChaining */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B16F90A74570F23A1C59376B00FF853 /* Build configuration list for PBXNativeTarget "SwiftChaining" */;
+			buildPhases = (
+				C14AE8DD7C51A21A3C11D3EBAEA45075 /* Sources */,
+				E07A79BC89CBC0937F2A677F427EFAFE /* Frameworks */,
+				76BFDA9E639FCC61AA7CCE58287BABAC /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftChaining;
+			productName = SwiftChaining;
+			productReference = A78B39D0F6837F835AE254F38CCD0350 /* SwiftChaining.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = F4CF611820A945EEFA900929811D0CF8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				245E5819972878D7BA3737F8FF935659 /* Pods-SwiftChaining_Example */,
+				0CA1FD6269C38B54C0D853EDEF8CD6C6 /* Pods-SwiftChaining_Tests */,
+				FBD1BDDC82FCABCC29084E5202AFDB4F /* SwiftChaining */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		494085C715A70365B19EF56A64A4DA15 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A508610229889F966D54C8C7F3C350D /* Pods-SwiftChaining_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D281221612179323B751506F74E2385 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87383EE9A4BB3B154354C27F7C5900E2 /* Pods-SwiftChaining_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C14AE8DD7C51A21A3C11D3EBAEA45075 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE680DBCB6FC17F8153E186031D3BCA9 /* ArrayHolder.swift in Sources */,
+				1535D33807C33F4830EE6FA466863287 /* Chain.swift in Sources */,
+				D282E3C0F29E9AD9B4AB709F1039BF09 /* Combine.swift in Sources */,
+				777349C7E8D52B345D642C1F0125FE9B /* Do.swift in Sources */,
+				5540BA5DC5C9850BBC663E49E3636AA6 /* End.swift in Sources */,
+				88982EEF5DE88164E9FE8E12EE3DF4ED /* Fetchable.swift in Sources */,
+				876714A0FCB9FC65A1E6172E0E4A14B9 /* Fetcher.swift in Sources */,
+				04F43E8328EBF518D009886E433840FD /* ForEach.swift in Sources */,
+				DC33F9DFD3905C879D1880D273A7B9F5 /* Guard.swift in Sources */,
+				C1651D5A9D3AADCE0EE0C0A7BA7EA288 /* Holder.swift in Sources */,
+				D16234A8F83581EB3E612CACFBF8B987 /* Joint.swift in Sources */,
+				47644505F9AF9F625957B43BE7891A52 /* KVOAlias.swift in Sources */,
+				496E030B5379C670FE37F8258C4EF155 /* Merge.swift in Sources */,
+				FCD26F6FAF34CD09D548B9361C7F71ED /* NotificationAlias.swift in Sources */,
+				E5F84C054CC36D3626BC134E0B8E5D4A /* Notifier.swift in Sources */,
+				333CC44CB55596113DB4BCB6A7642F82 /* Observer.swift in Sources */,
+				604EE9D4529B587AC9D8C7FF027DC91F /* Receivable.swift in Sources */,
+				40846D9B5948662E7BBDB272BB9E4391 /* Sendable.swift in Sources */,
+				FD2403BEAA9A91E7F4FB4DAB97ADC102 /* SwiftChaining-dummy.m in Sources */,
+				CA432F03BB777617F044306E6689D719 /* To.swift in Sources */,
+				C9E9E1E86E8224C03717865CBED4E3E3 /* UIControlAlias.swift in Sources */,
+				406652B36F092534460D15D7FE47B7CA /* Weak.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		29FC4C4ED8F8236B89E32BCB8F84221B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-SwiftChaining_Example";
+			target = 245E5819972878D7BA3737F8FF935659 /* Pods-SwiftChaining_Example */;
+			targetProxy = 76021C0CD67C5983DF430BB0FF166662 /* PBXContainerItemProxy */;
+		};
+		F74DC55F79B72E85E6414C0ABB32ACC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftChaining;
+			target = FBD1BDDC82FCABCC29084E5202AFDB4F /* SwiftChaining */;
+			targetProxy = CC32910C0BF46A4EAC81EB31810FAAD9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1AF149653E158E6B51183EBD1AE41306 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F12CA1E56FC36F0C3C420A4612412BA8 /* Pods-SwiftChaining_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SwiftChaining_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SwiftChaining_Tests/Pods-SwiftChaining_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2AF379B18C3F69A4C4EA64F4F1197C4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F17FF7CD74B25C3E1B46B2DCAF469B6D /* Pods-SwiftChaining_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SwiftChaining_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SwiftChaining_Example/Pods-SwiftChaining_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4DC9E48E7D9C507E976ECCB71EDB8873 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3679135A0A0A1B04A6092E8208C1D8D6 /* SwiftChaining.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftChaining/SwiftChaining-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftChaining/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftChaining/SwiftChaining.modulemap";
+				PRODUCT_MODULE_NAME = SwiftChaining;
+				PRODUCT_NAME = SwiftChaining;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5DC0083F57E9AB706B46C5B5D73B38D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		7D181AC33AE8A7403859FA7D968BF207 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C9762771FA64B1A515CB3458B9872634 /* Pods-SwiftChaining_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SwiftChaining_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SwiftChaining_Tests/Pods-SwiftChaining_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		96FB6E1142B561FACF606BF13BE9B459 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A1C3EC7F95D0BB1772028F29BFB8160 /* Pods-SwiftChaining_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SwiftChaining_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SwiftChaining_Example/Pods-SwiftChaining_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		AEEA80476F98EB645C4DD53EB2BB6D88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		D3D6861D183E1848C84F4CA1388CD614 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3679135A0A0A1B04A6092E8208C1D8D6 /* SwiftChaining.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftChaining/SwiftChaining-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftChaining/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftChaining/SwiftChaining.modulemap";
+				PRODUCT_MODULE_NAME = SwiftChaining;
+				PRODUCT_NAME = SwiftChaining;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DC0083F57E9AB706B46C5B5D73B38D8 /* Debug */,
+				AEEA80476F98EB645C4DD53EB2BB6D88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CE56B0DEA8AE480CB6F7A8EE94D374A /* Build configuration list for PBXNativeTarget "Pods-SwiftChaining_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96FB6E1142B561FACF606BF13BE9B459 /* Debug */,
+				2AF379B18C3F69A4C4EA64F4F1197C4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B16F90A74570F23A1C59376B00FF853 /* Build configuration list for PBXNativeTarget "SwiftChaining" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3D6861D183E1848C84F4CA1388CD614 /* Debug */,
+				4DC9E48E7D9C507E976ECCB71EDB8873 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC9ABFA59796DFC8DB659BC5F0F4BCF6 /* Build configuration list for PBXNativeTarget "Pods-SwiftChaining_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AF149653E158E6B51183EBD1AE41306 /* Debug */,
+				7D181AC33AE8A7403859FA7D968BF207 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
