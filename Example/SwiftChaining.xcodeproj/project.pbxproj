@@ -14,7 +14,8 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		B026B06D393B12F7A7824998 /* Pods_SwiftChaining_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A50053016AE446163B3C2BE /* Pods_SwiftChaining_Tests.framework */; };
 		B617681B20FC694700D26FA2 /* ArrayHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617681A20FC694700D26FA2 /* ArrayHolderTests.swift */; };
-		B691563120FC7DAC006CF625 /* TestChainableValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = B691563020FC7DAC006CF625 /* TestChainableValues.swift */; };
+		B6340E95210B71D700D2EF99 /* DictionaryHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6340E94210B71D700D2EF99 /* DictionaryHolderTests.swift */; };
+		B691563120FC7DAC006CF625 /* TestRelayableValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = B691563020FC7DAC006CF625 /* TestRelayableValues.swift */; };
 		B691563320FCBA7D006CF625 /* TableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B691563220FCBA7D006CF625 /* TableController.swift */; };
 		B6CB1F4621021AF8004AB82F /* HolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CB1F4521021AF8004AB82F /* HolderTests.swift */; };
 		B6CB1F4821021BB4004AB82F /* NotifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CB1F4721021BB4004AB82F /* NotifierTests.swift */; };
@@ -61,7 +62,8 @@
 		712E45A4C7B0116EFB37F4B9 /* Pods_SwiftChaining_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftChaining_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5538C67E049E0F2CF0A1090 /* Pods-SwiftChaining_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftChaining_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftChaining_Tests/Pods-SwiftChaining_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		B617681A20FC694700D26FA2 /* ArrayHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayHolderTests.swift; sourceTree = "<group>"; };
-		B691563020FC7DAC006CF625 /* TestChainableValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestChainableValues.swift; sourceTree = "<group>"; };
+		B6340E94210B71D700D2EF99 /* DictionaryHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryHolderTests.swift; sourceTree = "<group>"; };
+		B691563020FC7DAC006CF625 /* TestRelayableValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRelayableValues.swift; sourceTree = "<group>"; };
 		B691563220FCBA7D006CF625 /* TableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableController.swift; sourceTree = "<group>"; };
 		B6CB1F4521021AF8004AB82F /* HolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolderTests.swift; sourceTree = "<group>"; };
 		B6CB1F4721021BB4004AB82F /* NotifierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifierTests.swift; sourceTree = "<group>"; };
@@ -170,9 +172,10 @@
 				B6CB1F4B21021C20004AB82F /* ToTests.swift */,
 				B6CB1F4721021BB4004AB82F /* NotifierTests.swift */,
 				B617681A20FC694700D26FA2 /* ArrayHolderTests.swift */,
+				B6340E94210B71D700D2EF99 /* DictionaryHolderTests.swift */,
 				B6CB1F5B21036067004AB82F /* KVOAliasTests.swift */,
 				B6CB1F5D21036072004AB82F /* NotificationAliasTests.swift */,
-				B691563020FC7DAC006CF625 /* TestChainableValues.swift */,
+				B691563020FC7DAC006CF625 /* TestRelayableValues.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -396,11 +399,12 @@
 			files = (
 				B6CB1F4A21021C03004AB82F /* MergeTests.swift in Sources */,
 				B6CB1F4E21021C4C004AB82F /* GuardTests.swift in Sources */,
-				B691563120FC7DAC006CF625 /* TestChainableValues.swift in Sources */,
+				B691563120FC7DAC006CF625 /* TestRelayableValues.swift in Sources */,
 				B6CB1F5221021C71004AB82F /* CombineTests.swift in Sources */,
 				B6CB1F4821021BB4004AB82F /* NotifierTests.swift in Sources */,
 				B6CB1F5621021CAF004AB82F /* ObserverTests.swift in Sources */,
 				B6CB1F4621021AF8004AB82F /* HolderTests.swift in Sources */,
+				B6340E95210B71D700D2EF99 /* DictionaryHolderTests.swift in Sources */,
 				B6CB1F5421021C92004AB82F /* ForEachTests.swift in Sources */,
 				B6CB1F5C21036067004AB82F /* KVOAliasTests.swift in Sources */,
 				B6CB1F4C21021C20004AB82F /* ToTests.swift in Sources */,
