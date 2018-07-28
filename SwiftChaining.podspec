@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SwiftChaining'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'SwiftChaining'
 
   s.homepage         = 'https://github.com/objective-audio/SwiftChaining'
