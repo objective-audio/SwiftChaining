@@ -7,10 +7,10 @@ import Foundation
 final public class ArrayHolder<Element: Relayable> {
     public enum Event {
         case all([Element])
-        case inserted(Element, at: Int)
-        case removed(Element, at: Int)
-        case replaced(Element, at: Int)
-        case relayed(Element, at: Int, value: Element.SendValue)
+        case inserted(at: Int, element: Element)
+        case removed(at: Int, element: Element)
+        case replaced(at: Int, element: Element)
+        case relayed(Element.SendValue, at: Int, element: Element)
     }
     
     public let core = SenderCore<ArrayHolder>()
@@ -55,7 +55,7 @@ final public class ArrayHolder<Element: Relayable> {
             observer.invalidate()
         }
         
-        self.core.broadcast(value: .removed(pair.element, at: index))
+        self.core.broadcast(value: .removed(at: index, element: pair.element))
         
         return pair.element
     }
@@ -101,7 +101,7 @@ final public class ArrayHolder<Element: Relayable> {
 extension ArrayHolder /* private */ {
     private func insert(element: Element, at index: Int, chaining: ((Int, Element) -> AnyObserver)?) {
         self.pairArray.insert((element, chaining?(index, element)), at: index)
-        self.core.broadcast(value: .inserted(element, at: index))
+        self.core.broadcast(value: .inserted(at: index, element: element))
     }
     
     private func replace(_ elements: [Element], chaining: ((Int, Element) -> AnyObserver)?) {
@@ -111,7 +111,7 @@ extension ArrayHolder /* private */ {
     
     private func replace(_ element: Element, at index: Int, chaining: ((Int, Element) -> AnyObserver)?) {
         self.pairArray.replaceSubrange(index...index, with: [(element, chaining?(index, element))])
-        self.core.broadcast(value: .replaced(element, at: index))
+        self.core.broadcast(value: .replaced(at: index, element: element))
     }
 }
 
@@ -158,7 +158,7 @@ extension ArrayHolder where Element: Sendable {
         return { (index: Int, element: Element) in
             element.chain().do({ [weak self] value in
                 if let sself = self {
-                    sself.core.broadcast(value: .relayed(sself.pairArray[index].element, at: index, value: value))
+                    sself.core.broadcast(value: .relayed(value, at: index, element: sself.pairArray[index].element))
                 }
             }).end()
         }

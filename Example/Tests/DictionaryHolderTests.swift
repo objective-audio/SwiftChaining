@@ -288,7 +288,7 @@ class DictionaryHolderTests: XCTestCase {
 
         XCTAssertEqual(received.count, 4)
 
-        if case .relayed(let key, let value, let relayedValue) = received[3] {
+        if case .relayed(let relayedValue, let key, let value) = received[3] {
             XCTAssertEqual(value, Holder(11))
             XCTAssertEqual(key, 10)
             XCTAssertEqual(relayedValue, 11)

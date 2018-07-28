@@ -179,7 +179,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 2)
         
-        if case .inserted(let element, let index) = received[1] {
+        if case .inserted(let index, let element) = received[1] {
             XCTAssertEqual(element, 100)
             XCTAssertEqual(index, 2)
         } else {
@@ -192,7 +192,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 3)
         
-        if case .inserted(let element, let index) = received[2] {
+        if case .inserted(let index, let element) = received[2] {
             XCTAssertEqual(element, 200)
             XCTAssertEqual(index, 1)
         } else {
@@ -205,7 +205,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 4)
         
-        if case .removed(let element, let index) = received[3] {
+        if case .removed(let index, let element) = received[3] {
             XCTAssertEqual(element, 20)
             XCTAssertEqual(index, 2)
         } else {
@@ -218,7 +218,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 5)
         
-        if case .replaced(let element, let index) = received[4] {
+        if case .replaced(let index, let element) = received[4] {
             XCTAssertEqual(element, 500)
             XCTAssertEqual(index, 1)
         } else {
@@ -269,7 +269,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 2)
         
-        if case .inserted(let element, let index) = received[1] {
+        if case .inserted(let index, let element) = received[1] {
             XCTAssertEqual(element, Holder(100))
             XCTAssertEqual(index, 2)
         } else {
@@ -282,7 +282,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 3)
         
-        if case .inserted(let element, let index) = received[2] {
+        if case .inserted(let index, let element) = received[2] {
             XCTAssertEqual(element, Holder(200))
             XCTAssertEqual(index, 1)
         } else {
@@ -295,7 +295,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 4)
         
-        if case .removed(let element, let index) = received[3] {
+        if case .removed(let index, let element) = received[3] {
             XCTAssertEqual(element, Holder(20))
             XCTAssertEqual(index, 2)
         } else {
@@ -308,7 +308,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 5)
         
-        if case .relayed(let element, let index, let value) = received[4] {
+        if case .relayed(let value, let index, let element) = received[4] {
             XCTAssertEqual(element, Holder(11))
             XCTAssertEqual(index, 0)
             XCTAssertEqual(value, 11)
@@ -322,7 +322,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 6)
         
-        if case .replaced(let element, let index) = received[5] {
+        if case .replaced(let index, let element) = received[5] {
             XCTAssertEqual(element, Holder(500))
             XCTAssertEqual(index, 1)
         } else {
@@ -345,7 +345,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 8)
         
-        if case .relayed(let element, let index, let value) = received[7] {
+        if case .relayed(let value, let index, let element) = received[7] {
             XCTAssertEqual(element, Holder(998))
             XCTAssertEqual(index, 1)
             XCTAssertEqual(value, 998)

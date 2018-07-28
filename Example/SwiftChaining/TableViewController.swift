@@ -21,13 +21,13 @@ class TableViewController: UITableViewController {
             switch event {
             case .all:
                 self?.tableView.reloadData()
-            case .inserted(_, let section):
+            case .inserted(let section, _):
                 self?.tableView.insertSections(IndexSet(integer: section), with: .automatic)
-            case .removed(_, let section):
+            case .removed(let section, _):
                 self?.tableView.deleteSections(IndexSet(integer: section), with: .automatic)
-            case .replaced(_, let section):
+            case .replaced(let section, _):
                 self?.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
-            case .relayed(_, let section, let sectionEvent):
+            case .relayed(let sectionEvent, let section, _):
                 switch sectionEvent {
                 case .all, .title:
                     self?.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
@@ -35,11 +35,11 @@ class TableViewController: UITableViewController {
                     switch rowEvent {
                     case .all:
                         self?.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
-                    case .inserted(_, let row):
+                    case .inserted(let row, _):
                         self?.tableView.insertRows(at: [IndexPath(row: row, section: section)], with: .automatic)
-                    case .removed(_, let row):
+                    case .removed(let row, _):
                         self?.tableView.deleteRows(at: [IndexPath(row: row, section: section)], with: .automatic)
-                    case .replaced(let cellData, let row), .relayed(let cellData, let row, _):
+                    case .replaced(let row, let cellData), .relayed(_, let row, let cellData):
                         if let cell = self?.tableView.cellForRow(at: IndexPath(row: row, section: section)) as? CellDataSettable {
                             cell.set(cellData: cellData)
                         }

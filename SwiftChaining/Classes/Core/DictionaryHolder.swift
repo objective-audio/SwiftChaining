@@ -10,7 +10,7 @@ final public class DictionaryHolder<Key: Hashable, Value: Relayable> {
         case inserted(key: Key, value: Value)
         case removed(key: Key, value: Value)
         case replaced(key: Key, value: Value)
-        case relayed(key: Key, value: Value, relayedValue: Value.SendValue)
+        case relayed(Value.SendValue, key: Key, value: Value)
     }
     
     public let core = SenderCore<DictionaryHolder>()
@@ -184,7 +184,7 @@ extension DictionaryHolder where Value: Sendable {
         return { (key: Key, value: Value) in
             value.chain().do({ [weak self] relayedValue in
                 if let sself = self {
-                    sself.core.broadcast(value: .relayed(key: key, value: value, relayedValue: relayedValue))
+                    sself.core.broadcast(value: .relayed(relayedValue, key: key, value: value))
                 }
             }).end()
         }
