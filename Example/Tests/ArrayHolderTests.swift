@@ -17,24 +17,30 @@ class ArrayHolderTests: XCTestCase {
         super.tearDown()
     }
     
-    func testSetElementsWithRelayable() {
+    func testInit() {
+        let array = ArrayHolder<Int>()
+        
+        XCTAssertEqual(array.rawArray, [])
+    }
+    
+    func testReplaceElementsWithRelayable() {
         let array = ArrayHolder([10, 20])
         
-        XCTAssertEqual(array.elements, [10, 20])
+        XCTAssertEqual(array.rawArray, [10, 20])
         
         array.replace([30, 40, 50])
         
-        XCTAssertEqual(array.elements, [30, 40, 50])
+        XCTAssertEqual(array.rawArray, [30, 40, 50])
     }
     
-    func testSetElementsWithSendableValue() {
+    func testReplaceElementsWithSendableValue() {
         let holder1 = Holder(1)
         let holder2 = Holder(2)
         let holder3 = Holder(3)
         
         let array = ArrayHolder([holder1, holder2])
         
-        XCTAssertEqual(array.elements.count, 2)
+        XCTAssertEqual(array.rawArray.count, 2)
         XCTAssertEqual(array[0], Holder(1))
         XCTAssertEqual(array[1], Holder(2))
         
@@ -44,17 +50,17 @@ class ArrayHolderTests: XCTestCase {
         XCTAssertEqual(array[0], Holder(3))
     }
     
-    func testSetElementWithRelayableValue() {
+    func testReplaceElementWithRelayableValue() {
         let array = ArrayHolder([10, 20, 30])
         
-        XCTAssertEqual(array.elements, [10, 20, 30])
+        XCTAssertEqual(array.rawArray, [10, 20, 30])
         
         array.replace(200, at: 1)
         
-        XCTAssertEqual(array.elements, [10, 200, 30])
+        XCTAssertEqual(array.rawArray, [10, 200, 30])
     }
     
-    func testSetElementWithSendableValue() {
+    func testReplaceElementWithSendableValue() {
         let holder1 = Holder(1)
         let holder2 = Holder(2)
         let holder3 = Holder(3)
@@ -62,12 +68,12 @@ class ArrayHolderTests: XCTestCase {
         
         let array = ArrayHolder([holder1, holder2, holder3])
         
-        XCTAssertEqual(array.elements, [holder1, holder2, holder3])
+        XCTAssertEqual(array.rawArray, [holder1, holder2, holder3])
         
         array.replace(holder2b, at: 1)
         
         XCTAssertEqual(array.count, 3)
-        XCTAssertEqual(array.elements, [holder1, holder2b, holder3])
+        XCTAssertEqual(array.rawArray, [holder1, holder2b, holder3])
     }
     
     func testRemoveElement() {
@@ -76,7 +82,7 @@ class ArrayHolderTests: XCTestCase {
         let removed = array.remove(at: 1)
         
         XCTAssertEqual(array.count, 2)
-        XCTAssertEqual(array.elements, [1, 3])
+        XCTAssertEqual(array.rawArray, [1, 3])
         XCTAssertEqual(removed, 2)
     }
     
@@ -126,7 +132,33 @@ class ArrayHolderTests: XCTestCase {
         XCTAssertEqual(array.count, 3)
     }
     
+    func testSubscriptGetWithRelayableValue() {
+        let array = ArrayHolder([10])
+        
+        XCTAssertEqual(array[0], 10)
+    }
     
+    func testSubscriptGetWithSendableValue() {
+        let array = ArrayHolder([Holder(10)])
+        
+        XCTAssertEqual(array[0], Holder(10))
+    }
+    
+    func testSubscriptSetWithRelayableValue() {
+        let array = ArrayHolder([10])
+        
+        array[0] = 11
+        
+        XCTAssertEqual(array.rawArray, [11])
+    }
+    
+    func testSubscriptSetWithSendableValue() {
+        let array = ArrayHolder([Holder(10)])
+        
+        array[0] = Holder(11)
+        
+        XCTAssertEqual(array.rawArray, [Holder(11)])
+    }
     
     func testEventWithRelayableElements() {
         let array = ArrayHolder([10, 20])
@@ -154,7 +186,7 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.elements, [10, 20, 100])
+        XCTAssertEqual(array.rawArray, [10, 20, 100])
         
         array.insert(200, at: 1)
         
@@ -167,7 +199,7 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.elements, [10, 200, 20, 100])
+        XCTAssertEqual(array.rawArray, [10, 200, 20, 100])
         
         array.remove(at: 2)
         
@@ -180,7 +212,7 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.elements, [10, 200, 100])
+        XCTAssertEqual(array.rawArray, [10, 200, 100])
         
         array.replace(500, at: 1)
         
@@ -193,7 +225,7 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.elements, [10, 500, 100])
+        XCTAssertEqual(array.rawArray, [10, 500, 100])
         
         array.replace([1000, 999])
         
@@ -215,7 +247,7 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.elements, [])
+        XCTAssertEqual(array.rawArray, [])
     }
     
     func testEventWithSendableElements() {
@@ -244,7 +276,7 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.elements, [Holder(10), Holder(20), Holder(100)])
+        XCTAssertEqual(array.rawArray, [Holder(10), Holder(20), Holder(100)])
         
         array.insert(Holder(200), at: 1)
         
@@ -257,7 +289,7 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.elements, [Holder(10), Holder(200), Holder(20), Holder(100)])
+        XCTAssertEqual(array.rawArray, [Holder(10), Holder(200), Holder(20), Holder(100)])
         
         array.remove(at: 2)
         
@@ -270,7 +302,7 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.elements, [Holder(10), Holder(200), Holder(100)])
+        XCTAssertEqual(array.rawArray, [Holder(10), Holder(200), Holder(100)])
         
         array[0].value = 11
         
@@ -284,7 +316,7 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.elements, [Holder(11), Holder(200), Holder(100)])
+        XCTAssertEqual(array.rawArray, [Holder(11), Holder(200), Holder(100)])
         
         array.replace(Holder(500), at: 1)
         
@@ -297,7 +329,7 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.elements, [Holder(11), Holder(500), Holder(100)])
+        XCTAssertEqual(array.rawArray, [Holder(11), Holder(500), Holder(100)])
         
         array.replace([Holder(1000), Holder(999)])
         
