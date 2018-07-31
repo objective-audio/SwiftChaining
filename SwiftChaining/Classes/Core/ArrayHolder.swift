@@ -15,7 +15,14 @@ final public class ArrayHolder<Element: Relayable> {
     
     public let core = SenderCore<ArrayHolder>()
     
-    private typealias ElementPair = (element: Element, observer: AnyObserver?)
+    private class ElementPair {
+        let element: Element
+        var observer: AnyObserver?
+        
+        init(_ element: Element) {
+            self.element = element
+        }
+    }
     
     public var rawArray: [Element] { return self.pairArray.map { $0.element } }
     private var pairArray: [ElementPair] = []
@@ -99,18 +106,26 @@ final public class ArrayHolder<Element: Relayable> {
 }
 
 extension ArrayHolder /* private */ {
-    private func insert(element: Element, at index: Int, chaining: ((Int, Element) -> AnyObserver)?) {
-        self.pairArray.insert((element, chaining?(index, element)), at: index)
+    private func insert(element: Element, at index: Int, chaining: ((ElementPair) -> Void)?) {
+        let pair = ElementPair(element)
+        chaining?(pair)
+        self.pairArray.insert(pair, at: index)
         self.core.broadcast(value: .inserted(at: index, element: element))
     }
     
-    private func replace(_ elements: [Element], chaining: ((Int, Element) -> AnyObserver)?) {
-        self.pairArray = elements.enumerated().map { ($0.1, chaining?($0.0, $0.1)) }
+    private func replace(_ elements: [Element], chaining: ((ElementPair) -> Void)?) {
+        self.pairArray = elements.enumerated().map {
+            let pair = ElementPair($0.1)
+            chaining?(pair)
+            return pair
+        }
         self.core.broadcast(value: .all(elements))
     }
     
-    private func replace(_ element: Element, at index: Int, chaining: ((Int, Element) -> AnyObserver)?) {
-        self.pairArray.replaceSubrange(index...index, with: [(element, chaining?(index, element))])
+    private func replace(_ element: Element, at index: Int, chaining: ((ElementPair) -> Void)?) {
+        let pair = ElementPair(element)
+        chaining?(pair)
+        self.pairArray.replaceSubrange(index...index, with: [pair])
         self.core.broadcast(value: .replaced(at: index, element: element))
     }
 }
@@ -154,11 +169,13 @@ extension ArrayHolder where Element: Sendable {
         set(element) { self.replace(element, at: index) }
     }
     
-    private func elementChaining() -> ((Int, Element) -> AnyObserver) {
-        return { (index: Int, element: Element) in
-            element.chain().do({ [weak self] value in
-                if let sself = self {
-                    sself.core.broadcast(value: .relayed(value, at: index, element: sself.pairArray[index].element))
+    private func elementChaining() -> ((ElementPair) -> Void) {
+        return { (pair: ElementPair) in
+            pair.observer = pair.element.chain().do({ [weak self, weak pair] value in
+                if let sself = self, let pair = pair {
+                    if let index = sself.pairArray.index(where: { return ObjectIdentifier($0) == ObjectIdentifier(pair) }) {
+                        sself.core.broadcast(value: .relayed(value, at: index, element: sself.pairArray[index].element))
+                    }
                 }
             }).end()
         }
