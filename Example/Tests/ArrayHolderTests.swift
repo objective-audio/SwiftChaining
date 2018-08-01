@@ -363,4 +363,26 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
     }
+    
+    func testEventAfterInserted() {
+        let array = ArrayHolder([Holder("a")])
+        
+        array.insert(Holder("b"), at: 0)
+        
+        var received: [ArrayHolder<Holder<String>>.Event] = []
+        
+        self.pool += array.chain().do { received.append($0) }.end()
+        
+        array[1].value = "c"
+        
+        XCTAssertEqual(received.count, 1)
+        
+        if case .relayed(let value, let index, let element) = received[0] {
+            XCTAssertEqual(value, "c")
+            XCTAssertEqual(index, 1)
+            XCTAssertEqual(element, Holder("c"))
+        } else {
+            XCTAssertTrue(false)
+        }
+    }
 }
