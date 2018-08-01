@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import SwiftChaining
+import Chaining
 
 extension Optional: Relayable {
     public typealias SendValue = Optional

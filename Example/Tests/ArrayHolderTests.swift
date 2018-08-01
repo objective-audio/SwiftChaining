@@ -3,7 +3,7 @@
 //
 
 import XCTest
-import SwiftChaining
+import Chaining
 
 class ArrayHolderTests: XCTestCase {
     var pool = ObserverPool()

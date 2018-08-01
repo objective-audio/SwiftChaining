@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import SwiftChaining
+import Chaining
 
 final class TableSection {
     enum Event {

@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import SwiftChaining
+import Chaining
 
 class ViewController: UIViewController {
     @IBOutlet weak var button: UIButton!

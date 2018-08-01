@@ -1,16 +1,16 @@
 PODS:
-  - SwiftChaining (0.1.0)
+  - Chaining (0.2.1)
 
 DEPENDENCIES:
-  - SwiftChaining (from `../`)
+  - Chaining (from `../`)
 
 EXTERNAL SOURCES:
-  SwiftChaining:
+  Chaining:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SwiftChaining: 88ec5fa93f846ab66fa895f60a23e91ea8bd6dbe
+  Chaining: aeb0b8f07f8cd2fdf607fe7ac8db1dd922c1da0c
 
-PODFILE CHECKSUM: fdced411539279e98ce37a49569696e61c0d42c5
+PODFILE CHECKSUM: e96a50d85a5c5f76378622b52c406c7756bc3993
 
 COCOAPODS: 1.5.3

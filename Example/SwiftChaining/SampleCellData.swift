@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import SwiftChaining
+import Chaining
 
 enum CellIdentifier: String {
     case normal = "NormalCell"

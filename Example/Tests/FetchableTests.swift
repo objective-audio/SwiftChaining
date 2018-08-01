@@ -3,7 +3,7 @@
 //
 
 import XCTest
-import SwiftChaining
+import Chaining
 
 class FetchableTests: XCTestCase {
     var pool = ObserverPool()

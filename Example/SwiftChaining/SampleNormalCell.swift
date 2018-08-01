@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import SwiftChaining
+import Chaining
 
 class SampleNormalCell: UITableViewCell {
     private var pool = ObserverPool()

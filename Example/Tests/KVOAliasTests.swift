@@ -3,7 +3,7 @@
 //
 
 import XCTest
-import SwiftChaining
+import Chaining
 
 fileprivate class TestObject: NSObject {
     @objc dynamic var text: String = "initial"
