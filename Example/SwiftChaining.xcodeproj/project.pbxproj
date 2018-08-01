@@ -328,11 +328,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SwiftChaining_Example/Pods-SwiftChaining_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SwiftChaining/SwiftChaining.framework",
+				"${BUILT_PRODUCTS_DIR}/Chaining/Chaining.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftChaining.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Chaining.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

@@ -1,0 +1,6 @@
+framework module Chaining {
+  umbrella header "Chaining-umbrella.h"
+
+  export *
+  module * { export * }
+}

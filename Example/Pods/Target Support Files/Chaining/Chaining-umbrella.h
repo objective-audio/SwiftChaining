@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double SwiftChainingVersionNumber;
-FOUNDATION_EXPORT const unsigned char SwiftChainingVersionString[];
+FOUNDATION_EXPORT double ChainingVersionNumber;
+FOUNDATION_EXPORT const unsigned char ChainingVersionString[];
 
