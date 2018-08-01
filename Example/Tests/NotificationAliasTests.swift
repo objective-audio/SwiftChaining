@@ -3,7 +3,7 @@
 //
 
 import XCTest
-import SwiftChaining
+import Chaining
 
 extension Notification.Name {
     fileprivate static let testNotification = NSNotification.Name("TestNotification")

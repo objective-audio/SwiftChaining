@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftChaining
+import Chaining
 
 class SampleCustomCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!

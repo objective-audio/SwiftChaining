@@ -3,7 +3,7 @@
 //
 
 import XCTest
-import SwiftChaining
+import Chaining
 
 class DictionaryHolderTests: XCTestCase {
     var pool = ObserverPool()

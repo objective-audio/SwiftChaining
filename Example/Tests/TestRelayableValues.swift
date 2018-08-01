@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import SwiftChaining
+import Chaining
 
 extension Int: Relayable {
     public typealias SendValue = Int
