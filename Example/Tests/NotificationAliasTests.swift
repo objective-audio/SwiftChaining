@@ -41,4 +41,20 @@ class NotificationAliasTests: XCTestCase {
         XCTAssertNotNil(received)
         XCTAssertEqual(ObjectIdentifier(received!), ObjectIdentifier(postObj))
     }
+    
+    func testInvalidate() {
+        let postObj = TestPostObject()
+        
+        let alias = NotificationAlias(.testNotification, object: postObj)
+        
+        var received: TestPostObject?
+        
+        self.pool += alias.chain().do { value in received = value.object as? TestPostObject }.end()
+        
+        alias.invalidate()
+        
+        postObj.post()
+        
+        XCTAssertNil(received)
+    }
 }
