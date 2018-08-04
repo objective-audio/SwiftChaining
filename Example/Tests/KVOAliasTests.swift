@@ -11,7 +11,8 @@ fileprivate class TestObject: NSObject {
 
 class KVOAliasTests: XCTestCase {
     var pool = ObserverPool()
-    fileprivate var object: TestObject!
+    private var object: TestObject!
+    private var alias: KVOAlias<TestObject, String>!
     
     override func setUp() {
         super.setUp()
@@ -20,13 +21,14 @@ class KVOAliasTests: XCTestCase {
     override func tearDown() {
         self.pool.invalidate()
         self.object = nil
+        self.alias = nil
         super.tearDown()
     }
 
     func testKVOAlias() {
         self.object = TestObject()
         
-        let alias = KVOAlias(object: self.object, keyPath: \TestObject.text)
+        self.alias = KVOAlias(object: self.object, keyPath: \TestObject.text)
         
         var received: [String] = []
         
@@ -39,5 +41,48 @@ class KVOAliasTests: XCTestCase {
         
         XCTAssertEqual(received.count, 2)
         XCTAssertEqual(received[1], "test_value")
+    }
+    
+    func testInvalidate() {
+        self.object = TestObject()
+        
+        self.alias = KVOAlias(object: self.object, keyPath: \TestObject.text)
+        
+        var received: [String] = []
+        
+        self.pool += self.alias.chain().do { received.append($0) }.sync()
+        
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0], "initial")
+        
+        alias.invalidate()
+        
+        self.object.text = "test_value"
+        
+        XCTAssertEqual(received.count, 1)
+    }
+    
+    func testDeinit() {
+        self.object = TestObject()
+        
+        var received: [String] = []
+        
+        do {
+            let alias = KVOAlias(object: self.object, keyPath: \TestObject.text)
+            
+            self.pool += alias.chain().do { received.append($0) }.sync()
+            
+            XCTAssertEqual(received.count, 1)
+            XCTAssertEqual(received[0], "initial")
+            
+            self.object.text = "test_value_1"
+            
+            XCTAssertEqual(received.count, 2)
+            XCTAssertEqual(received[1], "test_value_1")
+        }
+        
+        self.object.text = "test_value_2"
+        
+        XCTAssertEqual(received.count, 2)
     }
 }

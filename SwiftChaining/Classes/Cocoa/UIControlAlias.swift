@@ -20,7 +20,12 @@ final public class UIControlAlias<T: UIControl>: NSObject {
     }
     
     deinit {
+        self.invalidate()
+    }
+    
+    public func invalidate() {
         self.control?.removeTarget(self, action: #selector(UIControlAlias.notify(_:)), for: self.events)
+        self.control = nil
     }
     
     @objc private func notify(_ sender: UIControl) {
