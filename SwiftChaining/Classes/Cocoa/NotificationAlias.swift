@@ -6,7 +6,7 @@ import Foundation
 
 final public class NotificationAlias {
     public let core = SenderCore<NotificationAlias>()
-    private var observer: Any!
+    private var observer: Any?
     
     public convenience init(_ name: Notification.Name) {
         self.init(name, object: nil)
@@ -19,7 +19,13 @@ final public class NotificationAlias {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self.observer)
+        self.invalidate()
+    }
+    
+    public func invalidate() {
+        if let observer = self.observer {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
 }
 
