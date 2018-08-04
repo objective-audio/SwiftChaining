@@ -10,7 +10,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
     
-    var buttonAlias: UIControlAlias!
+    var buttonAlias: UIControlAlias<UIButton>!
     let didEnterBackgroundAlias = NotificationAlias(Notification.Name.UIApplicationDidEnterBackground)
     let willEnterForegroundAlias = NotificationAlias(Notification.Name.UIApplicationWillEnterForeground)
     var labelTextAlias: KVOAlias<UILabel, String?>!
