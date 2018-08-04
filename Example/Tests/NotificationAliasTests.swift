@@ -17,6 +17,7 @@ fileprivate class TestPostObject {
 
 class NotificationAliasTests: XCTestCase {
     var pool = ObserverPool()
+    var alias: NotificationAlias!
 
     override func setUp() {
         super.setUp()
@@ -24,17 +25,18 @@ class NotificationAliasTests: XCTestCase {
 
     override func tearDown() {
         self.pool.invalidate()
+        self.alias = nil
         super.tearDown()
     }
 
     func testNotificationAlias() {
         let postObj = TestPostObject()
         
-        let alias = NotificationAlias(.testNotification, object: postObj)
+        self.alias = NotificationAlias(.testNotification, object: postObj)
         
         var received: TestPostObject?
         
-        self.pool += alias.chain().do { value in received = value.object as? TestPostObject }.end()
+        self.pool += self.alias.chain().do { value in received = value.object as? TestPostObject }.end()
         
         postObj.post()
         
@@ -45,13 +47,13 @@ class NotificationAliasTests: XCTestCase {
     func testInvalidate() {
         let postObj = TestPostObject()
         
-        let alias = NotificationAlias(.testNotification, object: postObj)
+        self.alias = NotificationAlias(.testNotification, object: postObj)
         
         var received: TestPostObject?
         
-        self.pool += alias.chain().do { value in received = value.object as? TestPostObject }.end()
+        self.pool += self.alias.chain().do { value in received = value.object as? TestPostObject }.end()
         
-        alias.invalidate()
+        self.alias.invalidate()
         
         postObj.post()
         
