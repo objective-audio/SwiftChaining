@@ -38,12 +38,18 @@ final public class KVOAlias<Root: NSObject, T> {
     }
     
     deinit {
-        self.observation?.invalidate()
-        self.pool.invalidate()
+        self.invalidate()
     }
     
     public func chain() -> Holder<T>.SenderChain {
         return self.holder.chain()
+    }
+    
+    public func invalidate() {
+        self.observation?.invalidate()
+        self.pool.invalidate()
+        
+        self.observation = nil
     }
 }
 
