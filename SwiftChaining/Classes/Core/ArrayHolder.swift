@@ -106,14 +106,16 @@ final public class ArrayHolder<Element: Relayable> {
 }
 
 extension ArrayHolder /* private */ {
-    private func insert(element: Element, at index: Int, chaining: ((ElementPair) -> Void)?) {
+    private typealias ChainingHandler = (ElementPair) -> Void
+    
+    private func insert(element: Element, at index: Int, chaining: ChainingHandler?) {
         let pair = ElementPair(element)
         chaining?(pair)
         self.pairArray.insert(pair, at: index)
         self.core.broadcast(value: .inserted(at: index, element: element))
     }
     
-    private func replace(_ elements: [Element], chaining: ((ElementPair) -> Void)?) {
+    private func replace(_ elements: [Element], chaining: ChainingHandler?) {
         self.pairArray = elements.enumerated().map {
             let pair = ElementPair($0.1)
             chaining?(pair)
@@ -122,7 +124,7 @@ extension ArrayHolder /* private */ {
         self.core.broadcast(value: .all(elements))
     }
     
-    private func replace(_ element: Element, at index: Int, chaining: ((ElementPair) -> Void)?) {
+    private func replace(_ element: Element, at index: Int, chaining: ChainingHandler?) {
         let pair = ElementPair(element)
         chaining?(pair)
         self.pairArray.replaceSubrange(index...index, with: [pair])
@@ -169,7 +171,7 @@ extension ArrayHolder where Element: Sendable {
         set(element) { self.replace(element, at: index) }
     }
     
-    private func elementChaining() -> ((ElementPair) -> Void) {
+    private func elementChaining() -> ChainingHandler {
         return { (pair: ElementPair) in
             pair.observer = pair.element.chain().do({ [weak self, weak pair] value in
                 if let sself = self, let pair = pair {
