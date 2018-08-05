@@ -15,6 +15,7 @@
 		B026B06D393B12F7A7824998 /* Pods_SwiftChaining_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A50053016AE446163B3C2BE /* Pods_SwiftChaining_Tests.framework */; };
 		B617681B20FC694700D26FA2 /* ArrayHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617681A20FC694700D26FA2 /* ArrayHolderTests.swift */; };
 		B6340E95210B71D700D2EF99 /* DictionaryHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6340E94210B71D700D2EF99 /* DictionaryHolderTests.swift */; };
+		B68BD32F21168DD800875E66 /* SuspendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68BD32E21168DD800875E66 /* SuspendViewController.swift */; };
 		B691563120FC7DAC006CF625 /* TestRelayableValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = B691563020FC7DAC006CF625 /* TestRelayableValues.swift */; };
 		B691563320FCBA7D006CF625 /* TableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B691563220FCBA7D006CF625 /* TableController.swift */; };
 		B6CB1F4621021AF8004AB82F /* HolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CB1F4521021AF8004AB82F /* HolderTests.swift */; };
@@ -63,6 +64,7 @@
 		A5538C67E049E0F2CF0A1090 /* Pods-SwiftChaining_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftChaining_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftChaining_Tests/Pods-SwiftChaining_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		B617681A20FC694700D26FA2 /* ArrayHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayHolderTests.swift; sourceTree = "<group>"; };
 		B6340E94210B71D700D2EF99 /* DictionaryHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryHolderTests.swift; sourceTree = "<group>"; };
+		B68BD32E21168DD800875E66 /* SuspendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuspendViewController.swift; sourceTree = "<group>"; };
 		B691563020FC7DAC006CF625 /* TestRelayableValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRelayableValues.swift; sourceTree = "<group>"; };
 		B691563220FCBA7D006CF625 /* TableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableController.swift; sourceTree = "<group>"; };
 		B6CB1F4521021AF8004AB82F /* HolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolderTests.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				B6CB1F5921035B88004AB82F /* RootViewController.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				B6DDA3EC20FAE61B000AFFB4 /* TableViewController.swift */,
+				B68BD32E21168DD800875E66 /* SuspendViewController.swift */,
 				B691563220FCBA7D006CF625 /* TableController.swift */,
 				B6DDA3EE20FB45F4000AFFB4 /* SampleNormalCell.swift */,
 				B6CB1F5F21040FAD004AB82F /* SampleCustomCell.swift */,
@@ -389,6 +392,7 @@
 				B691563320FCBA7D006CF625 /* TableController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				B6CB1F6021040FAD004AB82F /* SampleCustomCell.swift in Sources */,
+				B68BD32F21168DD800875E66 /* SuspendViewController.swift in Sources */,
 				B6D1DED120FE08580037144B /* SampleCellData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
