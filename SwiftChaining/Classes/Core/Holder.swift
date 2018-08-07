@@ -8,8 +8,6 @@ final public class Holder<T> {
     public let core = SenderCore<Holder>()
     private let lock = NSLock()
     
-//    public private(set) var value: SendValue
-    
     public var value: SendValue {
         set {
             if self.lock.try() {

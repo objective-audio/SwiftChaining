@@ -1,9 +1,5 @@
 //
 //  SuspendViewController.swift
-//  SwiftChaining_Example
-//
-//  Created by 八十嶋祐樹 on 2018/08/05.
-//  Copyright © 2018年 CocoaPods. All rights reserved.
 //
 
 import UIKit
