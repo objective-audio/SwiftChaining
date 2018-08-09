@@ -37,10 +37,10 @@ class FetchableTests: XCTestCase {
         
         XCTAssertNil(received)
         
-        // receiveするとフェッチした値が送信される
-        fetcher.receive(value: ())
+        // receiveした値が送信される
+        fetcher.receive(value: 2)
         
-        XCTAssertEqual(received, 1)
+        XCTAssertEqual(received, 2)
     }
     
     func testFetchOnlyJustSynced() {

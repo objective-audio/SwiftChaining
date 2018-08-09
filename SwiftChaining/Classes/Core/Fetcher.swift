@@ -16,10 +16,6 @@ final public class Fetcher<T> {
     public init(fetching: @escaping () -> SendValue) {
         self.fetching = fetching
     }
-    
-    public func broadcast() {
-        self.broadcast(value: self.fetchedValue())
-    }
 }
 
 extension Fetcher: Fetchable {
@@ -31,9 +27,9 @@ extension Fetcher: Fetchable {
 }
 
 extension Fetcher: Receivable {
-    public typealias ReceiveValue = Void
+    public typealias ReceiveValue = T
     
-    public func receive(value: Void) {
-        self.broadcast()
+    public func receive(value: ReceiveValue) {
+        self.core.broadcast(value: value)
     }
 }
