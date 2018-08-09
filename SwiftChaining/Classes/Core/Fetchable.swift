@@ -26,7 +26,7 @@ extension Fetchable where SendValue: Sendable {
                 fetcher.broadcast(value: .current(value))
                 
                 self?.core.relayValueObserver = value.chain().do({ value in
-                    fetcher.core.broadcast(value: .relayed(value))
+                    fetcher.broadcast(value: .relayed(value))
                 }).end()
             }).sync()
         }
@@ -46,7 +46,7 @@ extension Fetchable where SendValue: Fetchable {
                 fetcher.broadcast(value: .current(value))
                 
                 self?.core.relayValueObserver = value.chain().do({ value in
-                    fetcher.core.broadcast(value: .relayed(value))
+                    fetcher.broadcast(value: .relayed(value))
                 }).sync()
             }).sync()
         }
