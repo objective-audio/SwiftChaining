@@ -1,6 +1,6 @@
 {
   "name": "Chaining",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "summary": "Binding values with method chaining.",
   "homepage": "https://github.com/objective-audio/SwiftChaining",
   "license": {
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/objective-audio/SwiftChaining.git",
-    "tag": "0.2.2"
+    "tag": "0.2.3"
   },
   "platforms": {
     "ios": "10.3"
