@@ -18,6 +18,9 @@
 		B68BD32F21168DD800875E66 /* SuspendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68BD32E21168DD800875E66 /* SuspendViewController.swift */; };
 		B691563120FC7DAC006CF625 /* TestRelayableValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = B691563020FC7DAC006CF625 /* TestRelayableValues.swift */; };
 		B691563320FCBA7D006CF625 /* TableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B691563220FCBA7D006CF625 /* TableController.swift */; };
+		B6BD8A9B211C722F006AFB47 /* ImmutableHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BD8A9A211C722F006AFB47 /* ImmutableHolderTests.swift */; };
+		B6BD8A9D211C7DC3006AFB47 /* ImmutableArrayHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BD8A9C211C7DC3006AFB47 /* ImmutableArrayHolderTests.swift */; };
+		B6BD8A9F211C86A1006AFB47 /* ImmutableDictionaryHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BD8A9E211C86A1006AFB47 /* ImmutableDictionaryHolderTests.swift */; };
 		B6CB1F4621021AF8004AB82F /* HolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CB1F4521021AF8004AB82F /* HolderTests.swift */; };
 		B6CB1F4821021BB4004AB82F /* NotifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CB1F4721021BB4004AB82F /* NotifierTests.swift */; };
 		B6CB1F4A21021C03004AB82F /* MergeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CB1F4921021C03004AB82F /* MergeTests.swift */; };
@@ -67,6 +70,9 @@
 		B68BD32E21168DD800875E66 /* SuspendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuspendViewController.swift; sourceTree = "<group>"; };
 		B691563020FC7DAC006CF625 /* TestRelayableValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRelayableValues.swift; sourceTree = "<group>"; };
 		B691563220FCBA7D006CF625 /* TableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableController.swift; sourceTree = "<group>"; };
+		B6BD8A9A211C722F006AFB47 /* ImmutableHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmutableHolderTests.swift; sourceTree = "<group>"; };
+		B6BD8A9C211C7DC3006AFB47 /* ImmutableArrayHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmutableArrayHolderTests.swift; sourceTree = "<group>"; };
+		B6BD8A9E211C86A1006AFB47 /* ImmutableDictionaryHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmutableDictionaryHolderTests.swift; sourceTree = "<group>"; };
 		B6CB1F4521021AF8004AB82F /* HolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolderTests.swift; sourceTree = "<group>"; };
 		B6CB1F4721021BB4004AB82F /* NotifierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifierTests.swift; sourceTree = "<group>"; };
 		B6CB1F4921021C03004AB82F /* MergeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeTests.swift; sourceTree = "<group>"; };
@@ -178,6 +184,9 @@
 				B6340E94210B71D700D2EF99 /* DictionaryHolderTests.swift */,
 				B6CB1F5B21036067004AB82F /* KVOAliasTests.swift */,
 				B6CB1F5D21036072004AB82F /* NotificationAliasTests.swift */,
+				B6BD8A9A211C722F006AFB47 /* ImmutableHolderTests.swift */,
+				B6BD8A9C211C7DC3006AFB47 /* ImmutableArrayHolderTests.swift */,
+				B6BD8A9E211C86A1006AFB47 /* ImmutableDictionaryHolderTests.swift */,
 				B691563020FC7DAC006CF625 /* TestRelayableValues.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -407,6 +416,8 @@
 				B6CB1F5221021C71004AB82F /* CombineTests.swift in Sources */,
 				B6CB1F4821021BB4004AB82F /* NotifierTests.swift in Sources */,
 				B6CB1F5621021CAF004AB82F /* ObserverTests.swift in Sources */,
+				B6BD8A9B211C722F006AFB47 /* ImmutableHolderTests.swift in Sources */,
+				B6BD8A9D211C7DC3006AFB47 /* ImmutableArrayHolderTests.swift in Sources */,
 				B6CB1F4621021AF8004AB82F /* HolderTests.swift in Sources */,
 				B6340E95210B71D700D2EF99 /* DictionaryHolderTests.swift in Sources */,
 				B6CB1F5421021C92004AB82F /* ForEachTests.swift in Sources */,
@@ -415,6 +426,7 @@
 				B617681B20FC694700D26FA2 /* ArrayHolderTests.swift in Sources */,
 				B6CB1F5E21036072004AB82F /* NotificationAliasTests.swift in Sources */,
 				B6CB1F5021021C69004AB82F /* PairTests.swift in Sources */,
+				B6BD8A9F211C86A1006AFB47 /* ImmutableDictionaryHolderTests.swift in Sources */,
 				B6CB1F5821021CE4004AB82F /* FetchableTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

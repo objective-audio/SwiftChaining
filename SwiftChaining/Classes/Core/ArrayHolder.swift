@@ -4,7 +4,17 @@
 
 import Foundation
 
-final public class ArrayHolder<Element: Relayable> {
+public class ImmutableArrayHolder<Element: Relayable> {
+    public let core = SenderCore<ArrayHolder<Element>>()
+    
+    fileprivate init() {}
+    
+    public func chain() -> ArrayHolder<Element>.SenderChain {
+        return Chain(joint: self.core.addJoint(sender: self as! ArrayHolder<Element>), handler: { $0 })
+    }
+}
+
+final public class ArrayHolder<Element: Relayable>: ImmutableArrayHolder<Element> {
     public enum Event {
         case all([Element])
         case inserted(at: Int, element: Element)
@@ -12,8 +22,6 @@ final public class ArrayHolder<Element: Relayable> {
         case replaced(at: Int, element: Element)
         case relayed(Element.SendValue, at: Int, element: Element)
     }
-    
-    public let core = SenderCore<ArrayHolder>()
     
     private class ElementPair {
         let element: Element
@@ -29,7 +37,7 @@ final public class ArrayHolder<Element: Relayable> {
     
     public var count: Int { return self.pairArray.count }
     
-    public init() {}
+    public override init() {}
     
     public convenience init(_ elements: [Element]) {
         self.init()
@@ -102,6 +110,10 @@ final public class ArrayHolder<Element: Relayable> {
     public subscript(index: Int) -> Element {
         get { return self.element(at: index) }
         set(element) { self.replace(element, at: index) }
+    }
+    
+    public var immutable: ImmutableArrayHolder<Element> {
+        return self
     }
 }
 

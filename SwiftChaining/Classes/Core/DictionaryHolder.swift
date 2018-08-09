@@ -4,7 +4,17 @@
 
 import Foundation
 
-final public class DictionaryHolder<Key: Hashable, Value: Relayable> {
+public class ImmutableDictionaryHolder<Key: Hashable, Value: Relayable> {
+    public let core = SenderCore<DictionaryHolder<Key, Value>>()
+    
+    fileprivate init() {}
+    
+    public func chain() -> DictionaryHolder<Key, Value>.SenderChain {
+        return Chain(joint: self.core.addJoint(sender: self as! DictionaryHolder<Key, Value>), handler: { $0 })
+    }
+}
+
+final public class DictionaryHolder<Key: Hashable, Value: Relayable>: ImmutableDictionaryHolder<Key, Value> {
     public enum Event {
         case all([Key: Value])
         case inserted(key: Key, value: Value)
@@ -13,8 +23,6 @@ final public class DictionaryHolder<Key: Hashable, Value: Relayable> {
         case relayed(Value.SendValue, key: Key, value: Value)
     }
     
-    public let core = SenderCore<DictionaryHolder>()
-    
     private typealias ValuePair = (value: Value, observer: AnyObserver?)
     
     public var rawDictionary: [Key: Value] { return self.pairDictionary.mapValues { $0.value } }
@@ -22,7 +30,7 @@ final public class DictionaryHolder<Key: Hashable, Value: Relayable> {
     
     public var count: Int { return self.pairDictionary.count }
     
-    public init() {}
+    public override init() {}
     
     public convenience init(_ dictionary: [Key: Value]) {
         self.init()
