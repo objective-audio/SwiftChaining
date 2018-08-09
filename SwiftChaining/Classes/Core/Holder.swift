@@ -9,7 +9,7 @@ public class ImmutableHolder<T> {
     
     fileprivate init() {}
     
-    public func immutableChain() -> Holder<T>.SenderChain {
+    public func chain() -> Holder<T>.SenderChain {
         return Chain(joint: self.core.addJoint(sender: self as! Holder<T>), handler: { $0 })
     }
 }

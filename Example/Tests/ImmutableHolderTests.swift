@@ -1,9 +1,5 @@
 //
 //  ImmutableHolderTests.swift
-//  SwiftChaining_Tests
-//
-//  Created by 八十嶋祐樹 on 2018/08/09.
-//  Copyright © 2018年 CocoaPods. All rights reserved.
 //
 
 import XCTest
@@ -28,11 +24,11 @@ class ImmutableHolderTests: XCTestCase {
     
     func testImmutableHolder() {
         self.holder = Holder(1)
-        self.immutableHolder = holder.immutable
+        self.immutableHolder = holder
         
         var received: Int?
         
-        self.pool += self.immutableHolder.immutableChain().do({ value in
+        self.pool += self.immutableHolder.chain().do({ value in
             received = value
         }).sync()
         
