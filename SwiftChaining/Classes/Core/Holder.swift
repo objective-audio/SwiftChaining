@@ -4,8 +4,17 @@
 
 import Foundation
 
-final public class Holder<T> {
-    public let core = SenderCore<Holder>()
+public class ImmutableHolder<T> {
+    public let core = SenderCore<Holder<T>>()
+    
+    fileprivate init() {}
+    
+    public func immutableChain() -> Holder<T>.SenderChain {
+        return Chain(joint: self.core.addJoint(sender: self as! Holder<T>), handler: { $0 })
+    }
+}
+
+final public class Holder<T>: ImmutableHolder<T> {
     private let lock = NSLock()
     
     public var value: SendValue {
@@ -23,6 +32,10 @@ final public class Holder<T> {
     
     public init(_ initial: T) {
         self.rawValue = initial
+    }
+    
+    public var immutable: ImmutableHolder<T> {
+        return self
     }
 }
 
