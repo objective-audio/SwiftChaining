@@ -23,12 +23,18 @@ final public class DictionaryHolder<Key: Hashable, Value: Relayable>: ImmutableD
         case relayed(Value.SendValue, key: Key, value: Value)
     }
     
-    private typealias ValuePair = (value: Value, observer: AnyObserver?)
+    struct ObserverWrapper {
+        var observer: AnyObserver?
+        
+        init(_ observer: AnyObserver?) {
+            self.observer = observer
+        }
+    }
     
-    public var rawDictionary: [Key: Value] { return self.pairDictionary.mapValues { $0.value } }
-    private var pairDictionary: [Key: ValuePair] = [:]
+    public private(set) var rawDictionary: [Key: Value] = [:]
+    private var observerDictionary: [Key: ObserverWrapper] = [:]
     
-    public var count: Int { return self.pairDictionary.count }
+    public var count: Int { return self.rawDictionary.count }
     
     public override init() {}
     
@@ -52,50 +58,50 @@ final public class DictionaryHolder<Key: Hashable, Value: Relayable>: ImmutableD
     
     @discardableResult
     public func removeValue(forKey key: Key) -> Value? {
-        if let pair = self.pairDictionary.removeValue(forKey: key) {
-            if let observer = pair.observer {
+        if let wrapper = self.observerDictionary.removeValue(forKey: key) {
+            if let observer = wrapper.observer {
                 observer.invalidate()
             }
+        }
+        
+        if let value = self.rawDictionary.removeValue(forKey: key) {
+            self.core.broadcast(value: .removed(key: key, value: value))
             
-            self.core.broadcast(value: .removed(key: key, value: pair.value))
-            
-            return pair.value
+            return value
         } else {
             return nil
         }
     }
     
     public func removeAll(keepingCapacity keepCapacity: Bool = false) {
-        for (_, pair) in self.pairDictionary {
-            if let observer = pair.observer {
+        for (_, wrapper) in self.observerDictionary {
+            if let observer = wrapper.observer {
                 observer.invalidate()
             }
         }
 
-        self.pairDictionary.removeAll(keepingCapacity: keepCapacity)
+        self.observerDictionary.removeAll(keepingCapacity: keepCapacity)
+        self.rawDictionary.removeAll(keepingCapacity: keepCapacity)
 
         self.core.broadcast(value: .all([:]))
     }
     
     public func reserveCapacity(_ capacity: Int) {
-        self.pairDictionary.reserveCapacity(capacity)
+        self.observerDictionary.reserveCapacity(capacity)
+        self.rawDictionary.reserveCapacity(capacity)
     }
     
     public var capacity: Int {
-        return self.pairDictionary.capacity
+        return self.rawDictionary.capacity
     }
     
     public subscript(key: Key) -> Value? {
         get {
-            if let value = self.pairDictionary[key] {
-                return value.value
-            } else {
-                return nil
-            }
+            return self.rawDictionary[key]
         }
         set(value) {
             if let value = value {
-                if self.pairDictionary[key] == nil {
+                if self.rawDictionary[key] == nil {
                     self.insert(key: key, value: value)
                 } else {
                     self.replace(key: key, value: value)
@@ -108,32 +114,45 @@ final public class DictionaryHolder<Key: Hashable, Value: Relayable>: ImmutableD
 }
 
 extension DictionaryHolder /* private */ {
-    private func insert(key: Key, value: Value, chaining: ((Key, Value) -> AnyObserver)?) {
-        guard self.pairDictionary[key] == nil else {
+    private typealias ChainingHandler = (Key, Value) -> AnyObserver
+    
+    private func insert(key: Key, value: Value, chaining: ChainingHandler?) {
+        guard self.rawDictionary[key] == nil || self.observerDictionary[key] == nil else {
             fatalError()
         }
         
-        self.pairDictionary[key] = (value, chaining?(key, value))
+        self.observerDictionary[key] = ObserverWrapper(chaining?(key, value))
+        self.rawDictionary[key] = value
         
         self.core.broadcast(value: .inserted(key: key, value: value))
     }
     
-    private func replace(key: Key, value: Value, chaining: ((Key, Value) -> AnyObserver)?) {
-        guard self.pairDictionary[key] != nil else {
+    private func replace(key: Key, value: Value, chaining: ChainingHandler?) {
+        guard self.rawDictionary[key] != nil || self.observerDictionary[key] != nil else {
             fatalError()
         }
         
-        self.pairDictionary[key] = (value, chaining?(key, value))
+        self.observerDictionary[key] = ObserverWrapper(chaining?(key, value))
+        self.rawDictionary[key] = value
         
         self.core.broadcast(value: .replaced(key: key, value: value))
     }
     
-    private func replace(_ dictionary: [Key: Value], chaining: ((Key, Value) -> AnyObserver)?) {
-        var pairs: [Key: ValuePair] = [:]
-        for (key, value) in dictionary {
-            pairs[key] = (value, chaining?(key, value))
+    private func replace(_ dictionary: [Key: Value], chaining: ChainingHandler?) {
+        for (_, value) in self.observerDictionary {
+            if let observer = value.observer {
+                observer.invalidate()
+            }
         }
-        self.pairDictionary = pairs
+        
+        self.observerDictionary = [:]
+        self.rawDictionary = [:]
+        
+        for (key, value) in dictionary {
+            self.observerDictionary[key] = ObserverWrapper(chaining?(key, value))
+        }
+        self.rawDictionary = dictionary
+        
         self.core.broadcast(value: .all(dictionary))
     }
 }
@@ -169,15 +188,11 @@ extension DictionaryHolder where Value: Sendable {
     
     public subscript(key: Key) -> Value? {
         get {
-            if let value = self.pairDictionary[key] {
-                return value.value
-            } else {
-                return nil
-            }
+            return self.rawDictionary[key]
         }
         set(value) {
             if let value = value {
-                if self.pairDictionary[key] == nil {
+                if self.rawDictionary[key] == nil {
                     self.insert(key: key, value: value)
                 } else {
                     self.replace(key: key, value: value)
@@ -188,7 +203,7 @@ extension DictionaryHolder where Value: Sendable {
         }
     }
 
-    private func chaining() -> ((Key, Value) -> AnyObserver) {
+    private func chaining() -> (ChainingHandler) {
         return { (key: Key, value: Value) in
             value.chain().do({ [weak self] relayedValue in
                 if let sself = self {
