@@ -7,6 +7,8 @@ import Foundation
 public class ImmutableDictionaryHolder<Key: Hashable, Value: Relayable> {
     public let core = SenderCore<DictionaryHolder<Key, Value>>()
     
+    public fileprivate(set) var rawDictionary: [Key: Value] = [:]
+    
     fileprivate init() {}
     
     public func chain() -> DictionaryHolder<Key, Value>.SenderChain {
@@ -31,7 +33,6 @@ final public class DictionaryHolder<Key: Hashable, Value: Relayable>: ImmutableD
         }
     }
     
-    public private(set) var rawDictionary: [Key: Value] = [:]
     private var observerDictionary: [Key: ObserverWrapper] = [:]
     
     public var count: Int { return self.rawDictionary.count }
