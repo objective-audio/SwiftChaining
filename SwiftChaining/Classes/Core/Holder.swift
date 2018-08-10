@@ -33,10 +33,6 @@ final public class Holder<T>: ImmutableHolder<T> {
     public init(_ initial: T) {
         self.rawValue = initial
     }
-    
-    public var immutable: ImmutableHolder<T> {
-        return self
-    }
 }
 
 extension Holder: Fetchable {
