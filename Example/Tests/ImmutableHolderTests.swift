@@ -38,4 +38,15 @@ class ImmutableHolderTests: XCTestCase {
         
         XCTAssertEqual(received, 2)
     }
+    
+    func testRawValue() {
+        self.holder = Holder(1)
+        self.immutableHolder = holder
+        
+        XCTAssertEqual(self.immutableHolder.rawValue, 1)
+        
+        self.holder.value = 2
+        
+        XCTAssertEqual(self.immutableHolder.rawValue, 2)
+    }
 }

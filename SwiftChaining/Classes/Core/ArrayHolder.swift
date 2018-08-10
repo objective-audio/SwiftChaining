@@ -7,6 +7,8 @@ import Foundation
 public class ImmutableArrayHolder<Element: Relayable> {
     public let core = SenderCore<ArrayHolder<Element>>()
     
+    public fileprivate(set) var rawArray: [Element] = []
+    
     fileprivate init() {}
     
     public func chain() -> ArrayHolder<Element>.SenderChain {
@@ -27,7 +29,6 @@ final public class ArrayHolder<Element: Relayable>: ImmutableArrayHolder<Element
         var observer: AnyObserver?
     }
     
-    public private(set) var rawArray: [Element] = []
     private var observerArray: [ObserverWrapper] = []
     
     public var count: Int { return self.rawArray.count }

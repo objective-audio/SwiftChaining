@@ -7,7 +7,11 @@ import Foundation
 public class ImmutableHolder<T> {
     public let core = SenderCore<Holder<T>>()
     
-    fileprivate init() {}
+    public fileprivate(set) var rawValue: T
+    
+    fileprivate init(_ initial: T) {
+        self.rawValue = initial
+    }
     
     public func chain() -> Holder<T>.SenderChain {
         return Chain(joint: self.core.addJoint(sender: self as! Holder<T>), handler: { $0 })
@@ -28,10 +32,8 @@ final public class Holder<T>: ImmutableHolder<T> {
         get { return self.rawValue }
     }
     
-    private var rawValue: SendValue
-    
-    public init(_ initial: T) {
-        self.rawValue = initial
+    public override init(_ initial: T) {
+        super.init(initial)
     }
 }
 

@@ -51,4 +51,15 @@ class ImmutableArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
     }
+    
+    func testRawArray() {
+        self.holder = ArrayHolder([1, 2, 3])
+        self.immutableHolder = self.holder
+        
+        XCTAssertEqual(self.immutableHolder.rawArray, [1, 2, 3])
+        
+        self.holder.append(4)
+        
+        XCTAssertEqual(self.immutableHolder.rawArray, [1, 2, 3, 4])
+    }
 }

@@ -51,4 +51,15 @@ class ImmutableDictionaryHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
     }
+    
+    func testRawDictionary() {
+        self.holder = DictionaryHolder(["1": 1, "2": 2])
+        self.immutableHolder = self.holder
+        
+        XCTAssertEqual(self.immutableHolder.rawDictionary, ["1": 1, "2": 2])
+        
+        self.holder["3"] = 3
+        
+        XCTAssertEqual(self.immutableHolder.rawDictionary, ["1": 1, "2": 2, "3": 3])
+    }
 }
