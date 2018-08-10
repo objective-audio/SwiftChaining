@@ -109,10 +109,6 @@ final public class ArrayHolder<Element: Relayable>: ImmutableArrayHolder<Element
         get { return self.element(at: index) }
         set(element) { self.replace(element, at: index) }
     }
-    
-    public var immutable: ImmutableArrayHolder<Element> {
-        return self
-    }
 }
 
 extension ArrayHolder /* private */ {
