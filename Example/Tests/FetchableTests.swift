@@ -165,4 +165,32 @@ class FetchableTests: XCTestCase {
         }
     }
 
+    func testFetchOptional() {
+        var optValue: Int? = 1
+        
+        let fetcher = Fetcher<Int>() {
+            return optValue
+        }
+        
+        var called: Bool = false
+        var received: Int?
+        
+        self.pool += fetcher.chain().do({ value in
+            called = true
+            received = value
+        }).sync()
+        
+        XCTAssertTrue(called)
+        XCTAssertEqual(received, 1)
+        
+        optValue = nil
+        
+        fetcher.broadcast()
+        
+        called = false
+        received = nil
+        
+        XCTAssertFalse(called)
+        XCTAssertNil(received)
+    }
 }
