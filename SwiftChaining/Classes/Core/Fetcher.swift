@@ -9,10 +9,6 @@ final public class Fetcher<T> {
     
     public let fetching: () -> SendValue?
     
-    public var value: SendValue? {
-        return self.fetchedValue()
-    }
-    
     public init(fetching: @escaping () -> SendValue?) {
         self.fetching = fetching
     }
