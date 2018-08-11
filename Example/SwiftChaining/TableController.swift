@@ -35,7 +35,7 @@ final class TableSection {
 extension TableSection: Fetchable {
     typealias SendValue = Event
     
-    func fetchedValue() -> TableSection.SendValue {
+    func fetchedValue() -> TableSection.SendValue? {
         return .all(self.rows.rawArray, self.title.value)
     }
 }

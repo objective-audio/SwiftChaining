@@ -40,7 +40,7 @@ final public class Holder<T>: ImmutableHolder<T> {
 extension Holder: Fetchable {
     public typealias SendValue = T
     
-    public func fetchedValue() -> SendValue {
+    public func fetchedValue() -> SendValue? {
         return self.value
     }
 }

@@ -161,7 +161,7 @@ extension DictionaryHolder /* private */ {
 extension DictionaryHolder: Fetchable {
     public typealias SendValue = Event
     
-    public func fetchedValue() -> SendValue {
+    public func fetchedValue() -> SendValue? {
         return .all(self.rawDictionary)
     }
 }
