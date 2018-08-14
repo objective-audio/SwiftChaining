@@ -29,6 +29,16 @@ public class Joint<Sender: Sendable> {
             handler(value)
         }
     }
+}
+
+extension Joint: AnyJoint {
+    public func broadcast() {
+        self.sender?.fetch(for: self)
+        
+        for subJoint in self.subJoints {
+            subJoint.broadcast()
+        }
+    }
     
     public func invalidate() {
         for subJoint in self.subJoints {
@@ -39,15 +49,5 @@ public class Joint<Sender: Sendable> {
         self.sender = nil
         self.handlers = []
         self.subJoints = []
-    }
-}
-
-extension Joint: AnyJoint {
-    public func broadcast() {
-        self.sender?.fetch(for: self)
-        
-        for subJoint in self.subJoints {
-            subJoint.broadcast()
-        }
     }
 }
