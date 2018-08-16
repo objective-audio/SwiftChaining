@@ -9,7 +9,13 @@ public class ImmutableDictionaryHolder<Key: Hashable, Value: Relayable> {
     
     public fileprivate(set) var rawDictionary: [Key: Value] = [:]
     
+    public var count: Int { return self.rawDictionary.count }
+    
     fileprivate init() {}
+    
+    public var capacity: Int {
+        return self.rawDictionary.capacity
+    }
     
     public func chain() -> DictionaryHolder<Key, Value>.SenderChain {
         return Chain(joint: self.core.addJoint(sender: self as! DictionaryHolder<Key, Value>), handler: { $0 })
@@ -34,8 +40,6 @@ final public class DictionaryHolder<Key: Hashable, Value: Relayable>: ImmutableD
     }
     
     private var observerDictionary: [Key: ObserverWrapper] = [:]
-    
-    public var count: Int { return self.rawDictionary.count }
     
     public override init() {}
     
@@ -90,10 +94,6 @@ final public class DictionaryHolder<Key: Hashable, Value: Relayable>: ImmutableD
     public func reserveCapacity(_ capacity: Int) {
         self.observerDictionary.reserveCapacity(capacity)
         self.rawDictionary.reserveCapacity(capacity)
-    }
-    
-    public var capacity: Int {
-        return self.rawDictionary.capacity
     }
     
     public subscript(key: Key) -> Value? {

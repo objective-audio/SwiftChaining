@@ -9,7 +9,25 @@ public class ImmutableArrayHolder<Element: Relayable> {
     
     public fileprivate(set) var rawArray: [Element] = []
     
+    public var count: Int { return self.rawArray.count }
+    
     fileprivate init() {}
+    
+    public func element(at index: Int) -> Element {
+        return self.rawArray[index]
+    }
+    
+    public var capacity: Int {
+        return self.rawArray.capacity
+    }
+    
+    public var first: Element? {
+        return self.rawArray.first
+    }
+    
+    public var last: Element? {
+        return self.rawArray.last
+    }
     
     public func chain() -> ArrayHolder<Element>.SenderChain {
         return Chain(joint: self.core.addJoint(sender: self as! ArrayHolder<Element>), handler: { $0 })
@@ -30,8 +48,6 @@ final public class ArrayHolder<Element: Relayable>: ImmutableArrayHolder<Element
     }
     
     private var observerArray: [ObserverWrapper] = []
-    
-    public var count: Int { return self.rawArray.count }
     
     public override init() {}
     
@@ -86,24 +102,8 @@ final public class ArrayHolder<Element: Relayable>: ImmutableArrayHolder<Element
         self.core.broadcast(value: .all([]))
     }
     
-    public func element(at index: Int) -> Element {
-        return self.rawArray[index]
-    }
-    
     public func reserveCapacity(_ capacity: Int) {
         self.rawArray.reserveCapacity(capacity)
-    }
-    
-    public var capacity: Int {
-        return self.rawArray.capacity
-    }
-    
-    public var first: Element? {
-        return self.rawArray.first
-    }
-    
-    public var last: Element? {
-        return self.rawArray.last
     }
     
     public subscript(index: Int) -> Element {
