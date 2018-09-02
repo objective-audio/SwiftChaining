@@ -37,7 +37,7 @@ public class ImmutableArrayHolder<Element: Relayable> {
 final public class ArrayHolder<Element: Relayable>: ImmutableArrayHolder<Element> {
     public enum Event {
         case all([Element])
-        case inserted(at: Int, element: Element)
+        case inserted(at: Int, elements: [Element])
         case removed(at: Int, element: Element)
         case replaced(at: Int, element: Element)
         case relayed(Element.SendValue, at: Int, element: Element)
@@ -120,7 +120,7 @@ extension ArrayHolder /* private */ {
         chaining?(element, wrapper)
         self.observerArray.insert(wrapper, at: index)
         self.rawArray.insert(element, at: index)
-        self.core.broadcast(value: .inserted(at: index, element: element))
+        self.core.broadcast(value: .inserted(at: index, elements: [element]))
     }
     
     private func replace(_ elements: [Element], chaining: ChainingHandler?) {
