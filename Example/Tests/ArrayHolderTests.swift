@@ -237,11 +237,22 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        array.removeAll()
+        array.insert(elements: [2000, 2001], at: 1);
         
         XCTAssertEqual(received.count, 7)
         
-        if case .all(let elements) = received[6] {
+        if case .inserted(let index, let elements) = received[6] {
+            XCTAssertEqual(index, 1)
+            XCTAssertEqual(elements, [2000, 2001])
+        } else {
+            XCTAssertTrue(false)
+        }
+ 
+        array.removeAll()
+        
+        XCTAssertEqual(received.count, 8)
+        
+        if case .all(let elements) = received[7] {
             XCTAssertEqual(elements, [])
         } else {
             XCTAssertTrue(false)
@@ -353,11 +364,22 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        array.removeAll()
+        array.insert(elements: [Holder(2000), Holder(2001)], at: 1);
         
         XCTAssertEqual(received.count, 9)
         
-        if case .all(let elements) = received[8] {
+        if case .inserted(let index, let elements) = received[8] {
+            XCTAssertEqual(index, 1)
+            XCTAssertEqual(elements, [Holder(2000), Holder(2001)])
+        } else {
+            XCTAssertTrue(false)
+        }
+        
+        array.removeAll()
+        
+        XCTAssertEqual(received.count, 10)
+        
+        if case .all(let elements) = received[9] {
             XCTAssertEqual(elements, [])
         } else {
             XCTAssertTrue(false)
@@ -384,5 +406,13 @@ class ArrayHolderTests: XCTestCase {
         } else {
             XCTAssertTrue(false)
         }
+    }
+    
+    func testInsertElements() {
+        let array = ArrayHolder([1, 2, 3])
+        
+        array.insert(elements: [4, 5], at: 1)
+        
+        XCTAssertEqual(array.rawArray, [1, 4, 5, 2, 3])
     }
 }
