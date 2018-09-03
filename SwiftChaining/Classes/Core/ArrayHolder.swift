@@ -37,7 +37,7 @@ public class ImmutableArrayHolder<Element: Relayable> {
 final public class ArrayHolder<Element: Relayable>: ImmutableArrayHolder<Element> {
     public enum Event {
         case all([Element])
-        case inserted(at: Int, element: Element)
+        case inserted(at: Int, elements: [Element])
         case removed(at: Int, element: Element)
         case replaced(at: Int, element: Element)
         case relayed(Element.SendValue, at: Int, element: Element)
@@ -71,7 +71,11 @@ final public class ArrayHolder<Element: Relayable>: ImmutableArrayHolder<Element
     }
     
     public func insert(_ element: Element, at index: Int) {
-        self.insert(element: element, at: index, chaining: nil)
+        self.insert(elements: [element], at: index, chaining: nil)
+    }
+    
+    public func insert(elements: [Element], at index: Int) {
+        self.insert(elements: elements, at: index, chaining: nil)
     }
     
     @discardableResult
@@ -115,12 +119,16 @@ final public class ArrayHolder<Element: Relayable>: ImmutableArrayHolder<Element
 extension ArrayHolder /* private */ {
     private typealias ChainingHandler = (Element, ObserverWrapper) -> Void
     
-    private func insert(element: Element, at index: Int, chaining: ChainingHandler?) {
-        let wrapper = ObserverWrapper()
-        chaining?(element, wrapper)
-        self.observerArray.insert(wrapper, at: index)
-        self.rawArray.insert(element, at: index)
-        self.core.broadcast(value: .inserted(at: index, element: element))
+    private func insert(elements: [Element], at index: Int, chaining: ChainingHandler?) {
+        var wrappers: [ObserverWrapper] = []
+        for element in elements {
+            let wrapper = ObserverWrapper()
+            wrappers.append(wrapper)
+            chaining?(element, wrapper)
+        }
+        self.observerArray.insert(contentsOf: wrappers, at: index)
+        self.rawArray.insert(contentsOf: elements, at: index)
+        self.core.broadcast(value: .inserted(at: index, elements: elements))
     }
     
     private func replace(_ elements: [Element], chaining: ChainingHandler?) {
@@ -184,7 +192,11 @@ extension ArrayHolder where Element: Sendable {
     }
     
     public func insert(_ element: Element, at index: Int) {
-        self.insert(element: element, at: index, chaining: self.elementChaining())
+        self.insert(elements: [element], at: index, chaining: self.elementChaining())
+    }
+    
+    public func insert(elements: [Element], at index: Int) {
+        self.insert(elements: elements, at: index, chaining: self.elementChaining())
     }
     
     public subscript(index: Int) -> Element {
