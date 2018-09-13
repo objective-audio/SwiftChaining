@@ -47,6 +47,8 @@ class SuspendViewController: UIViewController {
                 return false
             }
         }).receive(self.suspendButtonEnabledAlias).sync()
+        
+        self.suspender = suspender
     }
     
     override func viewWillAppear(_ animated: Bool) {
