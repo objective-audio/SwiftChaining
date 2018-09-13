@@ -8,9 +8,9 @@ final public class UIControlAlias<T: UIControl>: NSObject {
     public let core = SenderCore<UIControlAlias>()
     
     private weak var control: UIControl?
-    private let events: UIControlEvents
+    private let events: UIControl.Event
     
-    public init(_ control: T, events: UIControlEvents) {
+    public init(_ control: T, events: UIControl.Event) {
         self.control = control
         self.events = events
         

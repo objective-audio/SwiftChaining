@@ -11,8 +11,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     
     var buttonAlias: UIControlAlias<UIButton>!
-    let didEnterBackgroundAlias = NotificationAlias(Notification.Name.UIApplicationDidEnterBackground)
-    let willEnterForegroundAlias = NotificationAlias(Notification.Name.UIApplicationWillEnterForeground)
+    let didEnterBackgroundAlias = NotificationAlias(UIApplication.didEnterBackgroundNotification)
+    let willEnterForegroundAlias = NotificationAlias(UIApplication.willEnterForegroundNotification)
     var labelTextAlias: KVOAlias<UILabel, String?>!
     var textFieldAlias: KVOAlias<UITextField, String?>!
     var pool = ObserverPool()
