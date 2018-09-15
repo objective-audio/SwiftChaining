@@ -24,7 +24,8 @@ public class ImmutableDictionaryHolder<Key: Hashable, Value: Relayable> {
 
 final public class DictionaryHolder<Key: Hashable, Value: Relayable>: ImmutableDictionaryHolder<Key, Value> {
     public enum Event {
-        case all([Key: Value])
+        case fetched([Key: Value])
+        case any([Key: Value])
         case inserted(key: Key, value: Value)
         case removed(key: Key, value: Value)
         case replaced(key: Key, value: Value)
@@ -46,11 +47,11 @@ final public class DictionaryHolder<Key: Hashable, Value: Relayable>: ImmutableD
     public convenience init(_ dictionary: [Key: Value]) {
         self.init()
         
-        self.replace(dictionary)
+        self.set(dictionary)
     }
     
-    public func replace(_ dictionary: [Key: Value]) {
-        self.replace(dictionary, chaining: nil)
+    public func set(_ dictionary: [Key: Value]) {
+        self.set(dictionary, chaining: nil)
     }
     
     public func replace(key: Key, value: Value) {
@@ -88,7 +89,7 @@ final public class DictionaryHolder<Key: Hashable, Value: Relayable>: ImmutableD
         self.observerDictionary.removeAll(keepingCapacity: keepCapacity)
         self.rawDictionary.removeAll(keepingCapacity: keepCapacity)
 
-        self.core.broadcast(value: .all([:]))
+        self.core.broadcast(value: .any([:]))
     }
     
     public func reserveCapacity(_ capacity: Int) {
@@ -139,7 +140,7 @@ extension DictionaryHolder /* private */ {
         self.core.broadcast(value: .replaced(key: key, value: value))
     }
     
-    private func replace(_ dictionary: [Key: Value], chaining: ChainingHandler?) {
+    private func set(_ dictionary: [Key: Value], chaining: ChainingHandler?) {
         for (_, value) in self.observerDictionary {
             if let observer = value.observer {
                 observer.invalidate()
@@ -154,7 +155,7 @@ extension DictionaryHolder /* private */ {
         }
         self.rawDictionary = dictionary
         
-        self.core.broadcast(value: .all(dictionary))
+        self.core.broadcast(value: .any(dictionary))
     }
 }
 
@@ -162,7 +163,7 @@ extension DictionaryHolder: Fetchable {
     public typealias SendValue = Event
     
     public func fetchedValue() -> SendValue? {
-        return .all(self.rawDictionary)
+        return .fetched(self.rawDictionary)
     }
 }
 
@@ -172,11 +173,11 @@ extension DictionaryHolder where Value: Sendable {
     public convenience init(_ dictionary: [Key: Value]) {
         self.init()
 
-        self.replace(dictionary)
+        self.set(dictionary)
     }
 
-    public func replace(_ elements: [Key: Value]) {
-        self.replace(elements, chaining: self.chaining())
+    public func set(_ elements: [Key: Value]) {
+        self.set(elements, chaining: self.chaining())
     }
 
     public func replace(key: Key, value: Value) {
