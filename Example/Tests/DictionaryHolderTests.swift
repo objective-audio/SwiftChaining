@@ -23,17 +23,17 @@ class DictionaryHolderTests: XCTestCase {
         XCTAssertEqual(dictionary.rawDictionary, [:])
     }
     
-    func testReplaceDictionaryWithRelayableValue() {
+    func testSetDictionaryWithRelayableValue() {
         let dictionary = DictionaryHolder([10: "10", 20: "20"])
         
         XCTAssertEqual(dictionary.rawDictionary, [10: "10", 20: "20"])
         
-        dictionary.replace([30: "30", 40: "40", 50: "50"])
+        dictionary.set([30: "30", 40: "40", 50: "50"])
         
         XCTAssertEqual(dictionary.rawDictionary, [30: "30", 40: "40", 50: "50"])
     }
     
-    func testReplaceDictionaryWithSendableValue() {
+    func testSetDictionaryWithSendableValue() {
         let holder1 = Holder(1)
         let holder2 = Holder(2)
         let holder3 = Holder(3)
@@ -44,7 +44,7 @@ class DictionaryHolderTests: XCTestCase {
         XCTAssertEqual(dictionary[1], Holder(1))
         XCTAssertEqual(dictionary[2], Holder(2))
         
-        dictionary.replace([3: holder3])
+        dictionary.set([3: holder3])
         
         XCTAssertEqual(dictionary.count, 1)
         XCTAssertEqual(dictionary[3], Holder(3))
@@ -220,7 +220,7 @@ class DictionaryHolderTests: XCTestCase {
 
         XCTAssertEqual(dictionary.rawDictionary, [10: "10", 100: "500"])
 
-        dictionary.replace([1000: "1000", 999: "999"])
+        dictionary.set([1000: "1000", 999: "999"])
 
         XCTAssertEqual(received.count, 5)
 
@@ -311,7 +311,7 @@ class DictionaryHolderTests: XCTestCase {
 
         XCTAssertEqual(dictionary.rawDictionary, [10: Holder(11), 100: Holder(500)])
 
-        dictionary.replace([1000: Holder(1000), 999: Holder(999)])
+        dictionary.set([1000: Holder(1000), 999: Holder(999)])
 
         XCTAssertEqual(received.count, 6)
 

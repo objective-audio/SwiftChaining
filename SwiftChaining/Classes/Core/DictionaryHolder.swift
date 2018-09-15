@@ -47,11 +47,11 @@ final public class DictionaryHolder<Key: Hashable, Value: Relayable>: ImmutableD
     public convenience init(_ dictionary: [Key: Value]) {
         self.init()
         
-        self.replace(dictionary)
+        self.set(dictionary)
     }
     
-    public func replace(_ dictionary: [Key: Value]) {
-        self.replace(dictionary, chaining: nil)
+    public func set(_ dictionary: [Key: Value]) {
+        self.set(dictionary, chaining: nil)
     }
     
     public func replace(key: Key, value: Value) {
@@ -140,7 +140,7 @@ extension DictionaryHolder /* private */ {
         self.core.broadcast(value: .replaced(key: key, value: value))
     }
     
-    private func replace(_ dictionary: [Key: Value], chaining: ChainingHandler?) {
+    private func set(_ dictionary: [Key: Value], chaining: ChainingHandler?) {
         for (_, value) in self.observerDictionary {
             if let observer = value.observer {
                 observer.invalidate()
@@ -173,11 +173,11 @@ extension DictionaryHolder where Value: Sendable {
     public convenience init(_ dictionary: [Key: Value]) {
         self.init()
 
-        self.replace(dictionary)
+        self.set(dictionary)
     }
 
-    public func replace(_ elements: [Key: Value]) {
-        self.replace(elements, chaining: self.chaining())
+    public func set(_ elements: [Key: Value]) {
+        self.set(elements, chaining: self.chaining())
     }
 
     public func replace(key: Key, value: Value) {
