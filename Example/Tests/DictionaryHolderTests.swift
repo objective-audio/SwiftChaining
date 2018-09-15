@@ -177,7 +177,7 @@ class DictionaryHolderTests: XCTestCase {
 
         XCTAssertEqual(received.count, 1)
 
-        if case .all(let dictionary) = received[0] {
+        if case .fetched(let dictionary) = received[0] {
             XCTAssertEqual(dictionary, [10: "10", 20: "20"])
         } else {
             XCTAssertTrue(false)
@@ -224,7 +224,7 @@ class DictionaryHolderTests: XCTestCase {
 
         XCTAssertEqual(received.count, 5)
 
-        if case .all(let dictionary) = received[4] {
+        if case .any(let dictionary) = received[4] {
             XCTAssertEqual(dictionary, [1000: "1000", 999: "999"])
         } else {
             XCTAssertTrue(false)
@@ -234,7 +234,7 @@ class DictionaryHolderTests: XCTestCase {
 
         XCTAssertEqual(received.count, 6)
 
-        if case .all(let dictionary) = received[5] {
+        if case .any(let dictionary) = received[5] {
             XCTAssertEqual(dictionary, [:])
         } else {
             XCTAssertTrue(false)
@@ -252,7 +252,7 @@ class DictionaryHolderTests: XCTestCase {
 
         XCTAssertEqual(received.count, 1)
 
-        if case .all(let elements) = received[0] {
+        if case .fetched(let elements) = received[0] {
             XCTAssertEqual(elements, [10: Holder<Int>(10), 20: Holder<Int>(20)])
         } else {
             XCTAssertTrue(false)
@@ -315,7 +315,7 @@ class DictionaryHolderTests: XCTestCase {
 
         XCTAssertEqual(received.count, 6)
 
-        if case .all(let dictionary) = received[5] {
+        if case .any(let dictionary) = received[5] {
             XCTAssertEqual(dictionary, [1000: Holder(1000), 999: Holder(999)])
         } else {
             XCTAssertTrue(false)
@@ -325,7 +325,7 @@ class DictionaryHolderTests: XCTestCase {
 
         XCTAssertEqual(received.count, 7)
 
-        if case .all(let dictionary) = received[6] {
+        if case .any(let dictionary) = received[6] {
             XCTAssertEqual(dictionary, [:])
         } else {
             XCTAssertTrue(false)

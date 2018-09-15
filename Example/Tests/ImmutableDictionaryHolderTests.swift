@@ -34,7 +34,7 @@ class ImmutableDictionaryHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 1)
         
-        if case .all(let dictionary) = received[0] {
+        if case .fetched(let dictionary) = received[0] {
             XCTAssertEqual(dictionary, ["1": 1, "2": 2])
         } else {
             XCTAssertTrue(false)

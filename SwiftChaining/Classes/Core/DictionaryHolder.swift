@@ -24,7 +24,8 @@ public class ImmutableDictionaryHolder<Key: Hashable, Value: Relayable> {
 
 final public class DictionaryHolder<Key: Hashable, Value: Relayable>: ImmutableDictionaryHolder<Key, Value> {
     public enum Event {
-        case all([Key: Value])
+        case fetched([Key: Value])
+        case any([Key: Value])
         case inserted(key: Key, value: Value)
         case removed(key: Key, value: Value)
         case replaced(key: Key, value: Value)
@@ -88,7 +89,7 @@ final public class DictionaryHolder<Key: Hashable, Value: Relayable>: ImmutableD
         self.observerDictionary.removeAll(keepingCapacity: keepCapacity)
         self.rawDictionary.removeAll(keepingCapacity: keepCapacity)
 
-        self.core.broadcast(value: .all([:]))
+        self.core.broadcast(value: .any([:]))
     }
     
     public func reserveCapacity(_ capacity: Int) {
@@ -154,7 +155,7 @@ extension DictionaryHolder /* private */ {
         }
         self.rawDictionary = dictionary
         
-        self.core.broadcast(value: .all(dictionary))
+        self.core.broadcast(value: .any(dictionary))
     }
 }
 
@@ -162,7 +163,7 @@ extension DictionaryHolder: Fetchable {
     public typealias SendValue = Event
     
     public func fetchedValue() -> SendValue? {
-        return .all(self.rawDictionary)
+        return .fetched(self.rawDictionary)
     }
 }
 
