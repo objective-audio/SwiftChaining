@@ -77,10 +77,12 @@ final public class ArrayHolder<Element: Relayable>: ImmutableArrayHolder<Element
     
     @discardableResult
     public func remove(at index: Int) -> Element {
-        let wrapper = self.observerArray.remove(at: index)
-        
-        if let observer = wrapper.observer {
-            observer.invalidate()
+        if index < self.observerArray.count {
+            let wrapper = self.observerArray.remove(at: index)
+            
+            if let observer = wrapper.observer {
+                observer.invalidate()
+            }
         }
         
         let element = self.rawArray.remove(at: index)
@@ -121,9 +123,12 @@ extension ArrayHolder /* private */ {
     private typealias ChainingHandler = (Element, ObserverWrapper) -> Void
     
     private func insert(element: Element, at index: Int, chaining: ChainingHandler?) {
-        let wrapper = ObserverWrapper()
-        chaining?(element, wrapper)
-        self.observerArray.insert(wrapper, at: index)
+        if let chaining = chaining {
+            let wrapper = ObserverWrapper()
+            chaining(element, wrapper)
+            self.observerArray.insert(wrapper, at: index)
+        }
+        
         self.rawArray.insert(element, at: index)
         self.core.broadcast(value: .inserted(at: index, element: element))
     }
@@ -138,10 +143,12 @@ extension ArrayHolder /* private */ {
         self.observerArray.removeAll()
         self.rawArray.removeAll()
         
-        for element in elements {
-            let wrapper = ObserverWrapper()
-            chaining?(element, wrapper)
-            self.observerArray.append(wrapper)
+        if let chaining = chaining {
+            for element in elements {
+                let wrapper = ObserverWrapper()
+                chaining(element, wrapper)
+                self.observerArray.append(wrapper)
+            }
         }
         
         self.rawArray = elements
@@ -150,9 +157,12 @@ extension ArrayHolder /* private */ {
     }
     
     private func replace(_ element: Element, at index: Int, chaining: ChainingHandler?) {
-        let wrapper = ObserverWrapper()
-        chaining?(element, wrapper)
-        self.observerArray.replaceSubrange(index...index, with: [wrapper])
+        if let chaining = chaining {
+            let wrapper = ObserverWrapper()
+            chaining(element, wrapper)
+            self.observerArray.replaceSubrange(index...index, with: [wrapper])
+        }
+        
         self.rawArray.replaceSubrange(index...index, with: [element])
         self.core.broadcast(value: .replaced(at: index, element: element))
     }
@@ -200,9 +210,9 @@ extension ArrayHolder where Element: Sendable {
     private func elementChaining() -> ChainingHandler {
         return { (element: Element, wrapper: ObserverWrapper) in
             wrapper.observer = element.chain().do({ [weak self, weak wrapper] value in
-                if let sself = self, let wrapper = wrapper {
-                    if let index = sself.observerArray.index(where: { return ObjectIdentifier($0) == ObjectIdentifier(wrapper) }) {
-                        sself.core.broadcast(value: .relayed(value, at: index, element: sself.rawArray[index]))
+                if let self = self, let wrapper = wrapper {
+                    if let index = self.observerArray.index(where: { return ObjectIdentifier($0) == ObjectIdentifier(wrapper) }) {
+                        self.core.broadcast(value: .relayed(value, at: index, element: self.rawArray[index]))
                     }
                 }
             }).end()
