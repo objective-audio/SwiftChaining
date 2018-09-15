@@ -169,7 +169,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 1)
         
-        if case .all(let elements) = received[0] {
+        if case .fetched(let elements) = received[0] {
             XCTAssertEqual(elements, [10, 20])
         } else {
             XCTAssertTrue(false)
@@ -231,7 +231,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 6)
         
-        if case .all(let elements) = received[5] {
+        if case .any(let elements) = received[5] {
             XCTAssertEqual(elements, [1000, 999])
         } else {
             XCTAssertTrue(false)
@@ -241,7 +241,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 7)
         
-        if case .all(let elements) = received[6] {
+        if case .any(let elements) = received[6] {
             XCTAssertEqual(elements, [])
         } else {
             XCTAssertTrue(false)
@@ -259,7 +259,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 1)
         
-        if case .all(let elements) = received[0] {
+        if case .fetched(let elements) = received[0] {
             XCTAssertEqual(elements, [Holder<Int>(10), Holder<Int>(20)])
         } else {
             XCTAssertTrue(false)
@@ -335,7 +335,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 7)
         
-        if case .all(let elements) = received[6] {
+        if case .any(let elements) = received[6] {
             XCTAssertEqual(elements, [Holder(1000), Holder(999)])
         } else {
             XCTAssertTrue(false)
@@ -357,7 +357,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 9)
         
-        if case .all(let elements) = received[8] {
+        if case .any(let elements) = received[8] {
             XCTAssertEqual(elements, [])
         } else {
             XCTAssertTrue(false)

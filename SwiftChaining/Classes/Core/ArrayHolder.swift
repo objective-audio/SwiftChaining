@@ -36,7 +36,8 @@ public class ImmutableArrayHolder<Element: Relayable> {
 
 final public class ArrayHolder<Element: Relayable>: ImmutableArrayHolder<Element> {
     public enum Event {
-        case all([Element])
+        case fetched([Element])
+        case any([Element])
         case inserted(at: Int, element: Element)
         case removed(at: Int, element: Element)
         case replaced(at: Int, element: Element)
@@ -99,7 +100,7 @@ final public class ArrayHolder<Element: Relayable>: ImmutableArrayHolder<Element
         self.observerArray.removeAll(keepingCapacity: keepCapacity)
         self.rawArray.removeAll(keepingCapacity: keepCapacity)
         
-        self.core.broadcast(value: .all([]))
+        self.core.broadcast(value: .any([]))
     }
     
     public func reserveCapacity(_ capacity: Int) {
@@ -141,7 +142,7 @@ extension ArrayHolder /* private */ {
         
         self.rawArray = elements
         
-        self.core.broadcast(value: .all(elements))
+        self.core.broadcast(value: .any(elements))
     }
     
     private func replace(_ element: Element, at index: Int, chaining: ChainingHandler?) {
@@ -157,7 +158,7 @@ extension ArrayHolder: Fetchable {
     public typealias SendValue = Event
     
     public func fetchedValue() -> SendValue? {
-        return .all(self.rawArray)
+        return .fetched(self.rawArray)
     }
 }
 
