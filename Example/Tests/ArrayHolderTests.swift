@@ -385,4 +385,22 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
     }
+    
+    func testEventAfterRemoveAllTwice() {
+        let array = ArrayHolder([10, 20])
+        
+        var received: [ArrayHolder<Int>.Event] = []
+        
+        self.pool += array.chain().do { received.append($0) }.end()
+        
+        XCTAssertEqual(received.count, 0);
+        
+        array.removeAll()
+        
+        XCTAssertEqual(received.count, 1);
+        
+        array.removeAll()
+        
+        XCTAssertEqual(received.count, 1);
+    }
 }

@@ -91,6 +91,10 @@ final public class ArrayHolder<Element: Relayable>: ImmutableArrayHolder<Element
     }
     
     public func removeAll(keepingCapacity keepCapacity: Bool = false) {
+        if self.rawArray.count == 0 {
+            return
+        }
+        
         for wrapper in self.observerArray {
             if let observer = wrapper.observer {
                 observer.invalidate()
