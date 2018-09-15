@@ -20,6 +20,6 @@ Pod::Spec.new do |s|
 
   s.source_files = 'SwiftChaining/Classes/**/*'
 
-  s.swift_version = '4.1'
+  s.swift_version = '4.2'
 
 end
