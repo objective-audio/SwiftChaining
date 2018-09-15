@@ -34,7 +34,7 @@ class ImmutableArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 1)
         
-        if case .all(let elements) = received[0] {
+        if case .fetched(let elements) = received[0] {
             XCTAssertEqual(elements, [1, 2, 3])
         } else {
             XCTAssertTrue(false)

@@ -19,7 +19,7 @@ class TableViewController: UITableViewController {
         
         self.pool += self.controller.sections.chain().do({ [weak self] event in
             switch event {
-            case .all:
+            case .fetched, .any:
                 self?.tableView.reloadData()
             case .inserted(let section, _):
                 self?.tableView.insertSections(IndexSet(integer: section), with: .automatic)
@@ -33,7 +33,7 @@ class TableViewController: UITableViewController {
                     self?.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
                 case .rows(let rowEvent):
                     switch rowEvent {
-                    case .all:
+                    case .fetched, .any:
                         self?.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
                     case .inserted(let row, _):
                         self?.tableView.insertRows(at: [IndexPath(row: row, section: section)], with: .automatic)
