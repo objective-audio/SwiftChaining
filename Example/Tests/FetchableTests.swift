@@ -43,6 +43,20 @@ class FetchableTests: XCTestCase {
         XCTAssertEqual(received, 2)
     }
     
+    func testFetcherBroadcastWithVoid() {
+        let fetcher = Fetcher<Int>() { return 1 }
+        
+        var received: Int?
+        
+        self.pool += fetcher.chain().do { received = $0 }.end()
+        
+        XCTAssertNil(received)
+        
+        fetcher.broadcast()
+        
+        XCTAssertEqual(received, 1)
+    }
+    
     func testFetchOnlyJustSynced() {
         var pool = ObserverPool()
         
