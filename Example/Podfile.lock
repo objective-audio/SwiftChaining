@@ -1,5 +1,5 @@
 PODS:
-  - Chaining (0.2.6)
+  - Chaining (0.4.0)
 
 DEPENDENCIES:
   - Chaining (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Chaining: b291816e3d81d8814af6fd6a985ecef0cba9f5fd
+  Chaining: 866f389c575e33358c658cda180314e0177add65
 
 PODFILE CHECKSUM: e96a50d85a5c5f76378622b52c406c7756bc3993
 

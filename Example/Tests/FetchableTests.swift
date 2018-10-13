@@ -37,8 +37,22 @@ class FetchableTests: XCTestCase {
         
         XCTAssertNil(received)
         
-        // receiveするとフェッチした値が送信される
-        fetcher.receive(value: ())
+        // receiveした値がそのまま送信される
+        fetcher.receive(value: 2)
+        
+        XCTAssertEqual(received, 2)
+    }
+    
+    func testFetcherBroadcastWithVoid() {
+        let fetcher = Fetcher<Int>() { return 1 }
+        
+        var received: Int?
+        
+        self.pool += fetcher.chain().do { received = $0 }.end()
+        
+        XCTAssertNil(received)
+        
+        fetcher.broadcast()
         
         XCTAssertEqual(received, 1)
     }

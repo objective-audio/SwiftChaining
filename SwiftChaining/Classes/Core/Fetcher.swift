@@ -29,9 +29,9 @@ extension Fetcher: Fetchable {
 }
 
 extension Fetcher: Receivable {
-    public typealias ReceiveValue = Void
+    public typealias ReceiveValue = T
     
-    public func receive(value: Void) {
-        self.broadcast()
+    public func receive(value: ReceiveValue) {
+        self.broadcast(value: value)
     }
 }
