@@ -5,10 +5,6 @@
 import UIKit
 import Chaining
 
-extension Optional: Relayable {
-    public typealias SendValue = Optional
-}
-
 class TableViewController: UITableViewController {
     let controller: TableController = TableController()
     

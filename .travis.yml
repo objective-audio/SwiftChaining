@@ -2,7 +2,7 @@
 # * https://www.objc.io/issues/6-build-tools/travis-ci/
 # * https://github.com/supermarin/xcpretty#usage
 
-osx_image: xcode10
+osx_image: xcode10.1
 language: objective-c
 # cache: cocoapods
 # podfile: Example/Podfile
@@ -13,5 +13,5 @@ before_install:
 - gem install cocoapods -v 1.6.0.beta.2
 
 script:
-- xcodebuild -workspace Example/SwiftChaining.xcworkspace -scheme SwiftChaining-Example -configuration Debug OBJROOT=build -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=11.4' clean test
+- xcodebuild -workspace Example/SwiftChaining.xcworkspace -scheme SwiftChaining-Example -configuration Debug OBJROOT=build -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=12.1' clean test
 - pod lib lint
