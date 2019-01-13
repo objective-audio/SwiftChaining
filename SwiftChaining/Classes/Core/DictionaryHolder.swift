@@ -4,8 +4,13 @@
 
 import Foundation
 
-public class ImmutableDictionaryHolder<Key: Hashable, Value: Relayable> {
-    public let core = SenderCore<DictionaryHolder<Key, Value>>()
+public typealias DictionaryHolder<Key: Hashable, Value> = DictionaryHolderImpl<Key, Value, Value>
+public typealias RelayableDictionaryHolder<Key: Hashable, Value: Sendable> = DictionaryHolderImpl<Key, Value, Value.SendValue>
+public typealias ImmutableDictionaryHolder<Key: Hashable, Value> = ImmutableDictionaryHolderImpl<Key, Value, Value>
+public typealias ImmutableRelayableDictionaryHolder<Key: Hashable, Value: Sendable> = ImmutableDictionaryHolderImpl<Key, Value, Value.SendValue>
+
+public class ImmutableDictionaryHolderImpl<Key: Hashable, Value, Relay> {
+    public let core = SenderCore<DictionaryHolderImpl<Key, Value, Relay>>()
     
     public fileprivate(set) var rawDictionary: [Key: Value] = [:]
     
@@ -17,19 +22,19 @@ public class ImmutableDictionaryHolder<Key: Hashable, Value: Relayable> {
         return self.rawDictionary.capacity
     }
     
-    public func chain() -> DictionaryHolder<Key, Value>.SenderChain {
-        return Chain(joint: self.core.addJoint(sender: self as! DictionaryHolder<Key, Value>), handler: { $0 })
+    public func chain() -> DictionaryHolderImpl<Key, Value, Relay>.SenderChain {
+        return Chain(joint: self.core.addJoint(sender: self as! DictionaryHolderImpl<Key, Value, Relay>), handler: { $0 })
     }
 }
 
-final public class DictionaryHolder<Key: Hashable, Value: Relayable>: ImmutableDictionaryHolder<Key, Value> {
+final public class DictionaryHolderImpl<Key: Hashable, Value, Relay>: ImmutableDictionaryHolderImpl<Key, Value, Relay> {
     public enum Event {
         case fetched([Key: Value])
         case any([Key: Value])
         case inserted(key: Key, value: Value)
         case removed(key: Key, value: Value)
         case replaced(key: Key, value: Value)
-        case relayed(Value.SendValue, key: Key, value: Value)
+        case relayed(Relay, key: Key, value: Value)
     }
     
     struct ObserverWrapper {
@@ -115,7 +120,7 @@ final public class DictionaryHolder<Key: Hashable, Value: Relayable>: ImmutableD
     }
 }
 
-extension DictionaryHolder /* private */ {
+extension DictionaryHolderImpl /* private */ {
     private typealias ChainingHandler = (Key, Value) -> AnyObserver
     
     private func insert(key: Key, value: Value, chaining: ChainingHandler?) {
@@ -159,7 +164,7 @@ extension DictionaryHolder /* private */ {
     }
 }
 
-extension DictionaryHolder: Fetchable {
+extension DictionaryHolderImpl: Fetchable {
     public typealias SendValue = Event
     
     public func fetchedValue() -> SendValue? {
@@ -169,7 +174,7 @@ extension DictionaryHolder: Fetchable {
 
 // MARK: - Value: Sendable
 
-extension DictionaryHolder where Value: Sendable {
+extension DictionaryHolderImpl where Value: Sendable, Relay == Value.SendValue {
     public convenience init(_ dictionary: [Key: Value]) {
         self.init()
 

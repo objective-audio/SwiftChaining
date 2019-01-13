@@ -4,8 +4,13 @@
 
 import Foundation
 
-public class ImmutableArrayHolder<Element: Relayable> {
-    public let core = SenderCore<ArrayHolder<Element>>()
+public typealias ArrayHolder<Element> = ArrayHolderImpl<Element, Element>
+public typealias RelayableArrayHolder<Element: Sendable> = ArrayHolderImpl<Element, Element.SendValue>
+public typealias ImmutableArrayHolder<Element> = ImmutableArrayHolderImpl<Element, Element>
+public typealias ImmutableRelayableArrayHolder<Element: Sendable> = ImmutableArrayHolderImpl<Element, Element.SendValue>
+
+public class ImmutableArrayHolderImpl<Element, Relay> {
+    public let core = SenderCore<ArrayHolderImpl<Element, Relay>>()
     
     public fileprivate(set) var rawArray: [Element] = []
     
@@ -29,19 +34,19 @@ public class ImmutableArrayHolder<Element: Relayable> {
         return self.rawArray.last
     }
     
-    public func chain() -> ArrayHolder<Element>.SenderChain {
-        return Chain(joint: self.core.addJoint(sender: self as! ArrayHolder<Element>), handler: { $0 })
+    public func chain() -> ArrayHolderImpl<Element, Relay>.SenderChain {
+        return Chain(joint: self.core.addJoint(sender: self as! ArrayHolderImpl<Element, Relay>), handler: { $0 })
     }
 }
 
-final public class ArrayHolder<Element: Relayable>: ImmutableArrayHolder<Element> {
+final public class ArrayHolderImpl<Element, Relay>: ImmutableArrayHolderImpl<Element, Relay> {
     public enum Event {
         case fetched([Element])
         case any([Element])
         case inserted(at: Int, element: Element)
         case removed(at: Int, element: Element)
         case replaced(at: Int, element: Element)
-        case relayed(Element.SendValue, at: Int, element: Element)
+        case relayed(Relay, at: Int, element: Element)
     }
     
     private class ObserverWrapper {
@@ -119,7 +124,7 @@ final public class ArrayHolder<Element: Relayable>: ImmutableArrayHolder<Element
     }
 }
 
-extension ArrayHolder /* private */ {
+extension ArrayHolderImpl /* private */ {
     private typealias ChainingHandler = (Element, ObserverWrapper) -> Void
     
     private func insert(element: Element, at index: Int, chaining: ChainingHandler?) {
@@ -168,7 +173,7 @@ extension ArrayHolder /* private */ {
     }
 }
 
-extension ArrayHolder: Fetchable {
+extension ArrayHolderImpl: Fetchable {
     public typealias SendValue = Event
     
     public func fetchedValue() -> SendValue? {
@@ -178,7 +183,7 @@ extension ArrayHolder: Fetchable {
 
 // MARK: - Element: Sendable
 
-extension ArrayHolder where Element: Sendable {
+extension ArrayHolderImpl where Element: Sendable, Relay == Element.SendValue {
     public convenience init(_ elements: [Element]) {
         self.init()
         

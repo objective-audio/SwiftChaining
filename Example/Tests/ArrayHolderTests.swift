@@ -38,7 +38,7 @@ class ArrayHolderTests: XCTestCase {
         let holder2 = Holder(2)
         let holder3 = Holder(3)
         
-        let array = ArrayHolder([holder1, holder2])
+        let array = RelayableArrayHolder([holder1, holder2])
         
         XCTAssertEqual(array.rawArray.count, 2)
         XCTAssertEqual(array[0], Holder(1))
@@ -66,7 +66,7 @@ class ArrayHolderTests: XCTestCase {
         let holder3 = Holder(3)
         let holder2b = Holder(22)
         
-        let array = ArrayHolder([holder1, holder2, holder3])
+        let array = RelayableArrayHolder([holder1, holder2, holder3])
         
         XCTAssertEqual(array.rawArray, [holder1, holder2, holder3])
         
@@ -139,7 +139,7 @@ class ArrayHolderTests: XCTestCase {
     }
     
     func testSubscriptGetWithSendableValue() {
-        let array = ArrayHolder([Holder(10)])
+        let array = RelayableArrayHolder([Holder(10)])
         
         XCTAssertEqual(array[0], Holder(10))
     }
@@ -153,7 +153,7 @@ class ArrayHolderTests: XCTestCase {
     }
     
     func testSubscriptSetWithSendableValue() {
-        let array = ArrayHolder([Holder(10)])
+        let array = RelayableArrayHolder([Holder(10)])
         
         array[0] = Holder(11)
         
@@ -251,9 +251,9 @@ class ArrayHolderTests: XCTestCase {
     }
     
     func testEventWithSendableElements() {
-        let array = ArrayHolder([Holder(10), Holder(20)])
+        let array = RelayableArrayHolder([Holder(10), Holder(20)])
         
-        var received: [ArrayHolder<Holder<Int>>.Event] = []
+        var received: [RelayableArrayHolder<Holder<Int>>.Event] = []
         
         self.pool += array.chain().do { received.append($0) }.sync()
         
@@ -365,11 +365,11 @@ class ArrayHolderTests: XCTestCase {
     }
     
     func testEventAfterInserted() {
-        let array = ArrayHolder([Holder("a")])
+        let array = RelayableArrayHolder([Holder("a")])
         
         array.insert(Holder("b"), at: 0)
         
-        var received: [ArrayHolder<Holder<String>>.Event] = []
+        var received: [RelayableArrayHolder<Holder<String>>.Event] = []
         
         self.pool += array.chain().do { received.append($0) }.end()
         

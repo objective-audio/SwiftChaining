@@ -47,14 +47,14 @@ extension TableSection: Receivable {
 }
 
 class TableController {
-    typealias SectionArray = ArrayHolder<TableSection>
+    typealias SectionArray = RelayableArrayHolder<TableSection>
     
     let sections: SectionArray
     
     init() {
         let section0 = TableSection(title: "Section 0", rows:[CustomCellData(number: 10)])
         let section1 = TableSection(title: "Section 1", rows:[])
-        self.sections = ArrayHolder([section0, section1])
+        self.sections = RelayableArrayHolder([section0, section1])
     }
     
     func addRow() {
