@@ -20,10 +20,6 @@ class AnyCellData {
     }
 }
 
-extension AnyCellData: Relayable {
-    typealias SendValue = AnyCellData
-}
-
 protocol CellDataSettable {
     func set(cellData: AnyCellData)
 }

@@ -244,9 +244,9 @@ class DictionaryHolderTests: XCTestCase {
     }
 
     func testEventWithSendableElements() {
-        let dictionary = DictionaryHolder([10: Holder(10), 20: Holder(20)])
+        let dictionary = RelayableDictionaryHolder([10: Holder(10), 20: Holder(20)])
 
-        var received: [DictionaryHolder<Int, Holder<Int>>.Event] = []
+        var received: [RelayableDictionaryHolder<Int, Holder<Int>>.Event] = []
 
         self.pool += dictionary.chain().do { received.append($0) }.sync()
 

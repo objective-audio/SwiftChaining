@@ -7,7 +7,7 @@ import Chaining
 
 class ImmutableDictionaryHolderTests: XCTestCase {
     var holder: DictionaryHolder<String, Int>!
-    var immutableHolder: ImmutableDictionaryHolder<String, Int>!
+    var immutableHolder: ImmutableDictionaryHolderImpl<String, Int, Int>!
     var pool = ObserverPool()
     
     override func setUp() {

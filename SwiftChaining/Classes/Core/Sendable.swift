@@ -4,10 +4,6 @@
 
 import Foundation
 
-public protocol Relayable {
-    associatedtype SendValue
-}
-
 public protocol AnySendable: class {
     func fetch(for: AnyJoint)
 }
@@ -53,7 +49,8 @@ public class SenderCore<T: Sendable> {
     }
 }
 
-public protocol Sendable: AnySendable, Relayable {
+public protocol Sendable: AnySendable {
+    associatedtype SendValue
     var core: SenderCore<Self> { get }
 }
 
@@ -69,7 +66,7 @@ extension Sendable {
     }
 }
 
-public enum SenderEvent<T: Sendable> where T.SendValue: Relayable {
+public enum SenderEvent<T: Sendable> where T.SendValue: Sendable {
     case current(T.SendValue)
     case relayed(T.SendValue.SendValue)
 }
