@@ -1,13 +1,13 @@
 //
-//  ImmutableHolderTests.swift
+//  ReadOnlyHolderTests.swift
 //
 
 import XCTest
 import Chaining
 
-class ImmutableHolderTests: XCTestCase {
+class ReadOnlyHolderTests: XCTestCase {
     var holder: Holder<Int>!
-    var immutableHolder: ImmutableHolder<Int>!
+    var readOnlyHolder: ReadOnlyHolder<Int>!
     var pool = ObserverPool()
     
     override func setUp() {
@@ -16,19 +16,19 @@ class ImmutableHolderTests: XCTestCase {
     
     override func tearDown() {
         self.holder = nil
-        self.immutableHolder = nil
+        self.readOnlyHolder = nil
         self.pool.invalidate()
         
         super.tearDown()
     }
     
-    func testImmutableHolder() {
+    func testReadOnlyHolder() {
         self.holder = Holder(1)
-        self.immutableHolder = holder
+        self.readOnlyHolder = holder
         
         var received: Int?
         
-        self.pool += self.immutableHolder.chain().do({ value in
+        self.pool += self.readOnlyHolder.chain().do({ value in
             received = value
         }).sync()
         
@@ -41,12 +41,12 @@ class ImmutableHolderTests: XCTestCase {
     
     func testRawValue() {
         self.holder = Holder(1)
-        self.immutableHolder = holder
+        self.readOnlyHolder = holder
         
-        XCTAssertEqual(self.immutableHolder.rawValue, 1)
+        XCTAssertEqual(self.readOnlyHolder.rawValue, 1)
         
         self.holder.value = 2
         
-        XCTAssertEqual(self.immutableHolder.rawValue, 2)
+        XCTAssertEqual(self.readOnlyHolder.rawValue, 2)
     }
 }

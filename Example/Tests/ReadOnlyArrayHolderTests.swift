@@ -1,13 +1,13 @@
 //
-//  ImmutableArrayHolderTests.swift
+//  ReadOnlyArrayHolderTests.swift
 //
 
 import XCTest
 import Chaining
 
-class ImmutableArrayHolderTests: XCTestCase {
+class ReadOnlyArrayHolderTests: XCTestCase {
     var holder: ArrayHolder<Int>!
-    var immutableHolder: ImmutableArrayHolder<Int>!
+    var readOnlyHolder: ReadOnlyArrayHolder<Int>!
     var pool = ObserverPool()
     
     override func setUp() {
@@ -16,19 +16,19 @@ class ImmutableArrayHolderTests: XCTestCase {
     
     override func tearDown() {
         self.holder = nil
-        self.immutableHolder = nil
+        self.readOnlyHolder = nil
         self.pool.invalidate()
         
         super.tearDown()
     }
     
-    func testImmutableArrayHolder() {
+    func testReadOnlyArrayHolder() {
         self.holder = ArrayHolder([1, 2, 3])
-        self.immutableHolder = self.holder
+        self.readOnlyHolder = self.holder
         
         var received: [ArrayHolder<Int>.Event] = []
         
-        self.pool += self.immutableHolder.chain().do({ event in
+        self.pool += self.readOnlyHolder.chain().do({ event in
             received.append(event)
         }).sync()
         
@@ -54,12 +54,12 @@ class ImmutableArrayHolderTests: XCTestCase {
     
     func testRawArray() {
         self.holder = ArrayHolder([1, 2, 3])
-        self.immutableHolder = self.holder
+        self.readOnlyHolder = self.holder
         
-        XCTAssertEqual(self.immutableHolder.rawArray, [1, 2, 3])
+        XCTAssertEqual(self.readOnlyHolder.rawArray, [1, 2, 3])
         
         self.holder.append(4)
         
-        XCTAssertEqual(self.immutableHolder.rawArray, [1, 2, 3, 4])
+        XCTAssertEqual(self.readOnlyHolder.rawArray, [1, 2, 3, 4])
     }
 }

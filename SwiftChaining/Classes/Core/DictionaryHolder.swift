@@ -6,10 +6,10 @@ import Foundation
 
 public typealias DictionaryHolder<Key: Hashable, Value> = DictionaryHolderImpl<Key, Value, Value>
 public typealias RelayableDictionaryHolder<Key: Hashable, Value: Sendable> = DictionaryHolderImpl<Key, Value, Value.SendValue>
-public typealias ImmutableDictionaryHolder<Key: Hashable, Value> = ImmutableDictionaryHolderImpl<Key, Value, Value>
-public typealias ImmutableRelayableDictionaryHolder<Key: Hashable, Value: Sendable> = ImmutableDictionaryHolderImpl<Key, Value, Value.SendValue>
+public typealias ReadOnlyDictionaryHolder<Key: Hashable, Value> = ReadOnlyDictionaryHolderImpl<Key, Value, Value>
+public typealias ReadOnlyRelayableDictionaryHolder<Key: Hashable, Value: Sendable> = ReadOnlyDictionaryHolderImpl<Key, Value, Value.SendValue>
 
-public class ImmutableDictionaryHolderImpl<Key: Hashable, Value, Relay> {
+public class ReadOnlyDictionaryHolderImpl<Key: Hashable, Value, Relay> {
     public let core = SenderCore<DictionaryHolderImpl<Key, Value, Relay>>()
     
     public fileprivate(set) var rawDictionary: [Key: Value] = [:]
@@ -27,7 +27,7 @@ public class ImmutableDictionaryHolderImpl<Key: Hashable, Value, Relay> {
     }
 }
 
-final public class DictionaryHolderImpl<Key: Hashable, Value, Relay>: ImmutableDictionaryHolderImpl<Key, Value, Relay> {
+final public class DictionaryHolderImpl<Key: Hashable, Value, Relay>: ReadOnlyDictionaryHolderImpl<Key, Value, Relay> {
     public enum Event {
         case fetched([Key: Value])
         case any([Key: Value])
