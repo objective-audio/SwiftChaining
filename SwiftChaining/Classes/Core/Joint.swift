@@ -16,7 +16,7 @@ public class Joint<Sender: Sendable> {
     public var handlers: [Any] = []
     public var subJoints: [AnyJoint] = []
     
-    init(sender: Sender) {
+    internal init(sender: Sender) {
         self.sender = sender
     }
     
@@ -24,7 +24,7 @@ public class Joint<Sender: Sendable> {
         self.sender?.core.remove(joint: self)
     }
     
-    func call(first value: Value) {
+    internal func call(first value: Value) {
         if let handler = self.handlers.first as? (Value) -> Void {
             handler(value)
         }

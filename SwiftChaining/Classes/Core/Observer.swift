@@ -11,7 +11,7 @@ public protocol AnyObserver: class {
 public class Observer<Sender: Sendable> {
     private let joint: Joint<Sender>
     
-    init(joint: Joint<Sender>) {
+    internal init(joint: Joint<Sender>) {
         self.joint = joint
     }
     
@@ -24,7 +24,7 @@ extension Observer: AnyObserver {
 }
 
 extension Observer where Sender: Fetchable {
-    func broadcast() {
+    internal func broadcast() {
         self.joint.broadcast()
     }
 }
