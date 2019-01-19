@@ -5,8 +5,8 @@
 import Foundation
 
 public class Weak<T: AnyObject> {
-    private(set) weak var value: T?
-    let id: ObjectIdentifier
+    internal private(set) weak var value: T?
+    internal let id: ObjectIdentifier
 
     init(_ value: T) {
         self.value = value
