@@ -13,7 +13,7 @@ class SuspendViewController: UIViewController {
     var resumeButtonEnabledAlias: KVOAlias<UIButton, Bool>!
     var suspendButtonEnabledAlias: KVOAlias<UIButton, Bool>!
     var labelTextAlias: KVOAlias<UILabel, String?>!
-    let holder = Holder("")
+    let holder = Holder<String>("-")
     var pool = ObserverPool()
     var suspender: AnySuspender!
 
@@ -25,7 +25,7 @@ class SuspendViewController: UIViewController {
         self.labelTextAlias = KVOAlias(object: self.label, keyPath: \UILabel.text)
         
         let suspender = Suspender(self) { viewController in
-            return viewController.holder.chain().to { $0 }.receive(viewController.labelTextAlias).sync()
+            return viewController.holder.chain().receive(viewController.labelTextAlias).sync()
         }
         
         self.pool += suspender
@@ -49,18 +49,7 @@ class SuspendViewController: UIViewController {
         }).receive(self.suspendButtonEnabledAlias).sync()
         
         self.suspender = suspender
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         self.suspender.resume()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        self.suspender.suspend()
-        
-        super.viewDidDisappear(animated)
     }
     
     @IBAction func resume() {
