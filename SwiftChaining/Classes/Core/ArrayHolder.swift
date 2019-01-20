@@ -64,11 +64,11 @@ final public class ArrayHolderImpl<Element, Relay>: ReadOnlyArrayHolderImpl<Elem
     }
     
     public func replace(_ elements: [Element]) {
-        self.replace(elements, chaining: nil)
+        self.replace(elements, relaying: nil)
     }
     
     public func replace(_ element: Element, at index: Int) {
-        self.replace(element, at: index, chaining: nil)
+        self.replace(element, at: index, relaying: nil)
     }
     
     public func append(_ element: Element) {
@@ -77,7 +77,7 @@ final public class ArrayHolderImpl<Element, Relay>: ReadOnlyArrayHolderImpl<Elem
     }
     
     public func insert(_ element: Element, at index: Int) {
-        self.insert(element: element, at: index, chaining: nil)
+        self.insert(element: element, at: index, relaying: nil)
     }
     
     @discardableResult
@@ -125,12 +125,12 @@ final public class ArrayHolderImpl<Element, Relay>: ReadOnlyArrayHolderImpl<Elem
 }
 
 extension ArrayHolderImpl /* private */ {
-    private typealias ChainingHandler = (Element, ObserverWrapper) -> Void
+    private typealias RelayingHandler = (Element, ObserverWrapper) -> Void
     
-    private func insert(element: Element, at index: Int, chaining: ChainingHandler?) {
-        if let chaining = chaining {
+    private func insert(element: Element, at index: Int, relaying: RelayingHandler?) {
+        if let relaying = relaying {
             let wrapper = ObserverWrapper()
-            chaining(element, wrapper)
+            relaying(element, wrapper)
             self.observerArray.insert(wrapper, at: index)
         }
         
@@ -138,7 +138,7 @@ extension ArrayHolderImpl /* private */ {
         self.core.broadcast(value: .inserted(at: index, element: element))
     }
     
-    private func replace(_ elements: [Element], chaining: ChainingHandler?) {
+    private func replace(_ elements: [Element], relaying: RelayingHandler?) {
         for wrapper in self.observerArray {
             if let observer = wrapper.observer {
                 observer.invalidate()
@@ -148,10 +148,10 @@ extension ArrayHolderImpl /* private */ {
         self.observerArray.removeAll()
         self.rawArray.removeAll()
         
-        if let chaining = chaining {
+        if let relaying = relaying {
             for element in elements {
                 let wrapper = ObserverWrapper()
-                chaining(element, wrapper)
+                relaying(element, wrapper)
                 self.observerArray.append(wrapper)
             }
         }
@@ -161,10 +161,10 @@ extension ArrayHolderImpl /* private */ {
         self.core.broadcast(value: .any(elements))
     }
     
-    private func replace(_ element: Element, at index: Int, chaining: ChainingHandler?) {
-        if let chaining = chaining {
+    private func replace(_ element: Element, at index: Int, relaying: RelayingHandler?) {
+        if let relaying = relaying {
             let wrapper = ObserverWrapper()
-            chaining(element, wrapper)
+            relaying(element, wrapper)
             self.observerArray.replaceSubrange(index...index, with: [wrapper])
         }
         
@@ -191,11 +191,11 @@ extension ArrayHolderImpl where Element: Sendable, Relay == Element.SendValue {
     }
     
     public func replace(_ elements: [Element]) {
-        self.replace(elements, chaining: self.elementChaining())
+        self.replace(elements, relaying: self.relaying())
     }
     
     public func replace(_ element: Element, at index: Int) {
-        self.replace(element, at: index, chaining: self.elementChaining())
+        self.replace(element, at: index, relaying: self.relaying())
     }
     
     public func append(_ element: Element) {
@@ -204,7 +204,7 @@ extension ArrayHolderImpl where Element: Sendable, Relay == Element.SendValue {
     }
     
     public func insert(_ element: Element, at index: Int) {
-        self.insert(element: element, at: index, chaining: self.elementChaining())
+        self.insert(element: element, at: index, relaying: self.relaying())
     }
     
     public subscript(index: Int) -> Element {
@@ -212,7 +212,7 @@ extension ArrayHolderImpl where Element: Sendable, Relay == Element.SendValue {
         set(element) { self.replace(element, at: index) }
     }
     
-    private func elementChaining() -> ChainingHandler {
+    private func relaying() -> RelayingHandler {
         return { (element: Element, wrapper: ObserverWrapper) in
             wrapper.observer = element.chain().do({ [weak self, weak wrapper] value in
                 if let self = self, let wrapper = wrapper {
