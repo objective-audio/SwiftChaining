@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
+		607FACD81AFB9204008FA782 /* ChainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ChainViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
@@ -35,6 +35,7 @@
 		B6D1DED120FE08580037144B /* SampleCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1DED020FE08580037144B /* SampleCellData.swift */; };
 		B6D4C60B21EB0524004A95A8 /* DictionaryHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6340E94210B71D700D2EF99 /* DictionaryHolderTests.swift */; };
 		B6D4C60C21EB052D004A95A8 /* ReadOnlyDictionaryHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BD8A9E211C86A1006AFB47 /* ReadOnlyDictionaryHolderTests.swift */; };
+		B6D4C61421F4A2BF004A95A8 /* TableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C61321F4A2BF004A95A8 /* TableSection.swift */; };
 		B6DDA3ED20FAE61B000AFFB4 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DDA3EC20FAE61B000AFFB4 /* TableViewController.swift */; };
 		B6DDA3EF20FB45F4000AFFB4 /* SampleNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DDA3EE20FB45F4000AFFB4 /* SampleNormalCell.swift */; };
 		F5FB10D59A2CF18388769751 /* Pods_SwiftChaining_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712E45A4C7B0116EFB37F4B9 /* Pods_SwiftChaining_Example.framework */; };
@@ -56,7 +57,7 @@
 		607FACD01AFB9204008FA782 /* SwiftChaining_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftChaining_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		607FACD71AFB9204008FA782 /* ChainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChainViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -86,6 +87,7 @@
 		B6CB1F5D21036072004AB82F /* NotificationAliasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAliasTests.swift; sourceTree = "<group>"; };
 		B6CB1F5F21040FAD004AB82F /* SampleCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCustomCell.swift; sourceTree = "<group>"; };
 		B6D1DED020FE08580037144B /* SampleCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCellData.swift; sourceTree = "<group>"; };
+		B6D4C61321F4A2BF004A95A8 /* TableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSection.swift; sourceTree = "<group>"; };
 		B6DDA3EC20FAE61B000AFFB4 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		B6DDA3EE20FB45F4000AFFB4 /* SampleNormalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleNormalCell.swift; sourceTree = "<group>"; };
 		E15A59E1B0ACEC92E1A03ED2 /* SwiftChaining.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SwiftChaining.podspec; path = ../SwiftChaining.podspec; sourceTree = "<group>"; };
@@ -141,10 +143,11 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				B6CB1F5921035B88004AB82F /* RootViewController.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				607FACD71AFB9204008FA782 /* ChainViewController.swift */,
 				B6DDA3EC20FAE61B000AFFB4 /* TableViewController.swift */,
 				B68BD32E21168DD800875E66 /* SuspendViewController.swift */,
 				B691563220FCBA7D006CF625 /* TableController.swift */,
+				B6D4C61321F4A2BF004A95A8 /* TableSection.swift */,
 				B6DDA3EE20FB45F4000AFFB4 /* SampleNormalCell.swift */,
 				B6CB1F5F21040FAD004AB82F /* SampleCustomCell.swift */,
 				B6D1DED020FE08580037144B /* SampleCellData.swift */,
@@ -391,12 +394,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				607FACD81AFB9204008FA782 /* ChainViewController.swift in Sources */,
 				B6DDA3EF20FB45F4000AFFB4 /* SampleNormalCell.swift in Sources */,
 				B6DDA3ED20FAE61B000AFFB4 /* TableViewController.swift in Sources */,
 				B6CB1F5A21035B88004AB82F /* RootViewController.swift in Sources */,
 				B691563320FCBA7D006CF625 /* TableController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				B6D4C61421F4A2BF004A95A8 /* TableSection.swift in Sources */,
 				B6CB1F6021040FAD004AB82F /* SampleCustomCell.swift in Sources */,
 				B68BD32F21168DD800875E66 /* SuspendViewController.swift in Sources */,
 				B6D1DED120FE08580037144B /* SampleCellData.swift in Sources */,
