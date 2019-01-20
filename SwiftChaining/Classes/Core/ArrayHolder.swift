@@ -6,10 +6,10 @@ import Foundation
 
 public typealias ArrayHolder<Element> = ArrayHolderImpl<Element, Element>
 public typealias RelayableArrayHolder<Element: Sendable> = ArrayHolderImpl<Element, Element.SendValue>
-public typealias ImmutableArrayHolder<Element> = ImmutableArrayHolderImpl<Element, Element>
-public typealias ImmutableRelayableArrayHolder<Element: Sendable> = ImmutableArrayHolderImpl<Element, Element.SendValue>
+public typealias ReadOnlyArrayHolder<Element> = ReadOnlyArrayHolderImpl<Element, Element>
+public typealias ReadOnlyRelayableArrayHolder<Element: Sendable> = ReadOnlyArrayHolderImpl<Element, Element.SendValue>
 
-public class ImmutableArrayHolderImpl<Element, Relay> {
+public class ReadOnlyArrayHolderImpl<Element, Relay> {
     public let core = SenderCore<ArrayHolderImpl<Element, Relay>>()
     
     public fileprivate(set) var rawArray: [Element] = []
@@ -39,7 +39,7 @@ public class ImmutableArrayHolderImpl<Element, Relay> {
     }
 }
 
-final public class ArrayHolderImpl<Element, Relay>: ImmutableArrayHolderImpl<Element, Relay> {
+final public class ArrayHolderImpl<Element, Relay>: ReadOnlyArrayHolderImpl<Element, Relay> {
     public enum Event {
         case fetched([Element])
         case any([Element])

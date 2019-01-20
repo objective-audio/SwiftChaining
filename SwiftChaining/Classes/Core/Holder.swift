@@ -4,7 +4,7 @@
 
 import Foundation
 
-public class ImmutableHolder<T> {
+public class ReadOnlyHolder<T> {
     public let core = SenderCore<Holder<T>>()
     
     public fileprivate(set) var rawValue: T
@@ -18,7 +18,7 @@ public class ImmutableHolder<T> {
     }
 }
 
-final public class Holder<T>: ImmutableHolder<T> {
+final public class Holder<T>: ReadOnlyHolder<T> {
     private let lock = NSLock()
     
     public var value: SendValue {

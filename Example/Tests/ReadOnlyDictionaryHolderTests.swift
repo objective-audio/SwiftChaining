@@ -1,13 +1,13 @@
 //
-//  ImmutableDictionaryHolderTests.swift
+//  ReadOnlyDictionaryHolderTests.swift
 //
 
 import XCTest
 import Chaining
 
-class ImmutableDictionaryHolderTests: XCTestCase {
+class ReadOnlyDictionaryHolderTests: XCTestCase {
     var holder: DictionaryHolder<String, Int>!
-    var immutableHolder: ImmutableDictionaryHolderImpl<String, Int, Int>!
+    var readOnlyHolder: ReadOnlyDictionaryHolder<String, Int>!
     var pool = ObserverPool()
     
     override func setUp() {
@@ -16,19 +16,19 @@ class ImmutableDictionaryHolderTests: XCTestCase {
     
     override func tearDown() {
         self.holder = nil
-        self.immutableHolder = nil
+        self.readOnlyHolder = nil
         self.pool.invalidate()
         
         super.tearDown()
     }
     
-    func testImmutableDictionaryHolder() {
+    func testReadOnlyDictionaryHolder() {
         self.holder = DictionaryHolder(["1": 1, "2": 2])
-        self.immutableHolder = self.holder
+        self.readOnlyHolder = self.holder
         
         var received: [DictionaryHolder<String, Int>.Event] = []
         
-        self.pool += self.immutableHolder.chain().do({ event in
+        self.pool += self.readOnlyHolder.chain().do({ event in
             received.append(event)
         }).sync()
         
@@ -54,12 +54,12 @@ class ImmutableDictionaryHolderTests: XCTestCase {
     
     func testRawDictionary() {
         self.holder = DictionaryHolder(["1": 1, "2": 2])
-        self.immutableHolder = self.holder
+        self.readOnlyHolder = self.holder
         
-        XCTAssertEqual(self.immutableHolder.rawDictionary, ["1": 1, "2": 2])
+        XCTAssertEqual(self.readOnlyHolder.rawDictionary, ["1": 1, "2": 2])
         
         self.holder["3"] = 3
         
-        XCTAssertEqual(self.immutableHolder.rawDictionary, ["1": 1, "2": 2, "3": 3])
+        XCTAssertEqual(self.readOnlyHolder.rawDictionary, ["1": 1, "2": 2, "3": 3])
     }
 }
