@@ -5,7 +5,7 @@
 import UIKit
 import Chaining
 
-class ViewController: UIViewController {
+class ChainViewController: UIViewController {
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
@@ -26,24 +26,17 @@ class ViewController: UIViewController {
         self.labelTextAlias = KVOAlias(object: self.label, keyPath: \UILabel.text)
         self.textFieldAlias = KVOAlias(object: self.textField, keyPath: \UITextField.text)
         
-        self.pool += self.buttonAlias.chain().do({ [weak self] _ in
-            self?.labelText.value = String(arc4random() % 100)
-        }).end()
-        
-        self.pool += self.labelText.chain().to { String?($0) }.receive(self.labelTextAlias).sync()
-        self.pool += self.labelText.chain().to { String?($0) }.receive(self.textFieldAlias).sync()
+        self.pool += self.buttonAlias.chain().to { _ in String(Int.random(in: 0..<100)) }.receive(self.labelText).end()
+        self.pool += self.labelText.chain().receive(self.labelTextAlias).sync()
+        self.pool += self.labelText.chain().receive(self.textFieldAlias).sync()
         self.pool += self.textFieldAlias.chain().to { $0 ?? "nil" }.receive(self.labelText).sync()
         
         self.pool += self.didEnterBackgroundAlias.chain().do { value in print("didEnterBackground \(value)")}.end()
         self.pool += self.willEnterForegroundAlias.chain().do { value in print("willEnterForeground \(value)")}.end()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }
 
-extension ViewController: UITextFieldDelegate {
+extension ChainViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
