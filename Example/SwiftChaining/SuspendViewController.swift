@@ -72,6 +72,6 @@ class SuspendViewController: UIViewController {
     }
     
     @IBAction func setValue() {
-        self.holder.value = String(arc4random() % 100)
+        self.holder.value = String(Int.random(in: 0..<100))
     }
 }
