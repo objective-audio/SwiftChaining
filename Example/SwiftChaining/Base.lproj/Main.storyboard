@@ -182,11 +182,11 @@
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="33.733133433283363"/>
         </scene>
-        <!--Item-->
+        <!--Table-->
         <scene sceneID="pTW-Iq-utU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KBl-tU-nB9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="3Ap-8O-YM9"/>
+                    <tabBarItem key="tabBarItem" title="Table" id="3Ap-8O-YM9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tyM-Ka-7Df">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
