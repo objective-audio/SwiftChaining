@@ -39,10 +39,6 @@ final public class DictionaryHolderImpl<Key: Hashable, Value, Relay>: ReadOnlyDi
     
     struct ObserverWrapper {
         var observer: AnyObserver?
-        
-        init(_ observer: AnyObserver?) {
-            self.observer = observer
-        }
     }
     
     private var observerDictionary: [Key: ObserverWrapper] = [:]
@@ -128,7 +124,7 @@ extension DictionaryHolderImpl /* private */ {
             fatalError()
         }
         
-        self.observerDictionary[key] = ObserverWrapper(chaining?(key, value))
+        self.observerDictionary[key] = ObserverWrapper(observer: chaining?(key, value))
         self.rawDictionary[key] = value
         
         self.core.broadcast(value: .inserted(key: key, value: value))
@@ -139,7 +135,7 @@ extension DictionaryHolderImpl /* private */ {
             fatalError()
         }
         
-        self.observerDictionary[key] = ObserverWrapper(chaining?(key, value))
+        self.observerDictionary[key] = ObserverWrapper(observer: chaining?(key, value))
         self.rawDictionary[key] = value
         
         self.core.broadcast(value: .replaced(key: key, value: value))
@@ -156,7 +152,7 @@ extension DictionaryHolderImpl /* private */ {
         self.rawDictionary = [:]
         
         for (key, value) in dictionary {
-            self.observerDictionary[key] = ObserverWrapper(chaining?(key, value))
+            self.observerDictionary[key] = ObserverWrapper(observer: chaining?(key, value))
         }
         self.rawDictionary = dictionary
         
