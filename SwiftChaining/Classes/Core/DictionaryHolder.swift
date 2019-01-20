@@ -52,15 +52,15 @@ final public class DictionaryHolderImpl<Key: Hashable, Value, Relay>: ReadOnlyDi
     }
     
     public func set(_ dictionary: [Key: Value]) {
-        self.set(dictionary, chaining: nil)
+        self.set(dictionary, relaying: nil)
     }
     
     public func replace(key: Key, value: Value) {
-        self.replace(key: key, value: value, chaining: nil)
+        self.replace(key: key, value: value, relaying: nil)
     }
     
     public func insert(key: Key, value: Value) {
-        self.insert(key: key, value: value, chaining: nil)
+        self.insert(key: key, value: value, relaying: nil)
     }
     
     @discardableResult
@@ -117,31 +117,31 @@ final public class DictionaryHolderImpl<Key: Hashable, Value, Relay>: ReadOnlyDi
 }
 
 extension DictionaryHolderImpl /* private */ {
-    private typealias ChainingHandler = (Key, Value) -> AnyObserver
+    private typealias RelayingHandler = (Key, Value) -> AnyObserver
     
-    private func insert(key: Key, value: Value, chaining: ChainingHandler?) {
+    private func insert(key: Key, value: Value, relaying: RelayingHandler?) {
         guard self.rawDictionary[key] == nil || self.observerDictionary[key] == nil else {
             fatalError()
         }
         
-        self.observerDictionary[key] = ObserverWrapper(observer: chaining?(key, value))
+        self.observerDictionary[key] = ObserverWrapper(observer: relaying?(key, value))
         self.rawDictionary[key] = value
         
         self.core.broadcast(value: .inserted(key: key, value: value))
     }
     
-    private func replace(key: Key, value: Value, chaining: ChainingHandler?) {
+    private func replace(key: Key, value: Value, relaying: RelayingHandler?) {
         guard self.rawDictionary[key] != nil || self.observerDictionary[key] != nil else {
             fatalError()
         }
         
-        self.observerDictionary[key] = ObserverWrapper(observer: chaining?(key, value))
+        self.observerDictionary[key] = ObserverWrapper(observer: relaying?(key, value))
         self.rawDictionary[key] = value
         
         self.core.broadcast(value: .replaced(key: key, value: value))
     }
     
-    private func set(_ dictionary: [Key: Value], chaining: ChainingHandler?) {
+    private func set(_ dictionary: [Key: Value], relaying: RelayingHandler?) {
         for (_, value) in self.observerDictionary {
             if let observer = value.observer {
                 observer.invalidate()
@@ -152,7 +152,7 @@ extension DictionaryHolderImpl /* private */ {
         self.rawDictionary = [:]
         
         for (key, value) in dictionary {
-            self.observerDictionary[key] = ObserverWrapper(observer: chaining?(key, value))
+            self.observerDictionary[key] = ObserverWrapper(observer: relaying?(key, value))
         }
         self.rawDictionary = dictionary
         
@@ -178,15 +178,15 @@ extension DictionaryHolderImpl where Value: Sendable, Relay == Value.SendValue {
     }
 
     public func set(_ elements: [Key: Value]) {
-        self.set(elements, chaining: self.chaining())
+        self.set(elements, relaying: self.relaying())
     }
 
     public func replace(key: Key, value: Value) {
-        self.replace(key: key, value: value, chaining: self.chaining())
+        self.replace(key: key, value: value, relaying: self.relaying())
     }
 
     public func insert(key: Key, value: Value) {
-        self.insert(key: key, value: value, chaining: self.chaining())
+        self.insert(key: key, value: value, relaying: self.relaying())
     }
     
     public subscript(key: Key) -> Value? {
@@ -206,7 +206,7 @@ extension DictionaryHolderImpl where Value: Sendable, Relay == Value.SendValue {
         }
     }
 
-    private func chaining() -> (ChainingHandler) {
+    private func relaying() -> (RelayingHandler) {
         return { (key: Key, value: Value) in
             value.chain().do({ [weak self] relayedValue in
                 if let sself = self {
