@@ -30,7 +30,7 @@ extension Observer where Sender: Fetchable {
 }
 
 public class ObserverPool {
-    fileprivate var observers: [AnyObserver] = []
+    private var observers: [AnyObserver] = []
     
     public init() {}
     
