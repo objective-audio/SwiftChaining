@@ -37,7 +37,7 @@ final public class DictionaryHolderImpl<Key: Hashable, Value, Relay>: ReadOnlyDi
         case relayed(Relay, key: Key, value: Value)
     }
     
-    struct ObserverWrapper {
+    private struct ObserverWrapper {
         var observer: AnyObserver?
     }
     
