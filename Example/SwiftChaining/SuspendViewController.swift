@@ -30,23 +30,8 @@ class SuspendViewController: UIViewController {
         
         self.pool += suspender
         
-        self.pool += suspender.state.chain().to({ state -> Bool in
-            switch state {
-            case .suspended:
-                return true
-            default:
-                return false
-            }
-        }).receive(self.resumeButtonEnabledAlias).sync()
-        
-        self.pool += suspender.state.chain().to({ state -> Bool in
-            switch state {
-            case .resumed:
-                return true
-            default:
-                return false
-            }
-        }).receive(self.suspendButtonEnabledAlias).sync()
+        self.pool += suspender.state.chain().to({ $0 == .suspended }).receive(self.resumeButtonEnabledAlias).sync()
+        self.pool += suspender.state.chain().to({ $0 == .resumed }).receive(self.suspendButtonEnabledAlias).sync()
         
         self.suspender = suspender
         self.suspender.resume()
