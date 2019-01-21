@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:SwiftChaining_ios_example/SwiftChaining_ios_example.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SwiftChaining_ios_tests/SwiftChaining_ios_tests.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SwiftChaining_ios/SwiftChaining_ios.xcodeproj">
+   </FileRef>
+</Workspace>
