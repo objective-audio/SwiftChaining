@@ -12,7 +12,7 @@ final class TableSection {
         case title(String?)
     }
     
-    let core = SenderCore<TableSection>()
+    let senderCore = SenderCore<TableSection>()
     
     let title: Holder<String?>
     let rows: ArrayHolder<AnyCellData>

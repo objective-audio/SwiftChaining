@@ -49,5 +49,6 @@ private func _merge<HandlerOut, MainIn, MainJoint, SubIn, SubSender>(main: Chain
     mainJoint.handlers.append(mainNewHandler)
     
     mainJoint.subJoints.append(subJoint)
+    
     return Chain<HandlerOut, HandlerOut, MainJoint>(joint: mainJoint) { $0 }
 }

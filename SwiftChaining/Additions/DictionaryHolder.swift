@@ -6,28 +6,12 @@ import Foundation
 
 public typealias DictionaryHolder<Key: Hashable, Value> = DictionaryHolderImpl<Key, Value, Value>
 public typealias RelayableDictionaryHolder<Key: Hashable, Value: Sendable> = DictionaryHolderImpl<Key, Value, Value.SendValue>
-public typealias ReadOnlyDictionaryHolder<Key: Hashable, Value> = ReadOnlyDictionaryHolderImpl<Key, Value, Value>
-public typealias ReadOnlyRelayableDictionaryHolder<Key: Hashable, Value: Sendable> = ReadOnlyDictionaryHolderImpl<Key, Value, Value.SendValue>
 
-public class ReadOnlyDictionaryHolderImpl<Key: Hashable, Value, Relay> {
-    public let core = SenderCore<DictionaryHolderImpl<Key, Value, Relay>>()
-    
-    public fileprivate(set) var rawDictionary: [Key: Value] = [:]
+final public class DictionaryHolderImpl<Key: Hashable, Value, Relay> {
+    public private(set) var rawDictionary: [Key: Value] = [:]
     
     public var count: Int { return self.rawDictionary.count }
     
-    fileprivate init() {}
-    
-    public var capacity: Int {
-        return self.rawDictionary.capacity
-    }
-    
-    public func chain() -> DictionaryHolderImpl<Key, Value, Relay>.SenderChain {
-        return Chain(joint: self.core.addJoint(sender: self as! DictionaryHolderImpl<Key, Value, Relay>), handler: { $0 })
-    }
-}
-
-final public class DictionaryHolderImpl<Key: Hashable, Value, Relay>: ReadOnlyDictionaryHolderImpl<Key, Value, Relay> {
     public enum Event {
         case fetched([Key: Value])
         case any([Key: Value])
@@ -43,12 +27,16 @@ final public class DictionaryHolderImpl<Key: Hashable, Value, Relay>: ReadOnlyDi
     
     private var observerDictionary: [Key: ObserverWrapper] = [:]
     
-    public override init() {}
+    public init() {}
     
     public convenience init(_ dictionary: [Key: Value]) {
         self.init()
         
         self.set(dictionary)
+    }
+    
+    public var capacity: Int {
+        return self.rawDictionary.capacity
     }
     
     public func set(_ dictionary: [Key: Value]) {
@@ -72,7 +60,7 @@ final public class DictionaryHolderImpl<Key: Hashable, Value, Relay>: ReadOnlyDi
         }
         
         if let value = self.rawDictionary.removeValue(forKey: key) {
-            self.core.broadcast(value: .removed(key: key, value: value))
+            self.broadcast(value: .removed(key: key, value: value))
             
             return value
         } else {
@@ -90,7 +78,7 @@ final public class DictionaryHolderImpl<Key: Hashable, Value, Relay>: ReadOnlyDi
         self.observerDictionary.removeAll(keepingCapacity: keepCapacity)
         self.rawDictionary.removeAll(keepingCapacity: keepCapacity)
 
-        self.core.broadcast(value: .any([:]))
+        self.broadcast(value: .any([:]))
     }
     
     public func reserveCapacity(_ capacity: Int) {
@@ -127,7 +115,7 @@ extension DictionaryHolderImpl /* private */ {
         self.observerDictionary[key] = ObserverWrapper(observer: relaying?(key, value))
         self.rawDictionary[key] = value
         
-        self.core.broadcast(value: .inserted(key: key, value: value))
+        self.broadcast(value: .inserted(key: key, value: value))
     }
     
     private func replace(key: Key, value: Value, relaying: RelayingHandler?) {
@@ -138,7 +126,7 @@ extension DictionaryHolderImpl /* private */ {
         self.observerDictionary[key] = ObserverWrapper(observer: relaying?(key, value))
         self.rawDictionary[key] = value
         
-        self.core.broadcast(value: .replaced(key: key, value: value))
+        self.broadcast(value: .replaced(key: key, value: value))
     }
     
     private func set(_ dictionary: [Key: Value], relaying: RelayingHandler?) {
@@ -156,7 +144,7 @@ extension DictionaryHolderImpl /* private */ {
         }
         self.rawDictionary = dictionary
         
-        self.core.broadcast(value: .any(dictionary))
+        self.broadcast(value: .any(dictionary))
     }
 }
 
@@ -209,8 +197,8 @@ extension DictionaryHolderImpl where Value: Sendable, Relay == Value.SendValue {
     private func relaying() -> (RelayingHandler) {
         return { (key: Key, value: Value) in
             value.chain().do({ [weak self] relayedValue in
-                if let sself = self {
-                    sself.core.broadcast(value: .relayed(relayedValue, key: key, value: value))
+                if let self = self {
+                    self.broadcast(value: .relayed(relayedValue, key: key, value: value))
                 }
             }).end()
         }

@@ -5,8 +5,6 @@
 import UIKit
 
 final public class UIControlAlias<T: UIControl>: NSObject {
-    public let core = SenderCore<UIControlAlias>()
-    
     private weak var control: UIControl?
     private let events: UIControl.Event
     
@@ -30,7 +28,7 @@ final public class UIControlAlias<T: UIControl>: NSObject {
     
     @objc private func notify(_ sender: UIControl) {
         if let sender = sender as? T {
-            self.core.broadcast(value: sender)
+            self.broadcast(value: sender)
         }
     }
 }

@@ -23,14 +23,18 @@
 		B6FABC4D21F4BDB70045872A /* End.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3421F4BDB70045872A /* End.swift */; };
 		B6FABC4E21F4BDB70045872A /* ForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3521F4BDB70045872A /* ForEach.swift */; };
 		B6FABC4F21F4BDB70045872A /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3621F4BDB70045872A /* Weak.swift */; };
-		B6FABC5021F4BDB70045872A /* Holder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3821F4BDB70045872A /* Holder.swift */; };
-		B6FABC5121F4BDB70045872A /* Suspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3921F4BDB70045872A /* Suspender.swift */; };
-		B6FABC5221F4BDB70045872A /* DictionaryHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3A21F4BDB70045872A /* DictionaryHolder.swift */; };
-		B6FABC5321F4BDB70045872A /* ArrayHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3B21F4BDB70045872A /* ArrayHolder.swift */; };
-		B6FABC5421F4BDB70045872A /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3C21F4BDB70045872A /* Notifier.swift */; };
-		B6FABC5521F4BDB70045872A /* UIControlAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3E21F4BDB70045872A /* UIControlAlias.swift */; };
-		B6FABC5621F4BDB70045872A /* NotificationAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3F21F4BDB70045872A /* NotificationAlias.swift */; };
-		B6FABC5721F4BDB70045872A /* KVOAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC4021F4BDB70045872A /* KVOAlias.swift */; };
+		B6FABD0621F60A120045872A /* SenderCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABD0521F60A120045872A /* SenderCore.swift */; };
+		B6FABD0721F74B310045872A /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3C21F4BDB70045872A /* Notifier.swift */; };
+		B6FABD0B21F74E1D0045872A /* Holder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3821F4BDB70045872A /* Holder.swift */; };
+		B6FABD1221F751F40045872A /* NotificationAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3F21F4BDB70045872A /* NotificationAlias.swift */; };
+		B6FABD1421F752590045872A /* KVOAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC4021F4BDB70045872A /* KVOAlias.swift */; };
+		B6FABD1621F7529A0045872A /* UIControlAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3E21F4BDB70045872A /* UIControlAlias.swift */; };
+		B6FABD1721F753410045872A /* ArrayHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3B21F4BDB70045872A /* ArrayHolder.swift */; };
+		B6FABD1A21F754490045872A /* DictionaryHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3A21F4BDB70045872A /* DictionaryHolder.swift */; };
+		B6FABD1E21F754F20045872A /* Suspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3921F4BDB70045872A /* Suspender.swift */; };
+		B6FABD2121F75EEE0045872A /* ReadOnlyArrayHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABD2021F75EEE0045872A /* ReadOnlyArrayHolder.swift */; };
+		B6FABD2321F75EF90045872A /* ReadOnlyDictionaryHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABD2221F75EF90045872A /* ReadOnlyDictionaryHolder.swift */; };
+		B6FABD2521F75F260045872A /* ReadOnlyHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABD2421F75F260045872A /* ReadOnlyHolder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +64,10 @@
 		B6FABC3E21F4BDB70045872A /* UIControlAlias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIControlAlias.swift; sourceTree = "<group>"; };
 		B6FABC3F21F4BDB70045872A /* NotificationAlias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationAlias.swift; sourceTree = "<group>"; };
 		B6FABC4021F4BDB70045872A /* KVOAlias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOAlias.swift; sourceTree = "<group>"; };
+		B6FABD0521F60A120045872A /* SenderCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderCore.swift; sourceTree = "<group>"; };
+		B6FABD2021F75EEE0045872A /* ReadOnlyArrayHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyArrayHolder.swift; sourceTree = "<group>"; };
+		B6FABD2221F75EF90045872A /* ReadOnlyDictionaryHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyDictionaryHolder.swift; sourceTree = "<group>"; };
+		B6FABD2421F75F260045872A /* ReadOnlyHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyHolder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,20 +112,20 @@
 		B6FABC2721F4BDB70045872A /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				B6FABC2821F4BDB70045872A /* Do.swift */,
-				B6FABC2921F4BDB70045872A /* Observer.swift */,
-				B6FABC2A21F4BDB70045872A /* Joint.swift */,
-				B6FABC2B21F4BDB70045872A /* Guard.swift */,
-				B6FABC2C21F4BDB70045872A /* To.swift */,
 				B6FABC2D21F4BDB70045872A /* Chain.swift */,
-				B6FABC2E21F4BDB70045872A /* Receivable.swift */,
-				B6FABC2F21F4BDB70045872A /* Fetchable.swift */,
-				B6FABC3021F4BDB70045872A /* Fetcher.swift */,
-				B6FABC3121F4BDB70045872A /* Merge.swift */,
 				B6FABC3221F4BDB70045872A /* Combine.swift */,
-				B6FABC3321F4BDB70045872A /* Sendable.swift */,
+				B6FABD0521F60A120045872A /* SenderCore.swift */,
+				B6FABC2821F4BDB70045872A /* Do.swift */,
 				B6FABC3421F4BDB70045872A /* End.swift */,
+				B6FABC2F21F4BDB70045872A /* Fetchable.swift */,
 				B6FABC3521F4BDB70045872A /* ForEach.swift */,
+				B6FABC2B21F4BDB70045872A /* Guard.swift */,
+				B6FABC2A21F4BDB70045872A /* Joint.swift */,
+				B6FABC3121F4BDB70045872A /* Merge.swift */,
+				B6FABC2921F4BDB70045872A /* Observer.swift */,
+				B6FABC2E21F4BDB70045872A /* Receivable.swift */,
+				B6FABC3321F4BDB70045872A /* Sendable.swift */,
+				B6FABC2C21F4BDB70045872A /* To.swift */,
 				B6FABC3621F4BDB70045872A /* Weak.swift */,
 			);
 			name = Core;
@@ -127,11 +135,15 @@
 		B6FABC3721F4BDB70045872A /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				B6FABC3821F4BDB70045872A /* Holder.swift */,
-				B6FABC3921F4BDB70045872A /* Suspender.swift */,
-				B6FABC3A21F4BDB70045872A /* DictionaryHolder.swift */,
 				B6FABC3B21F4BDB70045872A /* ArrayHolder.swift */,
+				B6FABC3A21F4BDB70045872A /* DictionaryHolder.swift */,
+				B6FABC3021F4BDB70045872A /* Fetcher.swift */,
+				B6FABC3821F4BDB70045872A /* Holder.swift */,
 				B6FABC3C21F4BDB70045872A /* Notifier.swift */,
+				B6FABD2021F75EEE0045872A /* ReadOnlyArrayHolder.swift */,
+				B6FABD2221F75EF90045872A /* ReadOnlyDictionaryHolder.swift */,
+				B6FABD2421F75F260045872A /* ReadOnlyHolder.swift */,
+				B6FABC3921F4BDB70045872A /* Suspender.swift */,
 			);
 			name = Additions;
 			path = ../../SwiftChaining/Additions;
@@ -140,9 +152,9 @@
 		B6FABC3D21F4BDB70045872A /* CocoaAdditions */ = {
 			isa = PBXGroup;
 			children = (
-				B6FABC3E21F4BDB70045872A /* UIControlAlias.swift */,
-				B6FABC3F21F4BDB70045872A /* NotificationAlias.swift */,
 				B6FABC4021F4BDB70045872A /* KVOAlias.swift */,
+				B6FABC3F21F4BDB70045872A /* NotificationAlias.swift */,
+				B6FABC3E21F4BDB70045872A /* UIControlAlias.swift */,
 			);
 			name = CocoaAdditions;
 			path = ../../SwiftChaining/CocoaAdditions;
@@ -226,28 +238,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6FABC4A21F4BDB70045872A /* Merge.swift in Sources */,
-				B6FABC5621F4BDB70045872A /* NotificationAlias.swift in Sources */,
+				B6FABD1721F753410045872A /* ArrayHolder.swift in Sources */,
 				B6FABC4B21F4BDB70045872A /* Combine.swift in Sources */,
 				B6FABC4F21F4BDB70045872A /* Weak.swift in Sources */,
 				B6FABC4821F4BDB70045872A /* Fetchable.swift in Sources */,
-				B6FABC5521F4BDB70045872A /* UIControlAlias.swift in Sources */,
+				B6FABD1621F7529A0045872A /* UIControlAlias.swift in Sources */,
+				B6FABD0621F60A120045872A /* SenderCore.swift in Sources */,
 				B6FABC4121F4BDB70045872A /* Do.swift in Sources */,
-				B6FABC5421F4BDB70045872A /* Notifier.swift in Sources */,
-				B6FABC5021F4BDB70045872A /* Holder.swift in Sources */,
 				B6FABC4421F4BDB70045872A /* Guard.swift in Sources */,
 				B6FABC4221F4BDB70045872A /* Observer.swift in Sources */,
+				B6FABD0721F74B310045872A /* Notifier.swift in Sources */,
+				B6FABD1E21F754F20045872A /* Suspender.swift in Sources */,
 				B6FABC4621F4BDB70045872A /* Chain.swift in Sources */,
 				B6FABC4C21F4BDB70045872A /* Sendable.swift in Sources */,
+				B6FABD2521F75F260045872A /* ReadOnlyHolder.swift in Sources */,
+				B6FABD1421F752590045872A /* KVOAlias.swift in Sources */,
+				B6FABD1A21F754490045872A /* DictionaryHolder.swift in Sources */,
+				B6FABD1221F751F40045872A /* NotificationAlias.swift in Sources */,
+				B6FABD0B21F74E1D0045872A /* Holder.swift in Sources */,
 				B6FABC4521F4BDB70045872A /* To.swift in Sources */,
-				B6FABC5721F4BDB70045872A /* KVOAlias.swift in Sources */,
 				B6FABC4D21F4BDB70045872A /* End.swift in Sources */,
 				B6FABC4721F4BDB70045872A /* Receivable.swift in Sources */,
+				B6FABD2121F75EEE0045872A /* ReadOnlyArrayHolder.swift in Sources */,
 				B6FABC4321F4BDB70045872A /* Joint.swift in Sources */,
+				B6FABD2321F75EF90045872A /* ReadOnlyDictionaryHolder.swift in Sources */,
 				B6FABC4E21F4BDB70045872A /* ForEach.swift in Sources */,
-				B6FABC5221F4BDB70045872A /* DictionaryHolder.swift in Sources */,
-				B6FABC5321F4BDB70045872A /* ArrayHolder.swift in Sources */,
 				B6FABC4921F4BDB70045872A /* Fetcher.swift in Sources */,
-				B6FABC5121F4BDB70045872A /* Suspender.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

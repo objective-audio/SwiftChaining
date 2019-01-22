@@ -4,22 +4,13 @@
 
 import Foundation
 
-public class ReadOnlyHolder<T> {
-    public let core = SenderCore<Holder<T>>()
+final public class Holder<T> {
+    public private(set) var rawValue: T
+    private let lock = NSLock()
     
-    public fileprivate(set) var rawValue: T
-    
-    fileprivate init(_ initial: T) {
+    public init(_ initial: T) {
         self.rawValue = initial
     }
-    
-    public func chain() -> Holder<T>.SenderChain {
-        return Chain(joint: self.core.addJoint(sender: self as! Holder<T>), handler: { $0 })
-    }
-}
-
-final public class Holder<T>: ReadOnlyHolder<T> {
-    private let lock = NSLock()
     
     public var value: SendValue {
         set {
@@ -30,10 +21,6 @@ final public class Holder<T>: ReadOnlyHolder<T> {
             }
         }
         get { return self.rawValue }
-    }
-    
-    public override init(_ initial: T) {
-        super.init(initial)
     }
 }
 
