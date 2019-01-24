@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B634EFB421F9EB3100D61E3F /* RelayableHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634EFB321F9EB3100D61E3F /* RelayableHolder.swift */; };
 		B6FABC2321F4BD9E0045872A /* Chaining.h in Headers */ = {isa = PBXBuildFile; fileRef = B6FABC2121F4BD9E0045872A /* Chaining.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B6FABC4121F4BDB70045872A /* Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC2821F4BDB70045872A /* Do.swift */; };
 		B6FABC4221F4BDB70045872A /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC2921F4BDB70045872A /* Observer.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B634EFB321F9EB3100D61E3F /* RelayableHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableHolder.swift; sourceTree = "<group>"; };
 		B6FABC1E21F4BD9E0045872A /* Chaining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Chaining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6FABC2121F4BD9E0045872A /* Chaining.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chaining.h; sourceTree = "<group>"; };
 		B6FABC2221F4BD9E0045872A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				B6FABC3A21F4BDB70045872A /* DictionaryHolder.swift */,
 				B6FABC3021F4BDB70045872A /* Fetcher.swift */,
 				B6FABC3821F4BDB70045872A /* Holder.swift */,
+				B634EFB321F9EB3100D61E3F /* RelayableHolder.swift */,
 				B6FABC3C21F4BDB70045872A /* Notifier.swift */,
 				B6FABD2021F75EEE0045872A /* ReadOnlyArrayHolder.swift */,
 				B6FABD2221F75EF90045872A /* ReadOnlyDictionaryHolder.swift */,
@@ -244,6 +247,7 @@
 				B6FABC4821F4BDB70045872A /* Fetchable.swift in Sources */,
 				B6FABD1621F7529A0045872A /* UIControlAlias.swift in Sources */,
 				B6FABD0621F60A120045872A /* SenderCore.swift in Sources */,
+				B634EFB421F9EB3100D61E3F /* RelayableHolder.swift in Sources */,
 				B6FABC4121F4BDB70045872A /* Do.swift in Sources */,
 				B6FABC4421F4BDB70045872A /* Guard.swift in Sources */,
 				B6FABC4221F4BDB70045872A /* Observer.swift in Sources */,

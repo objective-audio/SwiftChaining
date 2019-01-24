@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B65F618021F9FD0C0094AA09 /* RelayableHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65F617F21F9FD0C0094AA09 /* RelayableHolder.swift */; };
 		B6FABBA121F4B8C60045872A /* Chaining.h in Headers */ = {isa = PBXBuildFile; fileRef = B6FABB9F21F4B8C60045872A /* Chaining.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B6FABBBF21F4B8F40045872A /* Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABBA621F4B8F40045872A /* Do.swift */; };
 		B6FABBC021F4B8F40045872A /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABBA721F4B8F40045872A /* Observer.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B65F617F21F9FD0C0094AA09 /* RelayableHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableHolder.swift; sourceTree = "<group>"; };
 		B6FABB9C21F4B8C60045872A /* Chaining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Chaining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6FABB9F21F4B8C60045872A /* Chaining.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chaining.h; sourceTree = "<group>"; };
 		B6FABBA021F4B8C60045872A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				B6FABD2A21F75F8A0045872A /* ReadOnlyArrayHolder.swift */,
 				B6FABD2821F75F8A0045872A /* ReadOnlyDictionaryHolder.swift */,
 				B6FABD2921F75F8A0045872A /* ReadOnlyHolder.swift */,
+				B65F617F21F9FD0C0094AA09 /* RelayableHolder.swift */,
 				B6FABBB721F4B8F40045872A /* Suspender.swift */,
 			);
 			name = Additions;
@@ -238,6 +241,7 @@
 				B6FABD2721F75F820045872A /* Fetcher.swift in Sources */,
 				B6FABD2B21F75F8A0045872A /* ReadOnlyDictionaryHolder.swift in Sources */,
 				B6FABBD421F4B8F40045872A /* NotificationAlias.swift in Sources */,
+				B65F618021F9FD0C0094AA09 /* RelayableHolder.swift in Sources */,
 				B6FABBC921F4B8F40045872A /* Combine.swift in Sources */,
 				B6FABBCD21F4B8F40045872A /* Weak.swift in Sources */,
 				B6FABBC621F4B8F40045872A /* Fetchable.swift in Sources */,

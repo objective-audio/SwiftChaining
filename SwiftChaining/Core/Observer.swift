@@ -15,6 +15,10 @@ public class Observer<Sender: Sendable> {
         self.joint = joint
     }
     
+    deinit {
+        self.invalidate()
+    }
+    
     public func invalidate() {
         self.joint.invalidate()
     }
