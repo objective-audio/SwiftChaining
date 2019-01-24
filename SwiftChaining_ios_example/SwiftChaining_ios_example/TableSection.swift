@@ -12,8 +12,6 @@ final class TableSection {
         case title(String?)
     }
     
-    let core = SenderCore<TableSection>()
-    
     let title: Holder<String?>
     let rows: ArrayHolder<AnyCellData>
     

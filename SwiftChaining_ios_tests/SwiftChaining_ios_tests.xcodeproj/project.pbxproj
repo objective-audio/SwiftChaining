@@ -7,27 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B634EFB621F9ECFA00D61E3F /* RelayableHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634EFB521F9ECFA00D61E3F /* RelayableHolderTests.swift */; };
 		B6FABC7421F4BE530045872A /* Chaining.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FABC7321F4BE530045872A /* Chaining.framework */; };
-		B6FABC8821F4BE630045872A /* KVOAliasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7621F4BE630045872A /* KVOAliasTests.swift */; };
-		B6FABC8921F4BE630045872A /* DictionaryHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7721F4BE630045872A /* DictionaryHolderTests.swift */; };
-		B6FABC8A21F4BE630045872A /* HolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7821F4BE630045872A /* HolderTests.swift */; };
-		B6FABC8B21F4BE630045872A /* NotificationAliasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7921F4BE630045872A /* NotificationAliasTests.swift */; };
-		B6FABC8C21F4BE630045872A /* CombineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7A21F4BE630045872A /* CombineTests.swift */; };
-		B6FABC8D21F4BE630045872A /* ToTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7B21F4BE630045872A /* ToTests.swift */; };
-		B6FABC8E21F4BE630045872A /* ForEachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7C21F4BE630045872A /* ForEachTests.swift */; };
-		B6FABC8F21F4BE630045872A /* NotifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7D21F4BE630045872A /* NotifierTests.swift */; };
-		B6FABC9021F4BE630045872A /* ReadOnlyDictionaryHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7E21F4BE630045872A /* ReadOnlyDictionaryHolderTests.swift */; };
-		B6FABC9121F4BE630045872A /* ReadOnlyHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7F21F4BE630045872A /* ReadOnlyHolderTests.swift */; };
-		B6FABC9221F4BE630045872A /* ObserverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC8021F4BE630045872A /* ObserverTests.swift */; };
-		B6FABC9321F4BE630045872A /* ReadOnlyArrayHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC8121F4BE630045872A /* ReadOnlyArrayHolderTests.swift */; };
-		B6FABC9421F4BE630045872A /* GuardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC8221F4BE630045872A /* GuardTests.swift */; };
-		B6FABC9521F4BE630045872A /* MergeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC8321F4BE630045872A /* MergeTests.swift */; };
-		B6FABC9621F4BE630045872A /* PairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC8421F4BE630045872A /* PairTests.swift */; };
-		B6FABC9721F4BE630045872A /* FetchableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC8521F4BE630045872A /* FetchableTests.swift */; };
-		B6FABC9821F4BE630045872A /* ArrayHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC8621F4BE630045872A /* ArrayHolderTests.swift */; };
+		B6FABD0821F74D750045872A /* NotifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7D21F4BE630045872A /* NotifierTests.swift */; };
+		B6FABD0921F74D9F0045872A /* ForEachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7C21F4BE630045872A /* ForEachTests.swift */; };
+		B6FABD0A21F74DA50045872A /* ToTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7B21F4BE630045872A /* ToTests.swift */; };
+		B6FABD0C21F751840045872A /* HolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7821F4BE630045872A /* HolderTests.swift */; };
+		B6FABD0D21F7519A0045872A /* ObserverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC8021F4BE630045872A /* ObserverTests.swift */; };
+		B6FABD0E21F751A40045872A /* GuardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC8221F4BE630045872A /* GuardTests.swift */; };
+		B6FABD0F21F751A90045872A /* MergeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC8321F4BE630045872A /* MergeTests.swift */; };
+		B6FABD1021F751AF0045872A /* PairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC8421F4BE630045872A /* PairTests.swift */; };
+		B6FABD1121F751DE0045872A /* CombineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7A21F4BE630045872A /* CombineTests.swift */; };
+		B6FABD1321F752500045872A /* NotificationAliasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7921F4BE630045872A /* NotificationAliasTests.swift */; };
+		B6FABD1521F752890045872A /* KVOAliasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7621F4BE630045872A /* KVOAliasTests.swift */; };
+		B6FABD1821F754370045872A /* ReadOnlyArrayHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC8121F4BE630045872A /* ReadOnlyArrayHolderTests.swift */; };
+		B6FABD1921F7543C0045872A /* ArrayHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC8621F4BE630045872A /* ArrayHolderTests.swift */; };
+		B6FABD1B21F754CB0045872A /* DictionaryHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7721F4BE630045872A /* DictionaryHolderTests.swift */; };
+		B6FABD1C21F754D10045872A /* ReadOnlyDictionaryHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7E21F4BE630045872A /* ReadOnlyDictionaryHolderTests.swift */; };
+		B6FABD1D21F754DB0045872A /* ReadOnlyHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7F21F4BE630045872A /* ReadOnlyHolderTests.swift */; };
+		B6FABD1F21F755110045872A /* FetchableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC8521F4BE630045872A /* FetchableTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B634EFB521F9ECFA00D61E3F /* RelayableHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableHolderTests.swift; sourceTree = "<group>"; };
 		B6FABC6321F4BE2B0045872A /* SwiftChaining_ios_tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftChaining_ios_tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6FABC6821F4BE2B0045872A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6FABC7321F4BE530045872A /* Chaining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Chaining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,23 +101,24 @@
 		B6FABC7521F4BE630045872A /* SwiftChainingTests */ = {
 			isa = PBXGroup;
 			children = (
-				B6FABC7621F4BE630045872A /* KVOAliasTests.swift */,
-				B6FABC7721F4BE630045872A /* DictionaryHolderTests.swift */,
-				B6FABC7821F4BE630045872A /* HolderTests.swift */,
-				B6FABC7921F4BE630045872A /* NotificationAliasTests.swift */,
+				B6FABC8621F4BE630045872A /* ArrayHolderTests.swift */,
 				B6FABC7A21F4BE630045872A /* CombineTests.swift */,
-				B6FABC7B21F4BE630045872A /* ToTests.swift */,
+				B6FABC7721F4BE630045872A /* DictionaryHolderTests.swift */,
+				B6FABC8521F4BE630045872A /* FetchableTests.swift */,
 				B6FABC7C21F4BE630045872A /* ForEachTests.swift */,
+				B6FABC8221F4BE630045872A /* GuardTests.swift */,
+				B6FABC7821F4BE630045872A /* HolderTests.swift */,
+				B6FABC7621F4BE630045872A /* KVOAliasTests.swift */,
+				B6FABC8321F4BE630045872A /* MergeTests.swift */,
+				B6FABC7921F4BE630045872A /* NotificationAliasTests.swift */,
 				B6FABC7D21F4BE630045872A /* NotifierTests.swift */,
+				B6FABC8021F4BE630045872A /* ObserverTests.swift */,
+				B6FABC8421F4BE630045872A /* PairTests.swift */,
+				B6FABC8121F4BE630045872A /* ReadOnlyArrayHolderTests.swift */,
 				B6FABC7E21F4BE630045872A /* ReadOnlyDictionaryHolderTests.swift */,
 				B6FABC7F21F4BE630045872A /* ReadOnlyHolderTests.swift */,
-				B6FABC8021F4BE630045872A /* ObserverTests.swift */,
-				B6FABC8121F4BE630045872A /* ReadOnlyArrayHolderTests.swift */,
-				B6FABC8221F4BE630045872A /* GuardTests.swift */,
-				B6FABC8321F4BE630045872A /* MergeTests.swift */,
-				B6FABC8421F4BE630045872A /* PairTests.swift */,
-				B6FABC8521F4BE630045872A /* FetchableTests.swift */,
-				B6FABC8621F4BE630045872A /* ArrayHolderTests.swift */,
+				B634EFB521F9ECFA00D61E3F /* RelayableHolderTests.swift */,
+				B6FABC7B21F4BE630045872A /* ToTests.swift */,
 			);
 			name = SwiftChainingTests;
 			path = ../../SwiftChainingTests;
@@ -187,23 +190,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6FABC9721F4BE630045872A /* FetchableTests.swift in Sources */,
-				B6FABC8A21F4BE630045872A /* HolderTests.swift in Sources */,
-				B6FABC8F21F4BE630045872A /* NotifierTests.swift in Sources */,
-				B6FABC8E21F4BE630045872A /* ForEachTests.swift in Sources */,
-				B6FABC9021F4BE630045872A /* ReadOnlyDictionaryHolderTests.swift in Sources */,
-				B6FABC9221F4BE630045872A /* ObserverTests.swift in Sources */,
-				B6FABC8821F4BE630045872A /* KVOAliasTests.swift in Sources */,
-				B6FABC9421F4BE630045872A /* GuardTests.swift in Sources */,
-				B6FABC8D21F4BE630045872A /* ToTests.swift in Sources */,
-				B6FABC9621F4BE630045872A /* PairTests.swift in Sources */,
-				B6FABC9821F4BE630045872A /* ArrayHolderTests.swift in Sources */,
-				B6FABC9521F4BE630045872A /* MergeTests.swift in Sources */,
-				B6FABC9321F4BE630045872A /* ReadOnlyArrayHolderTests.swift in Sources */,
-				B6FABC8921F4BE630045872A /* DictionaryHolderTests.swift in Sources */,
-				B6FABC8C21F4BE630045872A /* CombineTests.swift in Sources */,
-				B6FABC8B21F4BE630045872A /* NotificationAliasTests.swift in Sources */,
-				B6FABC9121F4BE630045872A /* ReadOnlyHolderTests.swift in Sources */,
+				B6FABD0921F74D9F0045872A /* ForEachTests.swift in Sources */,
+				B6FABD1021F751AF0045872A /* PairTests.swift in Sources */,
+				B6FABD0F21F751A90045872A /* MergeTests.swift in Sources */,
+				B634EFB621F9ECFA00D61E3F /* RelayableHolderTests.swift in Sources */,
+				B6FABD1F21F755110045872A /* FetchableTests.swift in Sources */,
+				B6FABD1D21F754DB0045872A /* ReadOnlyHolderTests.swift in Sources */,
+				B6FABD1121F751DE0045872A /* CombineTests.swift in Sources */,
+				B6FABD1521F752890045872A /* KVOAliasTests.swift in Sources */,
+				B6FABD0C21F751840045872A /* HolderTests.swift in Sources */,
+				B6FABD1321F752500045872A /* NotificationAliasTests.swift in Sources */,
+				B6FABD1821F754370045872A /* ReadOnlyArrayHolderTests.swift in Sources */,
+				B6FABD0D21F7519A0045872A /* ObserverTests.swift in Sources */,
+				B6FABD1C21F754D10045872A /* ReadOnlyDictionaryHolderTests.swift in Sources */,
+				B6FABD1B21F754CB0045872A /* DictionaryHolderTests.swift in Sources */,
+				B6FABD0821F74D750045872A /* NotifierTests.swift in Sources */,
+				B6FABD0A21F74DA50045872A /* ToTests.swift in Sources */,
+				B6FABD1921F7543C0045872A /* ArrayHolderTests.swift in Sources */,
+				B6FABD0E21F751A40045872A /* GuardTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,7 +24,7 @@ class ReadOnlyArrayHolderTests: XCTestCase {
     
     func testReadOnlyArrayHolder() {
         self.holder = ArrayHolder([1, 2, 3])
-        self.readOnlyHolder = self.holder
+        self.readOnlyHolder = ReadOnlyArrayHolder(self.holder)
         
         var received: [ArrayHolder<Int>.Event] = []
         
@@ -54,7 +54,7 @@ class ReadOnlyArrayHolderTests: XCTestCase {
     
     func testRawArray() {
         self.holder = ArrayHolder([1, 2, 3])
-        self.readOnlyHolder = self.holder
+        self.readOnlyHolder = ReadOnlyArrayHolder(self.holder)
         
         XCTAssertEqual(self.readOnlyHolder.rawArray, [1, 2, 3])
         

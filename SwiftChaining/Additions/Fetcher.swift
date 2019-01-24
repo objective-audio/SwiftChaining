@@ -5,8 +5,6 @@
 import Foundation
 
 final public class Fetcher<T> {
-    public let core = SenderCore<Fetcher>()
-    
     private let fetching: () -> SendValue?
     
     public init(fetching: @escaping () -> SendValue?) {

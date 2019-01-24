@@ -5,8 +5,7 @@
 import Foundation
 
 final public class NotificationAlias {
-    public let core = SenderCore<NotificationAlias>()
-    private var observer: Any?
+    private var observer: NSObjectProtocol?
     
     public convenience init(_ name: Notification.Name) {
         self.init(name, object: nil)
@@ -14,7 +13,7 @@ final public class NotificationAlias {
     
     public init(_ name: Notification.Name, object: Any?) {
         self.observer = NotificationCenter.default.addObserver(forName: name, object: object, queue: OperationQueue.main) { [unowned self] notification in
-            self.core.broadcast(value: notification)
+            self.broadcast(value: notification)
         }
     }
     

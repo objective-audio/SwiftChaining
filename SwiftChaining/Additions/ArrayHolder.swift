@@ -6,40 +6,12 @@ import Foundation
 
 public typealias ArrayHolder<Element> = ArrayHolderImpl<Element, Element>
 public typealias RelayableArrayHolder<Element: Sendable> = ArrayHolderImpl<Element, Element.SendValue>
-public typealias ReadOnlyArrayHolder<Element> = ReadOnlyArrayHolderImpl<Element, Element>
-public typealias ReadOnlyRelayableArrayHolder<Element: Sendable> = ReadOnlyArrayHolderImpl<Element, Element.SendValue>
 
-public class ReadOnlyArrayHolderImpl<Element, Relay> {
-    public let core = SenderCore<ArrayHolderImpl<Element, Relay>>()
-    
-    public fileprivate(set) var rawArray: [Element] = []
+final public class ArrayHolderImpl<Element, Relay> {
+    public private(set) var rawArray: [Element] = []
     
     public var count: Int { return self.rawArray.count }
     
-    fileprivate init() {}
-    
-    public func element(at index: Int) -> Element {
-        return self.rawArray[index]
-    }
-    
-    public var capacity: Int {
-        return self.rawArray.capacity
-    }
-    
-    public var first: Element? {
-        return self.rawArray.first
-    }
-    
-    public var last: Element? {
-        return self.rawArray.last
-    }
-    
-    public func chain() -> ArrayHolderImpl<Element, Relay>.SenderChain {
-        return Chain(joint: self.core.addJoint(sender: self as! ArrayHolderImpl<Element, Relay>), handler: { $0 })
-    }
-}
-
-final public class ArrayHolderImpl<Element, Relay>: ReadOnlyArrayHolderImpl<Element, Relay> {
     public enum Event {
         case fetched([Element])
         case any([Element])
@@ -55,12 +27,28 @@ final public class ArrayHolderImpl<Element, Relay>: ReadOnlyArrayHolderImpl<Elem
     
     private var observerArray: [ObserverWrapper] = []
     
-    public override init() {}
+    public init() {}
     
     public convenience init(_ elements: [Element]) {
         self.init()
         
         self.replace(elements)
+    }
+    
+    public func element(at index: Int) -> Element {
+        return self.rawArray[index]
+    }
+    
+    public var capacity: Int {
+        return self.rawArray.capacity
+    }
+    
+    public var first: Element? {
+        return self.rawArray.first
+    }
+    
+    public var last: Element? {
+        return self.rawArray.last
     }
     
     public func replace(_ elements: [Element]) {
@@ -92,7 +80,7 @@ final public class ArrayHolderImpl<Element, Relay>: ReadOnlyArrayHolderImpl<Elem
         
         let element = self.rawArray.remove(at: index)
         
-        self.core.broadcast(value: .removed(at: index, element: element))
+        self.broadcast(value: .removed(at: index, element: element))
         
         return element
     }
@@ -111,7 +99,7 @@ final public class ArrayHolderImpl<Element, Relay>: ReadOnlyArrayHolderImpl<Elem
         self.observerArray.removeAll(keepingCapacity: keepCapacity)
         self.rawArray.removeAll(keepingCapacity: keepCapacity)
         
-        self.core.broadcast(value: .any([]))
+        self.broadcast(value: .any([]))
     }
     
     public func reserveCapacity(_ capacity: Int) {
@@ -135,7 +123,7 @@ extension ArrayHolderImpl /* private */ {
         }
         
         self.rawArray.insert(element, at: index)
-        self.core.broadcast(value: .inserted(at: index, element: element))
+        self.broadcast(value: .inserted(at: index, element: element))
     }
     
     private func replace(_ elements: [Element], relaying: RelayingHandler?) {
@@ -158,7 +146,7 @@ extension ArrayHolderImpl /* private */ {
         
         self.rawArray = elements
         
-        self.core.broadcast(value: .any(elements))
+        self.broadcast(value: .any(elements))
     }
     
     private func replace(_ element: Element, at index: Int, relaying: RelayingHandler?) {
@@ -169,7 +157,7 @@ extension ArrayHolderImpl /* private */ {
         }
         
         self.rawArray.replaceSubrange(index...index, with: [element])
-        self.core.broadcast(value: .replaced(at: index, element: element))
+        self.broadcast(value: .replaced(at: index, element: element))
     }
 }
 
@@ -217,7 +205,7 @@ extension ArrayHolderImpl where Element: Sendable, Relay == Element.SendValue {
             wrapper.observer = element.chain().do({ [weak self, weak wrapper] value in
                 if let self = self, let wrapper = wrapper {
                     if let index = self.observerArray.index(where: { return ObjectIdentifier($0) == ObjectIdentifier(wrapper) }) {
-                        self.core.broadcast(value: .relayed(value, at: index, element: self.rawArray[index]))
+                        self.broadcast(value: .relayed(value, at: index, element: self.rawArray[index]))
                     }
                 }
             }).end()

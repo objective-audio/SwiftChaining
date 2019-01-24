@@ -24,7 +24,7 @@ class ReadOnlyDictionaryHolderTests: XCTestCase {
     
     func testReadOnlyDictionaryHolder() {
         self.holder = DictionaryHolder(["1": 1, "2": 2])
-        self.readOnlyHolder = self.holder
+        self.readOnlyHolder = ReadOnlyDictionaryHolder(self.holder)
         
         var received: [DictionaryHolder<String, Int>.Event] = []
         
@@ -54,7 +54,7 @@ class ReadOnlyDictionaryHolderTests: XCTestCase {
     
     func testRawDictionary() {
         self.holder = DictionaryHolder(["1": 1, "2": 2])
-        self.readOnlyHolder = self.holder
+        self.readOnlyHolder = ReadOnlyDictionaryHolder(self.holder)
         
         XCTAssertEqual(self.readOnlyHolder.rawDictionary, ["1": 1, "2": 2])
         

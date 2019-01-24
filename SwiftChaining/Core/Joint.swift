@@ -15,13 +15,15 @@ public class Joint<Sender: Sendable> {
     public weak var sender: Sender?
     public var handlers: [Any] = []
     public var subJoints: [AnyJoint] = []
+    private var core: AnySenderCore?
     
-    internal init(sender: Sender) {
+    internal init(sender: Sender, core: AnySenderCore) {
         self.sender = sender
+        self.core = core
     }
     
     deinit {
-        self.sender?.core.remove(joint: self)
+        self.sender?.getCore()?.remove(joint: self)
     }
     
     internal func call(first value: Value) {
@@ -45,8 +47,9 @@ extension Joint: AnyJoint {
             subJoint.invalidate()
         }
         
-        self.sender?.core.remove(joint: self)
+        self.sender?.getCore()?.remove(joint: self)
         self.sender = nil
+        self.core = nil
         self.handlers = []
         self.subJoints = []
     }

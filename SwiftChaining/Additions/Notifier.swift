@@ -5,14 +5,13 @@
 import Foundation
 
 final public class Notifier<T> {
-    public let core = SenderCore<Notifier<T>>()
     private let lock = NSLock()
     
     public init() {}
     
     private func lockedSend(value: SendValue) {
         if self.lock.try() {
-            self.core.broadcast(value: value)
+            self.broadcast(value: value)
             self.lock.unlock()
         }
     }

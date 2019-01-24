@@ -24,7 +24,7 @@ class ReadOnlyHolderTests: XCTestCase {
     
     func testReadOnlyHolder() {
         self.holder = Holder(1)
-        self.readOnlyHolder = holder
+        self.readOnlyHolder = ReadOnlyHolder(holder)
         
         var received: Int?
         
@@ -41,12 +41,12 @@ class ReadOnlyHolderTests: XCTestCase {
     
     func testRawValue() {
         self.holder = Holder(1)
-        self.readOnlyHolder = holder
+        self.readOnlyHolder = ReadOnlyHolder(holder)
         
-        XCTAssertEqual(self.readOnlyHolder.rawValue, 1)
+        XCTAssertEqual(self.readOnlyHolder.value, 1)
         
         self.holder.value = 2
         
-        XCTAssertEqual(self.readOnlyHolder.rawValue, 2)
+        XCTAssertEqual(self.readOnlyHolder.value, 2)
     }
 }
