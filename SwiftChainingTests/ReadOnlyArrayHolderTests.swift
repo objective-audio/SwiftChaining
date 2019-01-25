@@ -62,4 +62,20 @@ class ReadOnlyArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(self.readOnlyHolder.rawArray, [1, 2, 3, 4])
     }
+    
+    func testProperties() {
+        self.holder = ArrayHolder([1, 2, 3])
+        self.readOnlyHolder = ReadOnlyArrayHolder(self.holder)
+        
+        XCTAssertEqual(self.readOnlyHolder.count, 3)
+        
+        XCTAssertEqual(self.readOnlyHolder.element(at: 0), 1)
+        XCTAssertEqual(self.readOnlyHolder.element(at: 1), 2)
+        XCTAssertEqual(self.readOnlyHolder.element(at: 2), 3)
+        
+        XCTAssertEqual(self.readOnlyHolder.rawArray.capacity, self.readOnlyHolder.capacity)
+        
+        XCTAssertEqual(self.readOnlyHolder.first, 1)
+        XCTAssertEqual(self.readOnlyHolder.last, 3)
+    }
 }

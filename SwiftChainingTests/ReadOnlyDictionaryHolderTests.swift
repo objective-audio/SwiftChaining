@@ -62,4 +62,17 @@ class ReadOnlyDictionaryHolderTests: XCTestCase {
         
         XCTAssertEqual(self.readOnlyHolder.rawDictionary, ["1": 1, "2": 2, "3": 3])
     }
+    
+    func testProperties() {
+        #warning("todo")
+        
+        self.holder = DictionaryHolder(["1": 1, "2": 2])
+        self.readOnlyHolder = ReadOnlyDictionaryHolder(self.holder)
+        
+        XCTAssertEqual(self.readOnlyHolder.count, 2)
+        
+        XCTAssertEqual(self.readOnlyHolder.capacity, self.readOnlyHolder.rawDictionary.capacity)
+        
+        
+    }
 }
