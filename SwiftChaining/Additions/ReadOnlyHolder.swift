@@ -17,3 +17,17 @@ public class ReadOnlyHolder<T> {
         return self.holder.chain()
     }
 }
+
+public class ReadOnlyRelayableHolder<T: Sendable> {
+    private let holder: RelayableHolder<T>
+    
+    public var value: T { return self.holder.value }
+    
+    public init(_ holder: RelayableHolder<T>) {
+        self.holder = holder
+    }
+    
+    public func chain() -> RelayableHolder<T>.SenderChain {
+        return self.holder.chain()
+    }
+}

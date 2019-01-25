@@ -38,6 +38,10 @@ class RelayableHolderTests: XCTestCase {
         XCTAssertEqual(events[2], .current(Holder<Int>(2)))
         XCTAssertEqual(holder.value, Holder<Int>(2))
         
+        innerHolder1.value = 10
+        
+        XCTAssertEqual(events.count, 3)
+        
         innerHolder2.value = 3
 
         XCTAssertEqual(events.count, 4)
@@ -84,6 +88,10 @@ class RelayableHolderTests: XCTestCase {
         
         XCTAssertEqual(events.count, 3)
         XCTAssertTrue(isEqualCurrent(events[2]))
+        
+        innerNotifier1.notify(value: 10)
+        
+        XCTAssertEqual(events.count, 3)
         
         innerNotifier2.notify(value: 3)
         
