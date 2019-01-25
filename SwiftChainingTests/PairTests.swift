@@ -6,14 +6,11 @@ import XCTest
 import Chaining
 
 class PairTests: XCTestCase {
-    var pool = ObserverPool()
-    
     override func setUp() {
         super.setUp()
     }
 
     override func tearDown() {
-        self.pool.invalidate()
         super.tearDown()
     }
 
@@ -23,13 +20,15 @@ class PairTests: XCTestCase {
         
         var received: [(Int?, String?)] = []
         
-        self.pool += main.chain().pair(sub.chain()).do { received.append($0) }.sync()
+        let observer = main.chain().pair(sub.chain()).do { received.append($0) }.sync()
         
         XCTAssertEqual(received.count, 2)
         XCTAssertEqual(received[0].0, 1)
         XCTAssertNil(received[0].1)
         XCTAssertNil(received[1].0)
         XCTAssertEqual(received[1].1, "2")
+        
+        observer.invalidate()
     }
     
     func testMainFetchable() {
@@ -38,7 +37,7 @@ class PairTests: XCTestCase {
         
         var received: (Int?, String?)?
         
-        self.pool += main.chain().pair(sub.chain()).do { received = $0 }.sync()
+        let observer = main.chain().pair(sub.chain()).do { received = $0 }.sync()
         
         XCTAssertEqual(received?.0, 0)
         XCTAssertNil(received?.1)
@@ -52,6 +51,8 @@ class PairTests: XCTestCase {
         
         XCTAssertNil(received?.0)
         XCTAssertEqual(received?.1, "2")
+        
+        observer.invalidate()
     }
     
     func testSubFetchable() {
@@ -60,7 +61,7 @@ class PairTests: XCTestCase {
         
         var received: (Int?, String?)?
         
-        self.pool += main.chain().pair(sub.chain()).do { received = $0 }.sync()
+        let observer = main.chain().pair(sub.chain()).do { received = $0 }.sync()
         
         XCTAssertNil(received?.0)
         XCTAssertEqual(received?.1, "")
@@ -74,6 +75,8 @@ class PairTests: XCTestCase {
         
         XCTAssertNil(received?.0)
         XCTAssertEqual(received?.1, "2")
+        
+        observer.invalidate()
     }
     
     func testNoFetchable() {
@@ -82,7 +85,7 @@ class PairTests: XCTestCase {
         
         var received: (Int?, String?)?
         
-        self.pool += main.chain().pair(sub.chain()).do { received = $0 }.end()
+        let observer = main.chain().pair(sub.chain()).do { received = $0 }.end()
         
         XCTAssertNil(received)
         
@@ -95,5 +98,7 @@ class PairTests: XCTestCase {
         
         XCTAssertNil(received?.0)
         XCTAssertEqual(received?.1, "2")
+        
+        observer.invalidate()
     }
 }

@@ -6,7 +6,6 @@ import XCTest
 import Chaining
 
 class ReadOnlyRelayableHolderTests: XCTestCase {
-
     override func setUp() {
     }
 

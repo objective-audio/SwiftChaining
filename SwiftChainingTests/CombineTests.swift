@@ -6,18 +6,15 @@ import XCTest
 import Chaining
 
 class CombineTests: XCTestCase {
-    var pool = ObserverPool()
-    
     override func setUp() {
         super.setUp()
     }
 
     override func tearDown() {
-        self.pool.invalidate()
         super.tearDown()
     }
 
-    func testCombineEachFetchable() {
+    func testEachFetchable() {
         // メインとサブが両方Fetchableの場合
         
         let main = Holder<Int>(1)
@@ -25,14 +22,16 @@ class CombineTests: XCTestCase {
         
         var received: (Int, String)?
         
-        self.pool += main.chain().combine(sub.chain()).do { received = $0 }.sync()
+        let observer = main.chain().combine(sub.chain()).do { received = $0 }.sync()
         
         // syncだけで両方送られてdoが呼ばれる
         XCTAssertEqual(received?.0, 1)
         XCTAssertEqual(received?.1, "2")
+        
+        observer.invalidate()
     }
     
-    func testCombineMainFetchable() {
+    func testMainFetchable() {
         // メインのみFetchableの場合
         
         let main = Holder<Int>(1)
@@ -40,7 +39,7 @@ class CombineTests: XCTestCase {
         
         var received: (Int, String)?
         
-        self.pool += main.chain().combine(sub.chain()).do { received = $0 }.sync()
+        let observer = main.chain().combine(sub.chain()).do { received = $0 }.sync()
         
         // syncではメインからのみ送信
         XCTAssertNil(received)
@@ -50,9 +49,11 @@ class CombineTests: XCTestCase {
         // サブからも送られてdoが呼ばれる
         XCTAssertEqual(received?.0, 1)
         XCTAssertEqual(received?.1, "2")
+        
+        observer.invalidate()
     }
     
-    func testCombineSubFetchable() {
+    func testSubFetchable() {
         // サブのみFetchableの場合
         
         let main = Notifier<Int>()
@@ -60,7 +61,7 @@ class CombineTests: XCTestCase {
         
         var received: (Int, String)?
         
-        self.pool += main.chain().combine(sub.chain()).do { received = $0 }.sync()
+        let observer = main.chain().combine(sub.chain()).do { received = $0 }.sync()
         
         // syncではサブからのみ送信
         XCTAssertNil(received)
@@ -70,9 +71,11 @@ class CombineTests: XCTestCase {
         // メインからも送られてdoが呼ばれる
         XCTAssertEqual(received?.0, 2)
         XCTAssertEqual(received?.1, "1")
+        
+        observer.invalidate()
     }
     
-    func testCombineNoFetchable() {
+    func testNoFetchable() {
         // 両方Fetchableでない場合
         
         let main = Notifier<Int>()
@@ -80,7 +83,7 @@ class CombineTests: XCTestCase {
         
         var received: (Int, String)?
         
-        self.pool += main.chain().combine(sub.chain()).do { received = $0 }.end()
+        let observer = main.chain().combine(sub.chain()).do { received = $0 }.end()
         
         // まだどちらからも送信されていない
         XCTAssertNil(received)
@@ -95,6 +98,7 @@ class CombineTests: XCTestCase {
         // サブからも送信されたのでdoが呼ばれる
         XCTAssertEqual(received?.0, 1)
         XCTAssertEqual(received?.1, "2")
+        
+        observer.invalidate()
     }
-
 }

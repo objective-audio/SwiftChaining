@@ -6,14 +6,11 @@ import XCTest
 import Chaining
 
 class GuardTests: XCTestCase {
-    var pool = ObserverPool()
-    
     override func setUp() {
         super.setUp()
     }
 
     override func tearDown() {
-        self.pool.invalidate()
         super.tearDown()
     }
 
@@ -22,7 +19,7 @@ class GuardTests: XCTestCase {
         
         var received: Int?
         
-        self.pool += notifier.chain().guard { return $0 > 0 }.do { received = $0 }.end()
+        let observer = notifier.chain().guard { return $0 > 0 }.do { received = $0 }.end()
         
         notifier.notify(value: 0)
         
@@ -33,5 +30,7 @@ class GuardTests: XCTestCase {
         
         // 0より大きいので呼ばれる
         XCTAssertEqual(received, 1)
+        
+        observer.invalidate()
     }
 }

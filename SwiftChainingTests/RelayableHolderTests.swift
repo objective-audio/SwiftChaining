@@ -6,7 +6,6 @@ import XCTest
 import Chaining
 
 class RelayableHolderTests: XCTestCase {
-
     override func setUp() {
     }
 
@@ -99,5 +98,29 @@ class RelayableHolderTests: XCTestCase {
         XCTAssertTrue(isEqualRelayed(events[3], 3))
         
         observer.invalidate()
+    }
+    
+    func testReceive() {
+        let notifier = Notifier<Holder<Int>>()
+        let holder = RelayableHolder<Holder<Int>>(Holder<Int>(0))
+        
+        let observer = notifier.chain().receive(holder).end()
+        
+        XCTAssertEqual(holder.value, Holder<Int>(0))
+        
+        notifier.notify(value: Holder<Int>(1))
+        
+        XCTAssertEqual(holder.value, Holder<Int>(1))
+        
+        observer.invalidate()
+    }
+    
+    func testEqual() {
+        let holder1 = RelayableHolder(Holder(1))
+        let holder1b = RelayableHolder(Holder(1))
+        let holder2 = RelayableHolder(Holder(2))
+        
+        XCTAssertEqual(holder1, holder1b)
+        XCTAssertNotEqual(holder1, holder2)
     }
 }

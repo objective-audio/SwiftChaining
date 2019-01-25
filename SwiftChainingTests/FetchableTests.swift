@@ -6,14 +6,11 @@ import XCTest
 import Chaining
 
 class FetchableTests: XCTestCase {
-    var pool = ObserverPool()
-    
     override func setUp() {
         super.setUp()
     }
 
     override func tearDown() {
-        self.pool.invalidate()
         super.tearDown()
     }
 
@@ -22,10 +19,12 @@ class FetchableTests: XCTestCase {
         
         var received: Int?
         
-        self.pool += fetcher.chain().do { received = $0 }.sync()
+        let observer = fetcher.chain().do { received = $0 }.sync()
         
         // syncでフェッチされる
         XCTAssertEqual(received, 1)
+        
+        observer.invalidate()
     }
     
     func testFetcherReceivable() {
@@ -33,7 +32,7 @@ class FetchableTests: XCTestCase {
         
         var received: Int?
         
-        self.pool += fetcher.chain().do { received = $0 }.end()
+        let observer = fetcher.chain().do { received = $0 }.end()
         
         XCTAssertNil(received)
         
@@ -41,6 +40,8 @@ class FetchableTests: XCTestCase {
         fetcher.receive(value: 2)
         
         XCTAssertEqual(received, 2)
+        
+        observer.invalidate()
     }
     
     func testFetcherBroadcastWithVoid() {
@@ -48,13 +49,15 @@ class FetchableTests: XCTestCase {
         
         var received: Int?
         
-        self.pool += fetcher.chain().do { received = $0 }.end()
+        let observer = fetcher.chain().do { received = $0 }.end()
         
         XCTAssertNil(received)
         
         fetcher.broadcast()
         
         XCTAssertEqual(received, 1)
+        
+        observer.invalidate()
     }
     
     func testFetchOnlyJustSynced() {
@@ -84,7 +87,7 @@ class FetchableTests: XCTestCase {
         var called: Bool = false
         var received: Int?
         
-        self.pool += fetcher.chain().do({ value in
+        let observer = fetcher.chain().do({ value in
             called = true
             received = value
         }).sync()
@@ -101,5 +104,7 @@ class FetchableTests: XCTestCase {
         
         XCTAssertFalse(called)
         XCTAssertNil(received)
+        
+        observer.invalidate()
     }
 }

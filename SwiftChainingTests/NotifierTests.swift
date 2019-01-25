@@ -6,14 +6,11 @@ import XCTest
 import Chaining
 
 class NotifierTests: XCTestCase {
-    var pool = ObserverPool()
-    
     override func setUp() {
         super.setUp()
     }
 
     override func tearDown() {
-        self.pool.invalidate()
         super.tearDown()
     }
 
@@ -22,13 +19,15 @@ class NotifierTests: XCTestCase {
         
         var received: Int?
         
-        self.pool += notifier.chain().do { received = $0 }.end()
+        let observer = notifier.chain().do { received = $0 }.end()
         
         XCTAssertNil(received)
         
         notifier.notify(value: 3)
         
         XCTAssertEqual(received, 3)
+        
+        observer.invalidate()
     }
     
     func testChainVoid() {
@@ -36,26 +35,31 @@ class NotifierTests: XCTestCase {
         
         var received = false
         
-        self.pool += notifier.chain().do { received = true }.end()
+        let observer = notifier.chain().do { received = true }.end()
         
         XCTAssertFalse(received)
         
         notifier.notify()
         
         XCTAssertTrue(received)
+        
+        observer.invalidate()
     }
     
     func testReceive() {
         let notifier = Notifier<Int>()
         let receivingNotifier = Notifier<Int>()
         
-        self.pool += notifier.chain().receive(receivingNotifier).end()
+        let observer = notifier.chain().receive(receivingNotifier).end()
         
         var received: Int?
-        self.pool += receivingNotifier.chain().do { received = $0 }.end()
+        let receivingObserver = receivingNotifier.chain().do { received = $0 }.end()
         
         notifier.notify(value: 1)
         
         XCTAssertEqual(received, 1)
+        
+        observer.invalidate()
+        receivingObserver.invalidate()
     }
 }

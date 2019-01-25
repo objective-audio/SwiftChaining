@@ -6,29 +6,21 @@ import XCTest
 import Chaining
 
 class ReadOnlyDictionaryHolderTests: XCTestCase {
-    var holder: DictionaryHolder<String, Int>!
-    var readOnlyHolder: ReadOnlyDictionaryHolder<String, Int>!
-    var pool = ObserverPool()
-    
     override func setUp() {
         super.setUp()
     }
     
     override func tearDown() {
-        self.holder = nil
-        self.readOnlyHolder = nil
-        self.pool.invalidate()
-        
         super.tearDown()
     }
     
     func testReadOnlyDictionaryHolder() {
-        self.holder = DictionaryHolder(["1": 1, "2": 2])
-        self.readOnlyHolder = ReadOnlyDictionaryHolder(self.holder)
+        let holder = DictionaryHolder(["1": 1, "2": 2])
+        let readOnlyHolder = ReadOnlyDictionaryHolder(holder)
         
         var received: [DictionaryHolder<String, Int>.Event] = []
         
-        self.pool += self.readOnlyHolder.chain().do({ event in
+        let observer = readOnlyHolder.chain().do({ event in
             received.append(event)
         }).sync()
         
@@ -40,7 +32,7 @@ class ReadOnlyDictionaryHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        self.holder["3"] = 3
+        holder["3"] = 3
         
         XCTAssertEqual(received.count, 2)
         
@@ -50,29 +42,27 @@ class ReadOnlyDictionaryHolderTests: XCTestCase {
         } else {
             XCTAssertTrue(false)
         }
+        
+        observer.invalidate()
     }
     
     func testRawDictionary() {
-        self.holder = DictionaryHolder(["1": 1, "2": 2])
-        self.readOnlyHolder = ReadOnlyDictionaryHolder(self.holder)
+        let holder = DictionaryHolder(["1": 1, "2": 2])
+        let readOnlyHolder = ReadOnlyDictionaryHolder(holder)
         
-        XCTAssertEqual(self.readOnlyHolder.rawDictionary, ["1": 1, "2": 2])
+        XCTAssertEqual(readOnlyHolder.rawDictionary, ["1": 1, "2": 2])
         
-        self.holder["3"] = 3
+        holder["3"] = 3
         
-        XCTAssertEqual(self.readOnlyHolder.rawDictionary, ["1": 1, "2": 2, "3": 3])
+        XCTAssertEqual(readOnlyHolder.rawDictionary, ["1": 1, "2": 2, "3": 3])
     }
     
     func testProperties() {
-        #warning("todo")
+        let holder = DictionaryHolder(["1": 1, "2": 2])
+        let readOnlyHolder = ReadOnlyDictionaryHolder(holder)
         
-        self.holder = DictionaryHolder(["1": 1, "2": 2])
-        self.readOnlyHolder = ReadOnlyDictionaryHolder(self.holder)
+        XCTAssertEqual(readOnlyHolder.count, 2)
         
-        XCTAssertEqual(self.readOnlyHolder.count, 2)
-        
-        XCTAssertEqual(self.readOnlyHolder.capacity, self.readOnlyHolder.rawDictionary.capacity)
-        
-        
+        XCTAssertEqual(readOnlyHolder.capacity, readOnlyHolder.rawDictionary.capacity)
     }
 }

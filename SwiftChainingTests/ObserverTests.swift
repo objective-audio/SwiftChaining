@@ -6,16 +6,11 @@ import XCTest
 import Chaining
 
 class ObserverTests: XCTestCase {
-    var observer: AnyObserver?
-    var pool = ObserverPool()
-    
     override func setUp() {
         super.setUp()
     }
 
     override func tearDown() {
-        self.pool.invalidate()
-        self.observer?.invalidate()
         super.tearDown()
     }
 
@@ -27,7 +22,7 @@ class ObserverTests: XCTestCase {
         
         var received: Int?
         
-        self.observer = mainNotifier.chain().merge(subNotifier.chain()).do { received = $0 }.end()
+        let observer = mainNotifier.chain().merge(subNotifier.chain()).do { received = $0 }.end()
         
         mainNotifier.notify(value: 1)
         
@@ -40,7 +35,7 @@ class ObserverTests: XCTestCase {
         received = nil
         
         // invalidateされると送信しない
-        self.observer?.invalidate()
+        observer.invalidate()
         
         mainNotifier.notify(value: 3)
         
@@ -122,5 +117,4 @@ class ObserverTests: XCTestCase {
         XCTAssertEqual(notifierReceived, 3)
         XCTAssertNil(holderReceived)
     }
-
 }

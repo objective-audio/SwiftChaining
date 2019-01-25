@@ -6,14 +6,11 @@ import XCTest
 import Chaining
 
 class HolderTests: XCTestCase {
-    var pool = ObserverPool()
-
     override func setUp() {
         super.setUp()
     }
 
     override func tearDown() {
-        self.pool.invalidate()
         super.tearDown()
     }
 
@@ -28,25 +25,29 @@ class HolderTests: XCTestCase {
         
         var received: Int?
         
-        self.pool += holder.chain().do { received = $0 }.sync()
+        let observer = holder.chain().do { received = $0 }.sync()
         
         XCTAssertEqual(received, 1)
         
         holder.value = 2
         
         XCTAssertEqual(received, 2)
+        
+        observer.invalidate()
     }
 
-    func testHolderReceive() {
+    func testReceive() {
         let notifier = Notifier<Int>()
         let holder = Holder<Int>(0)
         
-        self.pool += notifier.chain().receive(holder).end()
+        let observer = notifier.chain().receive(holder).end()
         
         XCTAssertEqual(holder.value, 0)
         
         notifier.notify(value: 4)
         
         XCTAssertEqual(holder.value, 4)
+        
+        observer.invalidate()
     }
 }

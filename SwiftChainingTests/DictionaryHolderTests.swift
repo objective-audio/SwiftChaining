@@ -6,14 +6,11 @@ import XCTest
 import Chaining
 
 class DictionaryHolderTests: XCTestCase {
-    var pool = ObserverPool()
-    
     override func setUp() {
         super.setUp()
     }
     
     override func tearDown() {
-        self.pool.invalidate()
         super.tearDown()
     }
     
@@ -179,7 +176,7 @@ class DictionaryHolderTests: XCTestCase {
 
         var received: [DictionaryHolder<Int, String>.Event] = []
 
-        self.pool += dictionary.chain().do { received.append($0) }.sync()
+        let observer = dictionary.chain().do { received.append($0) }.sync()
 
         XCTAssertEqual(received.count, 1)
 
@@ -247,6 +244,8 @@ class DictionaryHolderTests: XCTestCase {
         }
 
         XCTAssertEqual(dictionary.rawDictionary, [:])
+        
+        observer.invalidate()
     }
 
     func testEventWithSendableElements() {
@@ -254,7 +253,7 @@ class DictionaryHolderTests: XCTestCase {
 
         var received: [RelayableDictionaryHolder<Int, Holder<Int>>.Event] = []
 
-        self.pool += dictionary.chain().do { received.append($0) }.sync()
+        let observer = dictionary.chain().do { received.append($0) }.sync()
 
         XCTAssertEqual(received.count, 1)
 
@@ -336,6 +335,8 @@ class DictionaryHolderTests: XCTestCase {
         } else {
             XCTAssertTrue(false)
         }
+        
+        observer.invalidate()
     }
     
     func testEventWithSendableElementsBySubscript() {
@@ -343,7 +344,7 @@ class DictionaryHolderTests: XCTestCase {
         
         var received: [RelayableDictionaryHolder<Int, Holder<Int>>.Event] = []
         
-        self.pool += dictionary.chain().do { received.append($0) }.sync()
+        let observer = dictionary.chain().do { received.append($0) }.sync()
         
         XCTAssertEqual(received.count, 1)
         
@@ -425,5 +426,7 @@ class DictionaryHolderTests: XCTestCase {
         } else {
             XCTAssertTrue(false)
         }
+        
+        observer.invalidate()
     }
 }

@@ -6,29 +6,21 @@ import XCTest
 import Chaining
 
 class ReadOnlyArrayHolderTests: XCTestCase {
-    var holder: ArrayHolder<Int>!
-    var readOnlyHolder: ReadOnlyArrayHolder<Int>!
-    var pool = ObserverPool()
-    
     override func setUp() {
         super.setUp()
     }
     
     override func tearDown() {
-        self.holder = nil
-        self.readOnlyHolder = nil
-        self.pool.invalidate()
-        
         super.tearDown()
     }
     
     func testReadOnlyArrayHolder() {
-        self.holder = ArrayHolder([1, 2, 3])
-        self.readOnlyHolder = ReadOnlyArrayHolder(self.holder)
+        let holder = ArrayHolder([1, 2, 3])
+        let readOnlyHolder = ReadOnlyArrayHolder(holder)
         
         var received: [ArrayHolder<Int>.Event] = []
         
-        self.pool += self.readOnlyHolder.chain().do({ event in
+        let observer = readOnlyHolder.chain().do({ event in
             received.append(event)
         }).sync()
         
@@ -40,7 +32,7 @@ class ReadOnlyArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        self.holder.append(4)
+        holder.append(4)
         
         XCTAssertEqual(received.count, 2)
         
@@ -50,32 +42,34 @@ class ReadOnlyArrayHolderTests: XCTestCase {
         } else {
             XCTAssertTrue(false)
         }
+        
+        observer.invalidate()
     }
     
     func testRawArray() {
-        self.holder = ArrayHolder([1, 2, 3])
-        self.readOnlyHolder = ReadOnlyArrayHolder(self.holder)
+        let holder = ArrayHolder([1, 2, 3])
+        let readOnlyHolder = ReadOnlyArrayHolder(holder)
         
-        XCTAssertEqual(self.readOnlyHolder.rawArray, [1, 2, 3])
+        XCTAssertEqual(readOnlyHolder.rawArray, [1, 2, 3])
         
-        self.holder.append(4)
+        holder.append(4)
         
-        XCTAssertEqual(self.readOnlyHolder.rawArray, [1, 2, 3, 4])
+        XCTAssertEqual(readOnlyHolder.rawArray, [1, 2, 3, 4])
     }
     
     func testProperties() {
-        self.holder = ArrayHolder([1, 2, 3])
-        self.readOnlyHolder = ReadOnlyArrayHolder(self.holder)
+        let holder = ArrayHolder([1, 2, 3])
+        let readOnlyHolder = ReadOnlyArrayHolder(holder)
         
-        XCTAssertEqual(self.readOnlyHolder.count, 3)
+        XCTAssertEqual(readOnlyHolder.count, 3)
         
-        XCTAssertEqual(self.readOnlyHolder.element(at: 0), 1)
-        XCTAssertEqual(self.readOnlyHolder.element(at: 1), 2)
-        XCTAssertEqual(self.readOnlyHolder.element(at: 2), 3)
+        XCTAssertEqual(readOnlyHolder.element(at: 0), 1)
+        XCTAssertEqual(readOnlyHolder.element(at: 1), 2)
+        XCTAssertEqual(readOnlyHolder.element(at: 2), 3)
         
-        XCTAssertEqual(self.readOnlyHolder.rawArray.capacity, self.readOnlyHolder.capacity)
+        XCTAssertEqual(readOnlyHolder.rawArray.capacity, readOnlyHolder.capacity)
         
-        XCTAssertEqual(self.readOnlyHolder.first, 1)
-        XCTAssertEqual(self.readOnlyHolder.last, 3)
+        XCTAssertEqual(readOnlyHolder.first, 1)
+        XCTAssertEqual(readOnlyHolder.last, 3)
     }
 }
