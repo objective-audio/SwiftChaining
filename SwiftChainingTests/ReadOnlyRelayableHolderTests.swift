@@ -13,7 +13,7 @@ class ReadOnlyRelayableHolderTests: XCTestCase {
     override func tearDown() {
     }
 
-    func testReadOnlyRelayableHolder() {
+    func testChain() {
         let innerHolder = Holder<Int>(0)
         let relayableHolder = RelayableHolder<Holder<Int>>(innerHolder)
         let holder = ReadOnlyRelayableHolder<Holder<Int>>(relayableHolder)
@@ -42,5 +42,17 @@ class ReadOnlyRelayableHolderTests: XCTestCase {
         XCTAssertEqual(events.count, 4)
         
         observer.invalidate()
+    }
+    
+    func testValue() {
+        let innerHolder = Holder<Int>(0)
+        let relayableHolder = RelayableHolder<Holder<Int>>(innerHolder)
+        let holder = ReadOnlyRelayableHolder<Holder<Int>>(relayableHolder)
+        
+        XCTAssertEqual(holder.value, Holder<Int>(0))
+        
+        relayableHolder.value = Holder<Int>(1)
+        
+        XCTAssertEqual(holder.value, Holder<Int>(1))
     }
 }

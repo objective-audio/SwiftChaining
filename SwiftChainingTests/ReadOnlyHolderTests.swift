@@ -22,7 +22,7 @@ class ReadOnlyHolderTests: XCTestCase {
         super.tearDown()
     }
     
-    func testReadOnlyHolder() {
+    func testChain() {
         self.holder = Holder(1)
         self.readOnlyHolder = ReadOnlyHolder(holder)
         
