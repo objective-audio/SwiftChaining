@@ -4,10 +4,7 @@
 
 import Foundation
 
-public protocol AnyReceivable: class {
-}
-
-public protocol Receivable: AnyReceivable {
+public protocol Receivable: class {
     associatedtype ReceiveValue
     
     func receive(value: ReceiveValue)
