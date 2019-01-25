@@ -39,7 +39,7 @@ final public class RelayableHolder<T: Sendable> {
 extension RelayableHolder: Fetchable {
     public typealias SendValue = Event
     
-    public func fetchedValue() -> SendValue? {
+    public func fetchedValue() -> Event? {
         return .current(self.value)
     }
 }

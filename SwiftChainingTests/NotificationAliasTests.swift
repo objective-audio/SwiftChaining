@@ -16,48 +16,47 @@ fileprivate class TestPostObject {
 }
 
 class NotificationAliasTests: XCTestCase {
-    var pool = ObserverPool()
-    var alias: NotificationAlias!
-
     override func setUp() {
         super.setUp()
     }
 
     override func tearDown() {
-        self.pool.invalidate()
-        self.alias = nil
         super.tearDown()
     }
 
     func testNotificationAlias() {
         let postObj = TestPostObject()
         
-        self.alias = NotificationAlias(.testNotification, object: postObj)
+        let alias = NotificationAlias(.testNotification, object: postObj)
         
         var received: TestPostObject?
         
-        self.pool += self.alias.chain().do { value in received = value.object as? TestPostObject }.end()
+        let observer = alias.chain().do { value in received = value.object as? TestPostObject }.end()
         
         postObj.post()
         
         XCTAssertNotNil(received)
         XCTAssertEqual(ObjectIdentifier(received!), ObjectIdentifier(postObj))
+        
+        observer.invalidate()
     }
     
     func testInvalidate() {
         let postObj = TestPostObject()
         
-        self.alias = NotificationAlias(.testNotification, object: postObj)
+        let alias = NotificationAlias(.testNotification, object: postObj)
         
         var received: TestPostObject?
         
-        self.pool += self.alias.chain().do { value in received = value.object as? TestPostObject }.end()
+        let observer = alias.chain().do { value in received = value.object as? TestPostObject }.end()
         
-        self.alias.invalidate()
+        alias.invalidate()
         
         postObj.post()
         
         XCTAssertNil(received)
+        
+        observer.invalidate()
     }
     
     func testDeinit() {
@@ -68,13 +67,15 @@ class NotificationAliasTests: XCTestCase {
         do {
             let alias = NotificationAlias(.testNotification, object: postObj)
             
-            self.pool += alias.chain().do { value in received = value.object as? TestPostObject }.end()
+            let observer = alias.chain().do { value in received = value.object as? TestPostObject }.end()
             
             postObj.post()
             
             XCTAssertNotNil(received)
             
             received = nil
+            
+            observer.invalidate()
         }
         
         postObj.post()

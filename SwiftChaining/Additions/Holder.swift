@@ -12,7 +12,7 @@ final public class Holder<T> {
         self.rawValue = initial
     }
     
-    public var value: SendValue {
+    public var value: T {
         set {
             if self.lock.try() {
                 self.rawValue = newValue
@@ -27,13 +27,13 @@ final public class Holder<T> {
 extension Holder: Fetchable {
     public typealias SendValue = T
     
-    public func fetchedValue() -> SendValue? {
+    public func fetchedValue() -> T? {
         return self.value
     }
 }
 
-extension Holder where SendValue: Equatable {
-    public var value: SendValue {
+extension Holder where T: Equatable {
+    public var value: T {
         set {
             if self.lock.try() {
                 if self.rawValue != newValue {
@@ -48,7 +48,7 @@ extension Holder where SendValue: Equatable {
 }
 
 extension Holder: Receivable {
-    public func receive(value: SendValue) {
+    public func receive(value: T) {
         self.value = value
     }
 }

@@ -164,7 +164,7 @@ extension ArrayHolderImpl /* private */ {
 extension ArrayHolderImpl: Fetchable {
     public typealias SendValue = Event
     
-    public func fetchedValue() -> SendValue? {
+    public func fetchedValue() -> Event? {
         return .fetched(self.rawArray)
     }
 }

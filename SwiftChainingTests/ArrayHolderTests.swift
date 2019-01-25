@@ -6,14 +6,11 @@ import XCTest
 import Chaining
 
 class ArrayHolderTests: XCTestCase {
-    var pool = ObserverPool()
-    
     override func setUp() {
         super.setUp()
     }
     
     override func tearDown() {
-        self.pool.invalidate()
         super.tearDown()
     }
     
@@ -165,7 +162,7 @@ class ArrayHolderTests: XCTestCase {
         
         var received: [ArrayHolder<Int>.Event] = []
         
-        self.pool += array.chain().do { received.append($0) }.sync()
+        let observer = array.chain().do { received.append($0) }.sync()
         
         XCTAssertEqual(received.count, 1)
         
@@ -248,6 +245,8 @@ class ArrayHolderTests: XCTestCase {
         }
         
         XCTAssertEqual(array.rawArray, [])
+        
+        observer.invalidate()
     }
     
     func testEventWithSendableElements() {
@@ -255,7 +254,7 @@ class ArrayHolderTests: XCTestCase {
         
         var received: [RelayableArrayHolder<Holder<Int>>.Event] = []
         
-        self.pool += array.chain().do { received.append($0) }.sync()
+        let observer = array.chain().do { received.append($0) }.sync()
         
         XCTAssertEqual(received.count, 1)
         
@@ -362,6 +361,8 @@ class ArrayHolderTests: XCTestCase {
         } else {
             XCTAssertTrue(false)
         }
+        
+        observer.invalidate()
     }
     
     func testEventAfterInserted() {
@@ -371,7 +372,7 @@ class ArrayHolderTests: XCTestCase {
         
         var received: [RelayableArrayHolder<Holder<String>>.Event] = []
         
-        self.pool += array.chain().do { received.append($0) }.end()
+        let observer = array.chain().do { received.append($0) }.end()
         
         array[1].value = "c"
         
@@ -384,6 +385,8 @@ class ArrayHolderTests: XCTestCase {
         } else {
             XCTAssertTrue(false)
         }
+        
+        observer.invalidate()
     }
     
     func testEventAfterRemoveAllTwice() {
@@ -391,7 +394,7 @@ class ArrayHolderTests: XCTestCase {
         
         var received: [ArrayHolder<Int>.Event] = []
         
-        self.pool += array.chain().do { received.append($0) }.end()
+        let observer = array.chain().do { received.append($0) }.end()
         
         XCTAssertEqual(received.count, 0);
         
@@ -402,5 +405,7 @@ class ArrayHolderTests: XCTestCase {
         array.removeAll()
         
         XCTAssertEqual(received.count, 1);
+        
+        observer.invalidate()
     }
 }

@@ -6,14 +6,11 @@ import XCTest
 import Chaining
 
 class MergeTests: XCTestCase {
-    var pool = ObserverPool()
-    
     override func setUp() {
         super.setUp()
     }
 
     override func tearDown() {
-        self.pool.invalidate()
         super.tearDown()
     }
 
@@ -23,7 +20,7 @@ class MergeTests: XCTestCase {
         
         var received: Int?
         
-        self.pool += main.chain().merge(sub.chain()).do { received = $0 }.sync()
+        let observer = main.chain().merge(sub.chain()).do { received = $0 }.sync()
         
         XCTAssertEqual(received, 0)
         
@@ -34,6 +31,8 @@ class MergeTests: XCTestCase {
         sub.notify(value: 6)
         
         XCTAssertEqual(received, 6)
+        
+        observer.invalidate()
     }
     
     func testMergeToSub() {
@@ -42,7 +41,7 @@ class MergeTests: XCTestCase {
         
         var received: Int?
         
-        self.pool += main.chain().merge(sub.chain()).do { received = $0 }.sync()
+        let observer = main.chain().merge(sub.chain()).do { received = $0 }.sync()
         
         XCTAssertEqual(received, 0)
         
@@ -53,6 +52,8 @@ class MergeTests: XCTestCase {
         main.notify(value: 8)
         
         XCTAssertEqual(received, 8)
+        
+        observer.invalidate()
     }
     
     func testMergeToMainUnFetched() {
@@ -63,8 +64,6 @@ class MergeTests: XCTestCase {
         
         let observer = main.chain().merge(sub.chain()).do { received = $0 }.end()
         
-        self.pool += observer
-        
         XCTAssertNil(received)
         
         main.notify(value: 1)
@@ -74,6 +73,7 @@ class MergeTests: XCTestCase {
         sub.notify(value: 2)
         
         XCTAssertEqual(received, 2)
+        
+        observer.invalidate()
     }
-
 }

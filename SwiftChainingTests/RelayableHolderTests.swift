@@ -6,7 +6,6 @@ import XCTest
 import Chaining
 
 class RelayableHolderTests: XCTestCase {
-
     override func setUp() {
     }
 
@@ -37,6 +36,10 @@ class RelayableHolderTests: XCTestCase {
         XCTAssertEqual(events.count, 3)
         XCTAssertEqual(events[2], .current(Holder<Int>(2)))
         XCTAssertEqual(holder.value, Holder<Int>(2))
+        
+        innerHolder1.value = 10
+        
+        XCTAssertEqual(events.count, 3)
         
         innerHolder2.value = 3
 
@@ -85,11 +88,39 @@ class RelayableHolderTests: XCTestCase {
         XCTAssertEqual(events.count, 3)
         XCTAssertTrue(isEqualCurrent(events[2]))
         
+        innerNotifier1.notify(value: 10)
+        
+        XCTAssertEqual(events.count, 3)
+        
         innerNotifier2.notify(value: 3)
         
         XCTAssertEqual(events.count, 4)
         XCTAssertTrue(isEqualRelayed(events[3], 3))
         
         observer.invalidate()
+    }
+    
+    func testReceive() {
+        let notifier = Notifier<Holder<Int>>()
+        let holder = RelayableHolder<Holder<Int>>(Holder<Int>(0))
+        
+        let observer = notifier.chain().receive(holder).end()
+        
+        XCTAssertEqual(holder.value, Holder<Int>(0))
+        
+        notifier.notify(value: Holder<Int>(1))
+        
+        XCTAssertEqual(holder.value, Holder<Int>(1))
+        
+        observer.invalidate()
+    }
+    
+    func testEqual() {
+        let holder1 = RelayableHolder(Holder(1))
+        let holder1b = RelayableHolder(Holder(1))
+        let holder2 = RelayableHolder(Holder(2))
+        
+        XCTAssertEqual(holder1, holder1b)
+        XCTAssertNotEqual(holder1, holder2)
     }
 }

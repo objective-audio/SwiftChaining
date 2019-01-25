@@ -1,8 +1,5 @@
 //
 //  Chaining.h
-//  Chaining
-//
-//  Created by 八十嶋祐樹 on 2019/01/20.
 //
 
 #import <UIKit/UIKit.h>

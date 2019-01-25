@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B634EFB621F9ECFA00D61E3F /* RelayableHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634EFB521F9ECFA00D61E3F /* RelayableHolderTests.swift */; };
+		B6D4C61821FA9874004A95A8 /* ReadOnlyRelayableHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C61721FA9874004A95A8 /* ReadOnlyRelayableHolderTests.swift */; };
 		B6FABC7421F4BE530045872A /* Chaining.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FABC7321F4BE530045872A /* Chaining.framework */; };
 		B6FABD0821F74D750045872A /* NotifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7D21F4BE630045872A /* NotifierTests.swift */; };
 		B6FABD0921F74D9F0045872A /* ForEachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7C21F4BE630045872A /* ForEachTests.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		B634EFB521F9ECFA00D61E3F /* RelayableHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableHolderTests.swift; sourceTree = "<group>"; };
+		B6D4C61721FA9874004A95A8 /* ReadOnlyRelayableHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyRelayableHolderTests.swift; sourceTree = "<group>"; };
 		B6FABC6321F4BE2B0045872A /* SwiftChaining_ios_tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftChaining_ios_tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6FABC6821F4BE2B0045872A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6FABC7321F4BE530045872A /* Chaining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Chaining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +120,7 @@
 				B6FABC7E21F4BE630045872A /* ReadOnlyDictionaryHolderTests.swift */,
 				B6FABC7F21F4BE630045872A /* ReadOnlyHolderTests.swift */,
 				B634EFB521F9ECFA00D61E3F /* RelayableHolderTests.swift */,
+				B6D4C61721FA9874004A95A8 /* ReadOnlyRelayableHolderTests.swift */,
 				B6FABC7B21F4BE630045872A /* ToTests.swift */,
 			);
 			name = SwiftChainingTests;
@@ -192,6 +195,7 @@
 			files = (
 				B6FABD0921F74D9F0045872A /* ForEachTests.swift in Sources */,
 				B6FABD1021F751AF0045872A /* PairTests.swift in Sources */,
+				B6D4C61821FA9874004A95A8 /* ReadOnlyRelayableHolderTests.swift in Sources */,
 				B6FABD0F21F751A90045872A /* MergeTests.swift in Sources */,
 				B634EFB621F9ECFA00D61E3F /* RelayableHolderTests.swift in Sources */,
 				B6FABD1F21F755110045872A /* FetchableTests.swift in Sources */,
