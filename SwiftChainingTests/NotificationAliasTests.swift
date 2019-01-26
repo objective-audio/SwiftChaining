@@ -27,7 +27,7 @@ class NotificationAliasTests: XCTestCase {
     func testNotificationAlias() {
         let postObj = TestPostObject()
         
-        let alias = NotificationAlias(.testNotification, object: postObj)
+        let alias = NotificationAdapter(.testNotification, object: postObj)
         
         var received: TestPostObject?
         
@@ -44,7 +44,7 @@ class NotificationAliasTests: XCTestCase {
     func testInvalidate() {
         let postObj = TestPostObject()
         
-        let alias = NotificationAlias(.testNotification, object: postObj)
+        let alias = NotificationAdapter(.testNotification, object: postObj)
         
         var received: TestPostObject?
         
@@ -65,7 +65,7 @@ class NotificationAliasTests: XCTestCase {
         var received: TestPostObject?
         
         do {
-            let alias = NotificationAlias(.testNotification, object: postObj)
+            let alias = NotificationAdapter(.testNotification, object: postObj)
             
             let observer = alias.chain().do { value in received = value.object as? TestPostObject }.end()
             

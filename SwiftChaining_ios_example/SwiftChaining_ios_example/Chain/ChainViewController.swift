@@ -11,8 +11,8 @@ class ChainViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     
     var buttonAlias: UIControlAlias<UIButton>!
-    let didEnterBackgroundAlias = NotificationAlias(UIApplication.didEnterBackgroundNotification)
-    let willEnterForegroundAlias = NotificationAlias(UIApplication.willEnterForegroundNotification)
+    let didEnterBackgroundAlias = NotificationAdapter(UIApplication.didEnterBackgroundNotification)
+    let willEnterForegroundAlias = NotificationAdapter(UIApplication.willEnterForegroundNotification)
     var labelTextAlias: KVOAdapter<UILabel, String?>!
     var textFieldAlias: KVOAdapter<UITextField, String?>!
     var pool = ObserverPool()

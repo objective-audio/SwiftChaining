@@ -1,5 +1,5 @@
 //
-//  PropertyAlias.swift
+//  KVOAdapter.swift
 //
 
 import Foundation
