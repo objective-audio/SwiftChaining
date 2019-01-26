@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B65F618021F9FD0C0094AA09 /* RelayableHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65F617F21F9FD0C0094AA09 /* RelayableHolder.swift */; };
+		B6D4C62321FC1D97004A95A8 /* RelayableArrayHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62121FC1D97004A95A8 /* RelayableArrayHolder.swift */; };
+		B6D4C62421FC1D97004A95A8 /* RelayableDictionaryHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62221FC1D97004A95A8 /* RelayableDictionaryHolder.swift */; };
 		B6FABBA121F4B8C60045872A /* Chaining.h in Headers */ = {isa = PBXBuildFile; fileRef = B6FABB9F21F4B8C60045872A /* Chaining.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B6FABBBF21F4B8F40045872A /* Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABBA621F4B8F40045872A /* Do.swift */; };
 		B6FABBC021F4B8F40045872A /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABBA721F4B8F40045872A /* Observer.swift */; };
@@ -39,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		B65F617F21F9FD0C0094AA09 /* RelayableHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableHolder.swift; sourceTree = "<group>"; };
+		B6D4C62121FC1D97004A95A8 /* RelayableArrayHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableArrayHolder.swift; sourceTree = "<group>"; };
+		B6D4C62221FC1D97004A95A8 /* RelayableDictionaryHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableDictionaryHolder.swift; sourceTree = "<group>"; };
 		B6FABB9C21F4B8C60045872A /* Chaining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Chaining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6FABB9F21F4B8C60045872A /* Chaining.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chaining.h; sourceTree = "<group>"; };
 		B6FABBA021F4B8C60045872A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -143,6 +147,8 @@
 				B6FABD2A21F75F8A0045872A /* ReadOnlyArrayHolder.swift */,
 				B6FABD2821F75F8A0045872A /* ReadOnlyDictionaryHolder.swift */,
 				B6FABD2921F75F8A0045872A /* ReadOnlyHolder.swift */,
+				B6D4C62121FC1D97004A95A8 /* RelayableArrayHolder.swift */,
+				B6D4C62221FC1D97004A95A8 /* RelayableDictionaryHolder.swift */,
 				B65F617F21F9FD0C0094AA09 /* RelayableHolder.swift */,
 				B6FABBB721F4B8F40045872A /* Suspender.swift */,
 			);
@@ -246,6 +252,7 @@
 				B6FABBCD21F4B8F40045872A /* Weak.swift in Sources */,
 				B6FABBC621F4B8F40045872A /* Fetchable.swift in Sources */,
 				B6FABBBF21F4B8F40045872A /* Do.swift in Sources */,
+				B6D4C62421FC1D97004A95A8 /* RelayableDictionaryHolder.swift in Sources */,
 				B6FABBD221F4B8F40045872A /* Notifier.swift in Sources */,
 				B6FABBCE21F4B8F40045872A /* Holder.swift in Sources */,
 				B6FABBC221F4B8F40045872A /* Guard.swift in Sources */,
@@ -256,6 +263,7 @@
 				B6FABBC321F4B8F40045872A /* To.swift in Sources */,
 				B6FABBD521F4B8F40045872A /* KVOAlias.swift in Sources */,
 				B6FABBCB21F4B8F40045872A /* End.swift in Sources */,
+				B6D4C62321FC1D97004A95A8 /* RelayableArrayHolder.swift in Sources */,
 				B6FABBC521F4B8F40045872A /* Receivable.swift in Sources */,
 				B6FABBC121F4B8F40045872A /* Joint.swift in Sources */,
 				B6FABD2F21F75F990045872A /* SenderCore.swift in Sources */,

@@ -4,17 +4,14 @@
 
 import Foundation
 
-public typealias ReadOnlyDictionaryHolder<Key: Hashable, Value> = ReadOnlyDictionaryHolderImpl<Key, Value, Value>
-public typealias ReadOnlyRelayableDictionaryHolder<Key: Hashable, Value: Sendable> = ReadOnlyDictionaryHolderImpl<Key, Value, Value.SendValue>
-
-public class ReadOnlyDictionaryHolderImpl<Key: Hashable, Value, Relay> {
-    private let holder: DictionaryHolderImpl<Key, Value, Relay>
+public class ReadOnlyDictionaryHolder<Key: Hashable, Value> {
+    private let holder: DictionaryHolder<Key, Value>
     
     public var rawDictionary: [Key: Value] { return self.holder.rawDictionary }
     
     public var count: Int { return self.holder.count }
     
-    public init(_ holder: DictionaryHolderImpl<Key, Value, Relay>) {
+    public init(_ holder: DictionaryHolder<Key, Value>) {
         self.holder = holder
     }
     
@@ -22,7 +19,27 @@ public class ReadOnlyDictionaryHolderImpl<Key: Hashable, Value, Relay> {
         return self.holder.capacity
     }
     
-    public func chain() -> DictionaryHolderImpl<Key, Value, Relay>.SenderChain {
+    public func chain() -> DictionaryHolder<Key, Value>.SenderChain {
+        return self.holder.chain()
+    }
+}
+
+public class ReadOnlyRelayableDictionaryHolder<Key: Hashable, Value: Sendable> {
+    private let holder: RelayableDictionaryHolder<Key, Value>
+    
+    public var rawDictionary: [Key: Value] { return self.holder.rawDictionary }
+    
+    public var count: Int { return self.holder.count }
+    
+    public init(_ holder: RelayableDictionaryHolder<Key, Value>) {
+        self.holder = holder
+    }
+    
+    public var capacity: Int {
+        return self.holder.capacity
+    }
+    
+    public func chain() -> RelayableDictionaryHolder<Key, Value>.SenderChain {
         return self.holder.chain()
     }
 }
