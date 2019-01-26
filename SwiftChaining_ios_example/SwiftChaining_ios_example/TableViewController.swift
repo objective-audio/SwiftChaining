@@ -35,7 +35,7 @@ class TableViewController: UITableViewController {
                         self?.tableView.insertRows(at: [IndexPath(row: row, section: section)], with: .automatic)
                     case .removed(let row, _):
                         self?.tableView.deleteRows(at: [IndexPath(row: row, section: section)], with: .automatic)
-                    case .replaced(let row, let cellData), .relayed(_, let row, let cellData):
+                    case .replaced(let row, let cellData):
                         if let cell = self?.tableView.cellForRow(at: IndexPath(row: row, section: section)) as? CellDataSettable {
                             cell.set(cellData: cellData)
                         }
