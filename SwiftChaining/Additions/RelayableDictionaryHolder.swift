@@ -5,8 +5,6 @@
 import Foundation
 
 final public class RelayableDictionaryHolder<Key: Hashable, Value: Sendable> {
-    public typealias Relay = Value.SendValue
-    
     public private(set) var rawDictionary: [Key: Value] = [:]
     
     public var count: Int { return self.rawDictionary.count }
@@ -17,7 +15,7 @@ final public class RelayableDictionaryHolder<Key: Hashable, Value: Sendable> {
         case inserted(key: Key, value: Value)
         case removed(key: Key, value: Value)
         case replaced(key: Key, value: Value)
-        case relayed(Relay, key: Key, value: Value)
+        case relayed(Value.SendValue, key: Key, value: Value)
     }
     
     private struct ObserverWrapper {

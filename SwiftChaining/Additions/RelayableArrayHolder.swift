@@ -5,8 +5,6 @@
 import Foundation
 
 final public class RelayableArrayHolder<Element: Sendable> {
-    public typealias RelayValue = Element.SendValue
-    
     public private(set) var rawArray: [Element] = []
     
     public var count: Int { return self.rawArray.count }
@@ -17,7 +15,7 @@ final public class RelayableArrayHolder<Element: Sendable> {
         case inserted(at: Int, element: Element)
         case removed(at: Int, element: Element)
         case replaced(at: Int, element: Element)
-        case relayed(RelayValue, at: Int, element: Element)
+        case relayed(Element.SendValue, at: Int, element: Element)
     }
     
     private class ObserverWrapper {
