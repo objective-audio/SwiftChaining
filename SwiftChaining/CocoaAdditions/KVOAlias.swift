@@ -15,7 +15,7 @@ final public class KVOAlias<Root: NSObject, T> {
         get { return self.holder.value }
     }
     
-    public init(object: Root, keyPath: ReferenceWritableKeyPath<Root, T>) {
+    public init(_ object: Root, keyPath: ReferenceWritableKeyPath<Root, T>) {
         self.holder = Holder(object[keyPath: keyPath])
         
         self.observer = self.holder.chain().do({ [weak object, unowned self] value in

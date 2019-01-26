@@ -21,7 +21,7 @@ class KVOAliasTests: XCTestCase {
     func testKVOAlias() {
         let object = TestObject()
         
-        let alias = KVOAlias(object: object, keyPath: \TestObject.text)
+        let alias = KVOAlias(object, keyPath: \TestObject.text)
         
         var received: [String] = []
         
@@ -41,7 +41,7 @@ class KVOAliasTests: XCTestCase {
     func testInvalidate() {
         let object = TestObject()
         
-        let alias = KVOAlias(object: object, keyPath: \TestObject.text)
+        let alias = KVOAlias(object, keyPath: \TestObject.text)
         
         var received: [String] = []
         
@@ -65,7 +65,7 @@ class KVOAliasTests: XCTestCase {
         var received: [String] = []
         
         do {
-            let alias = KVOAlias(object: object, keyPath: \TestObject.text)
+            let alias = KVOAlias(object, keyPath: \TestObject.text)
             
             let observer = alias.chain().do { received.append($0) }.sync()
             

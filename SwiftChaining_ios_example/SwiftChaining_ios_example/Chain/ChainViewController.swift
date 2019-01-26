@@ -23,8 +23,8 @@ class ChainViewController: UIViewController {
         super.viewDidLoad()
         
         self.buttonAlias = UIControlAlias(self.button, events: .touchUpInside)
-        self.labelTextAlias = KVOAlias(object: self.label, keyPath: \UILabel.text)
-        self.textFieldAlias = KVOAlias(object: self.textField, keyPath: \UITextField.text)
+        self.labelTextAlias = KVOAlias(self.label, keyPath: \UILabel.text)
+        self.textFieldAlias = KVOAlias(self.textField, keyPath: \UITextField.text)
         
         self.pool += self.buttonAlias.chain().to { _ in String(Int.random(in: 0..<100)) }.receive(self.labelText).end()
         self.pool += self.labelText.chain().receive(self.labelTextAlias).sync()

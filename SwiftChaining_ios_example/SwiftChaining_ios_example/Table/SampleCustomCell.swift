@@ -17,8 +17,8 @@ class SampleCustomCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.labelAlias = KVOAlias(object: self.label, keyPath: \UILabel.text)
-        self.stepperAlias = KVOAlias(object: self.stepper, keyPath: \UIStepper.value)
+        self.labelAlias = KVOAlias(self.label, keyPath: \UILabel.text)
+        self.stepperAlias = KVOAlias(self.stepper, keyPath: \UIStepper.value)
     }
 
     override func prepareForReuse() {

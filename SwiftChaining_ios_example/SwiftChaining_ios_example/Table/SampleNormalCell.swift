@@ -13,8 +13,8 @@ class SampleNormalCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.textAlias = KVOAlias(object: self.textLabel!, keyPath: \UILabel.text)
-        self.detailTextAlias = KVOAlias(object: self.detailTextLabel!, keyPath: \UILabel.text)
+        self.textAlias = KVOAlias(self.textLabel!, keyPath: \UILabel.text)
+        self.detailTextAlias = KVOAlias(self.detailTextLabel!, keyPath: \UILabel.text)
     }
     
     override func prepareForReuse() {
