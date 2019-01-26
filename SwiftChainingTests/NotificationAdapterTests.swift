@@ -1,5 +1,5 @@
 //
-//  NotificationAliasTests.swift
+//  NotificationAdapterTests.swift
 //
 
 import XCTest
@@ -15,7 +15,7 @@ fileprivate class TestPostObject {
     }
 }
 
-class NotificationAliasTests: XCTestCase {
+class NotificationAdapterTests: XCTestCase {
     override func setUp() {
         super.setUp()
     }
@@ -24,14 +24,14 @@ class NotificationAliasTests: XCTestCase {
         super.tearDown()
     }
 
-    func testNotificationAlias() {
+    func testNotificationAdapter() {
         let postObj = TestPostObject()
         
-        let alias = NotificationAdapter(.testNotification, object: postObj)
+        let adapter = NotificationAdapter(.testNotification, object: postObj)
         
         var received: TestPostObject?
         
-        let observer = alias.chain().do { value in received = value.object as? TestPostObject }.end()
+        let observer = adapter.chain().do { value in received = value.object as? TestPostObject }.end()
         
         postObj.post()
         
@@ -44,13 +44,13 @@ class NotificationAliasTests: XCTestCase {
     func testInvalidate() {
         let postObj = TestPostObject()
         
-        let alias = NotificationAdapter(.testNotification, object: postObj)
+        let adapter = NotificationAdapter(.testNotification, object: postObj)
         
         var received: TestPostObject?
         
-        let observer = alias.chain().do { value in received = value.object as? TestPostObject }.end()
+        let observer = adapter.chain().do { value in received = value.object as? TestPostObject }.end()
         
-        alias.invalidate()
+        adapter.invalidate()
         
         postObj.post()
         
@@ -65,9 +65,9 @@ class NotificationAliasTests: XCTestCase {
         var received: TestPostObject?
         
         do {
-            let alias = NotificationAdapter(.testNotification, object: postObj)
+            let adapter = NotificationAdapter(.testNotification, object: postObj)
             
-            let observer = alias.chain().do { value in received = value.object as? TestPostObject }.end()
+            let observer = adapter.chain().do { value in received = value.object as? TestPostObject }.end()
             
             postObj.post()
             
