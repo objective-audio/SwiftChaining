@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B6DBC07221FC8C11003C0CF6 /* NumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DBC07121FC8C11003C0CF6 /* NumbersViewController.swift */; };
+		B6DBC07521FCAC55003C0CF6 /* SimpleValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DBC07421FCAC55003C0CF6 /* SimpleValidationViewController.swift */; };
 		B6FABCA721F4BFAF0045872A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABCA621F4BFAF0045872A /* AppDelegate.swift */; };
 		B6FABCAC21F4BFAF0045872A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6FABCAA21F4BFAF0045872A /* Main.storyboard */; };
 		B6FABCAE21F4BFB00045872A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6FABCAD21F4BFB00045872A /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		B6DBC07121FC8C11003C0CF6 /* NumbersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersViewController.swift; sourceTree = "<group>"; };
+		B6DBC07421FCAC55003C0CF6 /* SimpleValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleValidationViewController.swift; sourceTree = "<group>"; };
 		B6FABCA321F4BFAF0045872A /* SwiftChaining_ios_example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftChaining_ios_example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6FABCA621F4BFAF0045872A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6FABCAB21F4BFAF0045872A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -93,6 +95,14 @@
 			path = Numbers;
 			sourceTree = "<group>";
 		};
+		B6DBC07321FCAC3E003C0CF6 /* SimpleValidation */ = {
+			isa = PBXGroup;
+			children = (
+				B6DBC07421FCAC55003C0CF6 /* SimpleValidationViewController.swift */,
+			);
+			path = SimpleValidation;
+			sourceTree = "<group>";
+		};
 		B6FABC9A21F4BFAF0045872A = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +125,7 @@
 			children = (
 				B6FABCA621F4BFAF0045872A /* AppDelegate.swift */,
 				B6FABCC021F4C0660045872A /* RootViewController.swift */,
+				B6DBC07321FCAC3E003C0CF6 /* SimpleValidation */,
 				B6DBC07021FC8BFD003C0CF6 /* Numbers */,
 				B6DBC06D21FC8BBB003C0CF6 /* Chain */,
 				B6DBC06E21FC8BC1003C0CF6 /* Table */,
@@ -217,6 +228,7 @@
 				B6FABCC821F4C0660045872A /* ChainViewController.swift in Sources */,
 				B6FABCA721F4BFAF0045872A /* AppDelegate.swift in Sources */,
 				B6DBC07221FC8C11003C0CF6 /* NumbersViewController.swift in Sources */,
+				B6DBC07521FCAC55003C0CF6 /* SimpleValidationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
