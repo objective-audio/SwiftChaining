@@ -21,7 +21,7 @@ class NumbersViewController: UIViewController {
     private var changedAlias2: ChangedAlias!
     private var changedAlias3: ChangedAlias!
     private var resultAlias: KVOAlias<UILabel, String?>!
-    private var observer = ObserverPool()
+    private var observer: AnyObserver?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,7 @@ class NumbersViewController: UIViewController {
         let chain2 = makeChain(self.textAlias2, self.changedAlias2)
         let chain3 = makeChain(self.textAlias3, self.changedAlias3)
         
-        self.observer +=
+        self.observer =
             chain1
                 .combine(chain2)
                 .to { $0.0 + $0.1 }
