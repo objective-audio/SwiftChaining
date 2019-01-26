@@ -9,8 +9,8 @@ public protocol AnySuspender: AnyObserver {
     func suspend()
 }
 
-public class Suspender<T: AnyObject> {
-    public typealias ChainingHandler = (T) -> AnyObserver?
+public class Suspender<T: Sendable> {
+    public typealias ChainingHandler = (T) -> AnyObserver? 
     
     public enum State {
         case suspended
@@ -20,12 +20,12 @@ public class Suspender<T: AnyObject> {
     
     public private(set) var state = Holder<State>(.suspended)
     
-    private weak var object: T?
+    private weak var sender: T?
     private var observer: AnyObserver?
     private var chaining: ChainingHandler!
     
-    public init(_ context: T, chaining: @escaping ChainingHandler) {
-        self.object = context
+    public init(_ sender: T, chaining: @escaping ChainingHandler) {
+        self.sender = sender
         self.chaining = chaining
     }
     
@@ -36,7 +36,7 @@ public class Suspender<T: AnyObject> {
 
 extension Suspender: AnySuspender {
     public func resume() {
-        if case .suspended = self.state.value, let context = self.object {
+        if case .suspended = self.state.value, let context = self.sender {
             self.observer = self.chaining(context)
             self.state.value = .resumed
         }
@@ -51,12 +51,12 @@ extension Suspender: AnySuspender {
     
     public func invalidate() {
         switch self.state.value {
-        case .suspended:
+        case .resumed:
             self.chaining = nil
             self.observer?.invalidate()
             self.observer = nil
             self.state.value = .invalidated
-        case .resumed:
+        case .suspended:
             self.chaining = nil
             self.state.value = .invalidated
         case .invalidated:
