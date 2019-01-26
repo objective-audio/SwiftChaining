@@ -17,7 +17,7 @@ class SuspenderTests: XCTestCase {
         
         var received: [Int] = []
         
-        let suspender = Suspender(holder) { holder in
+        let suspender = Suspender {
             return holder.chain().do { value in received.append(value) }.sync()
         }
         
