@@ -76,6 +76,8 @@ extension RelayableHolder: Equatable where T: Equatable {
 extension RelayableHolder.Event: Equatable where T: Equatable, T.SendValue: Equatable {
     public static func == (lhs: RelayableHolder.Event, rhs: RelayableHolder.Event) -> Bool {
         switch (lhs, rhs) {
+        case (.fetched(let lhsFetched), .fetched(let rhsFetched)):
+            return lhsFetched == rhsFetched
         case (.current(let lhsCurrent), .current(let rhsCurrent)):
             return lhsCurrent == rhsCurrent
         case (.relayed(let lhsRelayed), .relayed(let rhsRelayed)):
