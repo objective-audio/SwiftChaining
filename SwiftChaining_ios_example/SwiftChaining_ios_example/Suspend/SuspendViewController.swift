@@ -10,9 +10,9 @@ class SuspendViewController: UIViewController {
     @IBOutlet weak var suspendButton: UIButton!
     @IBOutlet weak var label: UILabel!
     
-    var resumeButtonEnabledAlias: KVOAlias<UIButton, Bool>!
-    var suspendButtonEnabledAlias: KVOAlias<UIButton, Bool>!
-    var labelTextAlias: KVOAlias<UILabel, String?>!
+    var resumeButtonEnabledAlias: KVOAdapter<UIButton, Bool>!
+    var suspendButtonEnabledAlias: KVOAdapter<UIButton, Bool>!
+    var labelTextAlias: KVOAdapter<UILabel, String?>!
     let holder = Holder<String>("-")
     var pool = ObserverPool()
     var suspender: AnySuspender!
@@ -20,9 +20,9 @@ class SuspendViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.resumeButtonEnabledAlias = KVOAlias(self.resumeButton, keyPath: \UIButton.isEnabled)
-        self.suspendButtonEnabledAlias = KVOAlias(self.suspendButton, keyPath: \UIButton.isEnabled)
-        self.labelTextAlias = KVOAlias(self.label, keyPath: \UILabel.text)
+        self.resumeButtonEnabledAlias = KVOAdapter(self.resumeButton, keyPath: \UIButton.isEnabled)
+        self.suspendButtonEnabledAlias = KVOAdapter(self.suspendButton, keyPath: \UIButton.isEnabled)
+        self.labelTextAlias = KVOAdapter(self.label, keyPath: \UILabel.text)
         
         let suspender = Suspender { [weak self] in
             guard let self = self else { return nil }

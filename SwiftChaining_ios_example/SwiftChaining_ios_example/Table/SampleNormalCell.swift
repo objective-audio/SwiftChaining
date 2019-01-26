@@ -7,14 +7,14 @@ import Chaining
 
 class SampleNormalCell: UITableViewCell {
     private var pool = ObserverPool()
-    private var textAlias: KVOAlias<UILabel, String?>!
-    private var detailTextAlias: KVOAlias<UILabel, String?>!
+    private var textAlias: KVOAdapter<UILabel, String?>!
+    private var detailTextAlias: KVOAdapter<UILabel, String?>!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.textAlias = KVOAlias(self.textLabel!, keyPath: \UILabel.text)
-        self.detailTextAlias = KVOAlias(self.detailTextLabel!, keyPath: \UILabel.text)
+        self.textAlias = KVOAdapter(self.textLabel!, keyPath: \UILabel.text)
+        self.detailTextAlias = KVOAdapter(self.detailTextLabel!, keyPath: \UILabel.text)
     }
     
     override func prepareForReuse() {

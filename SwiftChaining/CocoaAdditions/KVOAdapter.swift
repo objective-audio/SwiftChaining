@@ -4,7 +4,7 @@
 
 import Foundation
 
-final public class KVOAlias<Root: NSObject, T> {
+final public class KVOAdapter<Root: NSObject, T> {
     private let holder: Holder<T>
     private var observer: AnyObserver?
     private var observation: NSKeyValueObservation?
@@ -53,7 +53,7 @@ final public class KVOAlias<Root: NSObject, T> {
     }
 }
 
-extension KVOAlias: Receivable {
+extension KVOAdapter: Receivable {
     public func receive(value: T) {
         self.value = value
     }

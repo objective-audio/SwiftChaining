@@ -13,8 +13,8 @@ class ChainViewController: UIViewController {
     var buttonAlias: UIControlAlias<UIButton>!
     let didEnterBackgroundAlias = NotificationAlias(UIApplication.didEnterBackgroundNotification)
     let willEnterForegroundAlias = NotificationAlias(UIApplication.willEnterForegroundNotification)
-    var labelTextAlias: KVOAlias<UILabel, String?>!
-    var textFieldAlias: KVOAlias<UITextField, String?>!
+    var labelTextAlias: KVOAdapter<UILabel, String?>!
+    var textFieldAlias: KVOAdapter<UITextField, String?>!
     var pool = ObserverPool()
     
     let labelText = Holder<String>("launched")
@@ -23,8 +23,8 @@ class ChainViewController: UIViewController {
         super.viewDidLoad()
         
         self.buttonAlias = UIControlAlias(self.button, events: .touchUpInside)
-        self.labelTextAlias = KVOAlias(self.label, keyPath: \UILabel.text)
-        self.textFieldAlias = KVOAlias(self.textField, keyPath: \UITextField.text)
+        self.labelTextAlias = KVOAdapter(self.label, keyPath: \UILabel.text)
+        self.textFieldAlias = KVOAdapter(self.textField, keyPath: \UITextField.text)
         
         self.pool += self.buttonAlias.chain().to { _ in String(Int.random(in: 0..<100)) }.receive(self.labelText).end()
         self.pool += self.labelText.chain().receive(self.labelTextAlias).sync()

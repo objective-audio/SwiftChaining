@@ -30,7 +30,7 @@
 		B6FABD0721F74B310045872A /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3C21F4BDB70045872A /* Notifier.swift */; };
 		B6FABD0B21F74E1D0045872A /* Holder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3821F4BDB70045872A /* Holder.swift */; };
 		B6FABD1221F751F40045872A /* NotificationAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3F21F4BDB70045872A /* NotificationAlias.swift */; };
-		B6FABD1421F752590045872A /* KVOAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC4021F4BDB70045872A /* KVOAlias.swift */; };
+		B6FABD1421F752590045872A /* KVOAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC4021F4BDB70045872A /* KVOAdapter.swift */; };
 		B6FABD1621F7529A0045872A /* UIControlAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3E21F4BDB70045872A /* UIControlAlias.swift */; };
 		B6FABD1721F753410045872A /* ArrayHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3B21F4BDB70045872A /* ArrayHolder.swift */; };
 		B6FABD1A21F754490045872A /* DictionaryHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3A21F4BDB70045872A /* DictionaryHolder.swift */; };
@@ -69,7 +69,7 @@
 		B6FABC3C21F4BDB70045872A /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		B6FABC3E21F4BDB70045872A /* UIControlAlias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIControlAlias.swift; sourceTree = "<group>"; };
 		B6FABC3F21F4BDB70045872A /* NotificationAlias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationAlias.swift; sourceTree = "<group>"; };
-		B6FABC4021F4BDB70045872A /* KVOAlias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOAlias.swift; sourceTree = "<group>"; };
+		B6FABC4021F4BDB70045872A /* KVOAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOAdapter.swift; sourceTree = "<group>"; };
 		B6FABD0521F60A120045872A /* SenderCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderCore.swift; sourceTree = "<group>"; };
 		B6FABD2021F75EEE0045872A /* ReadOnlyArrayHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyArrayHolder.swift; sourceTree = "<group>"; };
 		B6FABD2221F75EF90045872A /* ReadOnlyDictionaryHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyDictionaryHolder.swift; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 		B6FABC3D21F4BDB70045872A /* CocoaAdditions */ = {
 			isa = PBXGroup;
 			children = (
-				B6FABC4021F4BDB70045872A /* KVOAlias.swift */,
+				B6FABC4021F4BDB70045872A /* KVOAdapter.swift */,
 				B6FABC3F21F4BDB70045872A /* NotificationAlias.swift */,
 				B6FABC3E21F4BDB70045872A /* UIControlAlias.swift */,
 			);
@@ -262,7 +262,7 @@
 				B6FABC4621F4BDB70045872A /* Chain.swift in Sources */,
 				B6FABC4C21F4BDB70045872A /* Sendable.swift in Sources */,
 				B6FABD2521F75F260045872A /* ReadOnlyHolder.swift in Sources */,
-				B6FABD1421F752590045872A /* KVOAlias.swift in Sources */,
+				B6FABD1421F752590045872A /* KVOAdapter.swift in Sources */,
 				B6FABD1A21F754490045872A /* DictionaryHolder.swift in Sources */,
 				B6FABD1221F751F40045872A /* NotificationAlias.swift in Sources */,
 				B6FABD0B21F74E1D0045872A /* Holder.swift in Sources */,

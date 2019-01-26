@@ -12,9 +12,9 @@ class SimpleValidationViewController: UIViewController {
     @IBOutlet weak var passwordValidLabel: UILabel!
     @IBOutlet weak var doSomethingButton: UIButton!
 
-    private typealias TextAlias = KVOAlias<UITextField, String?>
+    private typealias TextAlias = KVOAdapter<UITextField, String?>
     private typealias ChangedAlias = UIControlAlias<UITextField>
-    private typealias HiddenAlias = KVOAlias<UILabel, Bool>
+    private typealias HiddenAlias = KVOAdapter<UILabel, Bool>
     
     private var usernameTextAlias: TextAlias!
     private var passwordTextAlias: TextAlias!
@@ -22,21 +22,24 @@ class SimpleValidationViewController: UIViewController {
     private var passwordChangedAlias: ChangedAlias!
     private var usernameHiddenAlias: HiddenAlias!
     private var passwordHiddenAlias: HiddenAlias!
-    private var buttonEnabledAlias: KVOAlias<UIButton, Bool>!
+    private var buttonEnabledAlias: KVOAdapter<UIButton, Bool>!
     private var buttonTappedAlias: UIControlAlias<UIButton>!
     
     private var observer = ObserverPool()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.usernameValidLabel.text = "Username has to be at least 5 characters"
+        self.passwordValidLabel.text = "Password has to be at least 5 characters"
 
-        self.usernameTextAlias = KVOAlias(self.usernameField, keyPath: \UITextField.text)
-        self.passwordTextAlias = KVOAlias(self.passwordField, keyPath: \UITextField.text)
+        self.usernameTextAlias = KVOAdapter(self.usernameField, keyPath: \UITextField.text)
+        self.passwordTextAlias = KVOAdapter(self.passwordField, keyPath: \UITextField.text)
         self.usernameChangedAlias = UIControlAlias(self.usernameField, events: .editingChanged)
         self.passwordChangedAlias = UIControlAlias(self.passwordField, events: .editingChanged)
-        self.usernameHiddenAlias = KVOAlias(self.usernameValidLabel, keyPath: \UILabel.isHidden)
-        self.passwordHiddenAlias = KVOAlias(self.passwordValidLabel, keyPath: \UILabel.isHidden)
-        self.buttonEnabledAlias = KVOAlias(self.doSomethingButton, keyPath: \UIButton.isEnabled)
+        self.usernameHiddenAlias = KVOAdapter(self.usernameValidLabel, keyPath: \UILabel.isHidden)
+        self.passwordHiddenAlias = KVOAdapter(self.passwordValidLabel, keyPath: \UILabel.isHidden)
+        self.buttonEnabledAlias = KVOAdapter(self.doSomethingButton, keyPath: \UIButton.isEnabled)
         self.buttonTappedAlias = UIControlAlias(self.doSomethingButton, events: .touchUpInside)
         
         let makeValidChain = { (textAlias: TextAlias, changedAlias: ChangedAlias, hiddenAlias: HiddenAlias) in

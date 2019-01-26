@@ -9,16 +9,16 @@ class SampleCustomCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var stepper: UIStepper!
     
-    private var labelAlias: KVOAlias<UILabel, String?>!
-    private var stepperAlias: KVOAlias<UIStepper, Double>!
+    private var labelAlias: KVOAdapter<UILabel, String?>!
+    private var stepperAlias: KVOAdapter<UIStepper, Double>!
     
     private var pool = ObserverPool()
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.labelAlias = KVOAlias(self.label, keyPath: \UILabel.text)
-        self.stepperAlias = KVOAlias(self.stepper, keyPath: \UIStepper.value)
+        self.labelAlias = KVOAdapter(self.label, keyPath: \UILabel.text)
+        self.stepperAlias = KVOAdapter(self.stepper, keyPath: \UIStepper.value)
     }
 
     override func prepareForReuse() {
