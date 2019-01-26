@@ -6,7 +6,7 @@ import Foundation
 
 final public class KVOAlias<Root: NSObject, T> {
     private let holder: Holder<T>
-    private var pool = ObserverPool()
+    private var observer: AnyObserver?
     private var observation: NSKeyValueObservation?
     private let lock = NSLock()
     
@@ -18,7 +18,7 @@ final public class KVOAlias<Root: NSObject, T> {
     public init(object: Root, keyPath: ReferenceWritableKeyPath<Root, T>) {
         self.holder = Holder(object[keyPath: keyPath])
         
-        self.pool += self.holder.chain().do({ [weak object, unowned self] value in
+        self.observer = self.holder.chain().do({ [weak object, unowned self] value in
             if self.lock.try() {
                 if let object = object {
                     object[keyPath: keyPath] = value
@@ -47,7 +47,7 @@ final public class KVOAlias<Root: NSObject, T> {
     
     public func invalidate() {
         self.observation?.invalidate()
-        self.pool.invalidate()
+        self.observer?.invalidate()
         
         self.observation = nil
     }
