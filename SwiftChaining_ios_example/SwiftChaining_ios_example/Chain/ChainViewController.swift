@@ -10,7 +10,7 @@ class ChainViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
     
-    var buttonAlias: UIControlAlias<UIButton>!
+    var buttonAlias: UIControlAdapter<UIButton>!
     let didEnterBackgroundAlias = NotificationAdapter(UIApplication.didEnterBackgroundNotification)
     let willEnterForegroundAlias = NotificationAdapter(UIApplication.willEnterForegroundNotification)
     var labelTextAlias: KVOAdapter<UILabel, String?>!
@@ -22,7 +22,7 @@ class ChainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.buttonAlias = UIControlAlias(self.button, events: .touchUpInside)
+        self.buttonAlias = UIControlAdapter(self.button, events: .touchUpInside)
         self.labelTextAlias = KVOAdapter(self.label, keyPath: \UILabel.text)
         self.textFieldAlias = KVOAdapter(self.textField, keyPath: \UITextField.text)
         

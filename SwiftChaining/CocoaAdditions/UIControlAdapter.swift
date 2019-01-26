@@ -1,10 +1,10 @@
 //
-//  UIControlAlias.swift
+//  UIControlAdapter.swift
 //
 
 import UIKit
 
-final public class UIControlAlias<T: UIControl>: NSObject {
+final public class UIControlAdapter<T: UIControl>: NSObject {
     private weak var control: UIControl?
     private let events: UIControl.Event
     
@@ -14,7 +14,7 @@ final public class UIControlAlias<T: UIControl>: NSObject {
         
         super.init()
         
-        control.addTarget(self, action: #selector(UIControlAlias.notify(_:)), for: events)
+        control.addTarget(self, action: #selector(UIControlAdapter.notify(_:)), for: events)
     }
     
     deinit {
@@ -22,7 +22,7 @@ final public class UIControlAlias<T: UIControl>: NSObject {
     }
     
     public func invalidate() {
-        self.control?.removeTarget(self, action: #selector(UIControlAlias.notify(_:)), for: self.events)
+        self.control?.removeTarget(self, action: #selector(UIControlAdapter.notify(_:)), for: self.events)
         self.control = nil
     }
     
@@ -33,6 +33,6 @@ final public class UIControlAlias<T: UIControl>: NSObject {
     }
 }
 
-extension UIControlAlias: Sendable {
+extension UIControlAdapter: Sendable {
     public typealias SendValue = T
 }

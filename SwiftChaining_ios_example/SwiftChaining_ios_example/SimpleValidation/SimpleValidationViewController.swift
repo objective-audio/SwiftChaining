@@ -13,7 +13,7 @@ class SimpleValidationViewController: UIViewController {
     @IBOutlet weak var doSomethingButton: UIButton!
 
     private typealias TextAlias = KVOAdapter<UITextField, String?>
-    private typealias ChangedAlias = UIControlAlias<UITextField>
+    private typealias ChangedAlias = UIControlAdapter<UITextField>
     private typealias HiddenAlias = KVOAdapter<UILabel, Bool>
     
     private var usernameTextAlias: TextAlias!
@@ -23,7 +23,7 @@ class SimpleValidationViewController: UIViewController {
     private var usernameHiddenAlias: HiddenAlias!
     private var passwordHiddenAlias: HiddenAlias!
     private var buttonEnabledAlias: KVOAdapter<UIButton, Bool>!
-    private var buttonTappedAlias: UIControlAlias<UIButton>!
+    private var buttonTappedAlias: UIControlAdapter<UIButton>!
     
     private var observer = ObserverPool()
     
@@ -35,12 +35,12 @@ class SimpleValidationViewController: UIViewController {
 
         self.usernameTextAlias = KVOAdapter(self.usernameField, keyPath: \UITextField.text)
         self.passwordTextAlias = KVOAdapter(self.passwordField, keyPath: \UITextField.text)
-        self.usernameChangedAlias = UIControlAlias(self.usernameField, events: .editingChanged)
-        self.passwordChangedAlias = UIControlAlias(self.passwordField, events: .editingChanged)
+        self.usernameChangedAlias = UIControlAdapter(self.usernameField, events: .editingChanged)
+        self.passwordChangedAlias = UIControlAdapter(self.passwordField, events: .editingChanged)
         self.usernameHiddenAlias = KVOAdapter(self.usernameValidLabel, keyPath: \UILabel.isHidden)
         self.passwordHiddenAlias = KVOAdapter(self.passwordValidLabel, keyPath: \UILabel.isHidden)
         self.buttonEnabledAlias = KVOAdapter(self.doSomethingButton, keyPath: \UIButton.isEnabled)
-        self.buttonTappedAlias = UIControlAlias(self.doSomethingButton, events: .touchUpInside)
+        self.buttonTappedAlias = UIControlAdapter(self.doSomethingButton, events: .touchUpInside)
         
         let makeValidChain = { (textAlias: TextAlias, changedAlias: ChangedAlias, hiddenAlias: HiddenAlias) in
             return changedAlias
