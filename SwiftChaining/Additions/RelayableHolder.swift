@@ -6,6 +6,7 @@ import Foundation
 
 final public class RelayableHolder<T: Sendable> {
     public enum Event {
+        case fetched(T)
         case current(T)
         case relayed(T.SendValue)
     }
@@ -40,7 +41,7 @@ extension RelayableHolder: Fetchable {
     public typealias SendValue = Event
     
     public func fetchedValue() -> Event? {
-        return .current(self.value)
+        return .fetched(self.value)
     }
 }
 
