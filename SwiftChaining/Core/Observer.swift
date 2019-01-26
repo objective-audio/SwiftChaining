@@ -58,7 +58,9 @@ public class ObserverPool {
             }
         }
     }
-    
+}
+
+extension ObserverPool: AnyObserver {
     public func invalidate() {
         for observer in self.observers {
             observer.invalidate()

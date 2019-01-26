@@ -21,7 +21,7 @@ class RelayableHolderTests: XCTestCase {
         let observer = holder.chain().do { event in events.append(event) }.sync()
 
         XCTAssertEqual(events.count, 1)
-        XCTAssertEqual(events[0], .current(Holder<Int>(0)))
+        XCTAssertEqual(events[0], .fetched(Holder<Int>(0)))
         XCTAssertEqual(holder.value, Holder<Int>(0))
 
         innerHolder1.value = 1
@@ -51,6 +51,14 @@ class RelayableHolderTests: XCTestCase {
     }
     
     func testSendableValue() {
+        let isEqualFetched = { (event: RelayableHolder<Notifier<Int>>.Event) -> Bool in
+            if case .fetched = event {
+                return true
+            } else {
+                return false
+            }
+        }
+        
         let isEqualCurrent = { (event: RelayableHolder<Notifier<Int>>.Event) -> Bool in
             if case .current = event {
                 return true
@@ -75,7 +83,7 @@ class RelayableHolderTests: XCTestCase {
         let observer = holder.chain().do { event in events.append(event) }.sync()
         
         XCTAssertEqual(events.count, 1)
-        XCTAssertTrue(isEqualCurrent(events[0]))
+        XCTAssertTrue(isEqualFetched(events[0]))
         
         innerNotifier1.notify(value: 1)
         
