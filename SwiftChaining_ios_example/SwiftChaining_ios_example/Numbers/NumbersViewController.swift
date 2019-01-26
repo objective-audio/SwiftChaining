@@ -11,36 +11,36 @@ class NumbersViewController: UIViewController {
     @IBOutlet weak var number3Field: UITextField!
     @IBOutlet weak var resultLabel: UILabel!
     
-    private typealias TextAlias = KVOAdapter<UITextField, String?>
-    private typealias ChangedAlias = UIControlAdapter<UITextField>
+    private typealias TextAdapter = KVOAdapter<UITextField, String?>
+    private typealias ChangedAdapter = UIControlAdapter<UITextField>
     
-    private var textAlias1: TextAlias!
-    private var textAlias2: TextAlias!
-    private var textAlias3: TextAlias!
-    private var changedAlias1: ChangedAlias!
-    private var changedAlias2: ChangedAlias!
-    private var changedAlias3: ChangedAlias!
-    private var resultAlias: KVOAdapter<UILabel, String?>!
+    private var textAdapter1: TextAdapter!
+    private var textAdapter2: TextAdapter!
+    private var textAdapter3: TextAdapter!
+    private var changedAdapter1: ChangedAdapter!
+    private var changedAdapter2: ChangedAdapter!
+    private var changedAdapter3: ChangedAdapter!
+    private var resultAdapter: KVOAdapter<UILabel, String?>!
     private var observer: AnyObserver?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.textAlias1 = KVOAdapter(self.number1Field, keyPath: \UITextField.text)
-        self.textAlias2 = KVOAdapter(self.number2Field, keyPath: \UITextField.text)
-        self.textAlias3 = KVOAdapter(self.number3Field, keyPath: \UITextField.text)
-        self.changedAlias1 = UIControlAdapter(self.number1Field, events: .editingChanged)
-        self.changedAlias2 = UIControlAdapter(self.number2Field, events: .editingChanged)
-        self.changedAlias3 = UIControlAdapter(self.number3Field, events: .editingChanged)
-        self.resultAlias = KVOAdapter(self.resultLabel, keyPath: \UILabel.text)
+        self.textAdapter1 = KVOAdapter(self.number1Field, keyPath: \UITextField.text)
+        self.textAdapter2 = KVOAdapter(self.number2Field, keyPath: \UITextField.text)
+        self.textAdapter3 = KVOAdapter(self.number3Field, keyPath: \UITextField.text)
+        self.changedAdapter1 = UIControlAdapter(self.number1Field, events: .editingChanged)
+        self.changedAdapter2 = UIControlAdapter(self.number2Field, events: .editingChanged)
+        self.changedAdapter3 = UIControlAdapter(self.number3Field, events: .editingChanged)
+        self.resultAdapter = KVOAdapter(self.resultLabel, keyPath: \UILabel.text)
         
-        let makeChain = { (textAlias: TextAlias, changedAlias: ChangedAlias) in
-            return changedAlias.chain().to { $0.text }.merge(textAlias.chain()).to { string in Int(string ?? "") ?? 0 }
+        let makeChain = { (textAdapter: TextAdapter, changedAdapter: ChangedAdapter) in
+            return changedAdapter.chain().to { $0.text }.merge(textAdapter.chain()).to { string in Int(string ?? "") ?? 0 }
         }
         
-        let chain1 = makeChain(self.textAlias1, self.changedAlias1)
-        let chain2 = makeChain(self.textAlias2, self.changedAlias2)
-        let chain3 = makeChain(self.textAlias3, self.changedAlias3)
+        let chain1 = makeChain(self.textAdapter1, self.changedAdapter1)
+        let chain2 = makeChain(self.textAdapter2, self.changedAdapter2)
+        let chain3 = makeChain(self.textAdapter3, self.changedAdapter3)
         
         self.observer =
             chain1
@@ -48,7 +48,7 @@ class NumbersViewController: UIViewController {
                 .to { $0.0 + $0.1 }
                 .combine(chain3)
                 .to { String($0.0 + $0.1) }
-                .receive(self.resultAlias)
+                .receive(self.resultAdapter)
                 .sync()
     }
 }

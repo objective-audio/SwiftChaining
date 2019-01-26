@@ -10,9 +10,9 @@ class SuspendViewController: UIViewController {
     @IBOutlet weak var suspendButton: UIButton!
     @IBOutlet weak var label: UILabel!
     
-    var resumeButtonEnabledAlias: KVOAdapter<UIButton, Bool>!
-    var suspendButtonEnabledAlias: KVOAdapter<UIButton, Bool>!
-    var labelTextAlias: KVOAdapter<UILabel, String?>!
+    var resumeButtonEnabledAdapter: KVOAdapter<UIButton, Bool>!
+    var suspendButtonEnabledAdapter: KVOAdapter<UIButton, Bool>!
+    var labelTextAdapter: KVOAdapter<UILabel, String?>!
     let holder = Holder<String>("-")
     var pool = ObserverPool()
     var suspender: AnySuspender!
@@ -20,19 +20,19 @@ class SuspendViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.resumeButtonEnabledAlias = KVOAdapter(self.resumeButton, keyPath: \UIButton.isEnabled)
-        self.suspendButtonEnabledAlias = KVOAdapter(self.suspendButton, keyPath: \UIButton.isEnabled)
-        self.labelTextAlias = KVOAdapter(self.label, keyPath: \UILabel.text)
+        self.resumeButtonEnabledAdapter = KVOAdapter(self.resumeButton, keyPath: \UIButton.isEnabled)
+        self.suspendButtonEnabledAdapter = KVOAdapter(self.suspendButton, keyPath: \UIButton.isEnabled)
+        self.labelTextAdapter = KVOAdapter(self.label, keyPath: \UILabel.text)
         
         let suspender = Suspender { [weak self] in
             guard let self = self else { return nil }
-            return self.holder.chain().receive(self.labelTextAlias).sync()
+            return self.holder.chain().receive(self.labelTextAdapter).sync()
         }
         
         self.pool += suspender
         
-        self.pool += suspender.state.chain().to({ $0 == .suspended }).receive(self.resumeButtonEnabledAlias).sync()
-        self.pool += suspender.state.chain().to({ $0 == .resumed }).receive(self.suspendButtonEnabledAlias).sync()
+        self.pool += suspender.state.chain().to({ $0 == .suspended }).receive(self.resumeButtonEnabledAdapter).sync()
+        self.pool += suspender.state.chain().to({ $0 == .resumed }).receive(self.suspendButtonEnabledAdapter).sync()
         
         self.suspender = suspender
         self.suspender.resume()
