@@ -14,7 +14,7 @@ class ReadOnlyArrayHolderTests: XCTestCase {
         super.tearDown()
     }
     
-    func testReadOnlyArrayHolder() {
+    func testChain() {
         let holder = ArrayHolder([1, 2, 3])
         let readOnlyHolder = ReadOnlyArrayHolder(holder)
         

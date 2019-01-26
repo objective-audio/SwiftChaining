@@ -11,6 +11,8 @@
 		B6D4C61821FA9874004A95A8 /* ReadOnlyRelayableHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C61721FA9874004A95A8 /* ReadOnlyRelayableHolderTests.swift */; };
 		B6D4C62621FC2EC0004A95A8 /* RelayableArrayHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62521FC2EC0004A95A8 /* RelayableArrayHolderTests.swift */; };
 		B6D4C62821FC2ED2004A95A8 /* RelayableDictionaryHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62721FC2ED2004A95A8 /* RelayableDictionaryHolderTests.swift */; };
+		B6D4C62E21FC3330004A95A8 /* ReadOnlyRelayableArrayHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62D21FC3330004A95A8 /* ReadOnlyRelayableArrayHolderTests.swift */; };
+		B6D4C63021FC3340004A95A8 /* ReadOnlyRelayableDictionaryHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62F21FC3340004A95A8 /* ReadOnlyRelayableDictionaryHolderTests.swift */; };
 		B6FABC7421F4BE530045872A /* Chaining.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FABC7321F4BE530045872A /* Chaining.framework */; };
 		B6FABD0821F74D750045872A /* NotifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7D21F4BE630045872A /* NotifierTests.swift */; };
 		B6FABD0921F74D9F0045872A /* ForEachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC7C21F4BE630045872A /* ForEachTests.swift */; };
@@ -36,6 +38,8 @@
 		B6D4C61721FA9874004A95A8 /* ReadOnlyRelayableHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyRelayableHolderTests.swift; sourceTree = "<group>"; };
 		B6D4C62521FC2EC0004A95A8 /* RelayableArrayHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableArrayHolderTests.swift; sourceTree = "<group>"; };
 		B6D4C62721FC2ED2004A95A8 /* RelayableDictionaryHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableDictionaryHolderTests.swift; sourceTree = "<group>"; };
+		B6D4C62D21FC3330004A95A8 /* ReadOnlyRelayableArrayHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyRelayableArrayHolderTests.swift; sourceTree = "<group>"; };
+		B6D4C62F21FC3340004A95A8 /* ReadOnlyRelayableDictionaryHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyRelayableDictionaryHolderTests.swift; sourceTree = "<group>"; };
 		B6FABC6321F4BE2B0045872A /* SwiftChaining_ios_tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftChaining_ios_tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6FABC6821F4BE2B0045872A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6FABC7321F4BE530045872A /* Chaining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Chaining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +127,8 @@
 				B6FABC8121F4BE630045872A /* ReadOnlyArrayHolderTests.swift */,
 				B6FABC7E21F4BE630045872A /* ReadOnlyDictionaryHolderTests.swift */,
 				B6FABC7F21F4BE630045872A /* ReadOnlyHolderTests.swift */,
+				B6D4C62D21FC3330004A95A8 /* ReadOnlyRelayableArrayHolderTests.swift */,
+				B6D4C62F21FC3340004A95A8 /* ReadOnlyRelayableDictionaryHolderTests.swift */,
 				B6D4C61721FA9874004A95A8 /* ReadOnlyRelayableHolderTests.swift */,
 				B6D4C62521FC2EC0004A95A8 /* RelayableArrayHolderTests.swift */,
 				B6D4C62721FC2ED2004A95A8 /* RelayableDictionaryHolderTests.swift */,
@@ -212,8 +218,10 @@
 				B6FABD1521F752890045872A /* KVOAliasTests.swift in Sources */,
 				B6FABD0C21F751840045872A /* HolderTests.swift in Sources */,
 				B6FABD1321F752500045872A /* NotificationAliasTests.swift in Sources */,
+				B6D4C63021FC3340004A95A8 /* ReadOnlyRelayableDictionaryHolderTests.swift in Sources */,
 				B6FABD1821F754370045872A /* ReadOnlyArrayHolderTests.swift in Sources */,
 				B6FABD0D21F7519A0045872A /* ObserverTests.swift in Sources */,
+				B6D4C62E21FC3330004A95A8 /* ReadOnlyRelayableArrayHolderTests.swift in Sources */,
 				B6FABD1C21F754D10045872A /* ReadOnlyDictionaryHolderTests.swift in Sources */,
 				B6FABD1B21F754CB0045872A /* DictionaryHolderTests.swift in Sources */,
 				B6FABD0821F74D750045872A /* NotifierTests.swift in Sources */,

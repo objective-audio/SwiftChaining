@@ -14,7 +14,7 @@ class ReadOnlyDictionaryHolderTests: XCTestCase {
         super.tearDown()
     }
     
-    func testReadOnlyDictionaryHolder() {
+    func testChain() {
         let holder = DictionaryHolder(["1": 1, "2": 2])
         let readOnlyHolder = ReadOnlyDictionaryHolder(holder)
         
