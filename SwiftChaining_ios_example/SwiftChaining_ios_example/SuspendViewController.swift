@@ -24,9 +24,9 @@ class SuspendViewController: UIViewController {
         self.suspendButtonEnabledAlias = KVOAlias(object: self.suspendButton, keyPath: \UIButton.isEnabled)
         self.labelTextAlias = KVOAlias(object: self.label, keyPath: \UILabel.text)
         
-        let suspender = Suspender(self.holder) { [weak self] holder in
+        let suspender = Suspender { [weak self] in
             guard let self = self else { return nil }
-            return holder.chain().receive(self.labelTextAlias).sync()
+            return self.holder.chain().receive(self.labelTextAlias).sync()
         }
         
         self.pool += suspender
