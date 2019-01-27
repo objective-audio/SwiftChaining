@@ -11,12 +11,17 @@ enum CellIdentifier: String {
     case edit = "EditCell"
 }
 
-class CellData {
+final class CellData {
     let canEdit: Bool
     let canMove: Bool
     let canTap: Bool
     let cellIdentifier: CellIdentifier
     let additional: AdditionalCellData
+    
+    enum Event {
+        case cellTapped
+        case accessoryTapped
+    }
     
     init(canEdit: Bool, canMove: Bool, canTap: Bool, cellIdentifier: CellIdentifier, additional: AdditionalCellData) {
         self.canEdit = canEdit
@@ -25,6 +30,22 @@ class CellData {
         self.cellIdentifier = cellIdentifier
         self.additional = additional
     }
+    
+    func cellTapped() {
+        if self.canTap {
+            self.broadcast(value: .cellTapped)
+        }
+    }
+    
+    func accessoryTapped() {
+        if self.canTap {
+            self.broadcast(value: .accessoryTapped)
+        }
+    }
+}
+
+extension CellData: Sendable {
+    typealias SendValue = Event
 }
 
 protocol AdditionalCellData {
