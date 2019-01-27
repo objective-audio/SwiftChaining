@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6D4C64021FD7945004A95A8 /* Numbers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6D4C63E21FD7945004A95A8 /* Numbers.storyboard */; };
+		B6D4C64321FD7C50004A95A8 /* SimpleValidation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6D4C64121FD7C50004A95A8 /* SimpleValidation.storyboard */; };
 		B6DBC07221FC8C11003C0CF6 /* NumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DBC07121FC8C11003C0CF6 /* NumbersViewController.swift */; };
 		B6DBC07521FCAC55003C0CF6 /* SimpleValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DBC07421FCAC55003C0CF6 /* SimpleValidationViewController.swift */; };
 		B6FABCA721F4BFAF0045872A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABCA621F4BFAF0045872A /* AppDelegate.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B6D4C63F21FD7945004A95A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SwiftChaining_ios_example/Base.lproj/Numbers.storyboard; sourceTree = SOURCE_ROOT; };
+		B6D4C64221FD7C50004A95A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SwiftChaining_ios_example/Base.lproj/SimpleValidation.storyboard; sourceTree = SOURCE_ROOT; };
 		B6DBC07121FC8C11003C0CF6 /* NumbersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersViewController.swift; sourceTree = "<group>"; };
 		B6DBC07421FCAC55003C0CF6 /* SimpleValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleValidationViewController.swift; sourceTree = "<group>"; };
 		B6FABCA321F4BFAF0045872A /* SwiftChaining_ios_example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftChaining_ios_example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +94,7 @@
 		B6DBC07021FC8BFD003C0CF6 /* Numbers */ = {
 			isa = PBXGroup;
 			children = (
+				B6D4C63E21FD7945004A95A8 /* Numbers.storyboard */,
 				B6DBC07121FC8C11003C0CF6 /* NumbersViewController.swift */,
 			);
 			path = Numbers;
@@ -98,6 +103,7 @@
 		B6DBC07321FCAC3E003C0CF6 /* SimpleValidation */ = {
 			isa = PBXGroup;
 			children = (
+				B6D4C64121FD7C50004A95A8 /* SimpleValidation.storyboard */,
 				B6DBC07421FCAC55003C0CF6 /* SimpleValidationViewController.swift */,
 			);
 			path = SimpleValidation;
@@ -205,6 +211,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6FABCB121F4BFB00045872A /* LaunchScreen.storyboard in Resources */,
+				B6D4C64321FD7C50004A95A8 /* SimpleValidation.storyboard in Resources */,
+				B6D4C64021FD7945004A95A8 /* Numbers.storyboard in Resources */,
 				B6FABCAE21F4BFB00045872A /* Assets.xcassets in Resources */,
 				B6FABCAC21F4BFAF0045872A /* Main.storyboard in Resources */,
 			);
@@ -235,6 +243,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		B6D4C63E21FD7945004A95A8 /* Numbers.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6D4C63F21FD7945004A95A8 /* Base */,
+			);
+			name = Numbers.storyboard;
+			sourceTree = "<group>";
+		};
+		B6D4C64121FD7C50004A95A8 /* SimpleValidation.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6D4C64221FD7C50004A95A8 /* Base */,
+			);
+			name = SimpleValidation.storyboard;
+			sourceTree = "<group>";
+		};
 		B6FABCAA21F4BFAF0045872A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
