@@ -8,6 +8,7 @@ import Chaining
 enum CellIdentifier: String {
     case normal = "NormalCell"
     case custom = "CustomCell"
+    case edit = "EditCell"
 }
 
 class CellData {
@@ -53,5 +54,16 @@ struct CustomCellData: AdditionalCellData {
     static func cellData(number: Int) -> CellData {
         let customCellData = CustomCellData(number: Holder(number))
         return CellData(canEdit: false, canMove: false, canTap: false, cellIdentifier: .custom, additional: customCellData)
+    }
+}
+
+// MARK: - EditCellData
+
+struct EditCellData: AdditionalCellData {
+    let isEditing: Alias<Bool>
+    
+    static func cellData(isEditing: Holder<Bool>) -> CellData {
+        let editCellData = EditCellData(isEditing: Alias(isEditing))
+        return CellData(canEdit: false, canMove: false, canTap: true, cellIdentifier: .edit, additional: editCellData)
     }
 }

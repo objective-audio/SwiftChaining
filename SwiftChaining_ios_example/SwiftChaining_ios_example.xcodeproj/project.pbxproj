@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6A364EA21FDEEE200094C72 /* TableEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A364E921FDEEE200094C72 /* TableEditCell.swift */; };
 		B6D4C64021FD7945004A95A8 /* Numbers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6D4C63E21FD7945004A95A8 /* Numbers.storyboard */; };
 		B6D4C64321FD7C50004A95A8 /* SimpleValidation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6D4C64121FD7C50004A95A8 /* SimpleValidation.storyboard */; };
 		B6D4C64921FD7D51004A95A8 /* Table.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6D4C64721FD7D51004A95A8 /* Table.storyboard */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B6A364E921FDEEE200094C72 /* TableEditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableEditCell.swift; sourceTree = "<group>"; };
 		B6D4C63F21FD7945004A95A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SwiftChaining_ios_example/Base.lproj/Numbers.storyboard; sourceTree = SOURCE_ROOT; };
 		B6D4C64221FD7C50004A95A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SwiftChaining_ios_example/Base.lproj/SimpleValidation.storyboard; sourceTree = SOURCE_ROOT; };
 		B6D4C64821FD7D51004A95A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SwiftChaining_ios_example/Base.lproj/Table.storyboard; sourceTree = SOURCE_ROOT; };
@@ -74,6 +76,7 @@
 				B6FABCC121F4C0660045872A /* TableCellData.swift */,
 				B6FABCBD21F4C0660045872A /* TableCustomCell.swift */,
 				B6FABCBE21F4C0660045872A /* TableNormalCell.swift */,
+				B6A364E921FDEEE200094C72 /* TableEditCell.swift */,
 			);
 			path = Table;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				B6FABCC721F4C0660045872A /* TableNormalCell.swift in Sources */,
 				B6FABCC521F4C0660045872A /* TableViewController.swift in Sources */,
 				B6FABCCB21F4C0660045872A /* TableController.swift in Sources */,
+				B6A364EA21FDEEE200094C72 /* TableEditCell.swift in Sources */,
 				B6FABCCA21F4C0660045872A /* TableCellData.swift in Sources */,
 				B6FABCCC21F4C0660045872A /* SuspendViewController.swift in Sources */,
 				B6FABCC921F4C0660045872A /* RootViewController.swift in Sources */,
