@@ -15,13 +15,18 @@ class CellData {
     let canMove: Bool
     let canTap: Bool
     let cellIdentifier: CellIdentifier
+    let additional: AdditionalCellData
     
-    init(canEdit: Bool, canMove: Bool, canTap: Bool, cellIdentifier: CellIdentifier) {
+    init(canEdit: Bool, canMove: Bool, canTap: Bool, cellIdentifier: CellIdentifier, additional: AdditionalCellData) {
         self.canEdit = canEdit
         self.canMove = canMove
         self.canTap = canTap
         self.cellIdentifier = cellIdentifier
+        self.additional = additional
     }
+}
+
+protocol AdditionalCellData {
 }
 
 protocol CellDataSettable {
@@ -30,25 +35,23 @@ protocol CellDataSettable {
 
 // MARK: - NormalCellData
 
-class NormalCellData: CellData {
+struct NormalCellData: AdditionalCellData {
     let text: Holder<String>
     let detailText: Holder<String>
     
-    init(text: String, detailText: String) {
-        self.text = Holder(text)
-        self.detailText = Holder(detailText)
-        
-        super.init(canEdit: true, canMove: true, canTap: true, cellIdentifier: .normal)
+    static func cellData(text: String, detailText: String) -> CellData {
+        let normalCellData = NormalCellData(text: Holder(text), detailText: Holder(detailText))
+        return CellData(canEdit: true, canMove: true, canTap: true, cellIdentifier: .normal, additional: normalCellData)
     }
 }
 
 // MARK: - CustomCellData
 
-class CustomCellData: CellData {
+struct CustomCellData: AdditionalCellData {
     var number: Holder<Int>
     
-    init(number: Int) {
-        self.number = Holder(number)
-        super.init(canEdit: false, canMove: false, canTap: false, cellIdentifier: .custom)
+    static func cellData(number: Int) -> CellData {
+        let customCellData = CustomCellData(number: Holder(number))
+        return CellData(canEdit: false, canMove: false, canTap: false, cellIdentifier: .custom, additional: customCellData)
     }
 }

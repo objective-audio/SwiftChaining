@@ -30,7 +30,7 @@ extension TableNormalCell: CellDataSettable {
         
         self.selectionStyle = cellData.canTap ? .default : .none
         
-        if let normalCellData = cellData as? NormalCellData {
+        if let normalCellData = cellData.additional as? NormalCellData {
             self.pool += normalCellData.text.chain().to { String?($0) }.receive(self.textAdapter).sync()
             self.pool += normalCellData.detailText.chain().to { String?($0) }.receive(self.detailTextAdapter).sync()
         }
