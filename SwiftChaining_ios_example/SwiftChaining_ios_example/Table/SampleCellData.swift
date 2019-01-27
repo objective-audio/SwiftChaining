@@ -12,7 +12,7 @@ enum CellIdentifier: String {
 
 class CellData {
     let canEdit: Bool
-    var cellIdentifier: CellIdentifier
+    let cellIdentifier: CellIdentifier
     
     init(canEdit: Bool, cellIdentifier: CellIdentifier) {
         self.canEdit = canEdit
