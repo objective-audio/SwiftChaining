@@ -38,9 +38,7 @@ final class CellData {
     }
     
     func accessoryTapped() {
-        if self.canTap {
-            self.broadcast(value: .accessoryTapped)
-        }
+        self.broadcast(value: .accessoryTapped)
     }
 }
 
@@ -81,10 +79,11 @@ struct CustomCellData: AdditionalCellData {
 // MARK: - EditCellData
 
 struct EditCellData: AdditionalCellData {
-    let isEditing: Alias<Bool>
+    let isEditing = Holder<Bool>(false)
+    var pool = ObserverPool()
     
-    static func cellData(isEditing: Holder<Bool>) -> CellData {
-        let editCellData = EditCellData(isEditing: Alias(isEditing))
+    static func cellData() -> CellData {
+        let editCellData = EditCellData()
         return CellData(canEdit: false, canMove: false, canTap: true, cellIdentifier: .edit, additional: editCellData)
     }
 }

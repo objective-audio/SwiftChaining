@@ -50,6 +50,8 @@ class TableViewController: UITableViewController {
             }
         }).sync()
         
+        self.pool += self.controller.isEditing.chain().do { [weak self] isEditing in self?.setEditing(isEditing, animated: true) }.sync()
+        
         self.pool +=
             self.controller.showAlertNotifier
                 .chain()

@@ -6,13 +6,17 @@ import UIKit
 import Chaining
 
 class TableEditCell: UITableViewCell {
+    @IBOutlet weak var editingSwitch: UISwitch!
+    
+    private var switchIsOnAdapter: KVOAdapter<UISwitch, Bool>!
+    private var switchChangedAdapter: UIControlAdapter<UISwitch>!
     private var pool = ObserverPool()
-    private var textAdapter: KVOAdapter<UILabel, String?>!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.textAdapter = KVOAdapter(self.textLabel!, keyPath: \UILabel.text)
+        self.switchIsOnAdapter = KVOAdapter(self.editingSwitch, keyPath: \UISwitch.isOn)
+        self.switchChangedAdapter = UIControlAdapter(self.editingSwitch, events: .valueChanged)
     }
 
     override func prepareForReuse() {
@@ -29,7 +33,8 @@ extension TableEditCell: CellDataSettable {
         self.selectionStyle = cellData.canTap ? .default : .none
         
         if let editCellData = cellData.additional as? EditCellData {
-            self.pool += editCellData.isEditing.chain().to { $0 ? "End Editing" : "Begin Editing" }.receive(self.textAdapter).sync()
+            self.pool += editCellData.isEditing.chain().receive(self.switchIsOnAdapter).sync()
+            self.pool += self.switchChangedAdapter.chain().to { $0.isOn }.receive(editCellData.isEditing).do { value in print("switch value : \(value)") }.end()
         }
     }
 }

@@ -13,7 +13,7 @@
         <scene sceneID="4Wj-jz-ZNQ">
             <objects>
                 <tableViewController id="cWg-Kl-Bhc" customClass="TableViewController" customModule="SwiftChaining_ios_example" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="UEr-19-HD9">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="UEr-19-HD9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -72,22 +72,34 @@
                                     <outlet property="stepper" destination="Bfa-EJ-s4g" id="Q3w-jg-1AS"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditCell" textLabel="Nhj-4Q-5vF" style="IBUITableViewCellStyleDefault" id="fY4-Wu-HEu" customClass="TableEditCell" customModule="SwiftChaining_ios_example" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditCell" id="fY4-Wu-HEu" customClass="TableEditCell" customModule="SwiftChaining_ios_example" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fY4-Wu-HEu" id="5Q7-vN-cZQ">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nhj-4Q-5vF">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Editing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FI7-CM-R2d">
+                                            <rect key="frame" x="16" y="11.5" width="53" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="19p-Di-EZK">
+                                            <rect key="frame" x="308" y="6.5" width="51" height="31"/>
+                                        </switch>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="19p-Di-EZK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FI7-CM-R2d" secondAttribute="trailing" constant="10" id="EqW-ko-jhp"/>
+                                        <constraint firstItem="FI7-CM-R2d" firstAttribute="centerY" secondItem="5Q7-vN-cZQ" secondAttribute="centerY" id="flv-vR-m8e"/>
+                                        <constraint firstItem="FI7-CM-R2d" firstAttribute="leading" secondItem="5Q7-vN-cZQ" secondAttribute="leadingMargin" id="rAW-tO-Tu9"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="19p-Di-EZK" secondAttribute="trailing" constant="2" id="wlM-98-Vrh"/>
+                                        <constraint firstItem="19p-Di-EZK" firstAttribute="centerY" secondItem="5Q7-vN-cZQ" secondAttribute="centerY" id="xrT-Q6-J2Y"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="editingSwitch" destination="19p-Di-EZK" id="EjU-Bz-HVz"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -9,7 +9,7 @@ class TableController {
     typealias SectionArray = RelayableArrayHolder<TableSection>
     
     let sections: SectionArray
-    let isEditing = Holder<Bool>(false)
+    let isEditing: Alias<Bool>
     
     struct AlertData {
         let title: String
@@ -19,8 +19,11 @@ class TableController {
     let showAlertNotifier = Notifier<AlertData>()
     
     init() {
+        let editCellData = EditCellData.cellData()
+        self.isEditing = Alias((editCellData.additional as! EditCellData).isEditing)
+        
         let section0 = TableSection(title: "Section 0",
-                                    rows:[CustomCellData.cellData(number: 1), EditCellData.cellData(isEditing: isEditing)])
+                                    rows:[CustomCellData.cellData(number: 1), editCellData])
         let section1 = TableSection(title: "Section 1", rows:[])
         self.sections = SectionArray([section0, section1])
     }
