@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B6D4C64021FD7945004A95A8 /* Numbers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6D4C63E21FD7945004A95A8 /* Numbers.storyboard */; };
 		B6D4C64321FD7C50004A95A8 /* SimpleValidation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6D4C64121FD7C50004A95A8 /* SimpleValidation.storyboard */; };
-		B6D4C64621FD7D44004A95A8 /* Chain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6D4C64421FD7D44004A95A8 /* Chain.storyboard */; };
 		B6D4C64921FD7D51004A95A8 /* Table.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6D4C64721FD7D51004A95A8 /* Table.storyboard */; };
 		B6D4C64C21FD7D5D004A95A8 /* Suspend.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6D4C64A21FD7D5D004A95A8 /* Suspend.storyboard */; };
 		B6DBC07221FC8C11003C0CF6 /* NumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DBC07121FC8C11003C0CF6 /* NumbersViewController.swift */; };
@@ -23,7 +22,6 @@
 		B6FABCC521F4C0660045872A /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABCBC21F4C0660045872A /* TableViewController.swift */; };
 		B6FABCC621F4C0660045872A /* TableCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABCBD21F4C0660045872A /* TableCustomCell.swift */; };
 		B6FABCC721F4C0660045872A /* TableNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABCBE21F4C0660045872A /* TableNormalCell.swift */; };
-		B6FABCC821F4C0660045872A /* ChainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABCBF21F4C0660045872A /* ChainViewController.swift */; };
 		B6FABCC921F4C0660045872A /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABCC021F4C0660045872A /* RootViewController.swift */; };
 		B6FABCCA21F4C0660045872A /* TableCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABCC121F4C0660045872A /* TableCellData.swift */; };
 		B6FABCCB21F4C0660045872A /* TableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABCC221F4C0660045872A /* TableController.swift */; };
@@ -33,7 +31,6 @@
 /* Begin PBXFileReference section */
 		B6D4C63F21FD7945004A95A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SwiftChaining_ios_example/Base.lproj/Numbers.storyboard; sourceTree = SOURCE_ROOT; };
 		B6D4C64221FD7C50004A95A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SwiftChaining_ios_example/Base.lproj/SimpleValidation.storyboard; sourceTree = SOURCE_ROOT; };
-		B6D4C64521FD7D44004A95A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SwiftChaining_ios_example/Base.lproj/Chain.storyboard; sourceTree = SOURCE_ROOT; };
 		B6D4C64821FD7D51004A95A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SwiftChaining_ios_example/Base.lproj/Table.storyboard; sourceTree = SOURCE_ROOT; };
 		B6D4C64B21FD7D5D004A95A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SwiftChaining_ios_example/Base.lproj/Suspend.storyboard; sourceTree = SOURCE_ROOT; };
 		B6DBC07121FC8C11003C0CF6 /* NumbersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersViewController.swift; sourceTree = "<group>"; };
@@ -49,7 +46,6 @@
 		B6FABCBC21F4C0660045872A /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		B6FABCBD21F4C0660045872A /* TableCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCustomCell.swift; sourceTree = "<group>"; };
 		B6FABCBE21F4C0660045872A /* TableNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableNormalCell.swift; sourceTree = "<group>"; };
-		B6FABCBF21F4C0660045872A /* ChainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChainViewController.swift; sourceTree = "<group>"; };
 		B6FABCC021F4C0660045872A /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		B6FABCC121F4C0660045872A /* TableCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCellData.swift; sourceTree = "<group>"; };
 		B6FABCC221F4C0660045872A /* TableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableController.swift; sourceTree = "<group>"; };
@@ -68,15 +64,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B6DBC06D21FC8BBB003C0CF6 /* Chain */ = {
-			isa = PBXGroup;
-			children = (
-				B6D4C64421FD7D44004A95A8 /* Chain.storyboard */,
-				B6FABCBF21F4C0660045872A /* ChainViewController.swift */,
-			);
-			path = Chain;
-			sourceTree = "<group>";
-		};
 		B6DBC06E21FC8BC1003C0CF6 /* Table */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,7 +129,6 @@
 				B6FABCC021F4C0660045872A /* RootViewController.swift */,
 				B6DBC07321FCAC3E003C0CF6 /* SimpleValidation */,
 				B6DBC07021FC8BFD003C0CF6 /* Numbers */,
-				B6DBC06D21FC8BBB003C0CF6 /* Chain */,
 				B6DBC06E21FC8BC1003C0CF6 /* Table */,
 				B6DBC06F21FC8BD7003C0CF6 /* Suspend */,
 				B6FABCAA21F4BFAF0045872A /* Main.storyboard */,
@@ -225,7 +211,6 @@
 				B6D4C64C21FD7D5D004A95A8 /* Suspend.storyboard in Resources */,
 				B6D4C64021FD7945004A95A8 /* Numbers.storyboard in Resources */,
 				B6FABCAE21F4BFB00045872A /* Assets.xcassets in Resources */,
-				B6D4C64621FD7D44004A95A8 /* Chain.storyboard in Resources */,
 				B6FABCAC21F4BFAF0045872A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,7 +230,6 @@
 				B6FABCCC21F4C0660045872A /* SuspendViewController.swift in Sources */,
 				B6FABCC921F4C0660045872A /* RootViewController.swift in Sources */,
 				B6FABCC621F4C0660045872A /* TableCustomCell.swift in Sources */,
-				B6FABCC821F4C0660045872A /* ChainViewController.swift in Sources */,
 				B6FABCA721F4BFAF0045872A /* AppDelegate.swift in Sources */,
 				B6DBC07221FC8C11003C0CF6 /* NumbersViewController.swift in Sources */,
 				B6DBC07521FCAC55003C0CF6 /* SimpleValidationViewController.swift in Sources */,
@@ -269,14 +253,6 @@
 				B6D4C64221FD7C50004A95A8 /* Base */,
 			);
 			name = SimpleValidation.storyboard;
-			sourceTree = "<group>";
-		};
-		B6D4C64421FD7D44004A95A8 /* Chain.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B6D4C64521FD7D44004A95A8 /* Base */,
-			);
-			name = Chain.storyboard;
 			sourceTree = "<group>";
 		};
 		B6D4C64721FD7D51004A95A8 /* Table.storyboard */ = {
