@@ -29,7 +29,7 @@ class SampleCustomCell: UITableViewCell {
 }
 
 extension SampleCustomCell: CellDataSettable {
-    func set(cellData: AnyCellData) {
+    func set(cellData: CellData) {
         self.pool.invalidate()
         
         if let customCellData = cellData as? CustomCellData {

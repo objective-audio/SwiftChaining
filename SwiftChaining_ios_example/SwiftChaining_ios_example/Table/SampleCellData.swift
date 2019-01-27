@@ -10,7 +10,7 @@ enum CellIdentifier: String {
     case custom = "CustomCell"
 }
 
-class AnyCellData {
+class CellData {
     let canEdit: Bool
     var cellIdentifier: CellIdentifier
     
@@ -21,12 +21,12 @@ class AnyCellData {
 }
 
 protocol CellDataSettable {
-    func set(cellData: AnyCellData)
+    func set(cellData: CellData)
 }
 
 // MARK: - NormalCellData
 
-class NormalCellData: AnyCellData {
+class NormalCellData: CellData {
     let text: Holder<String>
     let detailText: Holder<String>
     
@@ -40,7 +40,7 @@ class NormalCellData: AnyCellData {
 
 // MARK: - CustomCellData
 
-class CustomCellData: AnyCellData {
+class CustomCellData: CellData {
     var number: Holder<Int>
     
     init(number: Int) {

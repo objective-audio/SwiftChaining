@@ -85,7 +85,7 @@ class TableViewController: UITableViewController {
 }
 
 extension TableViewController /* private */ {
-    private func cellData(for indexPath: IndexPath) -> AnyCellData {
+    private func cellData(for indexPath: IndexPath) -> CellData {
         return self.controller.sections[indexPath.section].rows[indexPath.row]
     }
 }

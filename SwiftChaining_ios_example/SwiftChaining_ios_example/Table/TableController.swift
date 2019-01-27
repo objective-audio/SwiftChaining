@@ -25,4 +25,12 @@ class TableController {
     func removeRow(at indexPath: IndexPath) {
         self.sections[indexPath.section].rows.remove(at: indexPath.row)
     }
+    
+    func cellTapped(at indexPath: IndexPath) {
+        
+    }
+    
+    func accessoryTapped(at indexPath: IndexPath) {
+        
+    }
 }

@@ -25,7 +25,7 @@ class SampleNormalCell: UITableViewCell {
 }
 
 extension SampleNormalCell: CellDataSettable {
-    func set(cellData: AnyCellData) {
+    func set(cellData: CellData) {
         self.pool.invalidate()
         
         if let normalCellData = cellData as? NormalCellData {

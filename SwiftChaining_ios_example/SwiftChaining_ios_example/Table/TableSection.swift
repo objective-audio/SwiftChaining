@@ -7,13 +7,13 @@ import Chaining
 
 final class TableSection {
     enum Event {
-        case all([AnyCellData], String?)
-        case rows(ArrayHolder<AnyCellData>.Event)
+        case all([CellData], String?)
+        case rows(ArrayHolder<CellData>.Event)
         case title(String?)
     }
     
     let title: Holder<String?>
-    let rows: ArrayHolder<AnyCellData>
+    let rows: ArrayHolder<CellData>
     
     private var pool = ObserverPool()
     
@@ -21,7 +21,7 @@ final class TableSection {
         self.init(title: nil, rows: [])
     }
     
-    init(title: String?, rows: [AnyCellData]) {
+    init(title: String?, rows: [CellData]) {
         self.title = Holder(title)
         self.rows = ArrayHolder(rows)
         
