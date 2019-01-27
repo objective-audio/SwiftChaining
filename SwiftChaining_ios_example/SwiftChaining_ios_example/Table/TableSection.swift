@@ -33,13 +33,13 @@ final class TableSection {
 extension TableSection: Fetchable {
     typealias SendValue = Event
     
-    func fetchedValue() -> TableSection.SendValue? {
+    func fetchedValue() -> Event? {
         return .all(self.rows.rawArray, self.title.value)
     }
 }
 
 extension TableSection: Receivable {
-    func receive(value: TableSection.Event) {
+    func receive(value: Event) {
         self.broadcast(value: value)
     }
 }
