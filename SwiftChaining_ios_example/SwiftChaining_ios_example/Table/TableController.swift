@@ -23,6 +23,10 @@ class TableController {
         self.sections = SectionArray([section0, section1])
     }
     
+    func cellData(for indexPath: IndexPath) -> CellData {
+        return self.sections[indexPath.section].rows[indexPath.row]
+    }
+    
     func addRow() {
         let index = self.sections[1].rows.count
         let cellData = NormalCellData.cellData(text: "cell \(index)", detailText: "detail \(index)")

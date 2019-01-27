@@ -73,7 +73,7 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellData = self.cellData(for: indexPath)
+        let cellData = self.controller.cellData(for: indexPath)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellData.cellIdentifier.rawValue, for: indexPath)
         
@@ -85,11 +85,11 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return self.cellData(for: indexPath).canEdit
+        return self.controller.cellData(for: indexPath).canEdit
     }
     
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return self.cellData(for: indexPath).canEdit
+        return self.controller.cellData(for: indexPath).canEdit
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -113,11 +113,5 @@ class TableViewController: UITableViewController {
     
     @IBAction func add(_ sender: UIBarButtonItem) {
         self.controller.addRow()
-    }
-}
-
-extension TableViewController /* private */ {
-    private func cellData(for indexPath: IndexPath) -> CellData {
-        return self.controller.sections[indexPath.section].rows[indexPath.row]
     }
 }
