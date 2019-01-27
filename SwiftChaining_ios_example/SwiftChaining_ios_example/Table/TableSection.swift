@@ -6,14 +6,16 @@ import Foundation
 import Chaining
 
 final class TableSection {
+    typealias CellDataArray = RelayableArrayHolder<CellData>
+    
     enum Event {
         case all([CellData], String?)
-        case rows(ArrayHolder<CellData>.Event)
+        case rows(CellDataArray.Event)
         case title(String?)
     }
     
     let title: Holder<String?>
-    let rows: ArrayHolder<CellData>
+    let rows: CellDataArray
     
     private var pool = ObserverPool()
     
@@ -23,7 +25,7 @@ final class TableSection {
     
     init(title: String?, rows: [CellData]) {
         self.title = Holder(title)
-        self.rows = ArrayHolder(rows)
+        self.rows = RelayableArrayHolder(rows)
         
         self.pool += self.rows.chain().to { .rows($0) }.receive(self).end()
         self.pool += self.title.chain().to { .title($0) }.receive(self).end()

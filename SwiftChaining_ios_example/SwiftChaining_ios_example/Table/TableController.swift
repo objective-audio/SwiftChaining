@@ -46,16 +46,10 @@ class TableController {
     }
     
     func cellTapped(at indexPath: IndexPath) {
-        let cellData = self.sections[indexPath.section].rows[indexPath.row]
-        if cellData.canTap {
-            self.showAlertNotifier.notify(value: AlertData(title: "Table Example", message: "cellTapped"))
-        }
+        self.cellData(for: indexPath).cellTapped()
     }
     
     func accessoryTapped(at indexPath: IndexPath) {
-        let cellData = self.sections[indexPath.section].rows[indexPath.row]
-        if cellData.canTap {
-            self.showAlertNotifier.notify(value: AlertData(title: "Table Example", message: "accessoryTapped"))
-        }
+        self.cellData(for: indexPath).accessoryTapped()
     }
 }

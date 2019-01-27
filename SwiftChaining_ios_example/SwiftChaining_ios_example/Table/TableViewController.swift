@@ -43,6 +43,8 @@ class TableViewController: UITableViewController {
                         if let cell = self?.tableView.cellForRow(at: IndexPath(row: row, section: section)) as? CellDataSettable {
                             cell.set(cellData: cellData)
                         }
+                    case .relayed:
+                        break
                     }
                 }
             }
