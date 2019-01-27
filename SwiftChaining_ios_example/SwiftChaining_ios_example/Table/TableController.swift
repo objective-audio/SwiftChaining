@@ -33,6 +33,12 @@ class TableController {
         self.sections[indexPath.section].rows.remove(at: indexPath.row)
     }
     
+    func moveRow(at from: IndexPath, to: IndexPath) {
+        if from.section == to.section {
+            self.sections[from.section].rows.move(from: from.row, to: to.row)
+        }
+    }
+    
     func cellTapped(at indexPath: IndexPath) {
         let cellData = self.sections[indexPath.section].rows[indexPath.row]
         if cellData.canTap {

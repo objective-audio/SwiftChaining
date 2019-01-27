@@ -12,11 +12,13 @@ enum CellIdentifier: String {
 
 class CellData {
     let canEdit: Bool
+    let canMove: Bool
     let canTap: Bool
     let cellIdentifier: CellIdentifier
     
-    init(canEdit: Bool, canTap: Bool, cellIdentifier: CellIdentifier) {
+    init(canEdit: Bool, canMove: Bool, canTap: Bool, cellIdentifier: CellIdentifier) {
         self.canEdit = canEdit
+        self.canMove = canMove
         self.canTap = canTap
         self.cellIdentifier = cellIdentifier
     }
@@ -36,7 +38,7 @@ class NormalCellData: CellData {
         self.text = Holder(text)
         self.detailText = Holder(detailText)
         
-        super.init(canEdit: true, canTap: true, cellIdentifier: .normal)
+        super.init(canEdit: true, canMove: true, canTap: true, cellIdentifier: .normal)
     }
 }
 
@@ -47,6 +49,6 @@ class CustomCellData: CellData {
     
     init(number: Int) {
         self.number = Holder(number)
-        super.init(canEdit: false, canTap: false, cellIdentifier: .custom)
+        super.init(canEdit: false, canMove: false, canTap: false, cellIdentifier: .custom)
     }
 }
