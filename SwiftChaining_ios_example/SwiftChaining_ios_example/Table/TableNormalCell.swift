@@ -5,7 +5,7 @@
 import UIKit
 import Chaining
 
-class SampleNormalCell: UITableViewCell {
+class TableNormalCell: UITableViewCell {
     private var pool = ObserverPool()
     private var textAdapter: KVOAdapter<UILabel, String?>!
     private var detailTextAdapter: KVOAdapter<UILabel, String?>!
@@ -24,7 +24,7 @@ class SampleNormalCell: UITableViewCell {
     }
 }
 
-extension SampleNormalCell: CellDataSettable {
+extension TableNormalCell: CellDataSettable {
     func set(cellData: CellData) {
         self.pool.invalidate()
         

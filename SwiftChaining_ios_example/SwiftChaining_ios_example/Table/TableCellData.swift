@@ -1,5 +1,5 @@
 //
-//  CellData.swift
+//  TableCellData.swift
 //
 
 import Foundation

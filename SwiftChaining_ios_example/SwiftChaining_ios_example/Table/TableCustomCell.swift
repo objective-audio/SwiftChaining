@@ -1,11 +1,11 @@
 //
-//  SampleCustomCell.swift
+//  TableCustomCell.swift
 //
 
 import UIKit
 import Chaining
 
-class SampleCustomCell: UITableViewCell {
+class TableCustomCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var stepper: UIStepper!
     
@@ -28,7 +28,7 @@ class SampleCustomCell: UITableViewCell {
     }
 }
 
-extension SampleCustomCell: CellDataSettable {
+extension TableCustomCell: CellDataSettable {
     func set(cellData: CellData) {
         self.pool.invalidate()
         
