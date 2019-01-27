@@ -34,7 +34,7 @@ extension TableEditCell: CellDataSettable {
         
         if let editCellData = cellData.additional as? EditCellData {
             self.pool += editCellData.isEditing.chain().receive(self.switchIsOnAdapter).sync()
-            self.pool += self.switchChangedAdapter.chain().to { $0.isOn }.receive(editCellData.isEditing).do { value in print("switch value : \(value)") }.end()
+            self.pool += self.switchChangedAdapter.chain().to { $0.isOn }.receive(editCellData.isEditing).end()
         }
     }
 }

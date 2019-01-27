@@ -84,6 +84,6 @@ struct EditCellData: AdditionalCellData {
     
     static func cellData() -> CellData {
         let editCellData = EditCellData()
-        return CellData(canEdit: false, canMove: false, canTap: true, cellIdentifier: .edit, additional: editCellData)
+        return CellData(canEdit: false, canMove: false, canTap: false, cellIdentifier: .edit, additional: editCellData)
     }
 }
