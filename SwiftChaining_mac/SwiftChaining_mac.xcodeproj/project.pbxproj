@@ -10,6 +10,7 @@
 		B65F618021F9FD0C0094AA09 /* RelayableHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65F617F21F9FD0C0094AA09 /* RelayableHolder.swift */; };
 		B6D4C62321FC1D97004A95A8 /* RelayableArrayHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62121FC1D97004A95A8 /* RelayableArrayHolder.swift */; };
 		B6D4C62421FC1D97004A95A8 /* RelayableDictionaryHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62221FC1D97004A95A8 /* RelayableDictionaryHolder.swift */; };
+		B6D4C63D21FD71E9004A95A8 /* UIControlAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C63C21FD71E9004A95A8 /* UIControlAdapter.swift */; };
 		B6FABBA121F4B8C60045872A /* Chaining.h in Headers */ = {isa = PBXBuildFile; fileRef = B6FABB9F21F4B8C60045872A /* Chaining.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B6FABBBF21F4B8F40045872A /* Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABBA621F4B8F40045872A /* Do.swift */; };
 		B6FABBC021F4B8F40045872A /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABBA721F4B8F40045872A /* Observer.swift */; };
@@ -43,6 +44,7 @@
 		B65F617F21F9FD0C0094AA09 /* RelayableHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableHolder.swift; sourceTree = "<group>"; };
 		B6D4C62121FC1D97004A95A8 /* RelayableArrayHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableArrayHolder.swift; sourceTree = "<group>"; };
 		B6D4C62221FC1D97004A95A8 /* RelayableDictionaryHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableDictionaryHolder.swift; sourceTree = "<group>"; };
+		B6D4C63C21FD71E9004A95A8 /* UIControlAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIControlAdapter.swift; sourceTree = "<group>"; };
 		B6FABB9C21F4B8C60045872A /* Chaining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Chaining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6FABB9F21F4B8C60045872A /* Chaining.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chaining.h; sourceTree = "<group>"; };
 		B6FABBA021F4B8C60045872A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			children = (
 				B6FABBBE21F4B8F40045872A /* KVOAdapter.swift */,
 				B6FABBBD21F4B8F40045872A /* NotificationAdapter.swift */,
+				B6D4C63C21FD71E9004A95A8 /* UIControlAdapter.swift */,
 			);
 			name = CocoaAdditions;
 			path = ../../SwiftChaining/CocoaAdditions;
@@ -252,6 +255,7 @@
 				B6FABBCD21F4B8F40045872A /* Weak.swift in Sources */,
 				B6FABBC621F4B8F40045872A /* Fetchable.swift in Sources */,
 				B6FABBBF21F4B8F40045872A /* Do.swift in Sources */,
+				B6D4C63D21FD71E9004A95A8 /* UIControlAdapter.swift in Sources */,
 				B6D4C62421FC1D97004A95A8 /* RelayableDictionaryHolder.swift in Sources */,
 				B6FABBD221F4B8F40045872A /* Notifier.swift in Sources */,
 				B6FABBCE21F4B8F40045872A /* Holder.swift in Sources */,
