@@ -1,10 +1,10 @@
 //
-//  ReadOnlyDictionaryHolder.swift
+//  DictionaryAlias.swift
 //
 
 import Foundation
 
-public class ReadOnlyDictionaryHolder<Key: Hashable, Value> {
+public class DictionaryAlias<Key: Hashable, Value> {
     private let holder: DictionaryHolder<Key, Value>
     
     public var rawDictionary: [Key: Value] { return self.holder.rawDictionary }
@@ -24,7 +24,7 @@ public class ReadOnlyDictionaryHolder<Key: Hashable, Value> {
     }
 }
 
-public class ReadOnlyRelayableDictionaryHolder<Key: Hashable, Value: Sendable> {
+public class RelayableDictionaryAlias<Key: Hashable, Value: Sendable> {
     private let holder: RelayableDictionaryHolder<Key, Value>
     
     public var rawDictionary: [Key: Value] { return self.holder.rawDictionary }

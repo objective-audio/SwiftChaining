@@ -35,9 +35,9 @@
 		B6FABD1721F753410045872A /* ArrayHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3B21F4BDB70045872A /* ArrayHolder.swift */; };
 		B6FABD1A21F754490045872A /* DictionaryHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3A21F4BDB70045872A /* DictionaryHolder.swift */; };
 		B6FABD1E21F754F20045872A /* Suspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3921F4BDB70045872A /* Suspender.swift */; };
-		B6FABD2121F75EEE0045872A /* ReadOnlyArrayHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABD2021F75EEE0045872A /* ReadOnlyArrayHolder.swift */; };
-		B6FABD2321F75EF90045872A /* ReadOnlyDictionaryHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABD2221F75EF90045872A /* ReadOnlyDictionaryHolder.swift */; };
-		B6FABD2521F75F260045872A /* ReadOnlyHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABD2421F75F260045872A /* ReadOnlyHolder.swift */; };
+		B6FABD2121F75EEE0045872A /* ArrayAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABD2021F75EEE0045872A /* ArrayAlias.swift */; };
+		B6FABD2321F75EF90045872A /* DictionaryAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABD2221F75EF90045872A /* DictionaryAlias.swift */; };
+		B6FABD2521F75F260045872A /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABD2421F75F260045872A /* Alias.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,9 +71,9 @@
 		B6FABC3F21F4BDB70045872A /* NotificationAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationAdapter.swift; sourceTree = "<group>"; };
 		B6FABC4021F4BDB70045872A /* KVOAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOAdapter.swift; sourceTree = "<group>"; };
 		B6FABD0521F60A120045872A /* SenderCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderCore.swift; sourceTree = "<group>"; };
-		B6FABD2021F75EEE0045872A /* ReadOnlyArrayHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyArrayHolder.swift; sourceTree = "<group>"; };
-		B6FABD2221F75EF90045872A /* ReadOnlyDictionaryHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyDictionaryHolder.swift; sourceTree = "<group>"; };
-		B6FABD2421F75F260045872A /* ReadOnlyHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyHolder.swift; sourceTree = "<group>"; };
+		B6FABD2021F75EEE0045872A /* ArrayAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayAlias.swift; sourceTree = "<group>"; };
+		B6FABD2221F75EF90045872A /* DictionaryAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryAlias.swift; sourceTree = "<group>"; };
+		B6FABD2421F75F260045872A /* Alias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alias.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,17 +141,17 @@
 		B6FABC3721F4BDB70045872A /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				B6FABD2421F75F260045872A /* Alias.swift */,
+				B6FABD2021F75EEE0045872A /* ArrayAlias.swift */,
 				B6FABC3B21F4BDB70045872A /* ArrayHolder.swift */,
-				B6D4C61D21FC131F004A95A8 /* RelayableArrayHolder.swift */,
+				B6FABD2221F75EF90045872A /* DictionaryAlias.swift */,
 				B6FABC3A21F4BDB70045872A /* DictionaryHolder.swift */,
-				B6D4C61F21FC1743004A95A8 /* RelayableDictionaryHolder.swift */,
 				B6FABC3021F4BDB70045872A /* Fetcher.swift */,
 				B6FABC3821F4BDB70045872A /* Holder.swift */,
-				B634EFB321F9EB3100D61E3F /* RelayableHolder.swift */,
 				B6FABC3C21F4BDB70045872A /* Notifier.swift */,
-				B6FABD2021F75EEE0045872A /* ReadOnlyArrayHolder.swift */,
-				B6FABD2221F75EF90045872A /* ReadOnlyDictionaryHolder.swift */,
-				B6FABD2421F75F260045872A /* ReadOnlyHolder.swift */,
+				B6D4C61D21FC131F004A95A8 /* RelayableArrayHolder.swift */,
+				B6D4C61F21FC1743004A95A8 /* RelayableDictionaryHolder.swift */,
+				B634EFB321F9EB3100D61E3F /* RelayableHolder.swift */,
 				B6FABC3921F4BDB70045872A /* Suspender.swift */,
 			);
 			name = Additions;
@@ -261,7 +261,7 @@
 				B6FABD1E21F754F20045872A /* Suspender.swift in Sources */,
 				B6FABC4621F4BDB70045872A /* Chain.swift in Sources */,
 				B6FABC4C21F4BDB70045872A /* Sendable.swift in Sources */,
-				B6FABD2521F75F260045872A /* ReadOnlyHolder.swift in Sources */,
+				B6FABD2521F75F260045872A /* Alias.swift in Sources */,
 				B6FABD1421F752590045872A /* KVOAdapter.swift in Sources */,
 				B6FABD1A21F754490045872A /* DictionaryHolder.swift in Sources */,
 				B6FABD1221F751F40045872A /* NotificationAdapter.swift in Sources */,
@@ -270,9 +270,9 @@
 				B6FABC4521F4BDB70045872A /* To.swift in Sources */,
 				B6FABC4D21F4BDB70045872A /* End.swift in Sources */,
 				B6FABC4721F4BDB70045872A /* Receivable.swift in Sources */,
-				B6FABD2121F75EEE0045872A /* ReadOnlyArrayHolder.swift in Sources */,
+				B6FABD2121F75EEE0045872A /* ArrayAlias.swift in Sources */,
 				B6FABC4321F4BDB70045872A /* Joint.swift in Sources */,
-				B6FABD2321F75EF90045872A /* ReadOnlyDictionaryHolder.swift in Sources */,
+				B6FABD2321F75EF90045872A /* DictionaryAlias.swift in Sources */,
 				B6D4C62021FC1743004A95A8 /* RelayableDictionaryHolder.swift in Sources */,
 				B6FABC4E21F4BDB70045872A /* ForEach.swift in Sources */,
 				B6FABC4921F4BDB70045872A /* Fetcher.swift in Sources */,

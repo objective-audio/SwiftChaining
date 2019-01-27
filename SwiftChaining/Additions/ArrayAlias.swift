@@ -1,10 +1,10 @@
 //
-//  ReadOnlyArrayHolder.swift
+//  ArrayHolderAlias.swift
 //
 
 import Foundation
 
-public class ReadOnlyArrayHolder<Element> {
+public class ArrayAlias<Element> {
     private let holder: ArrayHolder<Element>
     
     public var rawArray: [Element] { return self.holder.rawArray }
@@ -36,7 +36,7 @@ public class ReadOnlyArrayHolder<Element> {
     }
 }
 
-public class ReadOnlyRelayableArrayHolder<Element: Sendable> {
+public class RelayableArrayAlias<Element: Sendable> {
     private let holder: RelayableArrayHolder<Element>
     
     public var rawArray: [Element] { return self.holder.rawArray }

@@ -1,10 +1,10 @@
 //
-//  ReadOnlyHolder.swift
+//  Alias.swift
 //
 
 import Foundation
 
-public class ReadOnlyHolder<T> {
+public class Alias<T> {
     private let holder: Holder<T>
     
     public var value: T { return self.holder.value }
@@ -18,7 +18,7 @@ public class ReadOnlyHolder<T> {
     }
 }
 
-public class ReadOnlyRelayableHolder<T: Sendable> {
+public class RelayableAlias<T: Sendable> {
     private let holder: RelayableHolder<T>
     
     public var value: T { return self.holder.value }

@@ -1,11 +1,11 @@
 //
-//  ReadOnlyHolderTests.swift
+//  AliasTests.swift
 //
 
 import XCTest
 import Chaining
 
-class ReadOnlyHolderTests: XCTestCase {
+class AliasTests: XCTestCase {
     override func setUp() {
         super.setUp()
     }
@@ -16,11 +16,11 @@ class ReadOnlyHolderTests: XCTestCase {
     
     func testChain() {
         let holder = Holder(1)
-        let readOnlyHolder = ReadOnlyHolder(holder)
+        let alias = Alias(holder)
         
         var received: Int?
         
-        let observer = readOnlyHolder.chain().do({ value in
+        let observer = alias.chain().do({ value in
             received = value
         }).sync()
         
@@ -35,12 +35,12 @@ class ReadOnlyHolderTests: XCTestCase {
     
     func testRawValue() {
         let holder = Holder(1)
-        let readOnlyHolder = ReadOnlyHolder(holder)
+        let alias = Alias(holder)
         
-        XCTAssertEqual(readOnlyHolder.value, 1)
+        XCTAssertEqual(alias.value, 1)
         
         holder.value = 2
         
-        XCTAssertEqual(readOnlyHolder.value, 2)
+        XCTAssertEqual(alias.value, 2)
     }
 }

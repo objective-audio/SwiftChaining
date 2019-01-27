@@ -1,11 +1,11 @@
 //
-//  ReadOnlyRelayableArrayHolderTests.swift
+//  RelayableArrayAliasTests.swift
 //
 
 import XCTest
 import Chaining
 
-class ReadOnlyRelayableArrayHolderTests: XCTestCase {
+class RelayableArrayAliasTests: XCTestCase {
     override func setUp() {
     }
 
@@ -14,11 +14,11 @@ class ReadOnlyRelayableArrayHolderTests: XCTestCase {
 
     func testChain() {
         let holder = RelayableArrayHolder([Holder(1), Holder(2), Holder(3)])
-        let readOnlyHolder = ReadOnlyRelayableArrayHolder(holder)
+        let alias = RelayableArrayAlias(holder)
         
         var received: [RelayableArrayHolder<Holder<Int>>.Event] = []
         
-        let observer = readOnlyHolder.chain().do({ event in
+        let observer = alias.chain().do({ event in
             received.append(event)
         }).sync()
         
@@ -46,28 +46,28 @@ class ReadOnlyRelayableArrayHolderTests: XCTestCase {
     
     func testRawArray() {
         let holder = RelayableArrayHolder([Holder(1), Holder(2), Holder(3)])
-        let readOnlyHolder = ReadOnlyRelayableArrayHolder(holder)
+        let alias = RelayableArrayAlias(holder)
         
-        XCTAssertEqual(readOnlyHolder.rawArray, [Holder(1), Holder(2), Holder(3)])
+        XCTAssertEqual(alias.rawArray, [Holder(1), Holder(2), Holder(3)])
         
         holder.append(Holder(4))
         
-        XCTAssertEqual(readOnlyHolder.rawArray, [Holder(1), Holder(2), Holder(3), Holder(4)])
+        XCTAssertEqual(alias.rawArray, [Holder(1), Holder(2), Holder(3), Holder(4)])
     }
     
     func testProperties() {
         let holder = RelayableArrayHolder([Holder(1), Holder(2), Holder(3)])
-        let readOnlyHolder = ReadOnlyRelayableArrayHolder(holder)
+        let alias = RelayableArrayAlias(holder)
         
-        XCTAssertEqual(readOnlyHolder.count, 3)
+        XCTAssertEqual(alias.count, 3)
         
-        XCTAssertEqual(readOnlyHolder.element(at: 0), Holder(1))
-        XCTAssertEqual(readOnlyHolder.element(at: 1), Holder(2))
-        XCTAssertEqual(readOnlyHolder.element(at: 2), Holder(3))
+        XCTAssertEqual(alias.element(at: 0), Holder(1))
+        XCTAssertEqual(alias.element(at: 1), Holder(2))
+        XCTAssertEqual(alias.element(at: 2), Holder(3))
         
-        XCTAssertEqual(readOnlyHolder.rawArray.capacity, readOnlyHolder.capacity)
+        XCTAssertEqual(alias.rawArray.capacity, alias.capacity)
         
-        XCTAssertEqual(readOnlyHolder.first, Holder(1))
-        XCTAssertEqual(readOnlyHolder.last, Holder(3))
+        XCTAssertEqual(alias.first, Holder(1))
+        XCTAssertEqual(alias.last, Holder(3))
     }
 }

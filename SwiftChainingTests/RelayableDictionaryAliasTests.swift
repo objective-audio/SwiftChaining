@@ -1,11 +1,11 @@
 //
-//  ReadOnlyRelayableDictionaryHolderTests.swift
+//  RelayableDictionaryAliasTests.swift
 //
 
 import XCTest
 import Chaining
 
-class ReadOnlyRelayableDictionaryHolderTests: XCTestCase {
+class RelayableDictionaryAliasTests: XCTestCase {
     override func setUp() {
     }
 
@@ -14,11 +14,11 @@ class ReadOnlyRelayableDictionaryHolderTests: XCTestCase {
     
     func testChain() {
         let holder = RelayableDictionaryHolder(["1": Holder(1), "2": Holder(2)])
-        let readOnlyHolder = ReadOnlyRelayableDictionaryHolder(holder)
+        let alias = RelayableDictionaryAlias(holder)
         
         var received: [RelayableDictionaryHolder<String, Holder<Int>>.Event] = []
         
-        let observer = readOnlyHolder.chain().do({ event in
+        let observer = alias.chain().do({ event in
             received.append(event)
         }).sync()
         
@@ -46,21 +46,21 @@ class ReadOnlyRelayableDictionaryHolderTests: XCTestCase {
     
     func testRawDictionary() {
         let holder = RelayableDictionaryHolder(["1": Holder(1), "2": Holder(2)])
-        let readOnlyHolder = ReadOnlyRelayableDictionaryHolder(holder)
+        let alias = RelayableDictionaryAlias(holder)
         
-        XCTAssertEqual(readOnlyHolder.rawDictionary, ["1": Holder(1), "2": Holder(2)])
+        XCTAssertEqual(alias.rawDictionary, ["1": Holder(1), "2": Holder(2)])
         
         holder["3"] = Holder(3)
         
-        XCTAssertEqual(readOnlyHolder.rawDictionary, ["1": Holder(1), "2": Holder(2), "3": Holder(3)])
+        XCTAssertEqual(alias.rawDictionary, ["1": Holder(1), "2": Holder(2), "3": Holder(3)])
     }
     
     func testProperties() {
         let holder = RelayableDictionaryHolder(["1": Holder(1), "2": Holder(2)])
-        let readOnlyHolder = ReadOnlyRelayableDictionaryHolder(holder)
+        let alias = RelayableDictionaryAlias(holder)
         
-        XCTAssertEqual(readOnlyHolder.count, 2)
+        XCTAssertEqual(alias.count, 2)
         
-        XCTAssertEqual(readOnlyHolder.capacity, readOnlyHolder.rawDictionary.capacity)
+        XCTAssertEqual(alias.capacity, alias.rawDictionary.capacity)
     }
 }

@@ -1,11 +1,11 @@
 //
-//  ReadOnlyRelayableHolderTests.swift
+//  RelayableAliasTests.swift
 //
 
 import XCTest
 import Chaining
 
-class ReadOnlyRelayableHolderTests: XCTestCase {
+class RelayableAliasTests: XCTestCase {
     override func setUp() {
     }
 
@@ -15,11 +15,11 @@ class ReadOnlyRelayableHolderTests: XCTestCase {
     func testChain() {
         let innerHolder = Holder<Int>(0)
         let relayableHolder = RelayableHolder<Holder<Int>>(innerHolder)
-        let holder = ReadOnlyRelayableHolder<Holder<Int>>(relayableHolder)
+        let alias = RelayableAlias<Holder<Int>>(relayableHolder)
         
         var events: [RelayableHolder<Holder<Int>>.Event] = []
         
-        let observer = holder.chain().do { event in events.append(event) }.sync()
+        let observer = alias.chain().do { event in events.append(event) }.sync()
         
         XCTAssertEqual(events.count, 1)
         
@@ -46,12 +46,12 @@ class ReadOnlyRelayableHolderTests: XCTestCase {
     func testValue() {
         let innerHolder = Holder<Int>(0)
         let relayableHolder = RelayableHolder<Holder<Int>>(innerHolder)
-        let holder = ReadOnlyRelayableHolder<Holder<Int>>(relayableHolder)
+        let alias = RelayableAlias<Holder<Int>>(relayableHolder)
         
-        XCTAssertEqual(holder.value, Holder<Int>(0))
+        XCTAssertEqual(alias.value, Holder<Int>(0))
         
         relayableHolder.value = Holder<Int>(1)
         
-        XCTAssertEqual(holder.value, Holder<Int>(1))
+        XCTAssertEqual(alias.value, Holder<Int>(1))
     }
 }
