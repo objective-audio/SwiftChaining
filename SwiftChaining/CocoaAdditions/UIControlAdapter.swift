@@ -2,6 +2,8 @@
 //  UIControlAdapter.swift
 //
 
+#if os(iOS)
+
 import UIKit
 
 final public class UIControlAdapter<T: UIControl>: NSObject {
@@ -36,3 +38,5 @@ final public class UIControlAdapter<T: UIControl>: NSObject {
 extension UIControlAdapter: Sendable {
     public typealias SendValue = T
 }
+
+#endif
