@@ -23,6 +23,8 @@ class TableViewController: UITableViewController {
                 self?.tableView.deleteSections(IndexSet(integer: section), with: .automatic)
             case .replaced(let section, _):
                 self?.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
+            case .moved:
+                break
             case .relayed(let sectionEvent, let section, _):
                 switch sectionEvent {
                 case .all, .title:
@@ -35,6 +37,8 @@ class TableViewController: UITableViewController {
                         self?.tableView.insertRows(at: [IndexPath(row: row, section: section)], with: .automatic)
                     case .removed(let row, _):
                         self?.tableView.deleteRows(at: [IndexPath(row: row, section: section)], with: .automatic)
+                    case .moved:
+                        break
                     case .replaced(let row, let cellData):
                         if let cell = self?.tableView.cellForRow(at: IndexPath(row: row, section: section)) as? CellDataSettable {
                             cell.set(cellData: cellData)

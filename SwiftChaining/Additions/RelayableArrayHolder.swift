@@ -15,6 +15,7 @@ final public class RelayableArrayHolder<Element: Sendable> {
         case inserted(at: Int, element: Element)
         case removed(at: Int, element: Element)
         case replaced(at: Int, element: Element)
+        case moved(from: Int, to: Int, element: Element)
         case relayed(Element.SendValue, at: Int, element: Element)
     }
     
@@ -121,6 +122,18 @@ final public class RelayableArrayHolder<Element: Sendable> {
         self.rawArray.removeAll(keepingCapacity: keepCapacity)
         
         self.broadcast(value: .any([]))
+    }
+    
+    public func move(from: Int, to: Int) {
+        if from == to { return }
+        
+        let element = self.rawArray.remove(at: from)
+        let wrapper = self.observerArray.remove(at: from)
+        
+        self.rawArray.insert(element, at: to)
+        self.observerArray.insert(wrapper, at: to)
+        
+        self.broadcast(value: .moved(from: from, to: to, element: element))
     }
     
     public func reserveCapacity(_ capacity: Int) {

@@ -12,6 +12,18 @@ class RelayableArrayHolderTests: XCTestCase {
     override func tearDown() {
     }
     
+    func testMove() {
+        let array = RelayableArrayHolder([Holder(1), Holder(2), Holder(3)])
+        
+        array.move(from: 1, to: 0)
+        
+        XCTAssertEqual(array.rawArray, [Holder(2), Holder(1), Holder(3)])
+        
+        array.move(from: 1, to: 2)
+        
+        XCTAssertEqual(array.rawArray, [Holder(2), Holder(3), Holder(1)])
+    }
+    
     func testReplaceElements() {
         let holder1 = Holder(1)
         let holder2 = Holder(2)
@@ -140,11 +152,23 @@ class RelayableArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(array.rawArray, [Holder(11), Holder(500), Holder(100)])
         
-        array.replace([Holder(1000), Holder(999)])
+        array.move(from: 1, to: 0)
         
         XCTAssertEqual(received.count, 7)
         
-        if case .any(let elements) = received[6] {
+        if case .moved(let from, let to, let element) = received[6] {
+            XCTAssertEqual(element, Holder(500))
+            XCTAssertEqual(from, 1)
+            XCTAssertEqual(to, 0)
+        } else {
+            XCTAssertTrue(false)
+        }
+        
+        array.replace([Holder(1000), Holder(999)])
+        
+        XCTAssertEqual(received.count, 8)
+        
+        if case .any(let elements) = received[7] {
             XCTAssertEqual(elements, [Holder(1000), Holder(999)])
         } else {
             XCTAssertTrue(false)
@@ -152,9 +176,9 @@ class RelayableArrayHolderTests: XCTestCase {
         
         array[1].value = 998
         
-        XCTAssertEqual(received.count, 8)
+        XCTAssertEqual(received.count, 9)
         
-        if case .relayed(let value, let index, let element) = received[7] {
+        if case .relayed(let value, let index, let element) = received[8] {
             XCTAssertEqual(element, Holder(998))
             XCTAssertEqual(index, 1)
             XCTAssertEqual(value, 998)
@@ -164,9 +188,9 @@ class RelayableArrayHolderTests: XCTestCase {
         
         array.removeAll()
         
-        XCTAssertEqual(received.count, 9)
+        XCTAssertEqual(received.count, 10)
         
-        if case .any(let elements) = received[8] {
+        if case .any(let elements) = received[9] {
             XCTAssertEqual(elements, [])
         } else {
             XCTAssertTrue(false)
