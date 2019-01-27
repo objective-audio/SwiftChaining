@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -47,24 +48,42 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="↓" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7rd-V8-PIx">
+                                <rect key="frame" x="180" y="247" width="15" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initial" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7C-ld-0hN">
+                                <rect key="frame" x="167.5" y="285" width="40" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="yki-1H-YjF" firstAttribute="centerX" secondItem="VdD-Jo-m4R" secondAttribute="centerX" id="0I3-Fy-dKr"/>
+                            <constraint firstItem="7rd-V8-PIx" firstAttribute="centerX" secondItem="VdD-Jo-m4R" secondAttribute="centerX" id="0ZU-5z-sLR"/>
                             <constraint firstItem="4KR-DZ-P5T" firstAttribute="centerX" secondItem="VdD-Jo-m4R" secondAttribute="centerX" id="2xg-2r-p9i"/>
                             <constraint firstItem="vV2-rW-Db5" firstAttribute="centerX" secondItem="VdD-Jo-m4R" secondAttribute="centerX" id="8VC-9j-loi"/>
+                            <constraint firstItem="7rd-V8-PIx" firstAttribute="top" secondItem="vV2-rW-Db5" secondAttribute="bottom" constant="20" id="DKq-uz-MLK"/>
                             <constraint firstItem="RRf-Pp-jd5" firstAttribute="centerX" secondItem="VdD-Jo-m4R" secondAttribute="centerX" id="Jxp-ZZ-DCA"/>
                             <constraint firstItem="yki-1H-YjF" firstAttribute="top" secondItem="RRf-Pp-jd5" secondAttribute="bottom" constant="22" id="QO4-cS-W2e"/>
                             <constraint firstItem="RRf-Pp-jd5" firstAttribute="top" secondItem="4KR-DZ-P5T" secondAttribute="bottom" constant="18" id="ZxX-Jk-nLI"/>
                             <constraint firstItem="vV2-rW-Db5" firstAttribute="top" secondItem="yki-1H-YjF" secondAttribute="bottom" constant="27" id="eA3-PV-I9S"/>
+                            <constraint firstItem="m7C-ld-0hN" firstAttribute="centerX" secondItem="VdD-Jo-m4R" secondAttribute="centerX" id="hpn-uY-o2t"/>
                             <constraint firstItem="4KR-DZ-P5T" firstAttribute="top" secondItem="gfE-I2-C8i" secondAttribute="bottom" constant="29" id="j7U-BH-bZi"/>
+                            <constraint firstItem="m7C-ld-0hN" firstAttribute="top" secondItem="7rd-V8-PIx" secondAttribute="bottom" constant="17" id="zRg-fV-2Br"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Suspend" id="V9X-Au-t0j"/>
                     <connections>
+                        <outlet property="arrowLabel" destination="7rd-V8-PIx" id="x9e-W4-gtt"/>
                         <outlet property="label" destination="vV2-rW-Db5" id="TOm-u9-qAb"/>
                         <outlet property="resumeButton" destination="RRf-Pp-jd5" id="O1B-et-fgj"/>
                         <outlet property="suspendButton" destination="4KR-DZ-P5T" id="yvk-b2-wZL"/>
+                        <outlet property="suspendedLabel" destination="m7C-ld-0hN" id="xUP-3t-8jc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="itb-Oa-sWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
