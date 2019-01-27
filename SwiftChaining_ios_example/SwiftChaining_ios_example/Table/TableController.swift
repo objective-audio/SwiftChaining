@@ -10,6 +10,13 @@ class TableController {
     
     let sections: SectionArray
     
+    struct AlertData {
+        let title: String
+        let message: String
+    }
+    
+    let showAlertNotifier = Notifier<AlertData>()
+    
     init() {
         let section0 = TableSection(title: "Section 0", rows:[CustomCellData(number: 10)])
         let section1 = TableSection(title: "Section 1", rows:[])
@@ -27,10 +34,16 @@ class TableController {
     }
     
     func cellTapped(at indexPath: IndexPath) {
-        
+        let cellData = self.sections[indexPath.section].rows[indexPath.row]
+        if cellData.canTap {
+            self.showAlertNotifier.notify(value: AlertData(title: "Table Example", message: "cellTapped"))
+        }
     }
     
     func accessoryTapped(at indexPath: IndexPath) {
-        
+        let cellData = self.sections[indexPath.section].rows[indexPath.row]
+        if cellData.canTap {
+            self.showAlertNotifier.notify(value: AlertData(title: "Table Example", message: "accessoryTapped"))
+        }
     }
 }

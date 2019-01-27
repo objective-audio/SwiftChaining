@@ -43,6 +43,17 @@ class TableViewController: UITableViewController {
                 }
             }
         }).sync()
+        
+        self.pool +=
+            self.controller.showAlertNotifier
+                .chain()
+                .do { [weak self] alertData in
+                    let alert = UIAlertController(title: alertData.title,
+                                                  message: alertData.message,
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self?.show(alert, sender: self)
+                }.end()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

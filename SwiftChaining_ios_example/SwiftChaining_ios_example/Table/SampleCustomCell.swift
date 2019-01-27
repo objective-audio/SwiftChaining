@@ -32,6 +32,8 @@ extension SampleCustomCell: CellDataSettable {
     func set(cellData: CellData) {
         self.pool.invalidate()
         
+        self.selectionStyle = cellData.canTap ? .default : .none
+        
         if let customCellData = cellData as? CustomCellData {
             self.pool += customCellData.number.chain().to { String($0) }.receive(self.labelAdapter).sync()
             self.pool += customCellData.number.chain().to { Double($0) }.receive(self.stepperAdapter).sync()
