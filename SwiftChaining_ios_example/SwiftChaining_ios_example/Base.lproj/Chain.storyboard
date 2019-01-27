@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Chain-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ChainViewController" customModule="SwiftChaining_ios_example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V6C-XQ-HyK">
+                                <rect key="frame" x="116" y="40" width="143" height="30"/>
+                                <state key="normal" title="Set Random Number"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAc-Ok-BZa">
+                                <rect key="frame" x="166.5" y="100" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T30-st-95J">
+                                <rect key="frame" x="16" y="151" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="4qJ-sj-5WA"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="V6C-XQ-HyK" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="GMm-at-X0a"/>
+                            <constraint firstItem="FAc-Ok-BZa" firstAttribute="top" secondItem="V6C-XQ-HyK" secondAttribute="bottom" constant="30" id="SBy-Y4-Zxf"/>
+                            <constraint firstItem="V6C-XQ-HyK" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="SkU-BD-cHH"/>
+                            <constraint firstItem="T30-st-95J" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="e51-fU-pCz"/>
+                            <constraint firstItem="T30-st-95J" firstAttribute="top" secondItem="FAc-Ok-BZa" secondAttribute="bottom" constant="30" id="gPA-aU-81O"/>
+                            <constraint firstItem="FAc-Ok-BZa" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="qS1-eq-VW3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="T30-st-95J" secondAttribute="trailing" id="sCP-gE-Mwv"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Chain" id="l8f-pq-tNm"/>
+                    <connections>
+                        <outlet property="button" destination="V6C-XQ-HyK" id="W1l-eB-QVm"/>
+                        <outlet property="label" destination="FAc-Ok-BZa" id="tIn-R5-xWC"/>
+                        <outlet property="textField" destination="T30-st-95J" id="GxJ-aq-9n3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1790" y="34"/>
+        </scene>
+    </scenes>
+</document>
