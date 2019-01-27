@@ -52,7 +52,7 @@ class TableViewController: UITableViewController {
                                                   message: alertData.message,
                                                   preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self?.show(alert, sender: self)
+                    self?.present(alert, animated: true, completion: nil)
                 }.end()
     }
     
@@ -88,6 +88,14 @@ class TableViewController: UITableViewController {
         if editingStyle == .delete {
             self.controller.removeRow(at: indexPath)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.controller.cellTapped(at: indexPath)
+    }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        self.controller.accessoryTapped(at: indexPath)
     }
     
     @IBAction func add(_ sender: UIBarButtonItem) {
