@@ -18,7 +18,7 @@ class TableController {
     let showAlertNotifier = Notifier<AlertData>()
     
     init() {
-        let section0 = TableSection(title: "Section 0", rows:[CustomCellData(number: 10)])
+        let section0 = TableSection(title: "Section 0", rows:[CustomCellData(number: 1)])
         let section1 = TableSection(title: "Section 1", rows:[])
         self.sections = SectionArray([section0, section1])
     }
