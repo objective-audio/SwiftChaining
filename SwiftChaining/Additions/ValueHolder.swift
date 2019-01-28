@@ -16,22 +16,22 @@ extension Alias: ValueReadable where T: ValueReadable {
 }
 
 final public class ValueHolder<T> {
-    public private(set) var rawValue: T
+    public private(set) var raw: T
     private let lock = NSLock()
     
     public init(_ initial: T) {
-        self.rawValue = initial
+        self.raw = initial
     }
     
     public var value: T {
         set {
             if self.lock.try() {
-                self.rawValue = newValue
+                self.raw = newValue
                 self.broadcast(value: newValue)
                 self.lock.unlock()
             }
         }
-        get { return self.rawValue }
+        get { return self.raw }
     }
 }
 
@@ -49,14 +49,14 @@ extension ValueHolder where T: Equatable {
     public var value: T {
         set {
             if self.lock.try() {
-                if self.rawValue != newValue {
-                    self.rawValue = newValue
+                if self.raw != newValue {
+                    self.raw = newValue
                     self.broadcast(value: newValue)
                 }
                 self.lock.unlock()
             }
         }
-        get { return self.rawValue }
+        get { return self.raw }
     }
 }
 
@@ -68,6 +68,6 @@ extension ValueHolder: Receivable {
 
 extension ValueHolder: Equatable where T: Equatable {
     public static func == (lhs: ValueHolder, rhs: ValueHolder) -> Bool {
-        return lhs.rawValue == rhs.rawValue
+        return lhs.raw == rhs.raw
     }
 }
