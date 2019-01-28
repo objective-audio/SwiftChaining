@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B65F618021F9FD0C0094AA09 /* RelayableHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65F617F21F9FD0C0094AA09 /* RelayableHolder.swift */; };
+		B65F618021F9FD0C0094AA09 /* RelayableValueHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65F617F21F9FD0C0094AA09 /* RelayableValueHolder.swift */; };
 		B6D4C62321FC1D97004A95A8 /* RelayableArrayHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62121FC1D97004A95A8 /* RelayableArrayHolder.swift */; };
 		B6D4C62421FC1D97004A95A8 /* RelayableDictionaryHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62221FC1D97004A95A8 /* RelayableDictionaryHolder.swift */; };
 		B6D4C63D21FD71E9004A95A8 /* UIControlAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C63C21FD71E9004A95A8 /* UIControlAdapter.swift */; };
@@ -39,7 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B65F617F21F9FD0C0094AA09 /* RelayableHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableHolder.swift; sourceTree = "<group>"; };
+		B65F617F21F9FD0C0094AA09 /* RelayableValueHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableValueHolder.swift; sourceTree = "<group>"; };
 		B6D4C62121FC1D97004A95A8 /* RelayableArrayHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableArrayHolder.swift; sourceTree = "<group>"; };
 		B6D4C62221FC1D97004A95A8 /* RelayableDictionaryHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableDictionaryHolder.swift; sourceTree = "<group>"; };
 		B6D4C63C21FD71E9004A95A8 /* UIControlAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIControlAdapter.swift; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 				B6FABBBA21F4B8F40045872A /* Notifier.swift */,
 				B6D4C62121FC1D97004A95A8 /* RelayableArrayHolder.swift */,
 				B6D4C62221FC1D97004A95A8 /* RelayableDictionaryHolder.swift */,
-				B65F617F21F9FD0C0094AA09 /* RelayableHolder.swift */,
+				B65F617F21F9FD0C0094AA09 /* RelayableValueHolder.swift */,
 				B6FABBB721F4B8F40045872A /* Suspender.swift */,
 			);
 			name = Additions;
@@ -243,7 +243,7 @@
 				B6FABBC821F4B8F40045872A /* Merge.swift in Sources */,
 				B6FABD2721F75F820045872A /* Fetcher.swift in Sources */,
 				B6FABBD421F4B8F40045872A /* NotificationAdapter.swift in Sources */,
-				B65F618021F9FD0C0094AA09 /* RelayableHolder.swift in Sources */,
+				B65F618021F9FD0C0094AA09 /* RelayableValueHolder.swift in Sources */,
 				B6FABBC921F4B8F40045872A /* Combine.swift in Sources */,
 				B6FABBCD21F4B8F40045872A /* Weak.swift in Sources */,
 				B6FABBC621F4B8F40045872A /* Fetchable.swift in Sources */,
