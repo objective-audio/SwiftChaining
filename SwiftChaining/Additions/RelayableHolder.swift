@@ -4,7 +4,7 @@
 
 import Foundation
 
-final public class RelayableHolder<T: Sendable> {
+final public class RelayableHolder<T: Sendable>: HolderProtocol {
     public enum Event {
         case fetched(T)
         case current(T)

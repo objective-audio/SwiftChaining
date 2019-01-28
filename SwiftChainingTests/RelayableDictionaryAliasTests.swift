@@ -14,7 +14,7 @@ class RelayableDictionaryAliasTests: XCTestCase {
     
     func testChain() {
         let holder = RelayableDictionaryHolder(["1": Holder(1), "2": Holder(2)])
-        let alias = RelayableDictionaryAlias(holder)
+        let alias = Alias(holder)
         
         var received: [RelayableDictionaryHolder<String, Holder<Int>>.Event] = []
         
@@ -46,7 +46,7 @@ class RelayableDictionaryAliasTests: XCTestCase {
     
     func testRawDictionary() {
         let holder = RelayableDictionaryHolder(["1": Holder(1), "2": Holder(2)])
-        let alias = RelayableDictionaryAlias(holder)
+        let alias = Alias(holder)
         
         XCTAssertEqual(alias.rawDictionary, ["1": Holder(1), "2": Holder(2)])
         
@@ -57,7 +57,7 @@ class RelayableDictionaryAliasTests: XCTestCase {
     
     func testProperties() {
         let holder = RelayableDictionaryHolder(["1": Holder(1), "2": Holder(2)])
-        let alias = RelayableDictionaryAlias(holder)
+        let alias = Alias(holder)
         
         XCTAssertEqual(alias.count, 2)
         

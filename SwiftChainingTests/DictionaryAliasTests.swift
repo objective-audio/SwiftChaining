@@ -16,7 +16,7 @@ class DictionaryAliasTests: XCTestCase {
     
     func testChain() {
         let holder = DictionaryHolder(["1": 1, "2": 2])
-        let alias = DictionaryAlias(holder)
+        let alias = Alias(holder)
         
         var received: [DictionaryHolder<String, Int>.Event] = []
         
@@ -48,7 +48,7 @@ class DictionaryAliasTests: XCTestCase {
     
     func testRawDictionary() {
         let holder = DictionaryHolder(["1": 1, "2": 2])
-        let alias = DictionaryAlias(holder)
+        let alias = Alias(holder)
         
         XCTAssertEqual(alias.rawDictionary, ["1": 1, "2": 2])
         
@@ -59,7 +59,7 @@ class DictionaryAliasTests: XCTestCase {
     
     func testProperties() {
         let holder = DictionaryHolder(["1": 1, "2": 2])
-        let alias = DictionaryAlias(holder)
+        let alias = Alias(holder)
         
         XCTAssertEqual(alias.count, 2)
         

@@ -33,22 +33,6 @@ final public class RelayableArrayHolder<Element: Sendable> {
         self.replace(elements)
     }
     
-    public func element(at index: Int) -> Element {
-        return self.rawArray[index]
-    }
-    
-    public var capacity: Int {
-        return self.rawArray.capacity
-    }
-    
-    public var first: Element? {
-        return self.rawArray.first
-    }
-    
-    public var last: Element? {
-        return self.rawArray.last
-    }
-    
     public func replace(_ elements: [Element]) {
         for wrapper in self.observerArray {
             if let observer = wrapper.observer {
@@ -157,6 +141,8 @@ final public class RelayableArrayHolder<Element: Sendable> {
         return wrapper
     }
 }
+
+extension RelayableArrayHolder: ArrayProtocol {}
 
 extension RelayableArrayHolder: Fetchable {
     public typealias SendValue = Event

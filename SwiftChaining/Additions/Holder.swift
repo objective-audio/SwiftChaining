@@ -4,7 +4,12 @@
 
 import Foundation
 
-final public class Holder<T> {
+public protocol HolderProtocol {
+    associatedtype Val
+    var value: Val { get }
+}
+
+final public class Holder<T>: HolderProtocol {
     public private(set) var rawValue: T
     private let lock = NSLock()
     

@@ -16,7 +16,7 @@ class ArrayAliasTests: XCTestCase {
     
     func testChain() {
         let holder = ArrayHolder([1, 2, 3])
-        let alias = ArrayAlias(holder)
+        let alias = Alias(holder)
         
         var received: [ArrayHolder<Int>.Event] = []
         
@@ -48,7 +48,7 @@ class ArrayAliasTests: XCTestCase {
     
     func testRawArray() {
         let holder = ArrayHolder([1, 2, 3])
-        let alias = ArrayAlias(holder)
+        let alias = Alias(holder)
         
         XCTAssertEqual(alias.rawArray, [1, 2, 3])
         
@@ -59,7 +59,7 @@ class ArrayAliasTests: XCTestCase {
     
     func testProperties() {
         let holder = ArrayHolder([1, 2, 3])
-        let alias = ArrayAlias(holder)
+        let alias = Alias(holder)
         
         XCTAssertEqual(alias.count, 3)
         

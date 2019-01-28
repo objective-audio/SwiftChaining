@@ -4,10 +4,31 @@
 
 import Foundation
 
-final public class ArrayHolder<Element> {
-    public private(set) var rawArray: [Element] = []
+public protocol ArrayProtocol {
+    associatedtype Element
+    
+    var rawArray: [Element] { get }
+}
+
+extension ArrayProtocol {
+    public func element(at index: Int) -> Element {
+        return self.rawArray[index]
+    }
     
     public var count: Int { return self.rawArray.count }
+    public var capacity: Int { return self.rawArray.capacity }
+    public var first: Element? { return self.rawArray.first }
+    public var last: Element? { return self.rawArray.last }
+    
+    public subscript(index: Int) -> Element {
+        get { return self.element(at: index) }
+    }
+}
+
+final public class ArrayHolder<E> {
+    public typealias Element = E
+    
+    public private(set) var rawArray: [Element] = []
     
     public enum Event {
         case fetched([Element])
@@ -24,22 +45,6 @@ final public class ArrayHolder<Element> {
         self.init()
         
         self.replace(elements)
-    }
-    
-    public func element(at index: Int) -> Element {
-        return self.rawArray[index]
-    }
-    
-    public var capacity: Int {
-        return self.rawArray.capacity
-    }
-    
-    public var first: Element? {
-        return self.rawArray.first
-    }
-    
-    public var last: Element? {
-        return self.rawArray.last
     }
     
     public func replace(_ elements: [Element]) {
@@ -96,6 +101,8 @@ final public class ArrayHolder<Element> {
         set(element) { self.replace(element, at: index) }
     }
 }
+
+extension ArrayHolder: ArrayProtocol {}
 
 extension ArrayHolder: Fetchable {
     public typealias SendValue = Event

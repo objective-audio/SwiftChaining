@@ -9,7 +9,7 @@ class TableController {
     typealias SectionArray = RelayableArrayHolder<TableSection>
     
     let sections: SectionArray
-    let isEditing: Alias<Bool>
+    let isEditing: Alias<Holder<Bool>>
     
     struct AlertData {
         let title: String

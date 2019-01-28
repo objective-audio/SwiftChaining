@@ -4,30 +4,33 @@
 
 import Foundation
 
-public class Alias<T> {
-    private let holder: Holder<T>
+public struct Alias<T: Sendable> {
+    private var sender: T
     
-    public var value: T { return self.holder.value }
-    
-    public init(_ holder: Holder<T>) {
-        self.holder = holder
+    public init(_ sender: T) {
+        self.sender = sender
     }
     
-    public func chain() -> Holder<T>.SenderChain {
-        return self.holder.chain()
+    public func chain() -> T.SenderChain {
+        return self.sender.chain()
     }
 }
 
-public class RelayableAlias<T: Sendable> {
-    private let holder: RelayableHolder<T>
+extension Alias: HolderProtocol where T: HolderProtocol {
+    public typealias Val = T.Val
     
-    public var value: T { return self.holder.value }
+    public var value: T.Val { return self.sender.value }
+}
+
+extension Alias: ArrayProtocol where T: ArrayProtocol {
+    public typealias Element = T.Element
     
-    public init(_ holder: RelayableHolder<T>) {
-        self.holder = holder
-    }
-    
-    public func chain() -> RelayableHolder<T>.SenderChain {
-        return self.holder.chain()
-    }
+    public var rawArray: [T.Element] { return self.sender.rawArray }
+}
+
+extension Alias: DictionaryProtocol where T: DictionaryProtocol {
+    public typealias Key = T.Key
+    public typealias Value = T.Value
+
+    public var rawDictionary: [Key: Value] { return self.sender.rawDictionary }
 }

@@ -14,7 +14,7 @@ class RelayableArrayAliasTests: XCTestCase {
 
     func testChain() {
         let holder = RelayableArrayHolder([Holder(1), Holder(2), Holder(3)])
-        let alias = RelayableArrayAlias(holder)
+        let alias = Alias(holder)
         
         var received: [RelayableArrayHolder<Holder<Int>>.Event] = []
         
@@ -46,7 +46,7 @@ class RelayableArrayAliasTests: XCTestCase {
     
     func testRawArray() {
         let holder = RelayableArrayHolder([Holder(1), Holder(2), Holder(3)])
-        let alias = RelayableArrayAlias(holder)
+        let alias = Alias(holder)
         
         XCTAssertEqual(alias.rawArray, [Holder(1), Holder(2), Holder(3)])
         
@@ -57,7 +57,7 @@ class RelayableArrayAliasTests: XCTestCase {
     
     func testProperties() {
         let holder = RelayableArrayHolder([Holder(1), Holder(2), Holder(3)])
-        let alias = RelayableArrayAlias(holder)
+        let alias = Alias(holder)
         
         XCTAssertEqual(alias.count, 3)
         
