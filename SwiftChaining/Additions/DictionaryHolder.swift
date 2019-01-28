@@ -8,26 +8,26 @@ public protocol DictionaryReadable {
     associatedtype Key: Hashable
     associatedtype Value
     
-    var rawDictionary: [Key: Value] { get }
+    var raw: [Key: Value] { get }
 }
 
 extension DictionaryReadable {
-    public var count: Int { return self.rawDictionary.count }
-    public var capacity: Int { return self.rawDictionary.capacity }
+    public var count: Int { return self.raw.count }
+    public var capacity: Int { return self.raw.capacity }
 }
 
 extension Alias: DictionaryReadable where T: DictionaryReadable {
     public typealias Key = T.Key
     public typealias Value = T.Value
     
-    public var rawDictionary: [Key: Value] { return self.sender.rawDictionary }
+    public var raw: [Key: Value] { return self.sender.raw }
 }
 
 final public class DictionaryHolder<K: Hashable, V> {
     public typealias Key = K
     public typealias Value = V
     
-    public private(set) var rawDictionary: [Key: Value] = [:]
+    public private(set) var raw: [Key: Value] = [:]
     
     public enum Event {
         case fetched([Key: Value])
@@ -46,33 +46,33 @@ final public class DictionaryHolder<K: Hashable, V> {
     }
     
     public func set(_ dictionary: [Key: Value]) {
-        self.rawDictionary = dictionary
+        self.raw = dictionary
         self.broadcast(value: .any(dictionary))
     }
     
     public func replace(key: Key, value: Value) {
-        guard self.rawDictionary[key] != nil else {
+        guard self.raw[key] != nil else {
             fatalError()
         }
         
-        self.rawDictionary[key] = value
+        self.raw[key] = value
         
         self.broadcast(value: .replaced(key: key, value: value))
     }
     
     public func insert(key: Key, value: Value) {
-        guard self.rawDictionary[key] == nil else {
+        guard self.raw[key] == nil else {
             fatalError()
         }
         
-        self.rawDictionary[key] = value
+        self.raw[key] = value
         
         self.broadcast(value: .inserted(key: key, value: value))
     }
     
     @discardableResult
     public func removeValue(forKey key: Key) -> Value? {
-        if let value = self.rawDictionary.removeValue(forKey: key) {
+        if let value = self.raw.removeValue(forKey: key) {
             self.broadcast(value: .removed(key: key, value: value))
             
             return value
@@ -82,21 +82,21 @@ final public class DictionaryHolder<K: Hashable, V> {
     }
     
     public func removeAll(keepingCapacity keepCapacity: Bool = false) {
-        self.rawDictionary.removeAll(keepingCapacity: keepCapacity)
+        self.raw.removeAll(keepingCapacity: keepCapacity)
         self.broadcast(value: .any([:]))
     }
     
     public func reserveCapacity(_ capacity: Int) {
-        self.rawDictionary.reserveCapacity(capacity)
+        self.raw.reserveCapacity(capacity)
     }
     
     public subscript(key: Key) -> Value? {
         get {
-            return self.rawDictionary[key]
+            return self.raw[key]
         }
         set(value) {
             if let value = value {
-                if self.rawDictionary[key] == nil {
+                if self.raw[key] == nil {
                     self.insert(key: key, value: value)
                 } else {
                     self.replace(key: key, value: value)
@@ -114,6 +114,6 @@ extension DictionaryHolder: Fetchable {
     public typealias SendValue = Event
     
     public func fetchedValue() -> Event? {
-        return .fetched(self.rawDictionary)
+        return .fetched(self.raw)
     }
 }
