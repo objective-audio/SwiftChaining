@@ -28,7 +28,7 @@
 		B6FABC4F21F4BDB70045872A /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3621F4BDB70045872A /* Weak.swift */; };
 		B6FABD0621F60A120045872A /* SenderCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABD0521F60A120045872A /* SenderCore.swift */; };
 		B6FABD0721F74B310045872A /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3C21F4BDB70045872A /* Notifier.swift */; };
-		B6FABD0B21F74E1D0045872A /* Holder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3821F4BDB70045872A /* Holder.swift */; };
+		B6FABD0B21F74E1D0045872A /* ValueHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3821F4BDB70045872A /* ValueHolder.swift */; };
 		B6FABD1221F751F40045872A /* NotificationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3F21F4BDB70045872A /* NotificationAdapter.swift */; };
 		B6FABD1421F752590045872A /* KVOAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC4021F4BDB70045872A /* KVOAdapter.swift */; };
 		B6FABD1621F7529A0045872A /* UIControlAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3E21F4BDB70045872A /* UIControlAdapter.swift */; };
@@ -60,7 +60,7 @@
 		B6FABC3421F4BDB70045872A /* End.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = End.swift; sourceTree = "<group>"; };
 		B6FABC3521F4BDB70045872A /* ForEach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForEach.swift; sourceTree = "<group>"; };
 		B6FABC3621F4BDB70045872A /* Weak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
-		B6FABC3821F4BDB70045872A /* Holder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Holder.swift; sourceTree = "<group>"; };
+		B6FABC3821F4BDB70045872A /* ValueHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueHolder.swift; sourceTree = "<group>"; };
 		B6FABC3921F4BDB70045872A /* Suspender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suspender.swift; sourceTree = "<group>"; };
 		B6FABC3A21F4BDB70045872A /* DictionaryHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryHolder.swift; sourceTree = "<group>"; };
 		B6FABC3B21F4BDB70045872A /* ArrayHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayHolder.swift; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 				B6FABC3B21F4BDB70045872A /* ArrayHolder.swift */,
 				B6FABC3A21F4BDB70045872A /* DictionaryHolder.swift */,
 				B6FABC3021F4BDB70045872A /* Fetcher.swift */,
-				B6FABC3821F4BDB70045872A /* Holder.swift */,
+				B6FABC3821F4BDB70045872A /* ValueHolder.swift */,
 				B6FABC3C21F4BDB70045872A /* Notifier.swift */,
 				B6D4C61D21FC131F004A95A8 /* RelayableArrayHolder.swift */,
 				B6D4C61F21FC1743004A95A8 /* RelayableDictionaryHolder.swift */,
@@ -259,7 +259,7 @@
 				B6FABD1421F752590045872A /* KVOAdapter.swift in Sources */,
 				B6FABD1A21F754490045872A /* DictionaryHolder.swift in Sources */,
 				B6FABD1221F751F40045872A /* NotificationAdapter.swift in Sources */,
-				B6FABD0B21F74E1D0045872A /* Holder.swift in Sources */,
+				B6FABD0B21F74E1D0045872A /* ValueHolder.swift in Sources */,
 				B6D4C61E21FC131F004A95A8 /* RelayableArrayHolder.swift in Sources */,
 				B6FABC4521F4BDB70045872A /* To.swift in Sources */,
 				B6FABC4D21F4BDB70045872A /* End.swift in Sources */,

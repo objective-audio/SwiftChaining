@@ -5,7 +5,7 @@
 import Foundation
 
 final public class KVOAdapter<Root: NSObject, T> {
-    private let holder: Holder<T>
+    private let holder: ValueHolder<T>
     private var observer: AnyObserver?
     private var observation: NSKeyValueObservation?
     private let lock = NSLock()
@@ -16,7 +16,7 @@ final public class KVOAdapter<Root: NSObject, T> {
     }
     
     public init(_ object: Root, keyPath: ReferenceWritableKeyPath<Root, T>) {
-        self.holder = Holder(object[keyPath: keyPath])
+        self.holder = ValueHolder(object[keyPath: keyPath])
         
         self.observer = self.holder.chain().do({ [weak object, unowned self] value in
             if self.lock.try() {
@@ -41,7 +41,7 @@ final public class KVOAdapter<Root: NSObject, T> {
         self.invalidate()
     }
     
-    public func chain() -> Holder<T>.SenderChain {
+    public func chain() -> ValueHolder<T>.SenderChain {
         return self.holder.chain()
     }
     

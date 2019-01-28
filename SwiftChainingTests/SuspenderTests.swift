@@ -13,7 +13,7 @@ class SuspenderTests: XCTestCase {
     }
 
     func testSuspend() {
-        let holder = Holder(0)
+        let holder = ValueHolder(0)
         
         var received: [Int] = []
         

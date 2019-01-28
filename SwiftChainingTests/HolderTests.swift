@@ -15,7 +15,7 @@ class HolderTests: XCTestCase {
     }
 
     func testHolder() {
-        let holder = Holder<Int>(0)
+        let holder = ValueHolder<Int>(0)
         
         XCTAssertEqual(holder.value, 0)
         
@@ -38,7 +38,7 @@ class HolderTests: XCTestCase {
 
     func testReceive() {
         let notifier = Notifier<Int>()
-        let holder = Holder<Int>(0)
+        let holder = ValueHolder<Int>(0)
         
         let observer = notifier.chain().receive(holder).end()
         

@@ -14,7 +14,7 @@ final class TableSection {
         case title(String?)
     }
     
-    let title: Holder<String?>
+    let title: ValueHolder<String?>
     let rows: CellDataArray
     
     private var pool = ObserverPool()
@@ -24,7 +24,7 @@ final class TableSection {
     }
     
     init(title: String?, rows: [CellData]) {
-        self.title = Holder(title)
+        self.title = ValueHolder(title)
         self.rows = RelayableArrayHolder(rows)
         
         self.pool += self.rows.chain().to { .rows($0) }.receive(self).end()

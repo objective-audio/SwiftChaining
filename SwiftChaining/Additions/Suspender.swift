@@ -18,7 +18,7 @@ public class Suspender {
         case invalidated
     }
     
-    public private(set) var state = Holder<State>(.suspended)
+    public private(set) var state = ValueHolder<State>(.suspended)
     
     private var observer: AnyObserver?
     private var chaining: ChainingHandler!

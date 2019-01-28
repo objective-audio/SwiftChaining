@@ -17,7 +17,7 @@ class SuspendViewController: UIViewController {
     var labelTextAdapter: KVOAdapter<UILabel, String?>!
     var arrowLabelTextAdapter: KVOAdapter<UILabel, String?>!
     var suspendedLabelTextAdapter: KVOAdapter<UILabel, String?>!
-    let holder = Holder<String>("0")
+    let holder = ValueHolder<String>("0")
     var pool = ObserverPool()
     var suspender: AnySuspender!
 

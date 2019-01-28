@@ -15,7 +15,7 @@ class AliasTests: XCTestCase {
     }
     
     func testChain() {
-        let holder = Holder(1)
+        let holder = ValueHolder(1)
         let alias = Alias(holder)
         
         var received: Int?
@@ -34,7 +34,7 @@ class AliasTests: XCTestCase {
     }
     
     func testRawValue() {
-        let holder = Holder(1)
+        let holder = ValueHolder(1)
         let alias = Alias(holder)
         
         XCTAssertEqual(alias.value, 1)

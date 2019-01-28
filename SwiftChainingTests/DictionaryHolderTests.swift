@@ -187,79 +187,79 @@ class DictionaryHolderTests: XCTestCase {
     }
     
     func testEventWithSendableElementsBySubscript() {
-        let dictionary = RelayableDictionaryHolder([10: Holder(10), 20: Holder(20)])
+        let dictionary = RelayableDictionaryHolder([10: ValueHolder(10), 20: ValueHolder(20)])
         
-        var received: [RelayableDictionaryHolder<Int, Holder<Int>>.Event] = []
+        var received: [RelayableDictionaryHolder<Int, ValueHolder<Int>>.Event] = []
         
         let observer = dictionary.chain().do { received.append($0) }.sync()
         
         XCTAssertEqual(received.count, 1)
         
         if case .fetched(let elements) = received[0] {
-            XCTAssertEqual(elements, [10: Holder<Int>(10), 20: Holder<Int>(20)])
+            XCTAssertEqual(elements, [10: ValueHolder<Int>(10), 20: ValueHolder<Int>(20)])
         } else {
             XCTAssertTrue(false)
         }
         
-        dictionary[100] = Holder(100)
+        dictionary[100] = ValueHolder(100)
         
         XCTAssertEqual(received.count, 2)
         
         if case .inserted(let key, let value) = received[1] {
-            XCTAssertEqual(value, Holder(100))
+            XCTAssertEqual(value, ValueHolder(100))
             XCTAssertEqual(key, 100)
         } else {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(dictionary.rawDictionary, [10: Holder(10), 20: Holder(20), 100: Holder(100)])
+        XCTAssertEqual(dictionary.rawDictionary, [10: ValueHolder(10), 20: ValueHolder(20), 100: ValueHolder(100)])
         
         dictionary[20] = nil
         
         XCTAssertEqual(received.count, 3)
         
         if case .removed(let key, let value) = received[2] {
-            XCTAssertEqual(value, Holder(20))
+            XCTAssertEqual(value, ValueHolder(20))
             XCTAssertEqual(key, 20)
         } else {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(dictionary.rawDictionary, [10: Holder(10), 100: Holder(100)])
+        XCTAssertEqual(dictionary.rawDictionary, [10: ValueHolder(10), 100: ValueHolder(100)])
         
         dictionary[10]?.value = 11
         
         XCTAssertEqual(received.count, 4)
         
         if case .relayed(let relayedValue, let key, let value) = received[3] {
-            XCTAssertEqual(value, Holder(11))
+            XCTAssertEqual(value, ValueHolder(11))
             XCTAssertEqual(key, 10)
             XCTAssertEqual(relayedValue, 11)
         } else {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(dictionary.rawDictionary, [10: Holder(11), 100: Holder(100)])
+        XCTAssertEqual(dictionary.rawDictionary, [10: ValueHolder(11), 100: ValueHolder(100)])
         
-        dictionary[100] = Holder(500)
+        dictionary[100] = ValueHolder(500)
         
         XCTAssertEqual(received.count, 5)
         
         if case .replaced(let key, let value) = received[4] {
-            XCTAssertEqual(value, Holder(500))
+            XCTAssertEqual(value, ValueHolder(500))
             XCTAssertEqual(key, 100)
         } else {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(dictionary.rawDictionary, [10: Holder(11), 100: Holder(500)])
+        XCTAssertEqual(dictionary.rawDictionary, [10: ValueHolder(11), 100: ValueHolder(500)])
         
-        dictionary.set([1000: Holder(1000), 999: Holder(999)])
+        dictionary.set([1000: ValueHolder(1000), 999: ValueHolder(999)])
         
         XCTAssertEqual(received.count, 6)
         
         if case .any(let dictionary) = received[5] {
-            XCTAssertEqual(dictionary, [1000: Holder(1000), 999: Holder(999)])
+            XCTAssertEqual(dictionary, [1000: ValueHolder(1000), 999: ValueHolder(999)])
         } else {
             XCTAssertTrue(false)
         }

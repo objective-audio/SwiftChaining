@@ -13,11 +13,11 @@ class RelayableAliasTests: XCTestCase {
     }
 
     func testChain() {
-        let innerHolder = Holder<Int>(0)
-        let relayableHolder = RelayableHolder<Holder<Int>>(innerHolder)
+        let innerHolder = ValueHolder<Int>(0)
+        let relayableHolder = RelayableHolder<ValueHolder<Int>>(innerHolder)
         let alias = Alias(relayableHolder)
         
-        var events: [RelayableHolder<Holder<Int>>.Event] = []
+        var events: [RelayableHolder<ValueHolder<Int>>.Event] = []
         
         let observer = alias.chain().do { event in events.append(event) }.sync()
         
@@ -27,7 +27,7 @@ class RelayableAliasTests: XCTestCase {
         
         XCTAssertEqual(events.count, 2)
         
-        let innerHolder2 = Holder<Int>(2)
+        let innerHolder2 = ValueHolder<Int>(2)
         relayableHolder.value = innerHolder2
         
         XCTAssertEqual(events.count, 3)
@@ -44,14 +44,14 @@ class RelayableAliasTests: XCTestCase {
     }
     
     func testValue() {
-        let innerHolder = Holder<Int>(0)
-        let relayableHolder = RelayableHolder<Holder<Int>>(innerHolder)
+        let innerHolder = ValueHolder<Int>(0)
+        let relayableHolder = RelayableHolder<ValueHolder<Int>>(innerHolder)
         let alias = Alias(relayableHolder)
         
-        XCTAssertEqual(alias.value, Holder<Int>(0))
+        XCTAssertEqual(alias.value, ValueHolder<Int>(0))
         
-        relayableHolder.value = Holder<Int>(1)
+        relayableHolder.value = ValueHolder<Int>(1)
         
-        XCTAssertEqual(alias.value, Holder<Int>(1))
+        XCTAssertEqual(alias.value, ValueHolder<Int>(1))
     }
 }

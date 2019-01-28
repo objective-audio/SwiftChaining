@@ -13,29 +13,29 @@ class RelayableHolderTests: XCTestCase {
     }
     
     func testFetchableValue() {
-        let innerHolder1 = Holder<Int>(0)
-        let holder = RelayableHolder<Holder<Int>>(innerHolder1)
+        let innerHolder1 = ValueHolder<Int>(0)
+        let holder = RelayableHolder<ValueHolder<Int>>(innerHolder1)
 
-        var events: [RelayableHolder<Holder<Int>>.Event] = []
+        var events: [RelayableHolder<ValueHolder<Int>>.Event] = []
 
         let observer = holder.chain().do { event in events.append(event) }.sync()
 
         XCTAssertEqual(events.count, 1)
-        XCTAssertEqual(events[0], .fetched(Holder<Int>(0)))
-        XCTAssertEqual(holder.value, Holder<Int>(0))
+        XCTAssertEqual(events[0], .fetched(ValueHolder<Int>(0)))
+        XCTAssertEqual(holder.value, ValueHolder<Int>(0))
 
         innerHolder1.value = 1
 
         XCTAssertEqual(events.count, 2)
         XCTAssertEqual(events[1], .relayed(1))
-        XCTAssertEqual(holder.value, Holder<Int>(1))
+        XCTAssertEqual(holder.value, ValueHolder<Int>(1))
 
-        let innerHolder2 = Holder<Int>(2)
+        let innerHolder2 = ValueHolder<Int>(2)
         holder.value = innerHolder2
 
         XCTAssertEqual(events.count, 3)
-        XCTAssertEqual(events[2], .current(Holder<Int>(2)))
-        XCTAssertEqual(holder.value, Holder<Int>(2))
+        XCTAssertEqual(events[2], .current(ValueHolder<Int>(2)))
+        XCTAssertEqual(holder.value, ValueHolder<Int>(2))
         
         innerHolder1.value = 10
         
@@ -45,7 +45,7 @@ class RelayableHolderTests: XCTestCase {
 
         XCTAssertEqual(events.count, 4)
         XCTAssertEqual(events[3], .relayed(3))
-        XCTAssertEqual(holder.value, Holder<Int>(3))
+        XCTAssertEqual(holder.value, ValueHolder<Int>(3))
         
         observer.invalidate()
     }
@@ -109,24 +109,24 @@ class RelayableHolderTests: XCTestCase {
     }
     
     func testReceive() {
-        let notifier = Notifier<Holder<Int>>()
-        let holder = RelayableHolder<Holder<Int>>(Holder<Int>(0))
+        let notifier = Notifier<ValueHolder<Int>>()
+        let holder = RelayableHolder<ValueHolder<Int>>(ValueHolder<Int>(0))
         
         let observer = notifier.chain().receive(holder).end()
         
-        XCTAssertEqual(holder.value, Holder<Int>(0))
+        XCTAssertEqual(holder.value, ValueHolder<Int>(0))
         
-        notifier.notify(value: Holder<Int>(1))
+        notifier.notify(value: ValueHolder<Int>(1))
         
-        XCTAssertEqual(holder.value, Holder<Int>(1))
+        XCTAssertEqual(holder.value, ValueHolder<Int>(1))
         
         observer.invalidate()
     }
     
     func testEqual() {
-        let holder1 = RelayableHolder(Holder(1))
-        let holder1b = RelayableHolder(Holder(1))
-        let holder2 = RelayableHolder(Holder(2))
+        let holder1 = RelayableHolder(ValueHolder(1))
+        let holder1b = RelayableHolder(ValueHolder(1))
+        let holder2 = RelayableHolder(ValueHolder(2))
         
         XCTAssertEqual(holder1, holder1b)
         XCTAssertNotEqual(holder1, holder2)

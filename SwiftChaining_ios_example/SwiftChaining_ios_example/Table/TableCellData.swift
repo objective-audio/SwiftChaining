@@ -56,11 +56,11 @@ protocol CellDataSettable {
 // MARK: - NormalCellData
 
 struct NormalCellData: AdditionalCellData {
-    let text: Holder<String>
-    let detailText: Holder<String>
+    let text: ValueHolder<String>
+    let detailText: ValueHolder<String>
     
     static func cellData(text: String, detailText: String) -> CellData {
-        let normalCellData = NormalCellData(text: Holder(text), detailText: Holder(detailText))
+        let normalCellData = NormalCellData(text: ValueHolder(text), detailText: ValueHolder(detailText))
         return CellData(canEdit: true, canMove: true, canTap: true, cellIdentifier: .normal, additional: normalCellData)
     }
 }
@@ -68,10 +68,10 @@ struct NormalCellData: AdditionalCellData {
 // MARK: - CustomCellData
 
 struct CustomCellData: AdditionalCellData {
-    var number: Holder<Int>
+    var number: ValueHolder<Int>
     
     static func cellData(number: Int) -> CellData {
-        let customCellData = CustomCellData(number: Holder(number))
+        let customCellData = CustomCellData(number: ValueHolder(number))
         return CellData(canEdit: false, canMove: false, canTap: false, cellIdentifier: .custom, additional: customCellData)
     }
 }
@@ -79,7 +79,7 @@ struct CustomCellData: AdditionalCellData {
 // MARK: - EditCellData
 
 struct EditCellData: AdditionalCellData {
-    let isEditing = Holder<Bool>(false)
+    let isEditing = ValueHolder<Bool>(false)
     var pool = ObserverPool()
     
     static func cellData() -> CellData {
