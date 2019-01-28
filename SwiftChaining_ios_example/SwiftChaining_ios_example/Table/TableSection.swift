@@ -6,7 +6,7 @@ import Foundation
 import Chaining
 
 final class TableSection {
-    typealias CellDataArray = RelayableArrayHolder<CellData>
+    typealias CellDataArray = ArrayHolder<CellData>
     
     enum Event {
         case all([CellData], String?)
@@ -25,7 +25,7 @@ final class TableSection {
     
     init(title: String?, rows: [CellData]) {
         self.title = ValueHolder(title)
-        self.rows = RelayableArrayHolder(rows)
+        self.rows = ArrayHolder(rows)
         
         self.pool += self.rows.chain().to { .rows($0) }.receive(self).end()
         self.pool += self.title.chain().to { .title($0) }.receive(self).end()

@@ -30,20 +30,6 @@ final class CellData {
         self.cellIdentifier = cellIdentifier
         self.additional = additional
     }
-    
-    func cellTapped() {
-        if self.canTap {
-            self.broadcast(value: .cellTapped)
-        }
-    }
-    
-    func accessoryTapped() {
-        self.broadcast(value: .accessoryTapped)
-    }
-}
-
-extension CellData: Sendable {
-    typealias SendValue = Event
 }
 
 protocol AdditionalCellData {

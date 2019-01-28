@@ -49,10 +49,18 @@ class TableController {
     }
     
     func cellTapped(at indexPath: IndexPath) {
-        self.cellData(for: indexPath).cellTapped()
+        let cellData = self.cellData(for: indexPath)
+        if cellData.canTap, let normalCellData = cellData.additional as? NormalCellData {
+            let message = "Cell Tapped\n\(normalCellData.text.value) \(normalCellData.detailText.value)\nIndexPath:\(indexPath)"
+            self.showAlertNotifier.notify(value: AlertData(title: "Table Example", message: message))
+        }
     }
     
     func accessoryTapped(at indexPath: IndexPath) {
-        self.cellData(for: indexPath).accessoryTapped()
+        let cellData = self.cellData(for: indexPath)
+        if let normalCellData = cellData.additional as? NormalCellData {
+            let message = "Accesorry Tapped\n\(normalCellData.text.value) \(normalCellData.detailText.value)\nIndexPath:\(indexPath)"
+            self.showAlertNotifier.notify(value: AlertData(title: "Table Example", message: message))
+        }
     }
 }
