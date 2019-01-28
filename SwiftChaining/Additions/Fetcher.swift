@@ -21,7 +21,7 @@ final public class Fetcher<T> {
 extension Fetcher: Fetchable {
     public typealias SendValue = T
     
-    public func fetchedValue() -> SendValue? {
+    public func fetchedValue() -> T? {
         return self.fetching()
     }
 }
