@@ -16,19 +16,19 @@ public struct Alias<T: Sendable> {
     }
 }
 
-extension Alias: HolderProtocol where T: HolderProtocol {
+extension Alias: ValueReadable where T: ValueReadable {
     public typealias Val = T.Val
     
     public var value: T.Val { return self.sender.value }
 }
 
-extension Alias: ArrayProtocol where T: ArrayProtocol {
+extension Alias: ArrayReadable where T: ArrayReadable {
     public typealias Element = T.Element
     
     public var rawArray: [T.Element] { return self.sender.rawArray }
 }
 
-extension Alias: DictionaryProtocol where T: DictionaryProtocol {
+extension Alias: DictionaryReadable where T: DictionaryReadable {
     public typealias Key = T.Key
     public typealias Value = T.Value
 

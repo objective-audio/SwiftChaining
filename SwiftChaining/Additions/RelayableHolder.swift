@@ -4,7 +4,7 @@
 
 import Foundation
 
-final public class RelayableHolder<T: Sendable>: HolderProtocol {
+final public class RelayableHolder<T: Sendable> {
     public enum Event {
         case fetched(T)
         case current(T)
@@ -36,6 +36,8 @@ final public class RelayableHolder<T: Sendable>: HolderProtocol {
         self.observer = self.rawValue.chain().do { [weak self] value in self?.broadcast(value: .relayed(value)) }.end()
     }
 }
+
+extension RelayableHolder: ValueReadable {}
 
 extension RelayableHolder: Fetchable {
     public typealias SendValue = Event

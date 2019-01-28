@@ -4,12 +4,12 @@
 
 import Foundation
 
-public protocol HolderProtocol {
+public protocol ValueReadable {
     associatedtype Val
     var value: Val { get }
 }
 
-final public class Holder<T>: HolderProtocol {
+final public class Holder<T> {
     public private(set) var rawValue: T
     private let lock = NSLock()
     
@@ -28,6 +28,8 @@ final public class Holder<T>: HolderProtocol {
         get { return self.rawValue }
     }
 }
+
+extension Holder: ValueReadable {}
 
 extension Holder: Fetchable {
     public typealias SendValue = T

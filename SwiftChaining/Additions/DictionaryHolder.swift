@@ -4,14 +4,14 @@
 
 import Foundation
 
-public protocol DictionaryProtocol {
+public protocol DictionaryReadable {
     associatedtype Key: Hashable
     associatedtype Value
     
     var rawDictionary: [Key: Value] { get }
 }
 
-extension DictionaryProtocol {
+extension DictionaryReadable {
     public var count: Int { return self.rawDictionary.count }
     public var capacity: Int { return self.rawDictionary.capacity }
 }
@@ -101,7 +101,7 @@ final public class DictionaryHolder<K: Hashable, V> {
     }
 }
 
-extension DictionaryHolder: DictionaryProtocol {}
+extension DictionaryHolder: DictionaryReadable {}
 
 extension DictionaryHolder: Fetchable {
     public typealias SendValue = Event

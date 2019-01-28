@@ -4,13 +4,13 @@
 
 import Foundation
 
-public protocol ArrayProtocol {
+public protocol ArrayReadable {
     associatedtype Element
     
     var rawArray: [Element] { get }
 }
 
-extension ArrayProtocol {
+extension ArrayReadable {
     public func element(at index: Int) -> Element {
         return self.rawArray[index]
     }
@@ -102,7 +102,7 @@ final public class ArrayHolder<E> {
     }
 }
 
-extension ArrayHolder: ArrayProtocol {}
+extension ArrayHolder: ArrayReadable {}
 
 extension ArrayHolder: Fetchable {
     public typealias SendValue = Event

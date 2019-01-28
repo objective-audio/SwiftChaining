@@ -142,7 +142,7 @@ final public class RelayableArrayHolder<Element: Sendable> {
     }
 }
 
-extension RelayableArrayHolder: ArrayProtocol {}
+extension RelayableArrayHolder: ArrayReadable {}
 
 extension RelayableArrayHolder: Fetchable {
     public typealias SendValue = Event

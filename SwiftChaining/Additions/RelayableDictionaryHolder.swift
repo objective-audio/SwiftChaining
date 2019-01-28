@@ -138,7 +138,7 @@ final public class RelayableDictionaryHolder<Key: Hashable, Value: Sendable> {
     }
 }
 
-extension RelayableDictionaryHolder: DictionaryProtocol {}
+extension RelayableDictionaryHolder: DictionaryReadable {}
 
 extension RelayableDictionaryHolder: Fetchable {
     public typealias SendValue = Event
