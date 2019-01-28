@@ -1,11 +1,11 @@
 //
-//  PropertyAlias.swift
+//  KVOAdapter.swift
 //
 
 import Foundation
 
-final public class KVOAlias<Root: NSObject, T> {
-    private let holder: Holder<T>
+final public class KVOAdapter<Root: NSObject, T> {
+    private let holder: ValueHolder<T>
     private var observer: AnyObserver?
     private var observation: NSKeyValueObservation?
     private let lock = NSLock()
@@ -15,8 +15,8 @@ final public class KVOAlias<Root: NSObject, T> {
         get { return self.holder.value }
     }
     
-    public init(object: Root, keyPath: ReferenceWritableKeyPath<Root, T>) {
-        self.holder = Holder(object[keyPath: keyPath])
+    public init(_ object: Root, keyPath: ReferenceWritableKeyPath<Root, T>) {
+        self.holder = ValueHolder(object[keyPath: keyPath])
         
         self.observer = self.holder.chain().do({ [weak object, unowned self] value in
             if self.lock.try() {
@@ -41,7 +41,7 @@ final public class KVOAlias<Root: NSObject, T> {
         self.invalidate()
     }
     
-    public func chain() -> Holder<T>.SenderChain {
+    public func chain() -> ValueHolder<T>.SenderChain {
         return self.holder.chain()
     }
     
@@ -53,7 +53,7 @@ final public class KVOAlias<Root: NSObject, T> {
     }
 }
 
-extension KVOAlias: Receivable {
+extension KVOAdapter: Receivable {
     public func receive(value: T) {
         self.value = value
     }

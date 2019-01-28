@@ -14,14 +14,14 @@ extension AnySendable {
 
 public protocol Sendable: AnySendable {
     associatedtype SendValue
+    
+    typealias SenderChain = Chain<SendValue, SendValue, Self>
 
     func getOrCreateCore() -> SenderCore<Self>
     func getCore() -> SenderCore<Self>?
 }
 
 extension Sendable {
-    public typealias SenderChain = Chain<SendValue, SendValue, Self>
-    
     public func broadcast(value: SendValue) {
         self.getCore()?.broadcast(value: value)
     }

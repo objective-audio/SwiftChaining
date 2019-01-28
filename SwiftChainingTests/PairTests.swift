@@ -15,8 +15,8 @@ class PairTests: XCTestCase {
     }
 
     func testEachFetchable() {
-        let main = Holder<Int>(1)
-        let sub = Holder<String>("2")
+        let main = ValueHolder<Int>(1)
+        let sub = ValueHolder<String>("2")
         
         var received: [(Int?, String?)] = []
         
@@ -32,7 +32,7 @@ class PairTests: XCTestCase {
     }
     
     func testMainFetchable() {
-        let main = Holder<Int>(0)
+        let main = ValueHolder<Int>(0)
         let sub = Notifier<String>()
         
         var received: (Int?, String?)?
@@ -57,7 +57,7 @@ class PairTests: XCTestCase {
     
     func testSubFetchable() {
         let main = Notifier<Int>()
-        let sub = Holder<String>("")
+        let sub = ValueHolder<String>("")
         
         var received: (Int?, String?)?
         

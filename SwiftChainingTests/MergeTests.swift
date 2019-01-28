@@ -15,7 +15,7 @@ class MergeTests: XCTestCase {
     }
 
     func testMergeToMain() {
-        let main = Holder<Int>(0)
+        let main = ValueHolder<Int>(0)
         let sub = Notifier<Int>()
         
         var received: Int?
@@ -37,7 +37,7 @@ class MergeTests: XCTestCase {
     
     func testMergeToSub() {
         let main = Notifier<Int>()
-        let sub = Holder<Int>(0)
+        let sub = ValueHolder<Int>(0)
         
         var received: Int?
         

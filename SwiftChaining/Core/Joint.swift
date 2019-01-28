@@ -10,7 +10,7 @@ public protocol AnyJoint: class {
 }
 
 public class Joint<Sender: Sendable> {
-    typealias Value = Sender.SendValue
+    internal typealias Value = Sender.SendValue
     
     public weak var sender: Sender?
     public var handlers: [Any] = []

@@ -4,10 +4,23 @@
 
 import Foundation
 
-final public class DictionaryHolder<Key: Hashable, Value> {
-    public private(set) var rawDictionary: [Key: Value] = [:]
+public protocol DictionaryReadable {
+    associatedtype Key: Hashable
+    associatedtype Value
     
+    var rawDictionary: [Key: Value] { get }
+}
+
+extension DictionaryReadable {
     public var count: Int { return self.rawDictionary.count }
+    public var capacity: Int { return self.rawDictionary.capacity }
+}
+
+final public class DictionaryHolder<K: Hashable, V> {
+    public typealias Key = K
+    public typealias Value = V
+    
+    public private(set) var rawDictionary: [Key: Value] = [:]
     
     public enum Event {
         case fetched([Key: Value])
@@ -23,10 +36,6 @@ final public class DictionaryHolder<Key: Hashable, Value> {
         self.init()
         
         self.set(dictionary)
-    }
-    
-    public var capacity: Int {
-        return self.rawDictionary.capacity
     }
     
     public func set(_ dictionary: [Key: Value]) {
@@ -91,6 +100,8 @@ final public class DictionaryHolder<Key: Hashable, Value> {
         }
     }
 }
+
+extension DictionaryHolder: DictionaryReadable {}
 
 extension DictionaryHolder: Fetchable {
     public typealias SendValue = Event

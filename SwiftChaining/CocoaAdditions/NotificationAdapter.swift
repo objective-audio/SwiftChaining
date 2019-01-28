@@ -1,10 +1,10 @@
 //
-//  NotificationAlias.swift
+//  NotificationAdapter.swift
 //
 
 import Foundation
 
-final public class NotificationAlias {
+final public class NotificationAdapter {
     private var observer: NSObjectProtocol?
     
     public convenience init(_ name: Notification.Name) {
@@ -28,6 +28,6 @@ final public class NotificationAlias {
     }
 }
 
-extension NotificationAlias: Sendable {
+extension NotificationAdapter: Sendable {
     public typealias SendValue = Notification
 }

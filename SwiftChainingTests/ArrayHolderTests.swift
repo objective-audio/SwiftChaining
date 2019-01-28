@@ -60,6 +60,18 @@ class ArrayHolderTests: XCTestCase {
         XCTAssertEqual(array.count, 0)
     }
     
+    func testMove() {
+        let array = ArrayHolder([1, 2, 3])
+        
+        array.move(from: 0, to: 1)
+        
+        XCTAssertEqual(array.rawArray, [2, 1, 3])
+        
+        array.move(from: 1, to: 2)
+        
+        XCTAssertEqual(array.rawArray, [2, 3, 1])
+    }
+    
     func testReserveCapacity() {
         let array = ArrayHolder<Int>([])
         
@@ -104,8 +116,6 @@ class ArrayHolderTests: XCTestCase {
         XCTAssertEqual(array[0], 10)
     }
     
-    
-    
     func testSubscriptSetWithRelayableValue() {
         let array = ArrayHolder([10])
         
@@ -113,8 +123,6 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(array.rawArray, [11])
     }
-    
-    
     
     func testEvent() {
         let array = ArrayHolder([10, 20])
@@ -183,11 +191,23 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(array.rawArray, [10, 500, 100])
         
-        array.replace([1000, 999])
+        array.move(from: 0, to: 1)
         
         XCTAssertEqual(received.count, 6)
         
-        if case .any(let elements) = received[5] {
+        if case .moved(let from, let to, let element) = received[5] {
+            XCTAssertEqual(element, 10)
+            XCTAssertEqual(from, 0)
+            XCTAssertEqual(to, 1)
+        } else {
+            XCTAssertTrue(false)
+        }
+        
+        array.replace([1000, 999])
+        
+        XCTAssertEqual(received.count, 7)
+        
+        if case .any(let elements) = received[6] {
             XCTAssertEqual(elements, [1000, 999])
         } else {
             XCTAssertTrue(false)
@@ -195,9 +215,9 @@ class ArrayHolderTests: XCTestCase {
         
         array.removeAll()
         
-        XCTAssertEqual(received.count, 7)
+        XCTAssertEqual(received.count, 8)
         
-        if case .any(let elements) = received[6] {
+        if case .any(let elements) = received[7] {
             XCTAssertEqual(elements, [])
         } else {
             XCTAssertTrue(false)

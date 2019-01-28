@@ -1,10 +1,10 @@
 //
-//  RelayableHolder.swift
+//  RelayableValueHolder.swift
 //
 
 import Foundation
 
-final public class RelayableHolder<T: Sendable> {
+final public class RelayableValueHolder<T: Sendable> {
     public enum Event {
         case fetched(T)
         case current(T)
@@ -37,7 +37,9 @@ final public class RelayableHolder<T: Sendable> {
     }
 }
 
-extension RelayableHolder: Fetchable {
+extension RelayableValueHolder: ValueReadable {}
+
+extension RelayableValueHolder: Fetchable {
     public typealias SendValue = Event
     
     public func fetchedValue() -> Event? {
@@ -45,7 +47,7 @@ extension RelayableHolder: Fetchable {
     }
 }
 
-extension RelayableHolder where T: Equatable {
+extension RelayableValueHolder where T: Equatable {
     public var value: T {
         set {
             if self.lock.try() {
@@ -61,20 +63,20 @@ extension RelayableHolder where T: Equatable {
     }
 }
 
-extension RelayableHolder: Receivable {
+extension RelayableValueHolder: Receivable {
     public func receive(value: T) {
         self.value = value
     }
 }
 
-extension RelayableHolder: Equatable where T: Equatable {
-    public static func == (lhs: RelayableHolder, rhs: RelayableHolder) -> Bool {
+extension RelayableValueHolder: Equatable where T: Equatable {
+    public static func == (lhs: RelayableValueHolder, rhs: RelayableValueHolder) -> Bool {
         return lhs.rawValue == rhs.rawValue
     }
 }
 
-extension RelayableHolder.Event: Equatable where T: Equatable, T.SendValue: Equatable {
-    public static func == (lhs: RelayableHolder.Event, rhs: RelayableHolder.Event) -> Bool {
+extension RelayableValueHolder.Event: Equatable where T: Equatable, T.SendValue: Equatable {
+    public static func == (lhs: RelayableValueHolder.Event, rhs: RelayableValueHolder.Event) -> Bool {
         switch (lhs, rhs) {
         case (.fetched(let lhsFetched), .fetched(let rhsFetched)):
             return lhsFetched == rhsFetched

@@ -1,5 +1,5 @@
 //
-//  KVOAliasTests.swift
+//  KVOAdapterTests.swift
 //
 
 import XCTest
@@ -9,7 +9,7 @@ fileprivate class TestObject: NSObject {
     @objc dynamic var text: String = "initial"
 }
 
-class KVOAliasTests: XCTestCase {
+class KVOAdapterTests: XCTestCase {
     override func setUp() {
         super.setUp()
     }
@@ -18,14 +18,14 @@ class KVOAliasTests: XCTestCase {
         super.tearDown()
     }
 
-    func testKVOAlias() {
+    func testKVOAdapter() {
         let object = TestObject()
         
-        let alias = KVOAlias(object: object, keyPath: \TestObject.text)
+        let adapter = KVOAdapter(object, keyPath: \TestObject.text)
         
         var received: [String] = []
         
-        let observer = alias.chain().do { received.append($0) }.sync()
+        let observer = adapter.chain().do { received.append($0) }.sync()
         
         XCTAssertEqual(received.count, 1)
         XCTAssertEqual(received[0], "initial")
@@ -41,16 +41,16 @@ class KVOAliasTests: XCTestCase {
     func testInvalidate() {
         let object = TestObject()
         
-        let alias = KVOAlias(object: object, keyPath: \TestObject.text)
+        let adapter = KVOAdapter(object, keyPath: \TestObject.text)
         
         var received: [String] = []
         
-        let observer = alias.chain().do { received.append($0) }.sync()
+        let observer = adapter.chain().do { received.append($0) }.sync()
         
         XCTAssertEqual(received.count, 1)
         XCTAssertEqual(received[0], "initial")
         
-        alias.invalidate()
+        adapter.invalidate()
         
         object.text = "test_value"
         
@@ -65,9 +65,9 @@ class KVOAliasTests: XCTestCase {
         var received: [String] = []
         
         do {
-            let alias = KVOAlias(object: object, keyPath: \TestObject.text)
+            let adapter = KVOAdapter(object, keyPath: \TestObject.text)
             
-            let observer = alias.chain().do { received.append($0) }.sync()
+            let observer = adapter.chain().do { received.append($0) }.sync()
             
             XCTAssertEqual(received.count, 1)
             XCTAssertEqual(received[0], "initial")

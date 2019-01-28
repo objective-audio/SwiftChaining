@@ -1,10 +1,15 @@
 //
-//  Holder.swift
+//  ValueHolder.swift
 //
 
 import Foundation
 
-final public class Holder<T> {
+public protocol ValueReadable {
+    associatedtype Val
+    var value: Val { get }
+}
+
+final public class ValueHolder<T> {
     public private(set) var rawValue: T
     private let lock = NSLock()
     
@@ -24,7 +29,9 @@ final public class Holder<T> {
     }
 }
 
-extension Holder: Fetchable {
+extension ValueHolder: ValueReadable {}
+
+extension ValueHolder: Fetchable {
     public typealias SendValue = T
     
     public func fetchedValue() -> T? {
@@ -32,7 +39,7 @@ extension Holder: Fetchable {
     }
 }
 
-extension Holder where T: Equatable {
+extension ValueHolder where T: Equatable {
     public var value: T {
         set {
             if self.lock.try() {
@@ -47,14 +54,14 @@ extension Holder where T: Equatable {
     }
 }
 
-extension Holder: Receivable {
+extension ValueHolder: Receivable {
     public func receive(value: T) {
         self.value = value
     }
 }
 
-extension Holder: Equatable where T: Equatable {
-    public static func == (lhs: Holder, rhs: Holder) -> Bool {
+extension ValueHolder: Equatable where T: Equatable {
+    public static func == (lhs: ValueHolder, rhs: ValueHolder) -> Bool {
         return lhs.rawValue == rhs.rawValue
     }
 }

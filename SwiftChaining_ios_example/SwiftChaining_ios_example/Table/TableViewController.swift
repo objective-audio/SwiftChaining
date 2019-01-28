@@ -23,6 +23,8 @@ class TableViewController: UITableViewController {
                 self?.tableView.deleteSections(IndexSet(integer: section), with: .automatic)
             case .replaced(let section, _):
                 self?.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
+            case .moved:
+                self?.tableView.reloadData()
             case .relayed(let sectionEvent, let section, _):
                 switch sectionEvent {
                 case .all, .title:
@@ -35,6 +37,8 @@ class TableViewController: UITableViewController {
                         self?.tableView.insertRows(at: [IndexPath(row: row, section: section)], with: .automatic)
                     case .removed(let row, _):
                         self?.tableView.deleteRows(at: [IndexPath(row: row, section: section)], with: .automatic)
+                    case .moved:
+                        self?.tableView.reloadData()
                     case .replaced(let row, let cellData):
                         if let cell = self?.tableView.cellForRow(at: IndexPath(row: row, section: section)) as? CellDataSettable {
                             cell.set(cellData: cellData)
@@ -43,6 +47,19 @@ class TableViewController: UITableViewController {
                 }
             }
         }).sync()
+        
+        self.pool += self.controller.isEditing.chain().do { [weak self] isEditing in self?.setEditing(isEditing, animated: true) }.sync()
+        
+        self.pool +=
+            self.controller.showAlertNotifier
+                .chain()
+                .do { [weak self] alertData in
+                    let alert = UIAlertController(title: alertData.title,
+                                                  message: alertData.message,
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self?.present(alert, animated: true, completion: nil)
+                }.end()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -58,7 +75,7 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellData = self.cellData(for: indexPath)
+        let cellData = self.controller.cellData(for: indexPath)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellData.cellIdentifier.rawValue, for: indexPath)
         
@@ -70,7 +87,11 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return self.cellData(for: indexPath).canEdit
+        return self.controller.cellData(for: indexPath).canEdit
+    }
+    
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return self.controller.cellData(for: indexPath).canEdit
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -79,13 +100,20 @@ class TableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        self.controller.moveRow(at: sourceIndexPath, to: destinationIndexPath)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.controller.cellTapped(at: indexPath)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        self.controller.accessoryTapped(at: indexPath)
+    }
+    
     @IBAction func add(_ sender: UIBarButtonItem) {
         self.controller.addRow()
-    }
-}
-
-extension TableViewController /* private */ {
-    private func cellData(for indexPath: IndexPath) -> AnyCellData {
-        return self.controller.sections[indexPath.section].rows[indexPath.row]
     }
 }

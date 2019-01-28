@@ -1,11 +1,11 @@
 //
-//  ReadOnlyArrayHolderTests.swift
+//  ArrayAliasTests.swift
 //
 
 import XCTest
 import Chaining
 
-class ReadOnlyArrayHolderTests: XCTestCase {
+class ArrayAliasTests: XCTestCase {
     override func setUp() {
         super.setUp()
     }
@@ -16,11 +16,11 @@ class ReadOnlyArrayHolderTests: XCTestCase {
     
     func testChain() {
         let holder = ArrayHolder([1, 2, 3])
-        let readOnlyHolder = ReadOnlyArrayHolder(holder)
+        let alias = Alias(holder)
         
         var received: [ArrayHolder<Int>.Event] = []
         
-        let observer = readOnlyHolder.chain().do({ event in
+        let observer = alias.chain().do({ event in
             received.append(event)
         }).sync()
         
@@ -48,28 +48,28 @@ class ReadOnlyArrayHolderTests: XCTestCase {
     
     func testRawArray() {
         let holder = ArrayHolder([1, 2, 3])
-        let readOnlyHolder = ReadOnlyArrayHolder(holder)
+        let alias = Alias(holder)
         
-        XCTAssertEqual(readOnlyHolder.rawArray, [1, 2, 3])
+        XCTAssertEqual(alias.rawArray, [1, 2, 3])
         
         holder.append(4)
         
-        XCTAssertEqual(readOnlyHolder.rawArray, [1, 2, 3, 4])
+        XCTAssertEqual(alias.rawArray, [1, 2, 3, 4])
     }
     
     func testProperties() {
         let holder = ArrayHolder([1, 2, 3])
-        let readOnlyHolder = ReadOnlyArrayHolder(holder)
+        let alias = Alias(holder)
         
-        XCTAssertEqual(readOnlyHolder.count, 3)
+        XCTAssertEqual(alias.count, 3)
         
-        XCTAssertEqual(readOnlyHolder.element(at: 0), 1)
-        XCTAssertEqual(readOnlyHolder.element(at: 1), 2)
-        XCTAssertEqual(readOnlyHolder.element(at: 2), 3)
+        XCTAssertEqual(alias.element(at: 0), 1)
+        XCTAssertEqual(alias.element(at: 1), 2)
+        XCTAssertEqual(alias.element(at: 2), 3)
         
-        XCTAssertEqual(readOnlyHolder.rawArray.capacity, readOnlyHolder.capacity)
+        XCTAssertEqual(alias.rawArray.capacity, alias.capacity)
         
-        XCTAssertEqual(readOnlyHolder.first, 1)
-        XCTAssertEqual(readOnlyHolder.last, 3)
+        XCTAssertEqual(alias.first, 1)
+        XCTAssertEqual(alias.last, 3)
     }
 }

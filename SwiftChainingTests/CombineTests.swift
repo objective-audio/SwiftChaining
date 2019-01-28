@@ -17,8 +17,8 @@ class CombineTests: XCTestCase {
     func testEachFetchable() {
         // メインとサブが両方Fetchableの場合
         
-        let main = Holder<Int>(1)
-        let sub = Holder<String>("2")
+        let main = ValueHolder<Int>(1)
+        let sub = ValueHolder<String>("2")
         
         var received: (Int, String)?
         
@@ -34,7 +34,7 @@ class CombineTests: XCTestCase {
     func testMainFetchable() {
         // メインのみFetchableの場合
         
-        let main = Holder<Int>(1)
+        let main = ValueHolder<Int>(1)
         let sub = Notifier<String>()
         
         var received: (Int, String)?
@@ -57,7 +57,7 @@ class CombineTests: XCTestCase {
         // サブのみFetchableの場合
         
         let main = Notifier<Int>()
-        let sub = Holder<String>("1")
+        let sub = ValueHolder<String>("1")
         
         var received: (Int, String)?
         

@@ -12,28 +12,40 @@ class RelayableArrayHolderTests: XCTestCase {
     override func tearDown() {
     }
     
+    func testMove() {
+        let array = RelayableArrayHolder([ValueHolder(1), ValueHolder(2), ValueHolder(3)])
+        
+        array.move(from: 1, to: 0)
+        
+        XCTAssertEqual(array.rawArray, [ValueHolder(2), ValueHolder(1), ValueHolder(3)])
+        
+        array.move(from: 1, to: 2)
+        
+        XCTAssertEqual(array.rawArray, [ValueHolder(2), ValueHolder(3), ValueHolder(1)])
+    }
+    
     func testReplaceElements() {
-        let holder1 = Holder(1)
-        let holder2 = Holder(2)
-        let holder3 = Holder(3)
+        let holder1 = ValueHolder(1)
+        let holder2 = ValueHolder(2)
+        let holder3 = ValueHolder(3)
         
         let array = RelayableArrayHolder([holder1, holder2])
         
         XCTAssertEqual(array.rawArray.count, 2)
-        XCTAssertEqual(array[0], Holder(1))
-        XCTAssertEqual(array[1], Holder(2))
+        XCTAssertEqual(array[0], ValueHolder(1))
+        XCTAssertEqual(array[1], ValueHolder(2))
         
         array.replace([holder3])
         
         XCTAssertEqual(array.count, 1)
-        XCTAssertEqual(array[0], Holder(3))
+        XCTAssertEqual(array[0], ValueHolder(3))
     }
     
     func testReplaceElement() {
-        let holder1 = Holder(1)
-        let holder2 = Holder(2)
-        let holder3 = Holder(3)
-        let holder2b = Holder(22)
+        let holder1 = ValueHolder(1)
+        let holder2 = ValueHolder(2)
+        let holder3 = ValueHolder(3)
+        let holder2b = ValueHolder(22)
         
         let array = RelayableArrayHolder([holder1, holder2, holder3])
         
@@ -46,116 +58,128 @@ class RelayableArrayHolderTests: XCTestCase {
     }
     
     func testSubscriptGet() {
-        let array = RelayableArrayHolder([Holder(10)])
+        let array = RelayableArrayHolder([ValueHolder(10)])
         
-        XCTAssertEqual(array[0], Holder(10))
+        XCTAssertEqual(array[0], ValueHolder(10))
     }
     
     func testSubscriptSet() {
-        let array = RelayableArrayHolder([Holder(10)])
+        let array = RelayableArrayHolder([ValueHolder(10)])
         
-        array[0] = Holder(11)
+        array[0] = ValueHolder(11)
         
-        XCTAssertEqual(array.rawArray, [Holder(11)])
+        XCTAssertEqual(array.rawArray, [ValueHolder(11)])
     }
     
     func testEvent() {
-        let array = RelayableArrayHolder([Holder(10), Holder(20)])
+        let array = RelayableArrayHolder([ValueHolder(10), ValueHolder(20)])
         
-        var received: [RelayableArrayHolder<Holder<Int>>.Event] = []
+        var received: [RelayableArrayHolder<ValueHolder<Int>>.Event] = []
         
         let observer = array.chain().do { received.append($0) }.sync()
         
         XCTAssertEqual(received.count, 1)
         
         if case .fetched(let elements) = received[0] {
-            XCTAssertEqual(elements, [Holder<Int>(10), Holder<Int>(20)])
+            XCTAssertEqual(elements, [ValueHolder<Int>(10), ValueHolder<Int>(20)])
         } else {
             XCTAssertTrue(false)
         }
         
-        array.append(Holder(100))
+        array.append(ValueHolder(100))
         
         XCTAssertEqual(received.count, 2)
         
         if case .inserted(let index, let element) = received[1] {
-            XCTAssertEqual(element, Holder(100))
+            XCTAssertEqual(element, ValueHolder(100))
             XCTAssertEqual(index, 2)
         } else {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.rawArray, [Holder(10), Holder(20), Holder(100)])
+        XCTAssertEqual(array.rawArray, [ValueHolder(10), ValueHolder(20), ValueHolder(100)])
         
-        array.insert(Holder(200), at: 1)
+        array.insert(ValueHolder(200), at: 1)
         
         XCTAssertEqual(received.count, 3)
         
         if case .inserted(let index, let element) = received[2] {
-            XCTAssertEqual(element, Holder(200))
+            XCTAssertEqual(element, ValueHolder(200))
             XCTAssertEqual(index, 1)
         } else {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.rawArray, [Holder(10), Holder(200), Holder(20), Holder(100)])
+        XCTAssertEqual(array.rawArray, [ValueHolder(10), ValueHolder(200), ValueHolder(20), ValueHolder(100)])
         
         array.remove(at: 2)
         
         XCTAssertEqual(received.count, 4)
         
         if case .removed(let index, let element) = received[3] {
-            XCTAssertEqual(element, Holder(20))
+            XCTAssertEqual(element, ValueHolder(20))
             XCTAssertEqual(index, 2)
         } else {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.rawArray, [Holder(10), Holder(200), Holder(100)])
+        XCTAssertEqual(array.rawArray, [ValueHolder(10), ValueHolder(200), ValueHolder(100)])
         
         array[0].value = 11
         
         XCTAssertEqual(received.count, 5)
         
         if case .relayed(let value, let index, let element) = received[4] {
-            XCTAssertEqual(element, Holder(11))
+            XCTAssertEqual(element, ValueHolder(11))
             XCTAssertEqual(index, 0)
             XCTAssertEqual(value, 11)
         } else {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.rawArray, [Holder(11), Holder(200), Holder(100)])
+        XCTAssertEqual(array.rawArray, [ValueHolder(11), ValueHolder(200), ValueHolder(100)])
         
-        array.replace(Holder(500), at: 1)
+        array.replace(ValueHolder(500), at: 1)
         
         XCTAssertEqual(received.count, 6)
         
         if case .replaced(let index, let element) = received[5] {
-            XCTAssertEqual(element, Holder(500))
+            XCTAssertEqual(element, ValueHolder(500))
             XCTAssertEqual(index, 1)
         } else {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.rawArray, [Holder(11), Holder(500), Holder(100)])
+        XCTAssertEqual(array.rawArray, [ValueHolder(11), ValueHolder(500), ValueHolder(100)])
         
-        array.replace([Holder(1000), Holder(999)])
+        array.move(from: 1, to: 0)
         
         XCTAssertEqual(received.count, 7)
         
-        if case .any(let elements) = received[6] {
-            XCTAssertEqual(elements, [Holder(1000), Holder(999)])
+        if case .moved(let from, let to, let element) = received[6] {
+            XCTAssertEqual(element, ValueHolder(500))
+            XCTAssertEqual(from, 1)
+            XCTAssertEqual(to, 0)
+        } else {
+            XCTAssertTrue(false)
+        }
+        
+        array.replace([ValueHolder(1000), ValueHolder(999)])
+        
+        XCTAssertEqual(received.count, 8)
+        
+        if case .any(let elements) = received[7] {
+            XCTAssertEqual(elements, [ValueHolder(1000), ValueHolder(999)])
         } else {
             XCTAssertTrue(false)
         }
         
         array[1].value = 998
         
-        XCTAssertEqual(received.count, 8)
+        XCTAssertEqual(received.count, 9)
         
-        if case .relayed(let value, let index, let element) = received[7] {
-            XCTAssertEqual(element, Holder(998))
+        if case .relayed(let value, let index, let element) = received[8] {
+            XCTAssertEqual(element, ValueHolder(998))
             XCTAssertEqual(index, 1)
             XCTAssertEqual(value, 998)
         } else {
@@ -164,9 +188,9 @@ class RelayableArrayHolderTests: XCTestCase {
         
         array.removeAll()
         
-        XCTAssertEqual(received.count, 9)
+        XCTAssertEqual(received.count, 10)
         
-        if case .any(let elements) = received[8] {
+        if case .any(let elements) = received[9] {
             XCTAssertEqual(elements, [])
         } else {
             XCTAssertTrue(false)
@@ -176,11 +200,11 @@ class RelayableArrayHolderTests: XCTestCase {
     }
     
     func testEventAfterInserted() {
-        let array = RelayableArrayHolder([Holder("a")])
+        let array = RelayableArrayHolder([ValueHolder("a")])
         
-        array.insert(Holder("b"), at: 0)
+        array.insert(ValueHolder("b"), at: 0)
         
-        var received: [RelayableArrayHolder<Holder<String>>.Event] = []
+        var received: [RelayableArrayHolder<ValueHolder<String>>.Event] = []
         
         let observer = array.chain().do { received.append($0) }.end()
         
@@ -191,7 +215,7 @@ class RelayableArrayHolderTests: XCTestCase {
         if case .relayed(let value, let index, let element) = received[0] {
             XCTAssertEqual(value, "c")
             XCTAssertEqual(index, 1)
-            XCTAssertEqual(element, Holder("c"))
+            XCTAssertEqual(element, ValueHolder("c"))
         } else {
             XCTAssertTrue(false)
         }

@@ -4,10 +4,31 @@
 
 import Foundation
 
-final public class ArrayHolder<Element> {
-    public private(set) var rawArray: [Element] = []
+public protocol ArrayReadable {
+    associatedtype Element
+    
+    var rawArray: [Element] { get }
+}
+
+extension ArrayReadable {
+    public func element(at index: Int) -> Element {
+        return self.rawArray[index]
+    }
     
     public var count: Int { return self.rawArray.count }
+    public var capacity: Int { return self.rawArray.capacity }
+    public var first: Element? { return self.rawArray.first }
+    public var last: Element? { return self.rawArray.last }
+    
+    public subscript(index: Int) -> Element {
+        get { return self.element(at: index) }
+    }
+}
+
+final public class ArrayHolder<E> {
+    public typealias Element = E
+    
+    public private(set) var rawArray: [Element] = []
     
     public enum Event {
         case fetched([Element])
@@ -15,6 +36,7 @@ final public class ArrayHolder<Element> {
         case inserted(at: Int, element: Element)
         case removed(at: Int, element: Element)
         case replaced(at: Int, element: Element)
+        case moved(from: Int, to: Int, element: Element)
     }
     
     public init() {}
@@ -23,22 +45,6 @@ final public class ArrayHolder<Element> {
         self.init()
         
         self.replace(elements)
-    }
-    
-    public func element(at index: Int) -> Element {
-        return self.rawArray[index]
-    }
-    
-    public var capacity: Int {
-        return self.rawArray.capacity
-    }
-    
-    public var first: Element? {
-        return self.rawArray.first
-    }
-    
-    public var last: Element? {
-        return self.rawArray.last
     }
     
     public func replace(_ elements: [Element]) {
@@ -78,6 +84,14 @@ final public class ArrayHolder<Element> {
         self.broadcast(value: .any([]))
     }
     
+    public func move(from: Int, to: Int) {
+        if from == to { return }
+        
+        let element = self.rawArray.remove(at: from)
+        self.rawArray.insert(element, at: to)
+        self.broadcast(value: .moved(from: from, to: to, element: element))
+    }
+    
     public func reserveCapacity(_ capacity: Int) {
         self.rawArray.reserveCapacity(capacity)
     }
@@ -87,6 +101,8 @@ final public class ArrayHolder<Element> {
         set(element) { self.replace(element, at: index) }
     }
 }
+
+extension ArrayHolder: ArrayReadable {}
 
 extension ArrayHolder: Fetchable {
     public typealias SendValue = Event

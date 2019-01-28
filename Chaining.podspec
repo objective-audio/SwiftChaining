@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Chaining'
-  s.version          = '0.5.3'
+  s.version          = '0.5.4'
   s.summary          = 'Binding values with method chaining.'
 
   s.homepage         = 'https://github.com/objective-audio/SwiftChaining'
@@ -20,7 +20,6 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.13'
 
   s.source_files = 'SwiftChaining/**/*'
-  s.osx.exclude_files = 'SwiftChaining/CocoaAdditions/UIControlAlias.swift'
 
   s.swift_version = '4.2'
 

@@ -51,7 +51,7 @@ class ObserverTests: XCTestCase {
         
         var pool = ObserverPool()
         let notifier = Notifier<Int>()
-        let holder = Holder<String>("0")
+        let holder = ValueHolder<String>("0")
         
         var notifierReceived: Int?
         var holderReceived: String?
@@ -86,7 +86,7 @@ class ObserverTests: XCTestCase {
         
         var pool = ObserverPool()
         let notifier = Notifier<Int>()
-        let holder = Holder<String>("0")
+        let holder = ValueHolder<String>("0")
         
         var notifierReceived: Int?
         var holderReceived: String?

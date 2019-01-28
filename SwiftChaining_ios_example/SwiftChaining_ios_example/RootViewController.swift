@@ -15,7 +15,7 @@ class RootViewController: UIViewController {
         
         if NSClassFromString("XCTestCase") == nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let viewController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
+            let viewController = storyboard.instantiateViewController(withIdentifier: "RootNavigation")
             self.present(viewController, animated: false, completion: nil)
         }
     }

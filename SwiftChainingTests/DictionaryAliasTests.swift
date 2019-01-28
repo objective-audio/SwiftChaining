@@ -1,11 +1,11 @@
 //
-//  ReadOnlyDictionaryHolderTests.swift
+//  DictionaryAliasTests.swift
 //
 
 import XCTest
 import Chaining
 
-class ReadOnlyDictionaryHolderTests: XCTestCase {
+class DictionaryAliasTests: XCTestCase {
     override func setUp() {
         super.setUp()
     }
@@ -16,11 +16,11 @@ class ReadOnlyDictionaryHolderTests: XCTestCase {
     
     func testChain() {
         let holder = DictionaryHolder(["1": 1, "2": 2])
-        let readOnlyHolder = ReadOnlyDictionaryHolder(holder)
+        let alias = Alias(holder)
         
         var received: [DictionaryHolder<String, Int>.Event] = []
         
-        let observer = readOnlyHolder.chain().do({ event in
+        let observer = alias.chain().do({ event in
             received.append(event)
         }).sync()
         
@@ -48,21 +48,21 @@ class ReadOnlyDictionaryHolderTests: XCTestCase {
     
     func testRawDictionary() {
         let holder = DictionaryHolder(["1": 1, "2": 2])
-        let readOnlyHolder = ReadOnlyDictionaryHolder(holder)
+        let alias = Alias(holder)
         
-        XCTAssertEqual(readOnlyHolder.rawDictionary, ["1": 1, "2": 2])
+        XCTAssertEqual(alias.rawDictionary, ["1": 1, "2": 2])
         
         holder["3"] = 3
         
-        XCTAssertEqual(readOnlyHolder.rawDictionary, ["1": 1, "2": 2, "3": 3])
+        XCTAssertEqual(alias.rawDictionary, ["1": 1, "2": 2, "3": 3])
     }
     
     func testProperties() {
         let holder = DictionaryHolder(["1": 1, "2": 2])
-        let readOnlyHolder = ReadOnlyDictionaryHolder(holder)
+        let alias = Alias(holder)
         
-        XCTAssertEqual(readOnlyHolder.count, 2)
+        XCTAssertEqual(alias.count, 2)
         
-        XCTAssertEqual(readOnlyHolder.capacity, readOnlyHolder.rawDictionary.capacity)
+        XCTAssertEqual(alias.capacity, alias.rawDictionary.capacity)
     }
 }
