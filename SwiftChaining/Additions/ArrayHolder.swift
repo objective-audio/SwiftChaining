@@ -25,6 +25,12 @@ extension ArrayReadable {
     }
 }
 
+extension Alias: ArrayReadable where T: ArrayReadable {
+    public typealias Element = T.Element
+    
+    public var rawArray: [T.Element] { return self.sender.rawArray }
+}
+
 final public class ArrayHolder<E> {
     public typealias Element = E
     
