@@ -48,11 +48,11 @@ class RelayableDictionaryAliasTests: XCTestCase {
         let holder = RelayableDictionaryHolder(["1": ValueHolder(1), "2": ValueHolder(2)])
         let alias = Alias(holder)
         
-        XCTAssertEqual(alias.rawDictionary, ["1": ValueHolder(1), "2": ValueHolder(2)])
+        XCTAssertEqual(alias.raw, ["1": ValueHolder(1), "2": ValueHolder(2)])
         
         holder["3"] = ValueHolder(3)
         
-        XCTAssertEqual(alias.rawDictionary, ["1": ValueHolder(1), "2": ValueHolder(2), "3": ValueHolder(3)])
+        XCTAssertEqual(alias.raw, ["1": ValueHolder(1), "2": ValueHolder(2), "3": ValueHolder(3)])
     }
     
     func testProperties() {
@@ -61,6 +61,6 @@ class RelayableDictionaryAliasTests: XCTestCase {
         
         XCTAssertEqual(alias.count, 2)
         
-        XCTAssertEqual(alias.capacity, alias.rawDictionary.capacity)
+        XCTAssertEqual(alias.capacity, alias.raw.capacity)
     }
 }

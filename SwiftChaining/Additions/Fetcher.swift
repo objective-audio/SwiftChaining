@@ -5,9 +5,9 @@
 import Foundation
 
 final public class Fetcher<T> {
-    private let fetching: () -> SendValue?
+    private let fetching: () -> T?
     
-    public init(fetching: @escaping () -> SendValue?) {
+    public init(fetching: @escaping () -> T?) {
         self.fetching = fetching
     }
     
@@ -21,7 +21,7 @@ final public class Fetcher<T> {
 extension Fetcher: Fetchable {
     public typealias SendValue = T
     
-    public func fetchedValue() -> SendValue? {
+    public func fetchedValue() -> T? {
         return self.fetching()
     }
 }

@@ -5,9 +5,9 @@
 import Foundation
 
 final public class RelayableArrayHolder<Element: Sendable> {
-    public private(set) var rawArray: [Element] = []
+    public private(set) var raw: [Element] = []
     
-    public var count: Int { return self.rawArray.count }
+    public var count: Int { return self.raw.count }
     
     public enum Event {
         case fetched([Element])
@@ -41,14 +41,14 @@ final public class RelayableArrayHolder<Element: Sendable> {
         }
         
         self.observerArray.removeAll()
-        self.rawArray.removeAll()
+        self.raw.removeAll()
         
         for element in elements {
             let wrapper = self.relayingWrapper(element: element)
             self.observerArray.append(wrapper)
         }
         
-        self.rawArray = elements
+        self.raw = elements
         
         self.broadcast(value: .any(elements))
     }
@@ -57,12 +57,12 @@ final public class RelayableArrayHolder<Element: Sendable> {
         let wrapper = self.relayingWrapper(element: element)
         self.observerArray.replaceSubrange(index...index, with: [wrapper])
         
-        self.rawArray.replaceSubrange(index...index, with: [element])
+        self.raw.replaceSubrange(index...index, with: [element])
         self.broadcast(value: .replaced(at: index, element: element))
     }
     
     public func append(_ element: Element) {
-        let index = self.rawArray.count
+        let index = self.raw.count
         self.insert(element, at: index)
     }
     
@@ -70,7 +70,7 @@ final public class RelayableArrayHolder<Element: Sendable> {
         let wrapper = self.relayingWrapper(element: element)
         self.observerArray.insert(wrapper, at: index)
         
-        self.rawArray.insert(element, at: index)
+        self.raw.insert(element, at: index)
         self.broadcast(value: .inserted(at: index, element: element))
     }
     
@@ -84,7 +84,7 @@ final public class RelayableArrayHolder<Element: Sendable> {
             }
         }
         
-        let element = self.rawArray.remove(at: index)
+        let element = self.raw.remove(at: index)
         
         self.broadcast(value: .removed(at: index, element: element))
         
@@ -92,7 +92,7 @@ final public class RelayableArrayHolder<Element: Sendable> {
     }
     
     public func removeAll(keepingCapacity keepCapacity: Bool = false) {
-        if self.rawArray.count == 0 {
+        if self.raw.count == 0 {
             return
         }
         
@@ -103,7 +103,7 @@ final public class RelayableArrayHolder<Element: Sendable> {
         }
         
         self.observerArray.removeAll(keepingCapacity: keepCapacity)
-        self.rawArray.removeAll(keepingCapacity: keepCapacity)
+        self.raw.removeAll(keepingCapacity: keepCapacity)
         
         self.broadcast(value: .any([]))
     }
@@ -111,17 +111,17 @@ final public class RelayableArrayHolder<Element: Sendable> {
     public func move(from: Int, to: Int) {
         if from == to { return }
         
-        let element = self.rawArray.remove(at: from)
+        let element = self.raw.remove(at: from)
         let wrapper = self.observerArray.remove(at: from)
         
-        self.rawArray.insert(element, at: to)
+        self.raw.insert(element, at: to)
         self.observerArray.insert(wrapper, at: to)
         
         self.broadcast(value: .moved(from: from, to: to, element: element))
     }
     
     public func reserveCapacity(_ capacity: Int) {
-        self.rawArray.reserveCapacity(capacity)
+        self.raw.reserveCapacity(capacity)
     }
     
     public subscript(index: Int) -> Element {
@@ -134,7 +134,7 @@ final public class RelayableArrayHolder<Element: Sendable> {
         wrapper.observer = element.chain().do({ [weak self, weak wrapper] value in
             if let self = self, let wrapper = wrapper {
                 if let index = self.observerArray.index(where: { return ObjectIdentifier($0) == ObjectIdentifier(wrapper) }) {
-                    self.broadcast(value: .relayed(value, at: index, element: self.rawArray[index]))
+                    self.broadcast(value: .relayed(value, at: index, element: self.raw[index]))
                 }
             }
         }).end()
@@ -148,6 +148,6 @@ extension RelayableArrayHolder: Fetchable {
     public typealias SendValue = Event
     
     public func fetchedValue() -> Event? {
-        return .fetched(self.rawArray)
+        return .fetched(self.raw)
     }
 }

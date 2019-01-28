@@ -48,11 +48,11 @@ class RelayableArrayAliasTests: XCTestCase {
         let holder = RelayableArrayHolder([ValueHolder(1), ValueHolder(2), ValueHolder(3)])
         let alias = Alias(holder)
         
-        XCTAssertEqual(alias.rawArray, [ValueHolder(1), ValueHolder(2), ValueHolder(3)])
+        XCTAssertEqual(alias.raw, [ValueHolder(1), ValueHolder(2), ValueHolder(3)])
         
         holder.append(ValueHolder(4))
         
-        XCTAssertEqual(alias.rawArray, [ValueHolder(1), ValueHolder(2), ValueHolder(3), ValueHolder(4)])
+        XCTAssertEqual(alias.raw, [ValueHolder(1), ValueHolder(2), ValueHolder(3), ValueHolder(4)])
     }
     
     func testProperties() {
@@ -65,7 +65,7 @@ class RelayableArrayAliasTests: XCTestCase {
         XCTAssertEqual(alias.element(at: 1), ValueHolder(2))
         XCTAssertEqual(alias.element(at: 2), ValueHolder(3))
         
-        XCTAssertEqual(alias.rawArray.capacity, alias.capacity)
+        XCTAssertEqual(alias.raw.capacity, alias.capacity)
         
         XCTAssertEqual(alias.first, ValueHolder(1))
         XCTAssertEqual(alias.last, ValueHolder(3))

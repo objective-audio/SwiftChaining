@@ -17,31 +17,31 @@ class DictionaryHolderTests: XCTestCase {
     func testInit() {
         let dictionary = DictionaryHolder<Int, String>()
         
-        XCTAssertEqual(dictionary.rawDictionary, [:])
+        XCTAssertEqual(dictionary.raw, [:])
     }
     
     func testSetDictionary() {
         let dictionary = DictionaryHolder([10: "10", 20: "20"])
         
-        XCTAssertEqual(dictionary.rawDictionary, [10: "10", 20: "20"])
+        XCTAssertEqual(dictionary.raw, [10: "10", 20: "20"])
         
         dictionary.set([30: "30", 40: "40", 50: "50"])
         
-        XCTAssertEqual(dictionary.rawDictionary, [30: "30", 40: "40", 50: "50"])
+        XCTAssertEqual(dictionary.raw, [30: "30", 40: "40", 50: "50"])
     }
 
     func testReplaceValue() {
         let dictionary = DictionaryHolder([10: "10", 20: "20", 30: "30"])
 
-        XCTAssertEqual(dictionary.rawDictionary, [10: "10", 20: "20", 30: "30"])
+        XCTAssertEqual(dictionary.raw, [10: "10", 20: "20", 30: "30"])
 
         dictionary.replace(key: 20, value: "200")
 
-        XCTAssertEqual(dictionary.rawDictionary, [10: "10", 20: "200", 30: "30"])
+        XCTAssertEqual(dictionary.raw, [10: "10", 20: "200", 30: "30"])
         
         dictionary[30] = "300"
         
-        XCTAssertEqual(dictionary.rawDictionary, [10: "10", 20: "200", 30: "300"])
+        XCTAssertEqual(dictionary.raw, [10: "10", 20: "200", 30: "300"])
     }
 
     func testRemoveValue() {
@@ -50,13 +50,13 @@ class DictionaryHolderTests: XCTestCase {
         let removed2 = array.removeValue(forKey: 2)
 
         XCTAssertEqual(array.count, 2)
-        XCTAssertEqual(array.rawDictionary, [1: "1", 3: "3"])
+        XCTAssertEqual(array.raw, [1: "1", 3: "3"])
         XCTAssertEqual(removed2, "2")
         
         let removed4 = array.removeValue(forKey: 4)
         
         XCTAssertEqual(array.count, 2)
-        XCTAssertEqual(array.rawDictionary, [1: "1", 3: "3"])
+        XCTAssertEqual(array.raw, [1: "1", 3: "3"])
         XCTAssertNil(removed4)
     }
 
@@ -98,15 +98,15 @@ class DictionaryHolderTests: XCTestCase {
         
         dictionary[20] = "20"
         
-        XCTAssertEqual(dictionary.rawDictionary, [10: "10", 20: "20"])
+        XCTAssertEqual(dictionary.raw, [10: "10", 20: "20"])
         
         dictionary[10] = "100"
         
-        XCTAssertEqual(dictionary.rawDictionary, [10: "100", 20: "20"])
+        XCTAssertEqual(dictionary.raw, [10: "100", 20: "20"])
         
         dictionary[20] = nil
         
-        XCTAssertEqual(dictionary.rawDictionary, [10: "100"])
+        XCTAssertEqual(dictionary.raw, [10: "100"])
     }
     
     func testEvent() {
@@ -146,7 +146,7 @@ class DictionaryHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
 
-        XCTAssertEqual(dictionary.rawDictionary, [10: "10", 100: "100"])
+        XCTAssertEqual(dictionary.raw, [10: "10", 100: "100"])
 
         dictionary.replace(key: 100, value: "500")
 
@@ -159,7 +159,7 @@ class DictionaryHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
 
-        XCTAssertEqual(dictionary.rawDictionary, [10: "10", 100: "500"])
+        XCTAssertEqual(dictionary.raw, [10: "10", 100: "500"])
 
         dictionary.set([1000: "1000", 999: "999"])
 
@@ -181,7 +181,7 @@ class DictionaryHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
 
-        XCTAssertEqual(dictionary.rawDictionary, [:])
+        XCTAssertEqual(dictionary.raw, [:])
         
         observer.invalidate()
     }
@@ -212,7 +212,7 @@ class DictionaryHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(dictionary.rawDictionary, [10: ValueHolder(10), 20: ValueHolder(20), 100: ValueHolder(100)])
+        XCTAssertEqual(dictionary.raw, [10: ValueHolder(10), 20: ValueHolder(20), 100: ValueHolder(100)])
         
         dictionary[20] = nil
         
@@ -225,7 +225,7 @@ class DictionaryHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(dictionary.rawDictionary, [10: ValueHolder(10), 100: ValueHolder(100)])
+        XCTAssertEqual(dictionary.raw, [10: ValueHolder(10), 100: ValueHolder(100)])
         
         dictionary[10]?.value = 11
         
@@ -239,7 +239,7 @@ class DictionaryHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(dictionary.rawDictionary, [10: ValueHolder(11), 100: ValueHolder(100)])
+        XCTAssertEqual(dictionary.raw, [10: ValueHolder(11), 100: ValueHolder(100)])
         
         dictionary[100] = ValueHolder(500)
         
@@ -252,7 +252,7 @@ class DictionaryHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(dictionary.rawDictionary, [10: ValueHolder(11), 100: ValueHolder(500)])
+        XCTAssertEqual(dictionary.raw, [10: ValueHolder(11), 100: ValueHolder(500)])
         
         dictionary.set([1000: ValueHolder(1000), 999: ValueHolder(999)])
         

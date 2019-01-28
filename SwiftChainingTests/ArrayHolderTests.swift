@@ -17,27 +17,27 @@ class ArrayHolderTests: XCTestCase {
     func testInit() {
         let array = ArrayHolder<Int>()
         
-        XCTAssertEqual(array.rawArray, [])
+        XCTAssertEqual(array.raw, [])
     }
     
     func testReplaceElements() {
         let array = ArrayHolder([10, 20])
         
-        XCTAssertEqual(array.rawArray, [10, 20])
+        XCTAssertEqual(array.raw, [10, 20])
         
         array.replace([30, 40, 50])
         
-        XCTAssertEqual(array.rawArray, [30, 40, 50])
+        XCTAssertEqual(array.raw, [30, 40, 50])
     }
     
     func testReplaceElementWithRelayableValue() {
         let array = ArrayHolder([10, 20, 30])
         
-        XCTAssertEqual(array.rawArray, [10, 20, 30])
+        XCTAssertEqual(array.raw, [10, 20, 30])
         
         array.replace(200, at: 1)
         
-        XCTAssertEqual(array.rawArray, [10, 200, 30])
+        XCTAssertEqual(array.raw, [10, 200, 30])
     }
     
     
@@ -48,7 +48,7 @@ class ArrayHolderTests: XCTestCase {
         let removed = array.remove(at: 1)
         
         XCTAssertEqual(array.count, 2)
-        XCTAssertEqual(array.rawArray, [1, 3])
+        XCTAssertEqual(array.raw, [1, 3])
         XCTAssertEqual(removed, 2)
     }
     
@@ -65,11 +65,11 @@ class ArrayHolderTests: XCTestCase {
         
         array.move(from: 0, to: 1)
         
-        XCTAssertEqual(array.rawArray, [2, 1, 3])
+        XCTAssertEqual(array.raw, [2, 1, 3])
         
         array.move(from: 1, to: 2)
         
-        XCTAssertEqual(array.rawArray, [2, 3, 1])
+        XCTAssertEqual(array.raw, [2, 3, 1])
     }
     
     func testReserveCapacity() {
@@ -121,7 +121,7 @@ class ArrayHolderTests: XCTestCase {
         
         array[0] = 11
         
-        XCTAssertEqual(array.rawArray, [11])
+        XCTAssertEqual(array.raw, [11])
     }
     
     func testEvent() {
@@ -150,7 +150,7 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.rawArray, [10, 20, 100])
+        XCTAssertEqual(array.raw, [10, 20, 100])
         
         array.insert(200, at: 1)
         
@@ -163,7 +163,7 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.rawArray, [10, 200, 20, 100])
+        XCTAssertEqual(array.raw, [10, 200, 20, 100])
         
         array.remove(at: 2)
         
@@ -176,7 +176,7 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.rawArray, [10, 200, 100])
+        XCTAssertEqual(array.raw, [10, 200, 100])
         
         array.replace(500, at: 1)
         
@@ -189,7 +189,7 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.rawArray, [10, 500, 100])
+        XCTAssertEqual(array.raw, [10, 500, 100])
         
         array.move(from: 0, to: 1)
         
@@ -223,7 +223,7 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.rawArray, [])
+        XCTAssertEqual(array.raw, [])
         
         observer.invalidate()
     }

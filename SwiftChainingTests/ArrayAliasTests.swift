@@ -50,11 +50,11 @@ class ArrayAliasTests: XCTestCase {
         let holder = ArrayHolder([1, 2, 3])
         let alias = Alias(holder)
         
-        XCTAssertEqual(alias.rawArray, [1, 2, 3])
+        XCTAssertEqual(alias.raw, [1, 2, 3])
         
         holder.append(4)
         
-        XCTAssertEqual(alias.rawArray, [1, 2, 3, 4])
+        XCTAssertEqual(alias.raw, [1, 2, 3, 4])
     }
     
     func testProperties() {
@@ -67,7 +67,7 @@ class ArrayAliasTests: XCTestCase {
         XCTAssertEqual(alias.element(at: 1), 2)
         XCTAssertEqual(alias.element(at: 2), 3)
         
-        XCTAssertEqual(alias.rawArray.capacity, alias.capacity)
+        XCTAssertEqual(alias.raw.capacity, alias.capacity)
         
         XCTAssertEqual(alias.first, 1)
         XCTAssertEqual(alias.last, 3)

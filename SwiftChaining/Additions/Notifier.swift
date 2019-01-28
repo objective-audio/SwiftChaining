@@ -9,7 +9,7 @@ final public class Notifier<T> {
     
     public init() {}
     
-    private func lockedSend(value: SendValue) {
+    private func lockedSend(value: T) {
         if self.lock.try() {
             self.broadcast(value: value)
             self.lock.unlock()
@@ -20,13 +20,13 @@ final public class Notifier<T> {
 extension Notifier: Sendable {
     public typealias SendValue = T
     
-    public func notify(value: SendValue) {
+    public func notify(value: T) {
         self.lockedSend(value: value)
     }
 }
 
 extension Notifier: Receivable {
-    public func receive(value: SendValue) {
+    public func receive(value: T) {
         self.lockedSend(value: value)
     }
 }

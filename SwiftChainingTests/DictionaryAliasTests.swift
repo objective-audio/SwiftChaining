@@ -50,11 +50,11 @@ class DictionaryAliasTests: XCTestCase {
         let holder = DictionaryHolder(["1": 1, "2": 2])
         let alias = Alias(holder)
         
-        XCTAssertEqual(alias.rawDictionary, ["1": 1, "2": 2])
+        XCTAssertEqual(alias.raw, ["1": 1, "2": 2])
         
         holder["3"] = 3
         
-        XCTAssertEqual(alias.rawDictionary, ["1": 1, "2": 2, "3": 3])
+        XCTAssertEqual(alias.raw, ["1": 1, "2": 2, "3": 3])
     }
     
     func testProperties() {
@@ -63,6 +63,6 @@ class DictionaryAliasTests: XCTestCase {
         
         XCTAssertEqual(alias.count, 2)
         
-        XCTAssertEqual(alias.capacity, alias.rawDictionary.capacity)
+        XCTAssertEqual(alias.capacity, alias.raw.capacity)
     }
 }
