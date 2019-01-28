@@ -1,11 +1,11 @@
 //
-//  RelayableHolderTests.swift
+//  RelayableValueHolderTests.swift
 //
 
 import XCTest
 import Chaining
 
-class RelayableHolderTests: XCTestCase {
+class RelayableValueHolderTests: XCTestCase {
     override func setUp() {
     }
 
