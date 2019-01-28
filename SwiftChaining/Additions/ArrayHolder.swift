@@ -7,18 +7,18 @@ import Foundation
 public protocol ArrayReadable {
     associatedtype Element
     
-    var rawArray: [Element] { get }
+    var raw: [Element] { get }
 }
 
 extension ArrayReadable {
     public func element(at index: Int) -> Element {
-        return self.rawArray[index]
+        return self.raw[index]
     }
     
-    public var count: Int { return self.rawArray.count }
-    public var capacity: Int { return self.rawArray.capacity }
-    public var first: Element? { return self.rawArray.first }
-    public var last: Element? { return self.rawArray.last }
+    public var count: Int { return self.raw.count }
+    public var capacity: Int { return self.raw.capacity }
+    public var first: Element? { return self.raw.first }
+    public var last: Element? { return self.raw.last }
     
     public subscript(index: Int) -> Element {
         get { return self.element(at: index) }
@@ -28,13 +28,13 @@ extension ArrayReadable {
 extension Alias: ArrayReadable where T: ArrayReadable {
     public typealias Element = T.Element
     
-    public var rawArray: [T.Element] { return self.sender.rawArray }
+    public var raw: [T.Element] { return self.sender.raw }
 }
 
 final public class ArrayHolder<E> {
     public typealias Element = E
     
-    public private(set) var rawArray: [Element] = []
+    public private(set) var raw: [Element] = []
     
     public enum Event {
         case fetched([Element])
@@ -54,38 +54,38 @@ final public class ArrayHolder<E> {
     }
     
     public func replace(_ elements: [Element]) {
-        self.rawArray = elements
+        self.raw = elements
         self.broadcast(value: .any(elements))
     }
     
     public func replace(_ element: Element, at index: Int) {
-        self.rawArray.replaceSubrange(index...index, with: [element])
+        self.raw.replaceSubrange(index...index, with: [element])
         self.broadcast(value: .replaced(at: index, element: element))
     }
     
     public func append(_ element: Element) {
-        let index = self.rawArray.count
+        let index = self.raw.count
         self.insert(element, at: index)
     }
     
     public func insert(_ element: Element, at index: Int) {
-        self.rawArray.insert(element, at: index)
+        self.raw.insert(element, at: index)
         self.broadcast(value: .inserted(at: index, element: element))
     }
     
     @discardableResult
     public func remove(at index: Int) -> Element {
-        let element = self.rawArray.remove(at: index)
+        let element = self.raw.remove(at: index)
         self.broadcast(value: .removed(at: index, element: element))
         return element
     }
     
     public func removeAll(keepingCapacity keepCapacity: Bool = false) {
-        if self.rawArray.count == 0 {
+        if self.raw.count == 0 {
             return
         }
         
-        self.rawArray.removeAll(keepingCapacity: keepCapacity)
+        self.raw.removeAll(keepingCapacity: keepCapacity)
         
         self.broadcast(value: .any([]))
     }
@@ -93,13 +93,13 @@ final public class ArrayHolder<E> {
     public func move(from: Int, to: Int) {
         if from == to { return }
         
-        let element = self.rawArray.remove(at: from)
-        self.rawArray.insert(element, at: to)
+        let element = self.raw.remove(at: from)
+        self.raw.insert(element, at: to)
         self.broadcast(value: .moved(from: from, to: to, element: element))
     }
     
     public func reserveCapacity(_ capacity: Int) {
-        self.rawArray.reserveCapacity(capacity)
+        self.raw.reserveCapacity(capacity)
     }
     
     public subscript(index: Int) -> Element {
@@ -114,6 +114,6 @@ extension ArrayHolder: Fetchable {
     public typealias SendValue = Event
     
     public func fetchedValue() -> Event? {
-        return .fetched(self.rawArray)
+        return .fetched(self.raw)
     }
 }
