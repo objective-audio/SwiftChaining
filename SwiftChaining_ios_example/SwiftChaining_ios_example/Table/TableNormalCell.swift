@@ -5,6 +5,21 @@
 import UIKit
 import Chaining
 
+struct NormalCellData: CellData {
+    let canEdit = true
+    let canMove = true
+    let canTap = true
+    let cellIdentifier = "NormalCell"
+    
+    let text: ValueHolder<String>
+    let detailText: ValueHolder<String>
+    
+    init(text: String, detailText: String) {
+        self.text = ValueHolder(text)
+        self.detailText = ValueHolder(detailText)
+    }
+}
+
 class TableNormalCell: UITableViewCell {
     private var pool = ObserverPool()
     private var textAdapter: KVOAdapter<UILabel, String?>!
@@ -32,7 +47,6 @@ extension TableNormalCell: CellDataSettable {
             fatalError()
         }
         
-        self.selectionStyle = normalCellData.canTap ? .default : .none
         self.pool += normalCellData.text.chain().to { String?($0) }.receive(self.textAdapter).sync()
         self.pool += normalCellData.detailText.chain().to { String?($0) }.receive(self.detailTextAdapter).sync()
     }

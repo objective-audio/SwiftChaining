@@ -79,6 +79,8 @@ class TableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellData.cellIdentifier, for: indexPath)
         
+        cell.selectionStyle = cellData.canTap ? .default : .none
+        
         if let cell = cell as? CellDataSettable {
             cell.set(cellData: cellData)
         }

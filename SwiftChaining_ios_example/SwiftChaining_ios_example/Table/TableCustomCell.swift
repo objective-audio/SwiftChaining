@@ -5,6 +5,19 @@
 import UIKit
 import Chaining
 
+struct CustomCellData: CellData {
+    let canEdit = false
+    let canMove = false
+    let canTap = false
+    let cellIdentifier = "CustomCell"
+    
+    var number: ValueHolder<Int>
+    
+    init(number: Int) {
+        self.number = ValueHolder(number)
+    }
+}
+
 class TableCustomCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var stepper: UIStepper!
@@ -36,7 +49,6 @@ extension TableCustomCell: CellDataSettable {
             fatalError()
         }
         
-        self.selectionStyle = cellData.canTap ? .default : .none
         self.pool += customCellData.number.chain().to { String($0) }.receive(self.labelAdapter).sync()
         self.pool += customCellData.number.chain().to { Double($0) }.receive(self.stepperAdapter).sync()
         self.pool += self.stepperAdapter.chain().to { Int($0) }.receive(customCellData.number).sync()
