@@ -24,7 +24,10 @@ class TableController {
         
         let section0 = TableSection(title: "Section 0",
                                     rows:[CustomCellData(number: 1), editCellData])
-        let section1 = TableSection(title: "Section 1", rows:[])
+        let section1 = TableSection(title: "Section 1",
+                                    rows:[NormalCellData(index: 0),
+                                          NormalCellData(index: 1),
+                                          NormalCellData(index: 2)])
         self.sections = SectionArray([section0, section1])
     }
     
@@ -34,7 +37,7 @@ class TableController {
     
     func addRow() {
         let index = self.sections[1].rows.count
-        let cellData = NormalCellData(text: "cell \(index)", detailText: "detail \(index)")
+        let cellData = NormalCellData(index: index)
         self.sections[1].rows.append(cellData)
     }
     

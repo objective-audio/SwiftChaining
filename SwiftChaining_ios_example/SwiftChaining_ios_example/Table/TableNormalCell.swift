@@ -18,6 +18,10 @@ struct NormalCellData: CellData {
         self.text = ValueHolder(text)
         self.detailText = ValueHolder(detailText)
     }
+    
+    init(index: Int) {
+        self.init(text: "cell \(index)", detailText: "detail \(index)")
+    }
 }
 
 class TableNormalCell: UITableViewCell {
