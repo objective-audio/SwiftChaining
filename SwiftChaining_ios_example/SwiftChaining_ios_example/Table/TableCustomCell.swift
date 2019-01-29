@@ -32,12 +32,13 @@ extension TableCustomCell: CellDataSettable {
     func set(cellData: CellData) {
         self.pool.invalidate()
         
-        self.selectionStyle = cellData.canTap ? .default : .none
-        
-        if let customCellData = cellData.additional as? CustomCellData {
-            self.pool += customCellData.number.chain().to { String($0) }.receive(self.labelAdapter).sync()
-            self.pool += customCellData.number.chain().to { Double($0) }.receive(self.stepperAdapter).sync()
-            self.pool += self.stepperAdapter.chain().to { Int($0) }.receive(customCellData.number).sync()
+        guard let customCellData = cellData as? CustomCellData else {
+            fatalError()
         }
+        
+        self.selectionStyle = cellData.canTap ? .default : .none
+        self.pool += customCellData.number.chain().to { String($0) }.receive(self.labelAdapter).sync()
+        self.pool += customCellData.number.chain().to { Double($0) }.receive(self.stepperAdapter).sync()
+        self.pool += self.stepperAdapter.chain().to { Int($0) }.receive(customCellData.number).sync()
     }
 }

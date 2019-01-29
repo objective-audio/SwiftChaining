@@ -5,34 +5,11 @@
 import Foundation
 import Chaining
 
-enum CellIdentifier: String {
-    case normal = "NormalCell"
-    case custom = "CustomCell"
-    case edit = "EditCell"
-}
-
-final class CellData {
-    let canEdit: Bool
-    let canMove: Bool
-    let canTap: Bool
-    let cellIdentifier: CellIdentifier
-    let additional: AdditionalCellData
-    
-    enum Event {
-        case cellTapped
-        case accessoryTapped
-    }
-    
-    init(canEdit: Bool, canMove: Bool, canTap: Bool, cellIdentifier: CellIdentifier, additional: AdditionalCellData) {
-        self.canEdit = canEdit
-        self.canMove = canMove
-        self.canTap = canTap
-        self.cellIdentifier = cellIdentifier
-        self.additional = additional
-    }
-}
-
-protocol AdditionalCellData {
+protocol CellData {
+    var canEdit: Bool { get }
+    var canMove: Bool { get }
+    var canTap: Bool { get }
+    var cellIdentifier: String { get }
 }
 
 protocol CellDataSettable {
@@ -41,35 +18,43 @@ protocol CellDataSettable {
 
 // MARK: - NormalCellData
 
-struct NormalCellData: AdditionalCellData {
+struct NormalCellData: CellData {
+    let canEdit = true
+    let canMove = true
+    let canTap = true
+    let cellIdentifier = "NormalCell"
+    
     let text: ValueHolder<String>
     let detailText: ValueHolder<String>
     
-    static func cellData(text: String, detailText: String) -> CellData {
-        let normalCellData = NormalCellData(text: ValueHolder(text), detailText: ValueHolder(detailText))
-        return CellData(canEdit: true, canMove: true, canTap: true, cellIdentifier: .normal, additional: normalCellData)
+    init(text: String, detailText: String) {
+        self.text = ValueHolder(text)
+        self.detailText = ValueHolder(detailText)
     }
 }
 
 // MARK: - CustomCellData
 
-struct CustomCellData: AdditionalCellData {
+struct CustomCellData: CellData {
+    let canEdit = false
+    let canMove = false
+    let canTap = false
+    let cellIdentifier = "CustomCell"
+    
     var number: ValueHolder<Int>
     
-    static func cellData(number: Int) -> CellData {
-        let customCellData = CustomCellData(number: ValueHolder(number))
-        return CellData(canEdit: false, canMove: false, canTap: false, cellIdentifier: .custom, additional: customCellData)
+    init(number: Int) {
+        self.number = ValueHolder(number)
     }
 }
 
 // MARK: - EditCellData
 
-struct EditCellData: AdditionalCellData {
-    let isEditing = ValueHolder<Bool>(false)
-    var pool = ObserverPool()
+struct EditCellData: CellData {
+    let canEdit = false
+    let canMove = false
+    let canTap = false
+    let cellIdentifier = "EditCell"
     
-    static func cellData() -> CellData {
-        let editCellData = EditCellData()
-        return CellData(canEdit: false, canMove: false, canTap: false, cellIdentifier: .edit, additional: editCellData)
-    }
+    let isEditing = ValueHolder<Bool>(false)
 }

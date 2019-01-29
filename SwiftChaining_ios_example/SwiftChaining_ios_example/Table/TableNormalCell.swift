@@ -28,11 +28,12 @@ extension TableNormalCell: CellDataSettable {
     func set(cellData: CellData) {
         self.pool.invalidate()
         
-        self.selectionStyle = cellData.canTap ? .default : .none
-        
-        if let normalCellData = cellData.additional as? NormalCellData {
-            self.pool += normalCellData.text.chain().to { String?($0) }.receive(self.textAdapter).sync()
-            self.pool += normalCellData.detailText.chain().to { String?($0) }.receive(self.detailTextAdapter).sync()
+        guard let normalCellData = cellData as? NormalCellData else {
+            fatalError()
         }
+        
+        self.selectionStyle = normalCellData.canTap ? .default : .none
+        self.pool += normalCellData.text.chain().to { String?($0) }.receive(self.textAdapter).sync()
+        self.pool += normalCellData.detailText.chain().to { String?($0) }.receive(self.detailTextAdapter).sync()
     }
 }

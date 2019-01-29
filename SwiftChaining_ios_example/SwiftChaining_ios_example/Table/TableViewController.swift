@@ -77,7 +77,7 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellData = self.controller.cellData(for: indexPath)
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellData.cellIdentifier.rawValue, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellData.cellIdentifier, for: indexPath)
         
         if let cell = cell as? CellDataSettable {
             cell.set(cellData: cellData)

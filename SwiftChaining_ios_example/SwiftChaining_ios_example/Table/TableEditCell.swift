@@ -30,11 +30,12 @@ extension TableEditCell: CellDataSettable {
     func set(cellData: CellData) {
         self.pool.invalidate()
         
-        self.selectionStyle = cellData.canTap ? .default : .none
-        
-        if let editCellData = cellData.additional as? EditCellData {
-            self.pool += editCellData.isEditing.chain().receive(self.switchIsOnAdapter).sync()
-            self.pool += self.switchChangedAdapter.chain().to { $0.isOn }.receive(editCellData.isEditing).end()
+        guard let editCellData = cellData as? EditCellData else {
+            fatalError()
         }
+        
+        self.selectionStyle = cellData.canTap ? .default : .none
+        self.pool += editCellData.isEditing.chain().receive(self.switchIsOnAdapter).sync()
+        self.pool += self.switchChangedAdapter.chain().to { $0.isOn }.receive(editCellData.isEditing).end()
     }
 }
