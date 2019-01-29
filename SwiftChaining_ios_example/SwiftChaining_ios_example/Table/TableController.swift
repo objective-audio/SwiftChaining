@@ -19,12 +19,15 @@ class TableController {
     let showAlertNotifier = Notifier<AlertData>()
     
     init() {
-        let editCellData = EditCellData.cellData()
-        self.isEditing = Alias((editCellData.additional as! EditCellData).isEditing)
+        let editCellData = EditCellData()
+        self.isEditing = Alias(editCellData.isEditing)
         
         let section0 = TableSection(title: "Section 0",
-                                    rows:[CustomCellData.cellData(number: 1), editCellData])
-        let section1 = TableSection(title: "Section 1", rows:[])
+                                    rows:[CustomCellData(number: 1), editCellData])
+        let section1 = TableSection(title: "Section 1",
+                                    rows:[NormalCellData(index: 0),
+                                          NormalCellData(index: 1),
+                                          NormalCellData(index: 2)])
         self.sections = SectionArray([section0, section1])
     }
     
@@ -34,7 +37,7 @@ class TableController {
     
     func addRow() {
         let index = self.sections[1].rows.count
-        let cellData = NormalCellData.cellData(text: "cell \(index)", detailText: "detail \(index)")
+        let cellData = NormalCellData(index: index)
         self.sections[1].rows.append(cellData)
     }
     
@@ -50,7 +53,7 @@ class TableController {
     
     func cellTapped(at indexPath: IndexPath) {
         let cellData = self.cellData(for: indexPath)
-        if cellData.canTap, let normalCellData = cellData.additional as? NormalCellData {
+        if cellData.canTap, let normalCellData = cellData as? NormalCellData {
             let message = "Cell Tapped\n\(normalCellData.text.value) \(normalCellData.detailText.value)\nIndexPath:\(indexPath)"
             self.showAlertNotifier.notify(value: AlertData(title: "Table Example", message: message))
         }
@@ -58,7 +61,7 @@ class TableController {
     
     func accessoryTapped(at indexPath: IndexPath) {
         let cellData = self.cellData(for: indexPath)
-        if let normalCellData = cellData.additional as? NormalCellData {
+        if let normalCellData = cellData as? NormalCellData {
             let message = "Accesorry Tapped\n\(normalCellData.text.value) \(normalCellData.detailText.value)\nIndexPath:\(indexPath)"
             self.showAlertNotifier.notify(value: AlertData(title: "Table Example", message: message))
         }
