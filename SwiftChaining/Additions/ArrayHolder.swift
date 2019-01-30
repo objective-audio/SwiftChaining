@@ -90,7 +90,7 @@ final public class ArrayHolder<E> {
         self.broadcast(value: .any([]))
     }
     
-    public func move(from: Int, to: Int) {
+    public func move(at from: Int, to: Int) {
         if from == to { return }
         
         let element = self.raw.remove(at: from)
