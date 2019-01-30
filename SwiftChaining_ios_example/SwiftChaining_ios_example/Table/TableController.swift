@@ -47,7 +47,7 @@ class TableController {
     
     func moveRow(at from: IndexPath, to: IndexPath) {
         if from.section == to.section {
-            self.sections[from.section].rows.move(from: from.row, to: to.row)
+            self.sections[from.section].rows.move(at: from.row, to: to.row)
         }
     }
     

@@ -63,11 +63,11 @@ class ArrayHolderTests: XCTestCase {
     func testMove() {
         let array = ArrayHolder([1, 2, 3])
         
-        array.move(from: 0, to: 1)
+        array.move(at: 0, to: 1)
         
         XCTAssertEqual(array.raw, [2, 1, 3])
         
-        array.move(from: 1, to: 2)
+        array.move(at: 1, to: 2)
         
         XCTAssertEqual(array.raw, [2, 3, 1])
     }
@@ -191,7 +191,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(array.raw, [10, 500, 100])
         
-        array.move(from: 0, to: 1)
+        array.move(at: 0, to: 1)
         
         XCTAssertEqual(received.count, 6)
         
