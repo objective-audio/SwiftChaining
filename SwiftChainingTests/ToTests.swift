@@ -19,7 +19,7 @@ class ToTests: XCTestCase {
         
         var received: String?
         
-        let observer = notifier.chain().to("text").do { received = $0 }.end()
+        let observer = notifier.chain().toValue("text").do { received = $0 }.end()
         
         XCTAssertNil(received)
         

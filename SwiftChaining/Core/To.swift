@@ -21,7 +21,7 @@ extension Chain {
         }
     }
     
-    public func to<Next>(_ value: Next) -> ToChain<Next> {
+    public func toValue<Next>(_ value: Next) -> ToChain<Next> {
         return self.to() { _ in value }
     }
     
