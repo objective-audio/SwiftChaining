@@ -62,3 +62,13 @@ extension Suspender: AnySuspender {
         }
     }
 }
+
+extension Suspender: Receivable {
+    public func receive(value: Bool) {
+        if value {
+            self.resume()
+        } else {
+            self.suspend()
+        }
+    }
+}
