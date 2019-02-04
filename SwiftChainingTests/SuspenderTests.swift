@@ -58,4 +58,29 @@ class SuspenderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 3)
     }
+    
+    func testReceive() {
+        var calledCount: Int = 0
+        
+        let suspender = Suspender {
+            calledCount += 1
+            return nil
+        }
+        
+        let holder = ValueHolder(false)
+        
+        let observer = holder.chain().receive(suspender).sync()
+        
+        XCTAssertEqual(calledCount, 0)
+        
+        holder.value = true
+        
+        XCTAssertEqual(calledCount, 1)
+        
+        holder.value = false
+        
+        XCTAssertEqual(calledCount, 1)
+        
+        observer.invalidate()
+    }
 }
