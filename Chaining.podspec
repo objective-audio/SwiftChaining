@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Chaining'
-  s.version          = '0.5.6'
+  s.version          = '0.5.7'
   s.summary          = 'Binding values with method chaining.'
 
   s.homepage         = 'https://github.com/objective-audio/SwiftChaining'
