@@ -40,7 +40,7 @@ extension ValueHolder: ValueReadable {}
 extension ValueHolder: Fetchable {
     public typealias SendValue = T
     
-    public func fetchedValue() -> T? {
+    public func fetchedValue() -> T {
         return self.value
     }
 }

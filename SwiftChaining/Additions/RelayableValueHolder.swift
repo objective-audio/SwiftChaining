@@ -42,7 +42,7 @@ extension RelayableValueHolder: ValueReadable {}
 extension RelayableValueHolder: Fetchable {
     public typealias SendValue = Event
     
-    public func fetchedValue() -> Event? {
+    public func fetchedValue() -> Event {
         return .fetched(self.value)
     }
 }
