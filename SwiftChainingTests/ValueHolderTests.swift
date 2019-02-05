@@ -50,4 +50,22 @@ class ValueHolderTests: XCTestCase {
         
         observer.invalidate()
     }
+    
+    func testOptional() {
+        let holder = ValueHolder<Int?>(nil)
+        
+        var received: [Int?] = []
+        
+        let observer = holder.chain().do { received.append($0) }.sync()
+        
+        XCTAssertEqual(received.count, 1)
+        XCTAssertNil(received[0])
+        
+        holder.value = 1
+        
+        XCTAssertEqual(received.count, 2)
+        XCTAssertEqual(received[1], 1)
+        
+        observer.invalidate()
+    }
 }
