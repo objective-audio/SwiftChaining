@@ -147,7 +147,7 @@ extension RelayableArrayHolder: ArrayReadable {}
 extension RelayableArrayHolder: Fetchable {
     public typealias SendValue = Event
     
-    public func fetchedValue() -> Event? {
+    public func fetchedValue() -> Event {
         return .fetched(self.raw)
     }
 }

@@ -113,7 +113,7 @@ extension ArrayHolder: ArrayReadable {}
 extension ArrayHolder: Fetchable {
     public typealias SendValue = Event
     
-    public func fetchedValue() -> Event? {
+    public func fetchedValue() -> Event {
         return .fetched(self.raw)
     }
 }

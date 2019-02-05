@@ -12,16 +12,14 @@ final public class Fetcher<T> {
     }
     
     public func broadcast() {
-        if let fetched = self.fetchedValue() {
-            self.broadcast(value: fetched)
-        }
+        self.broadcast(value: self.fetchedValue())
     }
 }
 
 extension Fetcher: Fetchable {
     public typealias SendValue = T
     
-    public func fetchedValue() -> T? {
+    public func fetchedValue() -> T {
         return self.fetching()
     }
 }
