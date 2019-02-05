@@ -5,9 +5,9 @@
 import Foundation
 
 final public class Fetcher<T> {
-    private let fetching: () -> T?
+    private let fetching: () -> T
     
-    public init(fetching: @escaping () -> T?) {
+    public init(fetching: @escaping () -> T) {
         self.fetching = fetching
     }
     
