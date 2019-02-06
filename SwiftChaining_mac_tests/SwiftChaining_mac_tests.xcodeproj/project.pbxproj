@@ -12,7 +12,6 @@
 		B6D4C62C21FC308E004A95A8 /* RelayableDictionaryHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62A21FC308E004A95A8 /* RelayableDictionaryHolderTests.swift */; };
 		B6D4C63321FC3488004A95A8 /* RelayableDictionaryAliasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C63121FC3487004A95A8 /* RelayableDictionaryAliasTests.swift */; };
 		B6D4C63421FC3488004A95A8 /* RelayableArrayAliasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C63221FC3487004A95A8 /* RelayableArrayAliasTests.swift */; };
-		B6D4C63821FC3DF9004A95A8 /* SuspenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C63721FC3DF8004A95A8 /* SuspenderTests.swift */; };
 		B6FABBEC21F4B9E40045872A /* Chaining.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FABBEB21F4B9E40045872A /* Chaining.framework */; };
 		B6FABC0021F4B9F50045872A /* KVOAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABBEE21F4B9F50045872A /* KVOAdapterTests.swift */; };
 		B6FABC0121F4B9F50045872A /* DictionaryHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABBEF21F4B9F50045872A /* DictionaryHolderTests.swift */; };
@@ -39,7 +38,6 @@
 		B6D4C62A21FC308E004A95A8 /* RelayableDictionaryHolderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableDictionaryHolderTests.swift; sourceTree = "<group>"; };
 		B6D4C63121FC3487004A95A8 /* RelayableDictionaryAliasTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableDictionaryAliasTests.swift; sourceTree = "<group>"; };
 		B6D4C63221FC3487004A95A8 /* RelayableArrayAliasTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableArrayAliasTests.swift; sourceTree = "<group>"; };
-		B6D4C63721FC3DF8004A95A8 /* SuspenderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuspenderTests.swift; sourceTree = "<group>"; };
 		B6FABBE121F4B9BF0045872A /* SwiftChaining_mac_tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftChaining_mac_tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6FABBE621F4B9BF0045872A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6FABBEB21F4B9E40045872A /* Chaining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Chaining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,7 +130,6 @@
 				B6D4C63121FC3487004A95A8 /* RelayableDictionaryAliasTests.swift */,
 				B6D4C62A21FC308E004A95A8 /* RelayableDictionaryHolderTests.swift */,
 				B620297521F9F7B8005574D0 /* RelayableValueHolderTests.swift */,
-				B6D4C63721FC3DF8004A95A8 /* SuspenderTests.swift */,
 				B6FABBF321F4B9F50045872A /* ToTests.swift */,
 			);
 			name = SwiftChainingTests;
@@ -221,7 +218,6 @@
 				B6FABC1021F4B9F50045872A /* ArrayHolderTests.swift in Sources */,
 				B6FABC0D21F4B9F50045872A /* MergeTests.swift in Sources */,
 				B6D4C63421FC3488004A95A8 /* RelayableArrayAliasTests.swift in Sources */,
-				B6D4C63821FC3DF9004A95A8 /* SuspenderTests.swift in Sources */,
 				B6D4C62B21FC308E004A95A8 /* RelayableArrayHolderTests.swift in Sources */,
 				B6FABC0B21F4B9F50045872A /* ArrayAliasTests.swift in Sources */,
 				B6FABC0121F4B9F50045872A /* DictionaryHolderTests.swift in Sources */,
