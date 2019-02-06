@@ -11,10 +11,6 @@ public class SenderCore<T: Sendable>: AnySenderCore {
     private var joints: [Weak<Joint<T>>] = []
     private let removeId: ObjectIdentifier
     
-    internal var relaySender: AnySendable?
-    internal var relayObserver: AnyObserver?
-    internal var relayValueObserver: AnyObserver?
-    
     public init(removeId: ObjectIdentifier) {
         self.removeId = removeId
     }
