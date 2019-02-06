@@ -5,11 +5,11 @@
 import Foundation
 
 public protocol AnySendable: class {
-    func fetch(for: AnyJoint)
+    func fetch(for: JointClass)
 }
 
 extension AnySendable {
-    public func fetch(for: AnyJoint) {}
+    public func fetch(for: JointClass) {}
 }
 
 public protocol Sendable: AnySendable {

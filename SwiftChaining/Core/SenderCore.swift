@@ -29,7 +29,7 @@ public class SenderCore<T: Sendable>: AnySenderCore {
         }
     }
     
-    internal func send(value: T.SendValue, to target: AnyJoint) {
+    internal func send(value: T.SendValue, to target: JointClass) {
         let targetId = ObjectIdentifier(target)
         for joint in self.joints {
             if joint.id == targetId {
