@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B65F618021F9FD0C0094AA09 /* RelayableValueHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65F617F21F9FD0C0094AA09 /* RelayableValueHolder.swift */; };
 		B6B09C95220B22A900B483BC /* Receive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C94220B22A900B483BC /* Receive.swift */; };
+		B6B09C9B220B29C900B483BC /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C9A220B29C800B483BC /* Pair.swift */; };
 		B6D4C62321FC1D97004A95A8 /* RelayableArrayHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62121FC1D97004A95A8 /* RelayableArrayHolder.swift */; };
 		B6D4C62421FC1D97004A95A8 /* RelayableDictionaryHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62221FC1D97004A95A8 /* RelayableDictionaryHolder.swift */; };
 		B6D4C63D21FD71E9004A95A8 /* UIControlAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C63C21FD71E9004A95A8 /* UIControlAdapter.swift */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		B65F617F21F9FD0C0094AA09 /* RelayableValueHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableValueHolder.swift; sourceTree = "<group>"; };
 		B6B09C94220B22A900B483BC /* Receive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receive.swift; sourceTree = "<group>"; };
+		B6B09C9A220B29C800B483BC /* Pair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
 		B6D4C62121FC1D97004A95A8 /* RelayableArrayHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableArrayHolder.swift; sourceTree = "<group>"; };
 		B6D4C62221FC1D97004A95A8 /* RelayableDictionaryHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableDictionaryHolder.swift; sourceTree = "<group>"; };
 		B6D4C63C21FD71E9004A95A8 /* UIControlAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIControlAdapter.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				B6FABBA821F4B8F40045872A /* Joint.swift */,
 				B6FABBAF21F4B8F40045872A /* Merge.swift */,
 				B6FABBA721F4B8F40045872A /* Observer.swift */,
+				B6B09C9A220B29C800B483BC /* Pair.swift */,
 				B6FABBAC21F4B8F40045872A /* Receivable.swift */,
 				B6B09C94220B22A900B483BC /* Receive.swift */,
 				B6FABBB121F4B8F40045872A /* Sendable.swift */,
@@ -253,6 +256,7 @@
 				B6D4C62421FC1D97004A95A8 /* RelayableDictionaryHolder.swift in Sources */,
 				B6FABBD221F4B8F40045872A /* Notifier.swift in Sources */,
 				B6FABBCE21F4B8F40045872A /* ValueHolder.swift in Sources */,
+				B6B09C9B220B29C900B483BC /* Pair.swift in Sources */,
 				B6FABBC221F4B8F40045872A /* Guard.swift in Sources */,
 				B6FABD2C21F75F8A0045872A /* Alias.swift in Sources */,
 				B6FABBC021F4B8F40045872A /* Observer.swift in Sources */,

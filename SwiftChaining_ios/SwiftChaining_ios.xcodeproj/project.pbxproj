@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B634EFB421F9EB3100D61E3F /* RelayableValueHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634EFB321F9EB3100D61E3F /* RelayableValueHolder.swift */; };
 		B6B09C97220B28BB00B483BC /* Receive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C96220B28BB00B483BC /* Receive.swift */; };
+		B6B09C99220B292F00B483BC /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C98220B292F00B483BC /* Pair.swift */; };
 		B6D4C61E21FC131F004A95A8 /* RelayableArrayHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C61D21FC131F004A95A8 /* RelayableArrayHolder.swift */; };
 		B6D4C62021FC1743004A95A8 /* RelayableDictionaryHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C61F21FC1743004A95A8 /* RelayableDictionaryHolder.swift */; };
 		B6FABC2321F4BD9E0045872A /* Chaining.h in Headers */ = {isa = PBXBuildFile; fileRef = B6FABC2121F4BD9E0045872A /* Chaining.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		B634EFB321F9EB3100D61E3F /* RelayableValueHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableValueHolder.swift; sourceTree = "<group>"; };
 		B6B09C96220B28BB00B483BC /* Receive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Receive.swift; sourceTree = "<group>"; };
+		B6B09C98220B292F00B483BC /* Pair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
 		B6D4C61D21FC131F004A95A8 /* RelayableArrayHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableArrayHolder.swift; sourceTree = "<group>"; };
 		B6D4C61F21FC1743004A95A8 /* RelayableDictionaryHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableDictionaryHolder.swift; sourceTree = "<group>"; };
 		B6FABC1E21F4BD9E0045872A /* Chaining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Chaining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +126,7 @@
 				B6FABC2A21F4BDB70045872A /* Joint.swift */,
 				B6FABC3121F4BDB70045872A /* Merge.swift */,
 				B6FABC2921F4BDB70045872A /* Observer.swift */,
+				B6B09C98220B292F00B483BC /* Pair.swift */,
 				B6FABC2E21F4BDB70045872A /* Receivable.swift */,
 				B6B09C96220B28BB00B483BC /* Receive.swift */,
 				B6FABC3321F4BDB70045872A /* Sendable.swift */,
@@ -253,6 +256,7 @@
 				B6FABC4421F4BDB70045872A /* Guard.swift in Sources */,
 				B6FABC4221F4BDB70045872A /* Observer.swift in Sources */,
 				B6FABD0721F74B310045872A /* Notifier.swift in Sources */,
+				B6B09C99220B292F00B483BC /* Pair.swift in Sources */,
 				B6FABC4621F4BDB70045872A /* Chain.swift in Sources */,
 				B6FABC4C21F4BDB70045872A /* Sendable.swift in Sources */,
 				B6FABD2521F75F260045872A /* Alias.swift in Sources */,
