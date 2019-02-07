@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A4163CD220C25ED00AEE119 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4163CC220C25ED00AEE119 /* Optional.swift */; };
+		1A4163D1220C380600AEE119 /* Suspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4163D0220C380600AEE119 /* Suspender.swift */; };
 		B634EFB421F9EB3100D61E3F /* RelayableValueHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634EFB321F9EB3100D61E3F /* RelayableValueHolder.swift */; };
 		B6B09C97220B28BB00B483BC /* Receive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C96220B28BB00B483BC /* Receive.swift */; };
 		B6B09C99220B292F00B483BC /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C98220B292F00B483BC /* Pair.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		1A4163CC220C25ED00AEE119 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
+		1A4163D0220C380600AEE119 /* Suspender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suspender.swift; sourceTree = "<group>"; };
 		B634EFB321F9EB3100D61E3F /* RelayableValueHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableValueHolder.swift; sourceTree = "<group>"; };
 		B6B09C96220B28BB00B483BC /* Receive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Receive.swift; sourceTree = "<group>"; };
 		B6B09C98220B292F00B483BC /* Pair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				B6FABC2C21F4BDB70045872A /* To.swift */,
 				1A4163CC220C25ED00AEE119 /* Optional.swift */,
 				B6FABC3621F4BDB70045872A /* Weak.swift */,
+				1A4163D0220C380600AEE119 /* Suspender.swift */,
 			);
 			name = Core;
 			path = ../../SwiftChaining/Core;
@@ -262,6 +265,7 @@
 				B6FABD0721F74B310045872A /* Notifier.swift in Sources */,
 				B6B09C99220B292F00B483BC /* Pair.swift in Sources */,
 				B6FABC4621F4BDB70045872A /* Chain.swift in Sources */,
+				1A4163D1220C380600AEE119 /* Suspender.swift in Sources */,
 				B6FABC4C21F4BDB70045872A /* Sendable.swift in Sources */,
 				B6FABD2521F75F260045872A /* Alias.swift in Sources */,
 				B6FABD1421F752590045872A /* KVOAdapter.swift in Sources */,

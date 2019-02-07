@@ -10,6 +10,8 @@
 		B65F618021F9FD0C0094AA09 /* RelayableValueHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65F617F21F9FD0C0094AA09 /* RelayableValueHolder.swift */; };
 		B6B09C95220B22A900B483BC /* Receive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C94220B22A900B483BC /* Receive.swift */; };
 		B6B09C9B220B29C900B483BC /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C9A220B29C800B483BC /* Pair.swift */; };
+		B6B09C9D220C530600B483BC /* Suspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C9C220C530600B483BC /* Suspender.swift */; };
+		B6B09C9F220C531C00B483BC /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C9E220C531B00B483BC /* Optional.swift */; };
 		B6D4C62321FC1D97004A95A8 /* RelayableArrayHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62121FC1D97004A95A8 /* RelayableArrayHolder.swift */; };
 		B6D4C62421FC1D97004A95A8 /* RelayableDictionaryHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62221FC1D97004A95A8 /* RelayableDictionaryHolder.swift */; };
 		B6D4C63D21FD71E9004A95A8 /* UIControlAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C63C21FD71E9004A95A8 /* UIControlAdapter.swift */; };
@@ -43,6 +45,8 @@
 		B65F617F21F9FD0C0094AA09 /* RelayableValueHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableValueHolder.swift; sourceTree = "<group>"; };
 		B6B09C94220B22A900B483BC /* Receive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receive.swift; sourceTree = "<group>"; };
 		B6B09C9A220B29C800B483BC /* Pair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
+		B6B09C9C220C530600B483BC /* Suspender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suspender.swift; sourceTree = "<group>"; };
+		B6B09C9E220C531B00B483BC /* Optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		B6D4C62121FC1D97004A95A8 /* RelayableArrayHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableArrayHolder.swift; sourceTree = "<group>"; };
 		B6D4C62221FC1D97004A95A8 /* RelayableDictionaryHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableDictionaryHolder.swift; sourceTree = "<group>"; };
 		B6D4C63C21FD71E9004A95A8 /* UIControlAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIControlAdapter.swift; sourceTree = "<group>"; };
@@ -126,11 +130,13 @@
 				B6FABBA821F4B8F40045872A /* Joint.swift */,
 				B6FABBAF21F4B8F40045872A /* Merge.swift */,
 				B6FABBA721F4B8F40045872A /* Observer.swift */,
+				B6B09C9E220C531B00B483BC /* Optional.swift */,
 				B6B09C9A220B29C800B483BC /* Pair.swift */,
 				B6FABBAC21F4B8F40045872A /* Receivable.swift */,
 				B6B09C94220B22A900B483BC /* Receive.swift */,
 				B6FABBB121F4B8F40045872A /* Sendable.swift */,
 				B6FABD2E21F75F990045872A /* SenderCore.swift */,
+				B6B09C9C220C530600B483BC /* Suspender.swift */,
 				B6FABBAA21F4B8F40045872A /* To.swift */,
 				B6FABBB421F4B8F40045872A /* Weak.swift */,
 			);
@@ -248,6 +254,7 @@
 				B6FABD2721F75F820045872A /* Fetcher.swift in Sources */,
 				B6FABBD421F4B8F40045872A /* NotificationAdapter.swift in Sources */,
 				B65F618021F9FD0C0094AA09 /* RelayableValueHolder.swift in Sources */,
+				B6B09C9D220C530600B483BC /* Suspender.swift in Sources */,
 				B6FABBC921F4B8F40045872A /* Combine.swift in Sources */,
 				B6FABBCD21F4B8F40045872A /* Weak.swift in Sources */,
 				B6FABBC621F4B8F40045872A /* Fetchable.swift in Sources */,
@@ -264,6 +271,7 @@
 				B6FABBCA21F4B8F40045872A /* Sendable.swift in Sources */,
 				B6FABBC321F4B8F40045872A /* To.swift in Sources */,
 				B6FABBD521F4B8F40045872A /* KVOAdapter.swift in Sources */,
+				B6B09C9F220C531C00B483BC /* Optional.swift in Sources */,
 				B6FABBCB21F4B8F40045872A /* End.swift in Sources */,
 				B6D4C62321FC1D97004A95A8 /* RelayableArrayHolder.swift in Sources */,
 				B6FABBC521F4B8F40045872A /* Receivable.swift in Sources */,
