@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eYw-p8-0qv">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Suspend View Controller-->
+        <scene sceneID="Cjy-C9-ykV">
+            <objects>
+                <viewController id="eYw-p8-0qv" customClass="SuspendViewController" customModule="SwiftChaining_ios_example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="stK-yC-Dpd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDc-ay-ifu">
+                                <rect key="frame" x="157" y="40" width="61" height="30"/>
+                                <state key="normal" title="Suspend"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPT-Qj-aCi">
+                                <rect key="frame" x="160" y="78" width="55" height="30"/>
+                                <state key="normal" title="Resume"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="267-Gc-GM4">
+                                <rect key="frame" x="124.5" y="116" width="126" height="30"/>
+                                <state key="normal" title="Set Random Value"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejA-1P-bpg">
+                                <rect key="frame" x="166.5" y="185" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKo-vm-nlq">
+                                <rect key="frame" x="166.5" y="214" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6Z-UQ-FXt">
+                                <rect key="frame" x="166.5" y="243" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ejA-1P-bpg" firstAttribute="centerX" secondItem="stK-yC-Dpd" secondAttribute="centerX" id="DEG-Cl-XOU"/>
+                            <constraint firstItem="dPT-Qj-aCi" firstAttribute="top" secondItem="KDc-ay-ifu" secondAttribute="bottom" constant="8" id="J9E-oh-vGx"/>
+                            <constraint firstItem="267-Gc-GM4" firstAttribute="centerX" secondItem="stK-yC-Dpd" secondAttribute="centerX" id="L4f-lG-bqt"/>
+                            <constraint firstItem="Z6Z-UQ-FXt" firstAttribute="centerX" secondItem="stK-yC-Dpd" secondAttribute="centerX" id="Nvh-gk-ebd"/>
+                            <constraint firstItem="Z6Z-UQ-FXt" firstAttribute="top" secondItem="WKo-vm-nlq" secondAttribute="bottom" constant="8" id="RGx-YK-Xuc"/>
+                            <constraint firstItem="dPT-Qj-aCi" firstAttribute="centerX" secondItem="stK-yC-Dpd" secondAttribute="centerX" id="TVs-EO-klL"/>
+                            <constraint firstItem="KDc-ay-ifu" firstAttribute="centerX" secondItem="stK-yC-Dpd" secondAttribute="centerX" id="UBw-VJ-WFf"/>
+                            <constraint firstItem="KDc-ay-ifu" firstAttribute="top" secondItem="ER5-9f-oKX" secondAttribute="top" constant="20" id="dfZ-mg-7dD"/>
+                            <constraint firstItem="ejA-1P-bpg" firstAttribute="top" secondItem="267-Gc-GM4" secondAttribute="bottom" constant="39" id="ew8-bO-sal"/>
+                            <constraint firstItem="WKo-vm-nlq" firstAttribute="top" secondItem="ejA-1P-bpg" secondAttribute="bottom" constant="8" id="gpU-pd-rud"/>
+                            <constraint firstItem="267-Gc-GM4" firstAttribute="top" secondItem="dPT-Qj-aCi" secondAttribute="bottom" constant="8" id="hFj-TI-RUT"/>
+                            <constraint firstItem="WKo-vm-nlq" firstAttribute="centerX" secondItem="stK-yC-Dpd" secondAttribute="centerX" id="z5H-kZ-ZNL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ER5-9f-oKX"/>
+                    </view>
+                    <connections>
+                        <outlet property="arrowLabel" destination="WKo-vm-nlq" id="Msx-MH-pEi"/>
+                        <outlet property="dstLabel" destination="Z6Z-UQ-FXt" id="5cq-dz-EQu"/>
+                        <outlet property="randomButton" destination="267-Gc-GM4" id="b49-td-o5T"/>
+                        <outlet property="resumeButton" destination="dPT-Qj-aCi" id="cYG-pa-YEe"/>
+                        <outlet property="srcLabel" destination="ejA-1P-bpg" id="8Er-mm-SiH"/>
+                        <outlet property="suspendButton" destination="KDc-ay-ifu" id="5FI-CH-QBo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X5M-Yi-YVs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="44" y="-257"/>
+        </scene>
+    </scenes>
+</document>
