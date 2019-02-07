@@ -4,17 +4,19 @@
 
 import Foundation
 
-public protocol AnyJoint: class {
+public protocol JointClass: class {}
+
+internal protocol AnyJoint: JointClass {
     func broadcast()
     func invalidate()
 }
 
-public class Joint<Sender: Sendable> {
+internal class Joint<Sender: Sendable> {
     internal typealias Value = Sender.SendValue
     
-    public weak var sender: Sender?
-    public var handlers: [Any] = []
-    public var subJoints: [AnyJoint] = []
+    internal weak var sender: Sender?
+    internal var handlers: [Any] = []
+    internal var subJoints: [AnyJoint] = []
     private var core: AnySenderCore?
     
     internal init(sender: Sender, core: AnySenderCore) {
@@ -34,7 +36,7 @@ public class Joint<Sender: Sendable> {
 }
 
 extension Joint: AnyJoint {
-    public func broadcast() {
+    internal func broadcast() {
         self.sender?.fetch(for: self)
         
         for subJoint in self.subJoints {
@@ -42,7 +44,7 @@ extension Joint: AnyJoint {
         }
     }
     
-    public func invalidate() {
+    internal func invalidate() {
         for subJoint in self.subJoints {
             subJoint.invalidate()
         }

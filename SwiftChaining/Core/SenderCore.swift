@@ -11,10 +11,6 @@ public class SenderCore<T: Sendable>: AnySenderCore {
     private var joints: [Weak<Joint<T>>] = []
     private let removeId: ObjectIdentifier
     
-    internal var relaySender: AnySendable?
-    internal var relayObserver: AnyObserver?
-    internal var relayValueObserver: AnyObserver?
-    
     public init(removeId: ObjectIdentifier) {
         self.removeId = removeId
     }
@@ -29,7 +25,7 @@ public class SenderCore<T: Sendable>: AnySenderCore {
         }
     }
     
-    internal func send(value: T.SendValue, to target: AnyJoint) {
+    internal func send(value: T.SendValue, to target: JointClass) {
         let targetId = ObjectIdentifier(target)
         for joint in self.joints {
             if joint.id == targetId {
