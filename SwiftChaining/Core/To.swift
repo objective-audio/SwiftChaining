@@ -22,10 +22,10 @@ extension Chain {
     }
     
     public func toValue<Next>(_ value: Next) -> ToChain<Next> {
-        return self.to() { _ in value }
+        return self.to { _ in value }
     }
     
     public func toVoid() -> Chain<Void, HandlerIn, Sender> {
-        return self.to() { _ in () }
+        return self.to { _ in () }
     }
 }
