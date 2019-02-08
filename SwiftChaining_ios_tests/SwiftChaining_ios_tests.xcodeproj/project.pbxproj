@@ -10,6 +10,7 @@
 		1A4163CF220C26B600AEE119 /* OptionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4163CE220C26B600AEE119 /* OptionalTests.swift */; };
 		B634EFB621F9ECFA00D61E3F /* RelayableValueHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634EFB521F9ECFA00D61E3F /* RelayableValueHolderTests.swift */; };
 		B6B09CA3220C556B00B483BC /* SuspenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CA2220C556B00B483BC /* SuspenderTests.swift */; };
+		B6B09CB0220DD4D100B483BC /* ReceiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CAF220DD4D100B483BC /* ReceiveTests.swift */; };
 		B6D4C61821FA9874004A95A8 /* RelayableAliasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C61721FA9874004A95A8 /* RelayableAliasTests.swift */; };
 		B6D4C62621FC2EC0004A95A8 /* RelayableArrayHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62521FC2EC0004A95A8 /* RelayableArrayHolderTests.swift */; };
 		B6D4C62821FC2ED2004A95A8 /* RelayableDictionaryHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62721FC2ED2004A95A8 /* RelayableDictionaryHolderTests.swift */; };
@@ -39,6 +40,7 @@
 		1A4163CE220C26B600AEE119 /* OptionalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalTests.swift; sourceTree = "<group>"; };
 		B634EFB521F9ECFA00D61E3F /* RelayableValueHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableValueHolderTests.swift; sourceTree = "<group>"; };
 		B6B09CA2220C556B00B483BC /* SuspenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuspenderTests.swift; sourceTree = "<group>"; };
+		B6B09CAF220DD4D100B483BC /* ReceiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveTests.swift; sourceTree = "<group>"; };
 		B6D4C61721FA9874004A95A8 /* RelayableAliasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableAliasTests.swift; sourceTree = "<group>"; };
 		B6D4C62521FC2EC0004A95A8 /* RelayableArrayHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableArrayHolderTests.swift; sourceTree = "<group>"; };
 		B6D4C62721FC2ED2004A95A8 /* RelayableDictionaryHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableDictionaryHolderTests.swift; sourceTree = "<group>"; };
@@ -124,22 +126,23 @@
 				B6FABC8521F4BE630045872A /* FetchableTests.swift */,
 				B6FABC7C21F4BE630045872A /* ForEachTests.swift */,
 				B6FABC8221F4BE630045872A /* GuardTests.swift */,
-				B6FABC7821F4BE630045872A /* ValueHolderTests.swift */,
 				B6FABC7621F4BE630045872A /* KVOAdapterTests.swift */,
 				B6FABC8321F4BE630045872A /* MergeTests.swift */,
 				B6FABC7921F4BE630045872A /* NotificationAdapterTests.swift */,
 				B6FABC7D21F4BE630045872A /* NotifierTests.swift */,
 				B6FABC8021F4BE630045872A /* ObserverTests.swift */,
+				1A4163CE220C26B600AEE119 /* OptionalTests.swift */,
 				B6FABC8421F4BE630045872A /* PairTests.swift */,
+				B6B09CAF220DD4D100B483BC /* ReceiveTests.swift */,
 				B6D4C61721FA9874004A95A8 /* RelayableAliasTests.swift */,
 				B6D4C62D21FC3330004A95A8 /* RelayableArrayAliasTests.swift */,
 				B6D4C62521FC2EC0004A95A8 /* RelayableArrayHolderTests.swift */,
 				B6D4C62F21FC3340004A95A8 /* RelayableDictionaryAliasTests.swift */,
 				B6D4C62721FC2ED2004A95A8 /* RelayableDictionaryHolderTests.swift */,
 				B634EFB521F9ECFA00D61E3F /* RelayableValueHolderTests.swift */,
-				B6FABC7B21F4BE630045872A /* ToTests.swift */,
-				1A4163CE220C26B600AEE119 /* OptionalTests.swift */,
 				B6B09CA2220C556B00B483BC /* SuspenderTests.swift */,
+				B6FABC7B21F4BE630045872A /* ToTests.swift */,
+				B6FABC7821F4BE630045872A /* ValueHolderTests.swift */,
 			);
 			name = SwiftChainingTests;
 			path = ../../SwiftChainingTests;
@@ -234,6 +237,7 @@
 				B6FABD0821F74D750045872A /* NotifierTests.swift in Sources */,
 				B6FABD0A21F74DA50045872A /* ToTests.swift in Sources */,
 				B6FABD1921F7543C0045872A /* ArrayHolderTests.swift in Sources */,
+				B6B09CB0220DD4D100B483BC /* ReceiveTests.swift in Sources */,
 				B6FABD0E21F751A40045872A /* GuardTests.swift in Sources */,
 				1A4163CF220C26B600AEE119 /* OptionalTests.swift in Sources */,
 			);
