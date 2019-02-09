@@ -100,4 +100,27 @@ class FetchableTests: XCTestCase {
         
         observer.invalidate()
     }
+    
+    func testCanFetch() {
+        var optValue: Int? = nil
+        
+        let fetcher = Fetcher<Int>({ optValue! }, canFetch: { return optValue != nil })
+        
+        var received: [Int] = []
+        
+        let observer1 = fetcher.chain().do { received.append($0) }.sync()
+        
+        XCTAssertEqual(received.count, 0)
+        
+        observer1.invalidate()
+        
+        optValue = 1
+        
+        let observer2 = fetcher.chain().do { received.append($0) }.sync()
+        
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0], 1)
+        
+        observer2.invalidate()
+    }
 }
