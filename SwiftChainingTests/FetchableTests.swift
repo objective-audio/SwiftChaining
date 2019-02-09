@@ -15,7 +15,7 @@ class FetchableTests: XCTestCase {
     }
 
     func testFetcher() {
-        let fetcher = Fetcher<Int>() { return 1 }
+        let fetcher = Fetcher<Int> { 1 }
         
         var received: Int?
         
@@ -28,7 +28,7 @@ class FetchableTests: XCTestCase {
     }
     
     func testFetcherReceivable() {
-        let fetcher = Fetcher<Int>() { return 1 }
+        let fetcher = Fetcher<Int> { 1 }
         
         var received: Int?
         
@@ -45,7 +45,7 @@ class FetchableTests: XCTestCase {
     }
     
     func testFetcherBroadcastWithVoid() {
-        let fetcher = Fetcher<Int>() { return 1 }
+        let fetcher = Fetcher<Int> { 1 }
         
         var received: Int?
         
@@ -63,7 +63,7 @@ class FetchableTests: XCTestCase {
     func testFetchOnlyJustSynced() {
         var pool = ObserverPool()
         
-        let fetcher = Fetcher<Int>() { return 1 }
+        let fetcher = Fetcher<Int> { 1 }
         
         var received: [Int] = []
         
@@ -80,9 +80,7 @@ class FetchableTests: XCTestCase {
     func testFetchOptional() {
         var optValue: Int? = nil
         
-        let fetcher = Fetcher<Int?>() {
-            return optValue
-        }
+        let fetcher = Fetcher<Int?> { optValue }
         
         var received: [Int?] = []
         
