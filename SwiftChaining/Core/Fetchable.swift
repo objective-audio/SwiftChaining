@@ -9,6 +9,10 @@ public protocol Fetchable: Sendable {
 }
 
 extension Fetchable {
+    public func canFetch() -> Bool {
+        return true
+    }
+    
     public func fetch(for joint: JointClass) {
         self.getCore()?.send(value: self.fetchedValue(), to: joint)
     }

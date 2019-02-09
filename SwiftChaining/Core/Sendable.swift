@@ -5,10 +5,12 @@
 import Foundation
 
 public protocol AnySendable: class {
+    func canFetch() -> Bool
     func fetch(for: JointClass)
 }
 
 extension AnySendable {
+    public func canFetch() -> Bool { return false }
     public func fetch(for: JointClass) {}
 }
 
