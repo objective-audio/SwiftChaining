@@ -15,7 +15,7 @@ class FetchableTests: XCTestCase {
     }
 
     func testFetcher() {
-        let fetcher = Fetcher<Int>() { return 1 }
+        let fetcher = Fetcher<Int> { 1 }
         
         var received: Int?
         
@@ -28,7 +28,7 @@ class FetchableTests: XCTestCase {
     }
     
     func testFetcherReceivable() {
-        let fetcher = Fetcher<Int>() { return 1 }
+        let fetcher = Fetcher<Int> { 1 }
         
         var received: Int?
         
@@ -45,7 +45,7 @@ class FetchableTests: XCTestCase {
     }
     
     func testFetcherBroadcastWithVoid() {
-        let fetcher = Fetcher<Int>() { return 1 }
+        let fetcher = Fetcher<Int> { 1 }
         
         var received: Int?
         
@@ -63,7 +63,7 @@ class FetchableTests: XCTestCase {
     func testFetchOnlyJustSynced() {
         var pool = ObserverPool()
         
-        let fetcher = Fetcher<Int>() { return 1 }
+        let fetcher = Fetcher<Int> { 1 }
         
         var received: [Int] = []
         
@@ -80,9 +80,7 @@ class FetchableTests: XCTestCase {
     func testFetchOptional() {
         var optValue: Int? = nil
         
-        let fetcher = Fetcher<Int?>() {
-            return optValue
-        }
+        let fetcher = Fetcher<Int?> { optValue }
         
         var received: [Int?] = []
         
@@ -101,5 +99,28 @@ class FetchableTests: XCTestCase {
         XCTAssertEqual(received[1], 1)
         
         observer.invalidate()
+    }
+    
+    func testCanFetch() {
+        var optValue: Int? = nil
+        
+        let fetcher = Fetcher<Int>({ optValue! }, canFetch: { return optValue != nil })
+        
+        var received: [Int] = []
+        
+        let observer1 = fetcher.chain().do { received.append($0) }.sync()
+        
+        XCTAssertEqual(received.count, 0)
+        
+        observer1.invalidate()
+        
+        optValue = 1
+        
+        let observer2 = fetcher.chain().do { received.append($0) }.sync()
+        
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0], 1)
+        
+        observer2.invalidate()
     }
 }

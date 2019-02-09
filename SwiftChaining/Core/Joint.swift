@@ -37,7 +37,9 @@ internal class Joint<Sender: Sendable> {
 
 extension Joint: AnyJoint {
     internal func broadcast() {
-        self.sender?.fetch(for: self)
+        if let canFetch = self.sender?.canFetch(), canFetch {
+            self.sender?.fetch(for: self)
+        }
         
         for subJoint in self.subJoints {
             subJoint.broadcast()
