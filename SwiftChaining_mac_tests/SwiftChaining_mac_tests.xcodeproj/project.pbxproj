@@ -13,6 +13,7 @@
 		B6B09CA7220C636400B483BC /* RelayableAliasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CA6220C636400B483BC /* RelayableAliasTests.swift */; };
 		B6B09CB4220DD60F00B483BC /* ReceiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CB3220DD60F00B483BC /* ReceiveTests.swift */; };
 		B6B09CBA221038A100B483BC /* PropertyAdapterCommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CB9221038A100B483BC /* PropertyAdapterCommonTests.swift */; };
+		B6B09CBE2210516900B483BC /* PropertyAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CBD2210516900B483BC /* PropertyAdapterTests.swift */; };
 		B6D4C62B21FC308E004A95A8 /* RelayableArrayHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62921FC308E004A95A8 /* RelayableArrayHolderTests.swift */; };
 		B6D4C62C21FC308E004A95A8 /* RelayableDictionaryHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62A21FC308E004A95A8 /* RelayableDictionaryHolderTests.swift */; };
 		B6D4C63321FC3488004A95A8 /* RelayableDictionaryAliasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C63121FC3487004A95A8 /* RelayableDictionaryAliasTests.swift */; };
@@ -44,6 +45,7 @@
 		B6B09CA6220C636400B483BC /* RelayableAliasTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableAliasTests.swift; sourceTree = "<group>"; };
 		B6B09CB3220DD60F00B483BC /* ReceiveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveTests.swift; sourceTree = "<group>"; };
 		B6B09CB9221038A100B483BC /* PropertyAdapterCommonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyAdapterCommonTests.swift; sourceTree = "<group>"; };
+		B6B09CBD2210516900B483BC /* PropertyAdapterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyAdapterTests.swift; sourceTree = "<group>"; };
 		B6D4C62921FC308E004A95A8 /* RelayableArrayHolderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableArrayHolderTests.swift; sourceTree = "<group>"; };
 		B6D4C62A21FC308E004A95A8 /* RelayableDictionaryHolderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableDictionaryHolderTests.swift; sourceTree = "<group>"; };
 		B6D4C63121FC3487004A95A8 /* RelayableDictionaryAliasTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableDictionaryAliasTests.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				B6B09CA0220C553500B483BC /* OptionalTests.swift */,
 				B6FABBFC21F4B9F50045872A /* PairTests.swift */,
 				B6B09CB9221038A100B483BC /* PropertyAdapterCommonTests.swift */,
+				B6B09CBD2210516900B483BC /* PropertyAdapterTests.swift */,
 				B6B09CB3220DD60F00B483BC /* ReceiveTests.swift */,
 				B6B09CA6220C636400B483BC /* RelayableAliasTests.swift */,
 				B6D4C63221FC3487004A95A8 /* RelayableArrayAliasTests.swift */,
@@ -223,6 +226,7 @@
 				B6FABC0721F4B9F50045872A /* NotifierTests.swift in Sources */,
 				B6D4C62C21FC308E004A95A8 /* RelayableDictionaryHolderTests.swift in Sources */,
 				B620297621F9F7B8005574D0 /* RelayableValueHolderTests.swift in Sources */,
+				B6B09CBE2210516900B483BC /* PropertyAdapterTests.swift in Sources */,
 				B6FABC0621F4B9F50045872A /* ForEachTests.swift in Sources */,
 				B6B09CA1220C553500B483BC /* OptionalTests.swift in Sources */,
 				B6FABC0821F4B9F50045872A /* DictionaryAliasTests.swift in Sources */,
