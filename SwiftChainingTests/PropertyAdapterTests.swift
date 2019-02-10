@@ -5,6 +5,10 @@
 import XCTest
 import Chaining
 
+fileprivate class TestClass {
+    var value: Int = 0
+}
+
 class PropertyAdapterTests: XCTestCase {
 
     override func setUp() {
@@ -14,10 +18,6 @@ class PropertyAdapterTests: XCTestCase {
     }
     
     func testValue() {
-        class TestClass {
-            var value: Int = 0
-        }
-        
         let testObj = TestClass()
         let adapter = PropertyAdapter(testObj, keyPath: \TestClass.value)
         
@@ -30,10 +30,6 @@ class PropertyAdapterTests: XCTestCase {
     }
     
     func testSafeValue() {
-        class TestClass {
-            var value: Int = 0
-        }
-            
         var testObj: TestClass? = TestClass()
         
         let adapter = PropertyAdapter(testObj!, keyPath: \TestClass.value)
@@ -47,10 +43,6 @@ class PropertyAdapterTests: XCTestCase {
     }
 
     func testChain() {
-        class TestClass {
-            var value: Int = 0
-        }
-        
         let testObj = TestClass()
         let adapter = PropertyAdapter(testObj, keyPath: \TestClass.value)
         
