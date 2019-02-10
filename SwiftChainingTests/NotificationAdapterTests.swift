@@ -10,8 +10,14 @@ extension Notification.Name {
 }
 
 fileprivate class TestPostObject {
+    let notificationCenter: NotificationCenter
+    
+    init(_ center: NotificationCenter = .default) {
+        self.notificationCenter = center
+    }
+    
     func post() {
-        NotificationCenter.default.post(name: .testNotification, object: self)
+        self.notificationCenter.post(name: .testNotification, object: self)
     }
 }
 
@@ -81,5 +87,24 @@ class NotificationAdapterTests: XCTestCase {
         postObj.post()
         
         XCTAssertNil(received)
+    }
+    
+    func testNotificationCenter() {
+        let center = NotificationCenter()
+        
+        let postObj = TestPostObject(center)
+        
+        let adapter = NotificationAdapter(.testNotification, object: postObj, notificationCenter: center)
+        
+        var received: [TestPostObject?] = []
+        
+        let observer = adapter.chain().do { received.append($0.object as? TestPostObject) }.end()
+        
+        postObj.post()
+        
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(ObjectIdentifier(received[0]!), ObjectIdentifier(postObj))
+        
+        observer.invalidate()
     }
 }
