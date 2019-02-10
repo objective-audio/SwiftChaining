@@ -7,15 +7,7 @@ import Foundation
 final public class NotificationAdapter {
     private var observer: NSObjectProtocol?
     
-    public convenience init(_ name: Notification.Name) {
-        self.init(name, object: nil)
-    }
-    
-    public convenience init(_ name: Notification.Name, object: Any?) {
-        self.init(name, object: object, notificationCenter: NotificationCenter.default)
-    }
-    
-    public init(_ name: Notification.Name, object: Any?, notificationCenter: NotificationCenter) {
+    public init(_ name: Notification.Name, object: Any? = nil, notificationCenter: NotificationCenter = .default) {
         self.observer = notificationCenter.addObserver(forName: name, object: object, queue: OperationQueue.main) { [unowned self] notification in
             self.broadcast(value: notification)
         }
