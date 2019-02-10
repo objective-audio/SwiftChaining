@@ -10,6 +10,7 @@
 		1A4163CD220C25ED00AEE119 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4163CC220C25ED00AEE119 /* Optional.swift */; };
 		1A4163D1220C380600AEE119 /* Suspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4163D0220C380600AEE119 /* Suspender.swift */; };
 		B634EFB421F9EB3100D61E3F /* RelayableValueHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634EFB321F9EB3100D61E3F /* RelayableValueHolder.swift */; };
+		B6517EFC220E983D0082F37F /* PropertyAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6517EFB220E983D0082F37F /* PropertyAdapter.swift */; };
 		B6B09C97220B28BB00B483BC /* Receive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C96220B28BB00B483BC /* Receive.swift */; };
 		B6B09C99220B292F00B483BC /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C98220B292F00B483BC /* Pair.swift */; };
 		B6D4C61E21FC131F004A95A8 /* RelayableArrayHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C61D21FC131F004A95A8 /* RelayableArrayHolder.swift */; };
@@ -45,6 +46,7 @@
 		1A4163CC220C25ED00AEE119 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		1A4163D0220C380600AEE119 /* Suspender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suspender.swift; sourceTree = "<group>"; };
 		B634EFB321F9EB3100D61E3F /* RelayableValueHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableValueHolder.swift; sourceTree = "<group>"; };
+		B6517EFB220E983D0082F37F /* PropertyAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyAdapter.swift; sourceTree = "<group>"; };
 		B6B09C96220B28BB00B483BC /* Receive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Receive.swift; sourceTree = "<group>"; };
 		B6B09C98220B292F00B483BC /* Pair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
 		B6D4C61D21FC131F004A95A8 /* RelayableArrayHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableArrayHolder.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				B6D4C61F21FC1743004A95A8 /* RelayableDictionaryHolder.swift */,
 				B634EFB321F9EB3100D61E3F /* RelayableValueHolder.swift */,
 				B6FABC3821F4BDB70045872A /* ValueHolder.swift */,
+				B6517EFB220E983D0082F37F /* PropertyAdapter.swift */,
 			);
 			name = Additions;
 			path = ../../SwiftChaining/Additions;
@@ -271,6 +274,7 @@
 				B6FABD1421F752590045872A /* KVOAdapter.swift in Sources */,
 				B6FABD1A21F754490045872A /* DictionaryHolder.swift in Sources */,
 				B6FABD1221F751F40045872A /* NotificationAdapter.swift in Sources */,
+				B6517EFC220E983D0082F37F /* PropertyAdapter.swift in Sources */,
 				B6FABD0B21F74E1D0045872A /* ValueHolder.swift in Sources */,
 				B6D4C61E21FC131F004A95A8 /* RelayableArrayHolder.swift in Sources */,
 				B6FABC4521F4BDB70045872A /* To.swift in Sources */,

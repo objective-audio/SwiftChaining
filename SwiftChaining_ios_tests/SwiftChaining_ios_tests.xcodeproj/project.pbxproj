@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A4163CF220C26B600AEE119 /* OptionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4163CE220C26B600AEE119 /* OptionalTests.swift */; };
 		B634EFB621F9ECFA00D61E3F /* RelayableValueHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634EFB521F9ECFA00D61E3F /* RelayableValueHolderTests.swift */; };
+		B6517EFE220EC56C0082F37F /* PropertyAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6517EFD220EC56C0082F37F /* PropertyAdapterTests.swift */; };
 		B6B09CA3220C556B00B483BC /* SuspenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CA2220C556B00B483BC /* SuspenderTests.swift */; };
 		B6B09CB0220DD4D100B483BC /* ReceiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CAF220DD4D100B483BC /* ReceiveTests.swift */; };
 		B6D4C61821FA9874004A95A8 /* RelayableAliasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C61721FA9874004A95A8 /* RelayableAliasTests.swift */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		1A4163CE220C26B600AEE119 /* OptionalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalTests.swift; sourceTree = "<group>"; };
 		B634EFB521F9ECFA00D61E3F /* RelayableValueHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableValueHolderTests.swift; sourceTree = "<group>"; };
+		B6517EFD220EC56C0082F37F /* PropertyAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyAdapterTests.swift; sourceTree = "<group>"; };
 		B6B09CA2220C556B00B483BC /* SuspenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuspenderTests.swift; sourceTree = "<group>"; };
 		B6B09CAF220DD4D100B483BC /* ReceiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveTests.swift; sourceTree = "<group>"; };
 		B6D4C61721FA9874004A95A8 /* RelayableAliasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableAliasTests.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				B6B09CA2220C556B00B483BC /* SuspenderTests.swift */,
 				B6FABC7B21F4BE630045872A /* ToTests.swift */,
 				B6FABC7821F4BE630045872A /* ValueHolderTests.swift */,
+				B6517EFD220EC56C0082F37F /* PropertyAdapterTests.swift */,
 			);
 			name = SwiftChainingTests;
 			path = ../../SwiftChainingTests;
@@ -232,6 +235,7 @@
 				B6FABD1821F754370045872A /* ArrayAliasTests.swift in Sources */,
 				B6FABD0D21F7519A0045872A /* ObserverTests.swift in Sources */,
 				B6D4C62E21FC3330004A95A8 /* RelayableArrayAliasTests.swift in Sources */,
+				B6517EFE220EC56C0082F37F /* PropertyAdapterTests.swift in Sources */,
 				B6FABD1C21F754D10045872A /* DictionaryAliasTests.swift in Sources */,
 				B6FABD1B21F754CB0045872A /* DictionaryHolderTests.swift in Sources */,
 				B6FABD0821F74D750045872A /* NotifierTests.swift in Sources */,
