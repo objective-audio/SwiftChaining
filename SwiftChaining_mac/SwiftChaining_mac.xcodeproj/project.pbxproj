@@ -12,6 +12,7 @@
 		B6B09C9B220B29C900B483BC /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C9A220B29C800B483BC /* Pair.swift */; };
 		B6B09C9D220C530600B483BC /* Suspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C9C220C530600B483BC /* Suspender.swift */; };
 		B6B09C9F220C531C00B483BC /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C9E220C531B00B483BC /* Optional.swift */; };
+		B6B09CBC2210515800B483BC /* PropertyAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CBB2210515800B483BC /* PropertyAdapter.swift */; };
 		B6D4C62321FC1D97004A95A8 /* RelayableArrayHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62121FC1D97004A95A8 /* RelayableArrayHolder.swift */; };
 		B6D4C62421FC1D97004A95A8 /* RelayableDictionaryHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62221FC1D97004A95A8 /* RelayableDictionaryHolder.swift */; };
 		B6D4C63D21FD71E9004A95A8 /* UIControlAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C63C21FD71E9004A95A8 /* UIControlAdapter.swift */; };
@@ -47,6 +48,7 @@
 		B6B09C9A220B29C800B483BC /* Pair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
 		B6B09C9C220C530600B483BC /* Suspender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suspender.swift; sourceTree = "<group>"; };
 		B6B09C9E220C531B00B483BC /* Optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
+		B6B09CBB2210515800B483BC /* PropertyAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyAdapter.swift; sourceTree = "<group>"; };
 		B6D4C62121FC1D97004A95A8 /* RelayableArrayHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableArrayHolder.swift; sourceTree = "<group>"; };
 		B6D4C62221FC1D97004A95A8 /* RelayableDictionaryHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableDictionaryHolder.swift; sourceTree = "<group>"; };
 		B6D4C63C21FD71E9004A95A8 /* UIControlAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIControlAdapter.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				B6D4C62221FC1D97004A95A8 /* RelayableDictionaryHolder.swift */,
 				B65F617F21F9FD0C0094AA09 /* RelayableValueHolder.swift */,
 				B6FABBB621F4B8F40045872A /* ValueHolder.swift */,
+				B6B09CBB2210515800B483BC /* PropertyAdapter.swift */,
 			);
 			name = Additions;
 			path = ../../SwiftChaining/Additions;
@@ -271,6 +274,7 @@
 				B6FABBCA21F4B8F40045872A /* Sendable.swift in Sources */,
 				B6FABBC321F4B8F40045872A /* To.swift in Sources */,
 				B6FABBD521F4B8F40045872A /* KVOAdapter.swift in Sources */,
+				B6B09CBC2210515800B483BC /* PropertyAdapter.swift in Sources */,
 				B6B09C9F220C531C00B483BC /* Optional.swift in Sources */,
 				B6FABBCB21F4B8F40045872A /* End.swift in Sources */,
 				B6D4C62321FC1D97004A95A8 /* RelayableArrayHolder.swift in Sources */,
