@@ -37,7 +37,9 @@ extension Fetcher: Fetchable {
 }
 
 extension Fetcher: Receivable {
-    public func receive(value: T) {
-        self.broadcast(value: value)
+    public typealias ReceiveValue = Void
+    
+    public func receive(value: Void) {
+        self.broadcast()
     }
 }
