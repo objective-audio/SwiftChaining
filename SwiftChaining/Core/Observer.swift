@@ -50,12 +50,7 @@ public class ObserverPool {
         let removing = ObjectIdentifier(observer)
         
         self.observers = self.observers.filter {
-            if ObjectIdentifier($0) == removing {
-                $0.invalidate()
-                return false
-            } else {
-                return true
-            }
+            return ObjectIdentifier($0) != removing
         }
     }
 }
