@@ -108,13 +108,15 @@ class ObserverTests: XCTestCase {
         notifierReceived = nil
         holderReceived = nil
         
-        // -=された方は送信されなくなる
+        // -=された方はpoolでinvalidateされなくなる
         pool -= holderObserver
+        
+        pool.invalidate()
         
         notifier.notify(value: 3)
         holder.value = "4"
         
-        XCTAssertEqual(notifierReceived, 3)
-        XCTAssertNil(holderReceived)
+        XCTAssertNil(notifierReceived)
+        XCTAssertEqual(holderReceived, "4")
     }
 }
