@@ -45,6 +45,7 @@
 		B6B09CA2220C556B00B483BC /* SuspenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuspenderTests.swift; sourceTree = "<group>"; };
 		B6B09CAF220DD4D100B483BC /* ReceiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveTests.swift; sourceTree = "<group>"; };
 		B6B09CB72210387900B483BC /* PropertyAdapterCommonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyAdapterCommonTests.swift; sourceTree = "<group>"; };
+		B6B09D0A2215A6C700B483BC /* SwiftChaining_ios.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SwiftChaining_ios.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B6D4C61721FA9874004A95A8 /* RelayableAliasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableAliasTests.swift; sourceTree = "<group>"; };
 		B6D4C62521FC2EC0004A95A8 /* RelayableArrayHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableArrayHolderTests.swift; sourceTree = "<group>"; };
 		B6D4C62721FC2ED2004A95A8 /* RelayableDictionaryHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableDictionaryHolderTests.swift; sourceTree = "<group>"; };
@@ -104,6 +105,7 @@
 		B6FABC6521F4BE2B0045872A /* SwiftChaining_ios_tests */ = {
 			isa = PBXGroup;
 			children = (
+				B6B09D0A2215A6C700B483BC /* SwiftChaining_ios.playground */,
 				B6FABC7521F4BE630045872A /* SwiftChainingTests */,
 				B6FABC6821F4BE2B0045872A /* Info.plist */,
 			);
