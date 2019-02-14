@@ -46,6 +46,7 @@
 		B6B09CB3220DD60F00B483BC /* ReceiveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveTests.swift; sourceTree = "<group>"; };
 		B6B09CB9221038A100B483BC /* PropertyAdapterCommonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyAdapterCommonTests.swift; sourceTree = "<group>"; };
 		B6B09CBD2210516900B483BC /* PropertyAdapterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyAdapterTests.swift; sourceTree = "<group>"; };
+		B6B09D092215A5F100B483BC /* SwiftChaining_mac.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SwiftChaining_mac.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B6D4C62921FC308E004A95A8 /* RelayableArrayHolderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableArrayHolderTests.swift; sourceTree = "<group>"; };
 		B6D4C62A21FC308E004A95A8 /* RelayableDictionaryHolderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableDictionaryHolderTests.swift; sourceTree = "<group>"; };
 		B6D4C63121FC3487004A95A8 /* RelayableDictionaryAliasTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableDictionaryAliasTests.swift; sourceTree = "<group>"; };
@@ -104,6 +105,7 @@
 		B6FABBE321F4B9BF0045872A /* SwiftChaining_mac_tests */ = {
 			isa = PBXGroup;
 			children = (
+				B6B09D092215A5F100B483BC /* SwiftChaining_mac.playground */,
 				B6FABBED21F4B9F50045872A /* SwiftChainingTests */,
 				B6FABBE621F4B9BF0045872A /* Info.plist */,
 			);
