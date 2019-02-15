@@ -40,7 +40,7 @@ class ValueHolderTests: XCTestCase {
         let notifier = Notifier<Int>()
         let holder = ValueHolder<Int>(0)
         
-        let observer = notifier.chain().receive(holder).end()
+        let observer = notifier.chain().sendTo(holder).end()
         
         XCTAssertEqual(holder.value, 0)
         

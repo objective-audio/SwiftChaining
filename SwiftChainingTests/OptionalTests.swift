@@ -20,7 +20,7 @@ class OptionalTests: XCTestCase {
         let notifier = Notifier<Int>()
         let receiver = ValueHolder<Int?>(0)
         
-        let observer = notifier.chain().optional().receive(receiver).end()
+        let observer = notifier.chain().optional().sendTo(receiver).end()
         
         notifier.notify(value: 1)
         

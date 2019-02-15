@@ -11,7 +11,7 @@
 		1A4163D1220C380600AEE119 /* Suspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4163D0220C380600AEE119 /* Suspender.swift */; };
 		B634EFB421F9EB3100D61E3F /* RelayableValueHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634EFB321F9EB3100D61E3F /* RelayableValueHolder.swift */; };
 		B6517EFC220E983D0082F37F /* PropertyAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6517EFB220E983D0082F37F /* PropertyAdapter.swift */; };
-		B6B09C97220B28BB00B483BC /* Receive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C96220B28BB00B483BC /* Receive.swift */; };
+		B6B09C97220B28BB00B483BC /* SendTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C96220B28BB00B483BC /* SendTo.swift */; };
 		B6B09C99220B292F00B483BC /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C98220B292F00B483BC /* Pair.swift */; };
 		B6D4C61E21FC131F004A95A8 /* RelayableArrayHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C61D21FC131F004A95A8 /* RelayableArrayHolder.swift */; };
 		B6D4C62021FC1743004A95A8 /* RelayableDictionaryHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C61F21FC1743004A95A8 /* RelayableDictionaryHolder.swift */; };
@@ -47,7 +47,7 @@
 		1A4163D0220C380600AEE119 /* Suspender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suspender.swift; sourceTree = "<group>"; };
 		B634EFB321F9EB3100D61E3F /* RelayableValueHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableValueHolder.swift; sourceTree = "<group>"; };
 		B6517EFB220E983D0082F37F /* PropertyAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyAdapter.swift; sourceTree = "<group>"; };
-		B6B09C96220B28BB00B483BC /* Receive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Receive.swift; sourceTree = "<group>"; };
+		B6B09C96220B28BB00B483BC /* SendTo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendTo.swift; sourceTree = "<group>"; };
 		B6B09C98220B292F00B483BC /* Pair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
 		B6D4C61D21FC131F004A95A8 /* RelayableArrayHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableArrayHolder.swift; sourceTree = "<group>"; };
 		B6D4C61F21FC1743004A95A8 /* RelayableDictionaryHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableDictionaryHolder.swift; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 				B6FABC2921F4BDB70045872A /* Observer.swift */,
 				B6B09C98220B292F00B483BC /* Pair.swift */,
 				B6FABC2E21F4BDB70045872A /* Receivable.swift */,
-				B6B09C96220B28BB00B483BC /* Receive.swift */,
+				B6B09C96220B28BB00B483BC /* SendTo.swift */,
 				B6FABC3321F4BDB70045872A /* Sendable.swift */,
 				B6FABD0521F60A120045872A /* SenderCore.swift */,
 				B6FABC2C21F4BDB70045872A /* To.swift */,
@@ -259,7 +259,7 @@
 				B6FABC4821F4BDB70045872A /* Fetchable.swift in Sources */,
 				B6FABD1621F7529A0045872A /* UIControlAdapter.swift in Sources */,
 				B6FABD0621F60A120045872A /* SenderCore.swift in Sources */,
-				B6B09C97220B28BB00B483BC /* Receive.swift in Sources */,
+				B6B09C97220B28BB00B483BC /* SendTo.swift in Sources */,
 				B634EFB421F9EB3100D61E3F /* RelayableValueHolder.swift in Sources */,
 				B6FABC4121F4BDB70045872A /* Do.swift in Sources */,
 				B6FABC4421F4BDB70045872A /* Guard.swift in Sources */,

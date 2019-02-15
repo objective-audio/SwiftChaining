@@ -50,7 +50,7 @@ class NotifierTests: XCTestCase {
         let notifier = Notifier<Int>()
         let receivingNotifier = Notifier<Int>()
         
-        let observer = notifier.chain().receive(receivingNotifier).end()
+        let observer = notifier.chain().sendTo(receivingNotifier).end()
         
         var received: Int?
         let receivingObserver = receivingNotifier.chain().do { received = $0 }.end()

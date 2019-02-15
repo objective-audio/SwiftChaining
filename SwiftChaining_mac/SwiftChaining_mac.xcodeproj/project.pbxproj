@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B65F618021F9FD0C0094AA09 /* RelayableValueHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65F617F21F9FD0C0094AA09 /* RelayableValueHolder.swift */; };
-		B6B09C95220B22A900B483BC /* Receive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C94220B22A900B483BC /* Receive.swift */; };
+		B6B09C95220B22A900B483BC /* SendTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C94220B22A900B483BC /* SendTo.swift */; };
 		B6B09C9B220B29C900B483BC /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C9A220B29C800B483BC /* Pair.swift */; };
 		B6B09C9D220C530600B483BC /* Suspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C9C220C530600B483BC /* Suspender.swift */; };
 		B6B09C9F220C531C00B483BC /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C9E220C531B00B483BC /* Optional.swift */; };
@@ -44,7 +44,7 @@
 
 /* Begin PBXFileReference section */
 		B65F617F21F9FD0C0094AA09 /* RelayableValueHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableValueHolder.swift; sourceTree = "<group>"; };
-		B6B09C94220B22A900B483BC /* Receive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receive.swift; sourceTree = "<group>"; };
+		B6B09C94220B22A900B483BC /* SendTo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTo.swift; sourceTree = "<group>"; };
 		B6B09C9A220B29C800B483BC /* Pair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
 		B6B09C9C220C530600B483BC /* Suspender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suspender.swift; sourceTree = "<group>"; };
 		B6B09C9E220C531B00B483BC /* Optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 				B6B09C9E220C531B00B483BC /* Optional.swift */,
 				B6B09C9A220B29C800B483BC /* Pair.swift */,
 				B6FABBAC21F4B8F40045872A /* Receivable.swift */,
-				B6B09C94220B22A900B483BC /* Receive.swift */,
+				B6B09C94220B22A900B483BC /* SendTo.swift */,
 				B6FABBB121F4B8F40045872A /* Sendable.swift */,
 				B6FABD2E21F75F990045872A /* SenderCore.swift */,
 				B6B09C9C220C530600B483BC /* Suspender.swift */,
@@ -253,7 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6FABBC821F4B8F40045872A /* Merge.swift in Sources */,
-				B6B09C95220B22A900B483BC /* Receive.swift in Sources */,
+				B6B09C95220B22A900B483BC /* SendTo.swift in Sources */,
 				B6FABD2721F75F820045872A /* Fetcher.swift in Sources */,
 				B6FABBD421F4B8F40045872A /* NotificationAdapter.swift in Sources */,
 				B65F618021F9FD0C0094AA09 /* RelayableValueHolder.swift in Sources */,
