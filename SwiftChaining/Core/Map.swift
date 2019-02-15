@@ -7,7 +7,7 @@ import Foundation
 extension Chain {
     public typealias ToChain<Next> = Chain<Next, HandlerIn, Sender>
     
-    public func to<Next>(_ transform: @escaping (HandlerOut) -> Next) -> ToChain<Next> {
+    public func map<Next>(_ transform: @escaping (HandlerOut) -> Next) -> ToChain<Next> {
         guard let joint = self.joint else {
             fatalError()
         }
@@ -22,10 +22,10 @@ extension Chain {
     }
     
     public func toValue<Next>(_ value: Next) -> ToChain<Next> {
-        return self.to { _ in value }
+        return self.map { _ in value }
     }
     
     public func toVoid() -> Chain<Void, HandlerIn, Sender> {
-        return self.to { _ in () }
+        return self.map { _ in () }
     }
 }

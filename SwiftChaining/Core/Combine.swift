@@ -26,7 +26,7 @@ extension Chain {
 
 private func _combineToMain<MainOut, MainIn, MainSender, SubOut, SubIn, SubSender>(main: Chain<MainOut, MainIn, MainSender>, sub: Chain<SubOut, SubIn, SubSender>) -> Chain<(MainOut, SubOut), (MainOut?, SubOut?), MainSender> {
     var cache: (lhs: MainOut?, rhs: SubOut?) = (nil, nil)
-    return main.pair(sub).to({ (lhs, rhs) in
+    return main.pair(sub).map({ (lhs, rhs) in
         if let lhs = lhs {
             cache.lhs = lhs
         } else if let rhs = rhs {
@@ -35,14 +35,14 @@ private func _combineToMain<MainOut, MainIn, MainSender, SubOut, SubIn, SubSende
         return cache
     }).guard({ (lhs, rhs) in
         return lhs != nil && rhs != nil
-    }).to({ (lhs, rhs) -> (MainOut, SubOut) in
+    }).map({ (lhs, rhs) -> (MainOut, SubOut) in
         return (lhs!, rhs!)
     })
 }
 
 private func _combineToSub<MainOut, MainIn, MainSender, SubOut, SubIn, SubSender>(main: Chain<MainOut, MainIn, MainSender>, sub: Chain<SubOut, SubIn, SubSender>) -> Chain<(MainOut, SubOut), (MainOut?, SubOut?), SubSender> where SubSender: Fetchable {
     var cache: (lhs: MainOut?, rhs: SubOut?) = (nil, nil)
-    return main.pair(sub).to({ (lhs, rhs) in
+    return main.pair(sub).map({ (lhs, rhs) in
         if let lhs = lhs {
             cache.lhs = lhs
         } else if let rhs = rhs {
@@ -51,7 +51,7 @@ private func _combineToSub<MainOut, MainIn, MainSender, SubOut, SubIn, SubSender
         return cache
     }).guard({ (lhs, rhs) in
         return lhs != nil && rhs != nil
-    }).to({ (lhs, rhs) -> (MainOut, SubOut) in
+    }).map({ (lhs, rhs) -> (MainOut, SubOut) in
         return (lhs!, rhs!)
     })
 }

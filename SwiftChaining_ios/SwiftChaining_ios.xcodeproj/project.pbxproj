@@ -20,7 +20,7 @@
 		B6FABC4221F4BDB70045872A /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC2921F4BDB70045872A /* Observer.swift */; };
 		B6FABC4321F4BDB70045872A /* Joint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC2A21F4BDB70045872A /* Joint.swift */; };
 		B6FABC4421F4BDB70045872A /* Guard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC2B21F4BDB70045872A /* Guard.swift */; };
-		B6FABC4521F4BDB70045872A /* To.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC2C21F4BDB70045872A /* To.swift */; };
+		B6FABC4521F4BDB70045872A /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC2C21F4BDB70045872A /* Map.swift */; };
 		B6FABC4621F4BDB70045872A /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC2D21F4BDB70045872A /* Chain.swift */; };
 		B6FABC4721F4BDB70045872A /* Receivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC2E21F4BDB70045872A /* Receivable.swift */; };
 		B6FABC4821F4BDB70045872A /* Fetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC2F21F4BDB70045872A /* Fetchable.swift */; };
@@ -58,7 +58,7 @@
 		B6FABC2921F4BDB70045872A /* Observer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		B6FABC2A21F4BDB70045872A /* Joint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Joint.swift; sourceTree = "<group>"; };
 		B6FABC2B21F4BDB70045872A /* Guard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guard.swift; sourceTree = "<group>"; };
-		B6FABC2C21F4BDB70045872A /* To.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = To.swift; sourceTree = "<group>"; };
+		B6FABC2C21F4BDB70045872A /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		B6FABC2D21F4BDB70045872A /* Chain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
 		B6FABC2E21F4BDB70045872A /* Receivable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Receivable.swift; sourceTree = "<group>"; };
 		B6FABC2F21F4BDB70045872A /* Fetchable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetchable.swift; sourceTree = "<group>"; };
@@ -130,6 +130,7 @@
 				B6FABC3521F4BDB70045872A /* ForEach.swift */,
 				B6FABC2B21F4BDB70045872A /* Guard.swift */,
 				B6FABC2A21F4BDB70045872A /* Joint.swift */,
+				B6FABC2C21F4BDB70045872A /* Map.swift */,
 				B6FABC3121F4BDB70045872A /* Merge.swift */,
 				B6FABC2921F4BDB70045872A /* Observer.swift */,
 				1A4163CC220C25ED00AEE119 /* Optional.swift */,
@@ -139,7 +140,6 @@
 				B6FABD0521F60A120045872A /* SenderCore.swift */,
 				B6B09C96220B28BB00B483BC /* SendTo.swift */,
 				1A4163D0220C380600AEE119 /* Suspender.swift */,
-				B6FABC2C21F4BDB70045872A /* To.swift */,
 				B6FABC3621F4BDB70045872A /* Weak.swift */,
 			);
 			name = Core;
@@ -277,7 +277,7 @@
 				B6517EFC220E983D0082F37F /* PropertyAdapter.swift in Sources */,
 				B6FABD0B21F74E1D0045872A /* ValueHolder.swift in Sources */,
 				B6D4C61E21FC131F004A95A8 /* RelayableArrayHolder.swift in Sources */,
-				B6FABC4521F4BDB70045872A /* To.swift in Sources */,
+				B6FABC4521F4BDB70045872A /* Map.swift in Sources */,
 				B6FABC4D21F4BDB70045872A /* End.swift in Sources */,
 				B6FABC4721F4BDB70045872A /* Receivable.swift in Sources */,
 				B6FABC4321F4BDB70045872A /* Joint.swift in Sources */,
