@@ -21,11 +21,11 @@ extension Chain {
         }
     }
     
-    public func toValue<Next>(_ value: Next) -> ToChain<Next> {
+    public func replace<Next>(_ value: Next) -> ToChain<Next> {
         return self.map { _ in value }
     }
     
-    public func toVoid() -> Chain<Void, HandlerIn, Sender> {
+    public func replaceWithVoid() -> Chain<Void, HandlerIn, Sender> {
         return self.map { _ in () }
     }
 }
