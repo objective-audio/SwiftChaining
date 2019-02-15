@@ -7,7 +7,9 @@
 
 ## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+1. Open `SwiftChaining_ios.xcworkspace`.  
+2. Select scheme `SwiftChaining_ios_example`.  
+3. Run.
 
 ## Requirements
 
