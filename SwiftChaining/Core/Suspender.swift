@@ -42,7 +42,7 @@ extension Chain where Sender: Fetchable {
         
         let chain = self
             .pair(suspender.notifier.chain())
-            .to { [weak suspender] (lhs, rhs) -> HandlerOut? in
+            .map { [weak suspender] (lhs, rhs) -> HandlerOut? in
                 let isSuspend = suspender?.isSuspend ?? false
                 
                 if let lhs = lhs {
