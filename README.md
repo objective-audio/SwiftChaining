@@ -1,10 +1,5 @@
 # SwiftChaining
 
-[![CI Status](https://img.shields.io/travis/git/SwiftChaining.svg?style=flat)](https://travis-ci.org/git/SwiftChaining)
-[![Version](https://img.shields.io/cocoapods/v/SwiftChaining.svg?style=flat)](https://cocoapods.org/pods/SwiftChaining)
-[![License](https://img.shields.io/cocoapods/l/SwiftChaining.svg?style=flat)](https://cocoapods.org/pods/SwiftChaining)
-[![Platform](https://img.shields.io/cocoapods/p/SwiftChaining.svg?style=flat)](https://cocoapods.org/pods/SwiftChaining)
-
 ## Example
 
 1. Open `SwiftChaining_ios.xcworkspace`.  
