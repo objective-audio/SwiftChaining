@@ -48,7 +48,7 @@ class NumbersViewController: UIViewController {
                 .to { $0.0 + $0.1 }
                 .combine(chain3)
                 .to { String($0.0 + $0.1) }
-                .receive(self.resultAdapter)
+                .sendTo(self.resultAdapter)
                 .sync()
     }
 }

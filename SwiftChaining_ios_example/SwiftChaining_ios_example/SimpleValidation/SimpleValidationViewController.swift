@@ -48,13 +48,13 @@ class SimpleValidationViewController: UIViewController {
                 .to { $0.text }
                 .merge(textAdapter.chain())
                 .to { $0?.count ?? 0 >= 5 }
-                .receive(hiddenAdapter)
+                .sendTo(hiddenAdapter)
         }
         
         let usernameChain = makeValidChain(self.usernameTextAdapter, self.usernameChangedAdapter, self.usernameHiddenAdapter)
         let passwordChain = makeValidChain(self.passwordTextAdapter, self.passwordChangedAdapter, self.passwordHiddenAdapter)
         
-        self.observer += usernameChain.combine(passwordChain).to { $0.0 && $0.1 }.receive(buttonEnabledAdapter).sync()
+        self.observer += usernameChain.combine(passwordChain).to { $0.0 && $0.1 }.sendTo(buttonEnabledAdapter).sync()
         
         self.observer +=
             self.buttonTappedAdapter

@@ -112,7 +112,7 @@ class RelayableValueHolderTests: XCTestCase {
         let notifier = Notifier<ValueHolder<Int>>()
         let holder = RelayableValueHolder<ValueHolder<Int>>(ValueHolder<Int>(0))
         
-        let observer = notifier.chain().receive(holder).end()
+        let observer = notifier.chain().sendTo(holder).end()
         
         XCTAssertEqual(holder.value, ValueHolder<Int>(0))
         

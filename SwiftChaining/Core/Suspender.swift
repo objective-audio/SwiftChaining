@@ -16,7 +16,7 @@ public class Suspender {
     
     public init(_ isSuspend: Bool = false) {
         self.holder = ValueHolder(isSuspend)
-        self.observer = self.holder.chain().receive(self.notifier).end()
+        self.observer = self.holder.chain().sendTo(self.notifier).end()
     }
     
     public func chain() -> ValueHolder<Bool>.SenderChain {

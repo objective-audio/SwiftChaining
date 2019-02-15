@@ -5,7 +5,7 @@
 import XCTest
 import Chaining
 
-class ReceiveTests: XCTestCase {
+class SendToTests: XCTestCase {
 
     override func setUp() {
     }
@@ -13,7 +13,7 @@ class ReceiveTests: XCTestCase {
     override func tearDown() {
     }
 
-    func testReceiveWithKeyPath() {
+    func testSendToWithKeyPath() {
         class TestClass {
             var value: Int = 0
         }
@@ -21,7 +21,7 @@ class ReceiveTests: XCTestCase {
         let notifier = Notifier<Int>()
         let testObj = TestClass()
         
-        let observer = notifier.chain().receive(testObj, keyPath: \TestClass.value).end()
+        let observer = notifier.chain().sendTo(testObj, keyPath: \TestClass.value).end()
         
         notifier.notify(value: 1)
         

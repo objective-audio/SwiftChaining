@@ -27,8 +27,8 @@ final class TableSection {
         self.title = ValueHolder(title)
         self.rows = ArrayHolder(rows)
         
-        self.pool += self.rows.chain().to { .rows($0) }.receive(self).end()
-        self.pool += self.title.chain().to { .title($0) }.receive(self).end()
+        self.pool += self.rows.chain().to { .rows($0) }.sendTo(self).end()
+        self.pool += self.title.chain().to { .title($0) }.sendTo(self).end()
     }
 }
 

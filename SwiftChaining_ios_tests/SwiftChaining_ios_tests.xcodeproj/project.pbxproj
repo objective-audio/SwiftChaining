@@ -11,7 +11,7 @@
 		B634EFB621F9ECFA00D61E3F /* RelayableValueHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634EFB521F9ECFA00D61E3F /* RelayableValueHolderTests.swift */; };
 		B6517EFE220EC56C0082F37F /* PropertyAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6517EFD220EC56C0082F37F /* PropertyAdapterTests.swift */; };
 		B6B09CA3220C556B00B483BC /* SuspenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CA2220C556B00B483BC /* SuspenderTests.swift */; };
-		B6B09CB0220DD4D100B483BC /* ReceiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CAF220DD4D100B483BC /* ReceiveTests.swift */; };
+		B6B09CB0220DD4D100B483BC /* SendToTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CAF220DD4D100B483BC /* SendToTests.swift */; };
 		B6B09CB82210387900B483BC /* PropertyAdapterCommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CB72210387900B483BC /* PropertyAdapterCommonTests.swift */; };
 		B6D4C61821FA9874004A95A8 /* RelayableAliasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C61721FA9874004A95A8 /* RelayableAliasTests.swift */; };
 		B6D4C62621FC2EC0004A95A8 /* RelayableArrayHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62521FC2EC0004A95A8 /* RelayableArrayHolderTests.swift */; };
@@ -43,7 +43,7 @@
 		B634EFB521F9ECFA00D61E3F /* RelayableValueHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableValueHolderTests.swift; sourceTree = "<group>"; };
 		B6517EFD220EC56C0082F37F /* PropertyAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyAdapterTests.swift; sourceTree = "<group>"; };
 		B6B09CA2220C556B00B483BC /* SuspenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuspenderTests.swift; sourceTree = "<group>"; };
-		B6B09CAF220DD4D100B483BC /* ReceiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveTests.swift; sourceTree = "<group>"; };
+		B6B09CAF220DD4D100B483BC /* SendToTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendToTests.swift; sourceTree = "<group>"; };
 		B6B09CB72210387900B483BC /* PropertyAdapterCommonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyAdapterCommonTests.swift; sourceTree = "<group>"; };
 		B6B09D0A2215A6C700B483BC /* SwiftChaining_ios.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SwiftChaining_ios.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B6D4C61721FA9874004A95A8 /* RelayableAliasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableAliasTests.swift; sourceTree = "<group>"; };
@@ -141,13 +141,13 @@
 				B6FABC8421F4BE630045872A /* PairTests.swift */,
 				B6B09CB72210387900B483BC /* PropertyAdapterCommonTests.swift */,
 				B6517EFD220EC56C0082F37F /* PropertyAdapterTests.swift */,
-				B6B09CAF220DD4D100B483BC /* ReceiveTests.swift */,
 				B6D4C61721FA9874004A95A8 /* RelayableAliasTests.swift */,
 				B6D4C62D21FC3330004A95A8 /* RelayableArrayAliasTests.swift */,
 				B6D4C62521FC2EC0004A95A8 /* RelayableArrayHolderTests.swift */,
 				B6D4C62F21FC3340004A95A8 /* RelayableDictionaryAliasTests.swift */,
 				B6D4C62721FC2ED2004A95A8 /* RelayableDictionaryHolderTests.swift */,
 				B634EFB521F9ECFA00D61E3F /* RelayableValueHolderTests.swift */,
+				B6B09CAF220DD4D100B483BC /* SendToTests.swift */,
 				B6B09CA2220C556B00B483BC /* SuspenderTests.swift */,
 				B6FABC7B21F4BE630045872A /* ToTests.swift */,
 				B6FABC7821F4BE630045872A /* ValueHolderTests.swift */,
@@ -247,7 +247,7 @@
 				B6FABD0821F74D750045872A /* NotifierTests.swift in Sources */,
 				B6FABD0A21F74DA50045872A /* ToTests.swift in Sources */,
 				B6FABD1921F7543C0045872A /* ArrayHolderTests.swift in Sources */,
-				B6B09CB0220DD4D100B483BC /* ReceiveTests.swift in Sources */,
+				B6B09CB0220DD4D100B483BC /* SendToTests.swift in Sources */,
 				B6FABD0E21F751A40045872A /* GuardTests.swift in Sources */,
 				1A4163CF220C26B600AEE119 /* OptionalTests.swift in Sources */,
 			);

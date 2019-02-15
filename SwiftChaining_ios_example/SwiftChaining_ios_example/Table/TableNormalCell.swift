@@ -51,7 +51,7 @@ extension TableNormalCell: CellDataSettable {
             fatalError()
         }
         
-        self.pool += normalCellData.text.chain().to { String?($0) }.receive(self.textAdapter).sync()
-        self.pool += normalCellData.detailText.chain().to { String?($0) }.receive(self.detailTextAdapter).sync()
+        self.pool += normalCellData.text.chain().to { String?($0) }.sendTo(self.textAdapter).sync()
+        self.pool += normalCellData.detailText.chain().to { String?($0) }.sendTo(self.detailTextAdapter).sync()
     }
 }
