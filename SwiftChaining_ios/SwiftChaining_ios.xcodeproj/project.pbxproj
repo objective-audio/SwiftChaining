@@ -132,15 +132,15 @@
 				B6FABC2A21F4BDB70045872A /* Joint.swift */,
 				B6FABC3121F4BDB70045872A /* Merge.swift */,
 				B6FABC2921F4BDB70045872A /* Observer.swift */,
+				1A4163CC220C25ED00AEE119 /* Optional.swift */,
 				B6B09C98220B292F00B483BC /* Pair.swift */,
 				B6FABC2E21F4BDB70045872A /* Receivable.swift */,
-				B6B09C96220B28BB00B483BC /* SendTo.swift */,
 				B6FABC3321F4BDB70045872A /* Sendable.swift */,
 				B6FABD0521F60A120045872A /* SenderCore.swift */,
-				B6FABC2C21F4BDB70045872A /* To.swift */,
-				1A4163CC220C25ED00AEE119 /* Optional.swift */,
-				B6FABC3621F4BDB70045872A /* Weak.swift */,
+				B6B09C96220B28BB00B483BC /* SendTo.swift */,
 				1A4163D0220C380600AEE119 /* Suspender.swift */,
+				B6FABC2C21F4BDB70045872A /* To.swift */,
+				B6FABC3621F4BDB70045872A /* Weak.swift */,
 			);
 			name = Core;
 			path = ../../SwiftChaining/Core;
