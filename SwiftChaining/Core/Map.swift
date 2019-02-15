@@ -5,9 +5,9 @@
 import Foundation
 
 extension Chain {
-    public typealias ToChain<Next> = Chain<Next, HandlerIn, Sender>
+    public typealias MapChain<Next> = Chain<Next, HandlerIn, Sender>
     
-    public func map<Next>(_ transform: @escaping (HandlerOut) -> Next) -> ToChain<Next> {
+    public func map<Next>(_ transform: @escaping (HandlerOut) -> Next) -> MapChain<Next> {
         guard let joint = self.joint else {
             fatalError()
         }
@@ -16,12 +16,12 @@ extension Chain {
         
         let handler = self.handler
         
-        return ToChain(joint: joint) { value in
+        return MapChain(joint: joint) { value in
             return transform(handler(value))
         }
     }
     
-    public func replace<Next>(_ value: Next) -> ToChain<Next> {
+    public func replace<Next>(_ value: Next) -> MapChain<Next> {
         return self.map { _ in value }
     }
     
