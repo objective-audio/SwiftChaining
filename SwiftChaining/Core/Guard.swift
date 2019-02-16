@@ -33,4 +33,10 @@ extension Chain {
         
         return GuardChain(joint: joint) { $0 }
     }
+    
+    public typealias FilterChain = GuardChain
+    
+    public func filter(_ isIncluded: @escaping (HandlerOut) -> Bool) -> FilterChain {
+        return self.guard(isIncluded)
+    }
 }
