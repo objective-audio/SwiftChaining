@@ -1,8 +1,5 @@
 //
 //  OptionalTests.swift
-//  SwiftChaining_ios_tests
-//
-//  Created by yasoshima on 2019/02/07.
 //
 
 import XCTest
