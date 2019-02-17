@@ -385,7 +385,7 @@ notifier2.notify(value: 2)
 // holderの値が2になっている
 print(holder.value)
 ```
-### pair
+### tuple
 ```swift
 let notifier1 = Notifier<Int>()
 let notifier2 = Notifier<String>()
