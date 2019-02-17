@@ -392,9 +392,9 @@ let notifier2 = Notifier<String>()
 let chain1 = notifier1.chain()
 let chain2 = notifier2.chain()
 
-// pairで違う型の値をひとつのtupleにまとめる
+// 違う型の値をひとつのtupleにまとめる
 let observer = chain1
-    .pair(chain2)
+    .tuple(chain2)
     .do { (lhs, rhs) in
         // lhsかrhsのどちらかにOptionalで値が渡される
         if let lhs = lhs {
