@@ -33,6 +33,17 @@ import Chaining
 
 ### Sendable
 ```swift
+public protocol Sendable: AnySendable {
+    associatedtype SendValue
+    typealias SenderChain = Chain<SendValue, SendValue, Self>
+}
+
+extension Sendable {
+    public func broadcast(value: SendValue) { ... }
+    public func chain() -> SenderChain { ... }
+}
+```
+```swift
 class MySender: Sendable {
     // 送信する値の型を指定する
     typealias SendValue = Int
@@ -47,6 +58,18 @@ let observer = sender.chain().do { print($0) }.end()
 sender.broadcast(value: 1)
 ```
 ### Fetchable: Sendable
+```swift
+public protocol Fetchable: Sendable {
+    func fetchedValue() -> SendValue
+    func canFetch() -> Bool
+}
+
+extension Fetchable {
+    public func canFetch() -> Bool {
+        return true
+    }
+}
+```
 ```swift
 class MyFetcher: Fetchable {
     // 送信する値の型を指定する
@@ -68,6 +91,12 @@ sender.broadcast(value: 2)
 ```
 ### Receivable
 ```swift
+public protocol Receivable: class {
+    associatedtype ReceiveValue
+    func receive(value: ReceiveValue)
+}
+```
+```swift
 class MyReceiver: Receivable {
     // 受信する型を指定する
     typealias ReceiveValue = Int
@@ -88,6 +117,11 @@ let observer = notifier.chain().sendTo(receiver).end()
 notifier.notify(value: 1)
 ```
 ### AnyObserver
+```swift
+public protocol AnyObserver: class {
+    func invalidate()
+}
+```
 ```swift
 let notifier = Notifier<Int>()
 
@@ -166,6 +200,100 @@ observerPool.invalidate()
 // 送信されない
 notifier.notify(value: 2)
 ```
+### ArrayHolder: Fetchable
+```swift
+let holder = ArrayHolder([0, 1, 2])
+
+// sync()でfetchedが送信される
+let observer = holder
+    .chain()
+    .do {
+        switch $0 {
+        case .fetched(let elements):
+            print("fetched:\(elements)")
+        case .any(let elements):
+            print("any:\(elements)")
+        case .inserted(let index, let element):
+            print("inserted at:\(index) element:\(element)")
+        case .removed(let index, let element):
+            print("removed at:\(index) element:\(element)")
+        case .replaced(let index, let element):
+            print("replaced at:\(index) element:\(element)")
+        case .moved(let fromIndex, let toIndex, let element):
+            print("moved from:\(fromIndex) to:\(toIndex) element:\(element)")
+        }
+    }
+    .sync()
+
+// insertedが送信される
+holder.append(3)
+
+// removedが送信される
+holder.remove(at: 2)
+
+// replacedが送信される
+holder.replace(4, at: 1)
+
+// movedが送信される
+holder.move(at: 0, to: 2)
+
+// anyが送信される
+holder.replace([0, 1])
+```
+### NotificationAdapter: Sendable
+```swift
+class MyNotifier {
+    static let name = Notification.Name("TestName")
+    
+    func post() {
+        NotificationCenter.default.post(name: MyNotifier.name, object: self)
+    }
+}
+
+let object = MyNotifier()
+
+let adapter = NotificationAdapter(MyNotifier.name, object: object)
+
+let observer = adapter.chain().do { print($0) }.end()
+
+object.post()
+```
+### KVOAdapter: Fetchable
+```swift
+class MyObject: NSObject {
+    @objc dynamic var value: Int = 0
+}
+
+let object = MyObject()
+
+let adapter = KVOAdapter(object, keyPath: \MyObject.value)
+
+let observer = adapter.chain().do { print("do:\($0)") }.sync()
+
+// 元のオブジェクトの値を変更すると値が送信される
+object.value = 1
+
+// Adapterのvalueを変更すると元のオブジェクトの値が変更され送信される
+adapter.value = 2
+
+// 2になっている
+print("object.value:\(object.value)")
+```
+### UIControlAdapter: Sendable
+```swift
+class MyViewController: UIViewController {
+    @IBOutlet weak var button: UIButton!
+    lazy var adapter = { UIControlAdapter(button, events: .touchUpInside) }()
+    var observer: AnyObserver?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // ボタンをタップすると送信される
+        self.observer = self.adapter.chain().do { print($0) }.end()
+    }
+}
+```
 ## Chain Methods
 ### do
 ```swift
@@ -222,17 +350,17 @@ notifier.notify(value: 1)
 // 値が"StringValue:1"になっている
 print(stringHolder.value)
 ```
-### guard
+### guard / filter
 ```swift
 let notifier = Notifier<Int>()
 
 // guardでfalseを返すと以降の処理は実行されない
 let observer = notifier.chain().guard { $0 % 2 != 0 }.do { print($0) }.end()
 
-// 奇数なので実行される
+// guardでtrueが返されるので実行される
 notifier.notify(value: 1)
 
-// 偶数なので実行されない
+// guardでfalseが返されるので実行されない
 notifier.notify(value: 2)
 ```
 ### merge
@@ -264,7 +392,7 @@ let notifier2 = Notifier<String>()
 let chain1 = notifier1.chain()
 let chain2 = notifier2.chain()
 
-// pairで違う型のイベントをひとつのtupleにまとめる
+// pairで違う型の値をひとつのtupleにまとめる
 let observer = chain1
     .pair(chain2)
     .do { (lhs, rhs) in
@@ -289,17 +417,17 @@ let notifier2 = Notifier<String>()
 let chain1 = notifier1.chain()
 let chain2 = notifier2.chain()
 
-// combineで違う型の値をひとつにまとめる
+// combineで違う型の値をひとつのtupleにまとめる
 let observer = chain1
     .combine(chain2)
     .do { (lhs, rhs) in
-        // 両方の値が揃ったら送信される
+        // 両方の値が揃ったら実行される
         print("\(lhs):\(rhs)")
     }.end()
 
-// 片方しか送信していないのでprintされない
+// 片方しか送信していないので実行されない
 notifier1.notify(value: 1)
 
-// 両方揃ったのでprintされる
+// 両方揃ったので実行される
 notifier2.notify(value: "2")
 ```
