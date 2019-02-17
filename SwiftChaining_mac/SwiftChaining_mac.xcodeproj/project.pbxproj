@@ -27,7 +27,7 @@
 		B6FABBC521F4B8F40045872A /* Receivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABBAC21F4B8F40045872A /* Receivable.swift */; };
 		B6FABBC621F4B8F40045872A /* Fetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABBAD21F4B8F40045872A /* Fetchable.swift */; };
 		B6FABBC821F4B8F40045872A /* Merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABBAF21F4B8F40045872A /* Merge.swift */; };
-		B6FABBC921F4B8F40045872A /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABBB021F4B8F40045872A /* Combine.swift */; };
+		B6FABBC921F4B8F40045872A /* CombinePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABBB021F4B8F40045872A /* CombinePair.swift */; };
 		B6FABBCA21F4B8F40045872A /* Sendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABBB121F4B8F40045872A /* Sendable.swift */; };
 		B6FABBCB21F4B8F40045872A /* End.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABBB221F4B8F40045872A /* End.swift */; };
 		B6FABBCC21F4B8F40045872A /* ForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABBB321F4B8F40045872A /* ForEach.swift */; };
@@ -66,7 +66,7 @@
 		B6FABBAC21F4B8F40045872A /* Receivable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Receivable.swift; sourceTree = "<group>"; };
 		B6FABBAD21F4B8F40045872A /* Fetchable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetchable.swift; sourceTree = "<group>"; };
 		B6FABBAF21F4B8F40045872A /* Merge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Merge.swift; sourceTree = "<group>"; };
-		B6FABBB021F4B8F40045872A /* Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Combine.swift; sourceTree = "<group>"; };
+		B6FABBB021F4B8F40045872A /* CombinePair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombinePair.swift; sourceTree = "<group>"; };
 		B6FABBB121F4B8F40045872A /* Sendable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sendable.swift; sourceTree = "<group>"; };
 		B6FABBB221F4B8F40045872A /* End.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = End.swift; sourceTree = "<group>"; };
 		B6FABBB321F4B8F40045872A /* ForEach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForEach.swift; sourceTree = "<group>"; };
@@ -125,7 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				B6FABBAB21F4B8F40045872A /* Chain.swift */,
-				B6FABBB021F4B8F40045872A /* Combine.swift */,
+				B6FABBB021F4B8F40045872A /* CombinePair.swift */,
 				B6FABBA621F4B8F40045872A /* Do.swift */,
 				B6FABBB221F4B8F40045872A /* End.swift */,
 				B6FABBAD21F4B8F40045872A /* Fetchable.swift */,
@@ -261,7 +261,7 @@
 				B6FABBD421F4B8F40045872A /* NotificationAdapter.swift in Sources */,
 				B65F618021F9FD0C0094AA09 /* RelayableValueHolder.swift in Sources */,
 				B6B09C9D220C530600B483BC /* Suspender.swift in Sources */,
-				B6FABBC921F4B8F40045872A /* Combine.swift in Sources */,
+				B6FABBC921F4B8F40045872A /* CombinePair.swift in Sources */,
 				B6FABBCD21F4B8F40045872A /* Weak.swift in Sources */,
 				B6FABBC621F4B8F40045872A /* Fetchable.swift in Sources */,
 				B6FABBBF21F4B8F40045872A /* Do.swift in Sources */,
