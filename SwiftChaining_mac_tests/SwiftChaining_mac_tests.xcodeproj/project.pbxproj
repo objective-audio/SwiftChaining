@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B60FC63622197A58009D8BDD /* TupleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60FC63522197A58009D8BDD /* TupleTests.swift */; };
 		B620297621F9F7B8005574D0 /* RelayableValueHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B620297521F9F7B8005574D0 /* RelayableValueHolderTests.swift */; };
 		B6B09CA1220C553500B483BC /* OptionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CA0220C553500B483BC /* OptionalTests.swift */; };
 		B6B09CA5220C634900B483BC /* SuspenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CA4220C634900B483BC /* SuspenderTests.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B60FC63522197A58009D8BDD /* TupleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TupleTests.swift; sourceTree = "<group>"; };
 		B620297521F9F7B8005574D0 /* RelayableValueHolderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableValueHolderTests.swift; sourceTree = "<group>"; };
 		B6B09CA0220C553500B483BC /* OptionalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalTests.swift; sourceTree = "<group>"; };
 		B6B09CA4220C634900B483BC /* SuspenderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuspenderTests.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				B6B09CB3220DD60F00B483BC /* SendToTests.swift */,
 				B6B09CA4220C634900B483BC /* SuspenderTests.swift */,
 				B6FABBF321F4B9F50045872A /* ToTests.swift */,
+				B60FC63522197A58009D8BDD /* TupleTests.swift */,
 				B6FABBF021F4B9F50045872A /* ValueHolderTests.swift */,
 			);
 			name = SwiftChainingTests;
@@ -243,6 +246,7 @@
 				B6FABC0D21F4B9F50045872A /* MergeTests.swift in Sources */,
 				B6D4C63421FC3488004A95A8 /* RelayableArrayAliasTests.swift in Sources */,
 				B6D4C62B21FC308E004A95A8 /* RelayableArrayHolderTests.swift in Sources */,
+				B60FC63622197A58009D8BDD /* TupleTests.swift in Sources */,
 				B6FABC0B21F4B9F50045872A /* ArrayAliasTests.swift in Sources */,
 				B6FABC0121F4B9F50045872A /* DictionaryHolderTests.swift in Sources */,
 				B6B09CA7220C636400B483BC /* RelayableAliasTests.swift in Sources */,

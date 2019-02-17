@@ -59,7 +59,7 @@ private func _pairToMain<MainOut, MainIn, MainSender, SubOut, SubIn, SubSender>(
     return Chain<(MainOut?, SubOut?), (MainOut?, SubOut?), MainSender>(joint: mainJoint) { $0 }
 }
 
-private func _pairToSub<MainOut, MainIn, MainSender, SubOut, SubIn, SubSender>(main: Chain<MainOut, MainIn, MainSender>, sub: Chain<SubOut, SubIn, SubSender>) -> Chain<(MainOut?, SubOut?), (MainOut?, SubOut?), SubSender> {
+internal func _pairToSub<MainOut, MainIn, MainSender, SubOut, SubIn, SubSender>(main: Chain<MainOut, MainIn, MainSender>, sub: Chain<SubOut, SubIn, SubSender>) -> Chain<(MainOut?, SubOut?), (MainOut?, SubOut?), SubSender> {
     guard let mainJoint = main.joint, let subJoint = sub.joint else {
         fatalError()
     }
