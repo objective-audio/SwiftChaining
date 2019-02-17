@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B60FC63422197A4B009D8BDD /* Tuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60FC63322197A4B009D8BDD /* Tuple.swift */; };
+		B60FC63E2219999A009D8BDD /* CombineTuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60FC63D2219999A009D8BDD /* CombineTuple.swift */; };
 		B65F618021F9FD0C0094AA09 /* RelayableValueHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65F617F21F9FD0C0094AA09 /* RelayableValueHolder.swift */; };
 		B6B09C95220B22A900B483BC /* SendTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C94220B22A900B483BC /* SendTo.swift */; };
 		B6B09C9B220B29C900B483BC /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C9A220B29C800B483BC /* Pair.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		B60FC63322197A4B009D8BDD /* Tuple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tuple.swift; sourceTree = "<group>"; };
+		B60FC63D2219999A009D8BDD /* CombineTuple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombineTuple.swift; sourceTree = "<group>"; };
 		B65F617F21F9FD0C0094AA09 /* RelayableValueHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableValueHolder.swift; sourceTree = "<group>"; };
 		B6B09C94220B22A900B483BC /* SendTo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTo.swift; sourceTree = "<group>"; };
 		B6B09C9A220B29C800B483BC /* Pair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			children = (
 				B6FABBAB21F4B8F40045872A /* Chain.swift */,
 				B6FABBB021F4B8F40045872A /* CombinePair.swift */,
+				B60FC63D2219999A009D8BDD /* CombineTuple.swift */,
 				B6FABBA621F4B8F40045872A /* Do.swift */,
 				B6FABBB221F4B8F40045872A /* End.swift */,
 				B6FABBAD21F4B8F40045872A /* Fetchable.swift */,
@@ -255,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B60FC63E2219999A009D8BDD /* CombineTuple.swift in Sources */,
 				B6FABBC821F4B8F40045872A /* Merge.swift in Sources */,
 				B6B09C95220B22A900B483BC /* SendTo.swift in Sources */,
 				B6FABD2721F75F820045872A /* Fetcher.swift in Sources */,
