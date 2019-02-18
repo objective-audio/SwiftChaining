@@ -31,18 +31,18 @@ extension Suspender: Receivable {
 }
 
 extension Chain {
-    public func suspend(_ suspender: Suspender) -> Chain<HandlerOut, HandlerOut, Sender> {
+    public func suspend(_ suspender: Suspender) -> Chain<Out, Out, Sender> {
         return self.guard { [weak suspender] _ in !(suspender?.isSuspend ?? false) }
     }
 }
 
 extension Chain where Sender: Fetchable {
-    public func suspend(_ suspender: Suspender) -> Chain<HandlerOut, HandlerOut?, Sender> {
-        var cache: HandlerOut?
+    public func suspend(_ suspender: Suspender) -> Chain<Out, Out?, Sender> {
+        var cache: Out?
         
         let chain = self
             .tuple(suspender.notifier.chain())
-            .map { [weak suspender] (lhs, rhs) -> HandlerOut? in
+            .map { [weak suspender] (lhs, rhs) -> Out? in
                 let isSuspend = suspender?.isSuspend ?? false
                 
                 if let lhs = lhs {

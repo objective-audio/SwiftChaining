@@ -5,9 +5,9 @@
 import Foundation
 
 extension Chain {
-    public typealias GuardChain = Chain<HandlerOut, HandlerOut, Sender>
+    public typealias GuardChain = Chain<Out, Out, Sender>
     
-    public func `guard`(_ isIncluded: @escaping (HandlerOut) -> Bool) -> GuardChain {
+    public func `guard`(_ isIncluded: @escaping (Out) -> Bool) -> GuardChain {
         guard let joint = self.joint else {
             fatalError()
         }
@@ -24,7 +24,7 @@ extension Chain {
                 return
             }
             
-            if let nextHandler = joint?.handlers[nextIndex] as? (HandlerOut) -> Void {
+            if let nextHandler = joint?.handlers[nextIndex] as? (Out) -> Void {
                 nextHandler(result)
             }
         }
@@ -36,7 +36,7 @@ extension Chain {
     
     public typealias FilterChain = GuardChain
     
-    public func filter(_ isIncluded: @escaping (HandlerOut) -> Bool) -> FilterChain {
+    public func filter(_ isIncluded: @escaping (Out) -> Bool) -> FilterChain {
         return self.guard(isIncluded)
     }
 }

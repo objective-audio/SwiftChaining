@@ -5,21 +5,21 @@
 import Foundation
 
 extension Chain where Sender: Fetchable {
-    public func tuple<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(HandlerOut?, SubOut?), (HandlerOut?, SubOut?), Sender> where SubSender: Fetchable {
+    public func tuple<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(Out?, SubOut?), (Out?, SubOut?), Sender> where SubSender: Fetchable {
         return _tupleToMain(main: self, sub: subChain)
     }
     
-    public func tuple<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(HandlerOut?, SubOut?), (HandlerOut?, SubOut?), Sender> {
+    public func tuple<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(Out?, SubOut?), (Out?, SubOut?), Sender> {
         return _tupleToMain(main: self, sub: subChain)
     }
 }
 
 extension Chain {
-    public func tuple<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(HandlerOut?, SubOut?), (HandlerOut?, SubOut?), SubSender> where SubSender: Fetchable {
+    public func tuple<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(Out?, SubOut?), (Out?, SubOut?), SubSender> where SubSender: Fetchable {
         return _tupleToSub(main: self, sub: subChain)
     }
     
-    public func tuple<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(HandlerOut?, SubOut?), (HandlerOut?, SubOut?), Sender> {
+    public func tuple<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(Out?, SubOut?), (Out?, SubOut?), Sender> {
         return _tupleToMain(main: self, sub: subChain)
     }
 }

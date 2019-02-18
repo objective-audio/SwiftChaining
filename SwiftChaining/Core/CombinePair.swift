@@ -5,21 +5,21 @@
 import Foundation
 
 extension Chain where Sender: Fetchable {
-    public func combine<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(HandlerOut, SubOut), (HandlerOut?, SubOut?), Sender> where SubSender: Fetchable {
+    public func combine<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(Out, SubOut), (Out?, SubOut?), Sender> where SubSender: Fetchable {
         return _combineToMain(main: self, sub: subChain)
     }
     
-    public func combine<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(HandlerOut, SubOut), (HandlerOut?, SubOut?), Sender> {
+    public func combine<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(Out, SubOut), (Out?, SubOut?), Sender> {
         return _combineToMain(main: self, sub: subChain)
     }
 }
 
 extension Chain {
-    public func combine<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(HandlerOut, SubOut), (HandlerOut?, SubOut?), SubSender> where SubSender: Fetchable {
+    public func combine<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(Out, SubOut), (Out?, SubOut?), SubSender> where SubSender: Fetchable {
         return _combineToSub(main: self, sub: subChain)
     }
     
-    public func combine<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(HandlerOut, SubOut), (HandlerOut?, SubOut?), Sender> {
+    public func combine<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(Out, SubOut), (Out?, SubOut?), Sender> {
         return _combineToMain(main: self, sub: subChain)
     }
 }

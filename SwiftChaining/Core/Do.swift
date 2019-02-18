@@ -5,7 +5,7 @@
 import Foundation
 
 extension Chain {
-    public func `do`(_ doHandler: @escaping (HandlerOut) -> Void) -> Chain<HandlerOut, HandlerIn, Sender> {
+    public func `do`(_ doHandler: @escaping (Out) -> Void) -> Chain<Out, HandlerIn, Sender> {
         guard let joint = self.joint else {
             fatalError()
         }
@@ -14,7 +14,7 @@ extension Chain {
         
         let handler = self.handler
         
-        return Chain<HandlerOut, HandlerIn, Sender>(joint: joint) { value in
+        return Chain<Out, HandlerIn, Sender>(joint: joint) { value in
             let result = handler(value)
             doHandler(result)
             return result

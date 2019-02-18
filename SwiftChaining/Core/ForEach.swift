@@ -4,8 +4,8 @@
 
 import Foundation
 
-extension Chain where HandlerOut: Sequence {
-    public typealias ForEachOut = (Int, HandlerOut.Element)
+extension Chain where Out: Sequence {
+    public typealias ForEachOut = (Int, Out.Element)
     public typealias ForEachChain = Chain<ForEachOut, ForEachOut, Sender>
     
     public func forEach() -> ForEachChain {

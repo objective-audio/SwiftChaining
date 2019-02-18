@@ -6,44 +6,44 @@ import Foundation
 
 extension Chain where Sender: Fetchable {
     public func tuple<SO1, SI1, SS1, SO2, SI2, SS2>(_ subChain1: Chain<SO1, SI1, SS1>,
-                                                    _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(HandlerOut?, SO1?, SO2?), ((HandlerOut?, SO1?)?, SO2?), Sender> {
+                                                    _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(Out?, SO1?, SO2?), ((Out?, SO1?)?, SO2?), Sender> {
         return _tupleToMain(self, subChain1, subChain2)
     }
     
     public func tuple<SO1, SI1, SS1, SO2, SI2, SS2>(_ subChain1: Chain<SO1, SI1, SS1>,
-                                                    _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(HandlerOut?, SO1?, SO2?), ((HandlerOut?, SO1?)?, SO2?), Sender> where SS1: Fetchable {
+                                                    _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(Out?, SO1?, SO2?), ((Out?, SO1?)?, SO2?), Sender> where SS1: Fetchable {
         return _tupleToMain(self, subChain1, subChain2)
     }
     
     public func tuple<SO1, SI1, SS1, SO2, SI2, SS2>(_ subChain1: Chain<SO1, SI1, SS1>,
-                                                    _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(HandlerOut?, SO1?, SO2?), ((HandlerOut?, SO1?)?, SO2?), Sender> where SS2: Fetchable {
+                                                    _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(Out?, SO1?, SO2?), ((Out?, SO1?)?, SO2?), Sender> where SS2: Fetchable {
         return _tupleToMain(self, subChain1, subChain2)
     }
     
     public func tuple<SO1, SI1, SS1, SO2, SI2, SS2>(_ subChain1: Chain<SO1, SI1, SS1>,
-                                                    _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(HandlerOut?, SO1?, SO2?), ((HandlerOut?, SO1?)?, SO2?), Sender> where SS1: Fetchable, SS2: Fetchable {
+                                                    _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(Out?, SO1?, SO2?), ((Out?, SO1?)?, SO2?), Sender> where SS1: Fetchable, SS2: Fetchable {
         return _tupleToMain(self, subChain1, subChain2)
     }
 }
 
 extension Chain {
     public func tuple<SO1, SI1, SS1, SO2, SI2, SS2>(_ subChain1: Chain<SO1, SI1, SS1>,
-                                                    _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(HandlerOut?, SO1?, SO2?), ((HandlerOut?, SO1?)?, SO2?), Sender> {
+                                                    _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(Out?, SO1?, SO2?), ((Out?, SO1?)?, SO2?), Sender> {
         return _tupleToMain(self, subChain1, subChain2)
     }
     
     public func tuple<SO1, SI1, SS1, SO2, SI2, SS2>(_ subChain1: Chain<SO1, SI1, SS1>,
-                                                    _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(HandlerOut?, SO1?, SO2?), ((HandlerOut?, SO1?)?, SO2?), SS1> where SS1: Fetchable {
+                                                    _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(Out?, SO1?, SO2?), ((Out?, SO1?)?, SO2?), SS1> where SS1: Fetchable {
         return _tupleToSub1(self, subChain1, subChain2)
     }
     
     public func tuple<SO1, SI1, SS1, SO2, SI2, SS2>(_ subChain1: Chain<SO1, SI1, SS1>,
-                                                    _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(HandlerOut?, SO1?, SO2?), ((HandlerOut?, SO1?)?, SO2?), SS2> where SS2: Fetchable {
+                                                    _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(Out?, SO1?, SO2?), ((Out?, SO1?)?, SO2?), SS2> where SS2: Fetchable {
         return _tupleToSub2(self, subChain1, subChain2)
     }
     
     public func tuple<SO1, SI1, SS1, SO2, SI2, SS2>(_ subChain1: Chain<SO1, SI1, SS1>,
-                                                    _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(HandlerOut?, SO1?, SO2?), ((HandlerOut?, SO1?)?, SO2?), SS1> where SS1: Fetchable, SS2: Fetchable {
+                                                    _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(Out?, SO1?, SO2?), ((Out?, SO1?)?, SO2?), SS1> where SS1: Fetchable, SS2: Fetchable {
         return _tupleToSub1(self, subChain1, subChain2)
     }
 }

@@ -7,7 +7,7 @@ import Foundation
 extension Chain {
     public typealias MapChain<Next> = Chain<Next, HandlerIn, Sender>
     
-    public func map<Next>(_ transform: @escaping (HandlerOut) -> Next) -> MapChain<Next> {
+    public func map<Next>(_ transform: @escaping (Out) -> Next) -> MapChain<Next> {
         guard let joint = self.joint else {
             fatalError()
         }
