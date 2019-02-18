@@ -5,7 +5,7 @@
 import Foundation
 
 extension Chain {
-    public func optional() -> Chain<Out?, HandlerIn, Sender> {
+    public func optional() -> Chain<Out?, In, Sender> {
         return self.map { Optional($0) }
     }
     
@@ -13,7 +13,7 @@ extension Chain {
         return self.guard { (wrapped: Unwrapped?) in wrapped != nil }.forceUnwrap()
     }
     
-    public func forceUnwrap<Unwrapped>() -> Chain<Unwrapped, HandlerIn, Sender> where Out == Unwrapped? {
+    public func forceUnwrap<Unwrapped>() -> Chain<Unwrapped, In, Sender> where Out == Unwrapped? {
         return self.map { (wrapped: Unwrapped?) in wrapped! }
     }
 }

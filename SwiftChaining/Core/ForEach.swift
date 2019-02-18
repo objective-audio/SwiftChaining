@@ -18,7 +18,7 @@ extension Chain where Out: Sequence {
         let handler = self.handler
         let nextIndex = joint.handlers.count + 1
         
-        let newHandler: (HandlerIn) -> Void = { [weak joint] value in
+        let newHandler: (In) -> Void = { [weak joint] value in
             if let joint = joint, let nextHandler = joint.handlers[nextIndex] as? (ForEachOut) -> Void {
                 for (index, element) in handler(value).enumerated() {
                     nextHandler((index, element))

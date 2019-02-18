@@ -17,7 +17,7 @@ extension Chain {
         let handler = self.handler
         let nextIndex = joint.handlers.count + 1
         
-        let guardHandler: (HandlerIn) -> Void = { [weak joint] value in
+        let guardHandler: (In) -> Void = { [weak joint] value in
             let result = handler(value)
             
             guard isIncluded(result) else {
