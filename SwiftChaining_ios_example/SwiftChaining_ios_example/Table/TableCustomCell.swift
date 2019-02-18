@@ -49,8 +49,8 @@ extension TableCustomCell: CellDataSettable {
             fatalError()
         }
         
-        self.pool += customCellData.number.chain().to { String($0) }.sendTo(self.labelAdapter).sync()
-        self.pool += customCellData.number.chain().to { Double($0) }.sendTo(self.stepperAdapter).sync()
-        self.pool += self.stepperAdapter.chain().to { Int($0) }.sendTo(customCellData.number).sync()
+        self.pool += customCellData.number.chain().map { String($0) }.sendTo(self.labelAdapter).sync()
+        self.pool += customCellData.number.chain().map { Double($0) }.sendTo(self.stepperAdapter).sync()
+        self.pool += self.stepperAdapter.chain().map { Int($0) }.sendTo(customCellData.number).sync()
     }
 }

@@ -44,6 +44,6 @@ extension TableEditCell: CellDataSettable {
         }
         
         self.pool += editCellData.isEditing.chain().sendTo(self.switchIsOnAdapter).sync()
-        self.pool += self.switchChangedAdapter.chain().to { $0.isOn }.sendTo(editCellData.isEditing).end()
+        self.pool += self.switchChangedAdapter.chain().map { $0.isOn }.sendTo(editCellData.isEditing).end()
     }
 }
