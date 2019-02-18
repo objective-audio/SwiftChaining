@@ -31,13 +31,13 @@ class SuspendViewController: UIViewController {
         super.viewDidLoad()
         
         self.observers += self.srcNumber.chain().suspend(self.suspender).sendTo(self.dstNumber).sync()
-        self.observers += self.srcNumber.chain().to { "\($0)" }.sendTo(self.srcTextAdapter).sync()
-        self.observers += self.dstNumber.chain().to { "\($0)" }.sendTo(self.dstTextAdapter).sync()
-        self.observers += self.suspender.chain().sendTo(self.resumeEnabledAdapter).to { !$0 }.sendTo(self.suspendEnabledAdapter).sync()
-        self.observers += self.suspender.chain().to { $0 ? "-" : "↓" }.sendTo(self.arrowTextAdapter).sync()
-        self.observers += self.suspendTapAdapter.chain().toValue(true).sendTo(self.suspender).end()
-        self.observers += self.resumeTapAdapter.chain().toValue(false).sendTo(self.suspender).end()
-        self.observers += self.randomTapAdapter.chain().to { _ in Int.random(in: 0..<100) }.sendTo(self.srcNumber).end()
+        self.observers += self.srcNumber.chain().map { "\($0)" }.sendTo(self.srcTextAdapter).sync()
+        self.observers += self.dstNumber.chain().map { "\($0)" }.sendTo(self.dstTextAdapter).sync()
+        self.observers += self.suspender.chain().sendTo(self.resumeEnabledAdapter).map { !$0 }.sendTo(self.suspendEnabledAdapter).sync()
+        self.observers += self.suspender.chain().map { $0 ? "-" : "↓" }.sendTo(self.arrowTextAdapter).sync()
+        self.observers += self.suspendTapAdapter.chain().replace(true).sendTo(self.suspender).end()
+        self.observers += self.resumeTapAdapter.chain().replace(false).sendTo(self.suspender).end()
+        self.observers += self.randomTapAdapter.chain().map { _ in Int.random(in: 0..<100) }.sendTo(self.srcNumber).end()
     }
     
 }

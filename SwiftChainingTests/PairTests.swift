@@ -20,7 +20,7 @@ class PairTests: XCTestCase {
         
         var received: [(Int?, String?)] = []
         
-        let observer = main.chain().pair(sub.chain()).do { received.append($0) }.sync()
+        let observer = main.chain().tuple(sub.chain()).do { received.append($0) }.sync()
         
         XCTAssertEqual(received.count, 2)
         XCTAssertEqual(received[0].0, 1)
@@ -37,7 +37,7 @@ class PairTests: XCTestCase {
         
         var received: (Int?, String?)?
         
-        let observer = main.chain().pair(sub.chain()).do { received = $0 }.sync()
+        let observer = main.chain().tuple(sub.chain()).do { received = $0 }.sync()
         
         XCTAssertEqual(received?.0, 0)
         XCTAssertNil(received?.1)
@@ -61,7 +61,7 @@ class PairTests: XCTestCase {
         
         var received: (Int?, String?)?
         
-        let observer = main.chain().pair(sub.chain()).do { received = $0 }.sync()
+        let observer = main.chain().tuple(sub.chain()).do { received = $0 }.sync()
         
         XCTAssertNil(received?.0)
         XCTAssertEqual(received?.1, "")
@@ -85,7 +85,7 @@ class PairTests: XCTestCase {
         
         var received: (Int?, String?)?
         
-        let observer = main.chain().pair(sub.chain()).do { received = $0 }.end()
+        let observer = main.chain().tuple(sub.chain()).do { received = $0 }.end()
         
         XCTAssertNil(received)
         

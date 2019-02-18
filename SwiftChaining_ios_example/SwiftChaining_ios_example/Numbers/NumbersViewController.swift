@@ -35,7 +35,7 @@ class NumbersViewController: UIViewController {
         self.resultAdapter = KVOAdapter(self.resultLabel, keyPath: \UILabel.text)
         
         let makeChain = { (textAdapter: TextAdapter, changedAdapter: ChangedAdapter) in
-            return changedAdapter.chain().to { $0.text }.merge(textAdapter.chain()).to { string in Int(string ?? "") ?? 0 }
+            return changedAdapter.chain().map { $0.text }.merge(textAdapter.chain()).map { string in Int(string ?? "") ?? 0 }
         }
         
         let chain1 = makeChain(self.textAdapter1, self.changedAdapter1)
@@ -44,10 +44,8 @@ class NumbersViewController: UIViewController {
         
         self.observer =
             chain1
-                .combine(chain2)
-                .to { $0.0 + $0.1 }
-                .combine(chain3)
-                .to { String($0.0 + $0.1) }
+                .combine(chain2, chain3)
+                .map { String($0.0 + $0.1 + $0.2) }
                 .sendTo(self.resultAdapter)
                 .sync()
     }
