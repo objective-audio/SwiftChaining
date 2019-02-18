@@ -5,108 +5,109 @@
 import Foundation
 
 extension Chain where Sender: Fetchable {
-    public func combine<SO1, SI1, SS1, SO2, SI2, SS2>(_ subChain1: Chain<SO1, SI1, SS1>,
-                                                      _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(Out, SO1, SO2), (Out?, SO1?, SO2?), Sender> {
-        return _combineToMain(main: self, sub1: subChain1, sub2: subChain2)
+    public func combine<Out1, In1, Sender1, Out2, In2, Sender2>(_ chain1: Chain<Out1, In1, Sender1>,
+                                                                _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out, Out1, Out2), (Out?, Out1?, Out2?), Sender> {
+        return _combine0(chain0: self, chain1: chain1, chain2: chain2)
     }
     
-    public func combine<SO1, SI1, SS1, SO2, SI2, SS2>(_ subChain1: Chain<SO1, SI1, SS1>,
-                                                      _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(Out, SO1, SO2), (Out?, SO1?, SO2?), Sender> where SS1: Fetchable {
-        return _combineToMain(main: self, sub1: subChain1, sub2: subChain2)
+    public func combine<Out1, In1, Sender1, Out2, In2, Sender2>(_ chain1: Chain<Out1, In1, Sender1>,
+                                                                _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out, Out1, Out2), (Out?, Out1?, Out2?), Sender> where Sender1: Fetchable {
+        return _combine0(chain0: self, chain1: chain1, chain2: chain2)
     }
     
-    public func combine<SO1, SI1, SS1, SO2, SI2, SS2>(_ subChain1: Chain<SO1, SI1, SS1>,
-                                                      _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(Out, SO1, SO2), (Out?, SO1?, SO2?), Sender> where SS2: Fetchable {
-        return _combineToMain(main: self, sub1: subChain1, sub2: subChain2)
+    public func combine<Out1, In1, Sender1, Out2, In2, Sender2>(_ chain1: Chain<Out1, In1, Sender1>,
+                                                                _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out, Out1, Out2), (Out?, Out1?, Out2?), Sender> where Sender2: Fetchable {
+        return _combine0(chain0: self, chain1: chain1, chain2: chain2)
     }
     
-    public func combine<SO1, SI1, SS1, SO2, SI2, SS2>(_ subChain1: Chain<SO1, SI1, SS1>,
-                                                      _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(Out, SO1, SO2), (Out?, SO1?, SO2?), Sender> where SS1: Fetchable, SS2: Fetchable {
-        return _combineToMain(main: self, sub1: subChain1, sub2: subChain2)
+    public func combine<Out1, In1, Sender1, Out2, In2, Sender2>(_ chain1: Chain<Out1, In1, Sender1>,
+                                                                _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out, Out1, Out2), (Out?, Out1?, Out2?), Sender> where Sender1: Fetchable, Sender2: Fetchable {
+        return _combine0(chain0: self, chain1: chain1, chain2: chain2)
     }
 }
 
 extension Chain {
-    public func combine<SO1, SI1, SS1, SO2, SI2, SS2>(_ subChain1: Chain<SO1, SI1, SS1>,
-                                                      _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(Out, SO1, SO2), (Out?, SO1?, SO2?), Sender> {
-        return _combineToMain(main: self, sub1: subChain1, sub2: subChain2)
+    public func combine<Out1, In1, Sender1, Out2, In2, Sender2>(_ chain1: Chain<Out1, In1, Sender1>,
+                                                                _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out, Out1, Out2), (Out?, Out1?, Out2?), Sender> {
+        return _combine0(chain0: self, chain1: chain1, chain2: chain2)
     }
     
-    public func combine<SO1, SI1, SS1, SO2, SI2, SS2>(_ subChain1: Chain<SO1, SI1, SS1>,
-                                                      _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(Out, SO1, SO2), (Out?, SO1?, SO2?), SS1> where SS1: Fetchable {
-        return _combineToSub1(main: self, sub1: subChain1, sub2: subChain2)
+    public func combine<Out1, In1, Sender1, Out2, In2, Sender2>(_ chain1: Chain<Out1, In1, Sender1>,
+                                                                _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out, Out1, Out2), (Out?, Out1?, Out2?), Sender1> where Sender1: Fetchable {
+        return _combine1(chain0: self, chain1: chain1, chain2: chain2)
     }
     
-    public func combine<SO1, SI1, SS1, SO2, SI2, SS2>(_ subChain1: Chain<SO1, SI1, SS1>,
-                                                      _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(Out, SO1, SO2), (Out?, SO1?, SO2?), SS2> where SS2: Fetchable {
-        return _combineToSub2(main: self, sub1: subChain1, sub2: subChain2)
+    public func combine<Out1, In1, Sender1, Out2, In2, Sender2>(_ chain1: Chain<Out1, In1, Sender1>,
+                                                                _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out, Out1, Out2), (Out?, Out1?, Out2?), Sender2> where Sender2: Fetchable {
+        return _combine2(chain0: self, chain1: chain1, chain2: chain2)
     }
     
-    public func combine<SO1, SI1, SS1, SO2, SI2, SS2>(_ subChain1: Chain<SO1, SI1, SS1>,
-                                                      _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(Out, SO1, SO2), (Out?, SO1?, SO2?), SS1> where SS1: Fetchable, SS2: Fetchable {
-        return _combineToSub1(main: self, sub1: subChain1, sub2: subChain2)
+    public func combine<Out1, In1, Sender1, Out2, In2, Sender2>(_ chain1: Chain<Out1, In1, Sender1>,
+                                                                _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out, Out1, Out2), (Out?, Out1?, Out2?), Sender1> where Sender1: Fetchable, Sender2: Fetchable {
+        return _combine1(chain0: self, chain1: chain1, chain2: chain2)
     }
 }
 
-private func _combineToMain<MO, MI, MS, SO1, SI1, SS1, SO2, SI2, SS2>(main: Chain<MO, MI, MS>,
-                                                                      sub1: Chain<SO1, SI1, SS1>,
-                                                                      sub2: Chain<SO2, SI2, SS2>) -> Chain<(MO, SO1, SO2), (MO?, SO1?, SO2?), MS> {
-    var cache: (main: MO?, sub1: SO1?, sub2: SO2?) = (nil, nil, nil)
+private func _combine0<Out0, In0, Sender0, Out1, In1, Sender1, Out2, In2, Sender2>(chain0: Chain<Out0, In0, Sender0>,
+                                                                                   chain1: Chain<Out1, In1, Sender1>,
+                                                                                   chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out0, Out1, Out2), (Out0?, Out1?, Out2?), Sender0> {
+    var cache: (Out0?, Out1?, Out2?) = (nil, nil, nil)
     
-    return main.tuple(sub1, sub2).map({ (main, sub1, sub2) -> (MO?, SO1?, SO2?) in
-        if let main = main {
-            cache.main = main
-        } else if let sub1 = sub1 {
-            cache.sub1 = sub1
-        } else if let sub2 = sub2 {
-            cache.sub2 = sub2
+    return chain0.tuple(chain1, chain2)
+        .map {
+            if let in0 = $0.0 {
+                cache.0 = in0
+            } else if let in1 = $0.1 {
+                cache.1 = in1
+            } else if let in2 = $0.2 {
+                cache.2 = in2
+            }
+            return cache
         }
-        return cache
-    }).guard({ (main, sub1, sub2) in
-        return main != nil && sub1 != nil && sub2 != nil
-    }).map { (main, sub1, sub2) -> (MO, SO1, SO2) in
-        return (main!, sub1!, sub2!)
-    }
+        .guard { $0.0 != nil && $0.1 != nil && $0.2 != nil }
+        .map { ($0.0!, $0.1!, $0.2!) }
 }
 
-private func _combineToSub1<MO, MI, MS, SO1, SI1, SS1, SO2, SI2, SS2>(main: Chain<MO, MI, MS>,
-                                                                      sub1: Chain<SO1, SI1, SS1>,
-                                                                      sub2: Chain<SO2, SI2, SS2>) -> Chain<(MO, SO1, SO2), (MO?, SO1?, SO2?), SS1> where SS1: Fetchable {
-    var cache: (main: MO?, sub1: SO1?, sub2: SO2?) = (nil, nil, nil)
+private func _combine1<Out0, In0, Sender0, Out1, In1, Sender1, Out2, In2, Sender2>(chain0: Chain<Out0, In0, Sender0>,
+                                                                                   chain1: Chain<Out1, In1, Sender1>,
+                                                                                   chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out0, Out1, Out2), (Out0?, Out1?, Out2?), Sender1> where Sender1: Fetchable {
+    var cache: (Out0?, Out1?, Out2?) = (nil, nil, nil)
     
-    return main.tuple(sub1, sub2).map({ (main, sub1, sub2) -> (MO?, SO1?, SO2?) in
-        if let main = main {
-            cache.main = main
-        } else if let sub1 = sub1 {
-            cache.sub1 = sub1
-        } else if let sub2 = sub2 {
-            cache.sub2 = sub2
+    return chain0.tuple(chain1, chain2)
+        .map {
+            if let in0 = $0.0 {
+                cache.0 = in0
+            } else if let in1 = $0.1 {
+                cache.1 = in1
+            } else if let in2 = $0.2 {
+                cache.2 = in2
+            }
+            return cache
         }
-        return cache
-    }).guard({ (main, sub1, sub2) in
-        return main != nil && sub1 != nil && sub2 != nil
-    }).map { (main, sub1, sub2) -> (MO, SO1, SO2) in
-        return (main!, sub1!, sub2!)
-    }
+        .guard { $0.0 != nil && $0.1 != nil && $0.2 != nil }
+        .map { ($0.0!, $0.1!, $0.2!) }
 }
 
-private func _combineToSub2<MO, MI, MS, SO1, SI1, SS1, SO2, SI2, SS2>(main: Chain<MO, MI, MS>,
-                                                                      sub1: Chain<SO1, SI1, SS1>,
-                                                                      sub2: Chain<SO2, SI2, SS2>) -> Chain<(MO, SO1, SO2), (MO?, SO1?, SO2?), SS2> where SS2: Fetchable {
-    var cache: (main: MO?, sub1: SO1?, sub2: SO2?) = (nil, nil, nil)
+private func _combine2<Out0, In0, Sender0, Out1, In1, Sender1, Out2, In2, Sender2>(chain0: Chain<Out0, In0, Sender0>,
+                                                                                   chain1: Chain<Out1, In1, Sender1>,
+                                                                                   chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out0, Out1, Out2), (Out0?, Out1?, Out2?), Sender2> where Sender2: Fetchable {
+    var cache: (Out0?, Out1?, Out2?) = (nil, nil, nil)
     
-    return main.tuple(sub1, sub2).map({ (main, sub1, sub2) -> (MO?, SO1?, SO2?) in
-        if let main = main {
-            cache.main = main
-        } else if let sub1 = sub1 {
-            cache.sub1 = sub1
-        } else if let sub2 = sub2 {
-            cache.sub2 = sub2
+    return chain0.tuple(chain1, chain2)
+        .map {
+            if let in0 = $0.0 {
+                cache.0 = in0
+            } else if let in1 = $0.1 {
+                cache.1 = in1
+            } else if let in2 = $0.2 {
+                cache.2 = in2
+            }
+            return cache
         }
-        return cache
-    }).guard({ (main, sub1, sub2) in
-        return main != nil && sub1 != nil && sub2 != nil
-    }).map { (main, sub1, sub2) -> (MO, SO1, SO2) in
-        return (main!, sub1!, sub2!)
-    }
+        .guard { $0.0 != nil && $0.1 != nil && $0.2 != nil }
+        .map { ($0.0!, $0.1!, $0.2!) }
 }
+
+
+
+
