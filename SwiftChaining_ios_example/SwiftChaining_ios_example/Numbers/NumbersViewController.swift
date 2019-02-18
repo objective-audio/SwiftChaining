@@ -44,10 +44,8 @@ class NumbersViewController: UIViewController {
         
         self.observer =
             chain1
-                .combine(chain2)
-                .map { $0.0 + $0.1 }
-                .combine(chain3)
-                .map { String($0.0 + $0.1) }
+                .combine(chain2, chain3)
+                .map { String($0.0 + $0.1 + $0.2) }
                 .sendTo(self.resultAdapter)
                 .sync()
     }
