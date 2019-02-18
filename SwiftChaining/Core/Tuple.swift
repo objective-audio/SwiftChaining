@@ -49,15 +49,15 @@ extension Chain {
 }
 
 private func _tupleToMain<MO, MI, MS, SO1, SI1, SS1, SO2, SI2, SS2>(_ mainChain: Chain<MO, MI, MS>, _ subChain1: Chain<SO1, SI1, SS1>, _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(MO?, SO1?, SO2?), ((MO?, SO1?)?, SO2?), MS> {
-    return mainChain.pair(subChain1).pair(subChain2).map(_flat)
+    return mainChain.tuple(subChain1).tuple(subChain2).map(_flat)
 }
 
 private func _tupleToSub1<MO, MI, MS, SO1, SI1, SS1, SO2, SI2, SS2>(_ mainChain: Chain<MO, MI, MS>, _ subChain1: Chain<SO1, SI1, SS1>, _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(MO?, SO1?, SO2?), ((MO?, SO1?)?, SO2?), SS1> {
-    return _pairToSub(main: mainChain, sub: subChain1).pair(subChain2).map(_flat)
+    return _pairToSub(main: mainChain, sub: subChain1).tuple(subChain2).map(_flat)
 }
 
 private func _tupleToSub2<MO, MI, MS, SO1, SI1, SS1, SO2, SI2, SS2>(_ mainChain: Chain<MO, MI, MS>, _ subChain1: Chain<SO1, SI1, SS1>, _ subChain2: Chain<SO2, SI2, SS2>) -> Chain<(MO?, SO1?, SO2?), ((MO?, SO1?)?, SO2?), SS2> {
-    return _pairToSub(main: mainChain.pair(subChain1), sub: subChain2).map(_flat)
+    return _pairToSub(main: mainChain.tuple(subChain1), sub: subChain2).map(_flat)
 }
 
 private func _flat<MO, SO1, SO2>(_ lhs: (MO?, SO1?)?, _ rhs: SO2?) -> (MO?, SO1?, SO2?) {

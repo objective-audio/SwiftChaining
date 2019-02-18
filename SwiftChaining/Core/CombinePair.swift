@@ -26,7 +26,7 @@ extension Chain {
 
 private func _combineToMain<MainOut, MainIn, MainSender, SubOut, SubIn, SubSender>(main: Chain<MainOut, MainIn, MainSender>, sub: Chain<SubOut, SubIn, SubSender>) -> Chain<(MainOut, SubOut), (MainOut?, SubOut?), MainSender> {
     var cache: (lhs: MainOut?, rhs: SubOut?) = (nil, nil)
-    return main.pair(sub).map({ (lhs, rhs) in
+    return main.tuple(sub).map({ (lhs, rhs) in
         if let lhs = lhs {
             cache.lhs = lhs
         } else if let rhs = rhs {
@@ -42,7 +42,7 @@ private func _combineToMain<MainOut, MainIn, MainSender, SubOut, SubIn, SubSende
 
 private func _combineToSub<MainOut, MainIn, MainSender, SubOut, SubIn, SubSender>(main: Chain<MainOut, MainIn, MainSender>, sub: Chain<SubOut, SubIn, SubSender>) -> Chain<(MainOut, SubOut), (MainOut?, SubOut?), SubSender> where SubSender: Fetchable {
     var cache: (lhs: MainOut?, rhs: SubOut?) = (nil, nil)
-    return main.pair(sub).map({ (lhs, rhs) in
+    return main.tuple(sub).map({ (lhs, rhs) in
         if let lhs = lhs {
             cache.lhs = lhs
         } else if let rhs = rhs {
