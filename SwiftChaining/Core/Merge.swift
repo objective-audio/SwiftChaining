@@ -5,50 +5,55 @@
 import Foundation
 
 extension Chain where Sender: Fetchable {
-    public func merge<SubIn, SubSender>(_ subChain: Chain<Out, SubIn, SubSender>) -> Chain<Out, Out, Sender> {
-        return _merge(main: self, sub: subChain)
+    public func merge<In1, Sender1>(_ chain1: Chain<Out, In1, Sender1>) -> Chain<Out, Out, Sender> where Sender1: Fetchable {
+        return _merge(chain0: self, chain1: chain1)
+    }
+    
+    public func merge<In1, Sender1>(_ chain1: Chain<Out, In1, Sender1>) -> Chain<Out, Out, Sender> {
+        return _merge(chain0: self, chain1: chain1)
     }
 }
 
 extension Chain {
-    public func merge<SubIn, SubSender>(_ subChain: Chain<Out, SubIn, SubSender>) -> Chain<Out, Out, SubSender> where SubSender: Fetchable {
-        return _merge(main: subChain, sub: self)
+    public func merge<In1, Sender1>(_ chain1: Chain<Out, In1, Sender1>) -> Chain<Out, Out, Sender1> where Sender1: Fetchable {
+        return _merge(chain0: chain1, chain1: self)
     }
     
-    public func merge<SubIn, SubSender>(_ subChain: Chain<Out, SubIn, SubSender>) -> Chain<Out, Out, Sender> {
-        return _merge(main: self, sub: subChain)
+    public func merge<In1, Sender1>(_ chain1: Chain<Out, In1, Sender1>) -> Chain<Out, Out, Sender> {
+        return _merge(chain0: self, chain1: chain1)
     }
 }
 
-private func _merge<Out, MainIn, MainJoint, SubIn, SubSender>(main: Chain<Out, MainIn, MainJoint>, sub: Chain<Out, SubIn, SubSender>) -> Chain<Out, Out, MainJoint> {
-    guard let mainJoint = main.joint, let subJoint = sub.joint else {
+private func _merge<Out0, In0, Sender0, In1, Sender1>(chain0: Chain<Out0, In0, Sender0>,
+                                                      chain1: Chain<Out0, In1, Sender1>) -> Chain<Out0, Out0, Sender0> {
+    guard let joint0 = chain0.joint, let joint1 = chain1.joint else {
         fatalError()
     }
     
-    main.joint = nil
-    sub.joint = nil
+    chain0.joint = nil
+    chain1.joint = nil
     
-    let mainHandler = main.handler
-    let subHandler = sub.handler
-    let nextIndex =  mainJoint.handlers.count + 1
+    let handler0 = chain0.handler
+    let handler1 = chain1.handler
+    let nextIndex =  joint0.handlers.count + 1
     
-    let subNewHandler: (SubIn) -> Void = { [weak mainJoint] value in
-        if let mainJoint = mainJoint, let nextHandler = mainJoint.handlers[nextIndex] as? (Out) -> Void {
-            nextHandler(subHandler(value))
+    let newHandler1: (In1) -> Void = { [weak joint0] value in
+        if let joint0 = joint0, let nextHandler = joint0.handlers[nextIndex] as? (Out0) -> Void {
+            nextHandler(handler1(value))
         }
     }
     
-    subJoint.handlers.append(subNewHandler)
+    joint1.handlers.append(newHandler1)
     
-    let mainNewHandler: (MainIn) -> Void = { [weak mainJoint] value in
-        if let mainJoint = mainJoint, let nextHandler = mainJoint.handlers[nextIndex] as? (Out) -> Void {
-            nextHandler(mainHandler(value))
+    let newHandler0: (In0) -> Void = { [weak joint0] value in
+        if let joint0 = joint0, let nextHandler = joint0.handlers[nextIndex] as? (Out0) -> Void {
+            nextHandler(handler0(value))
         }
     }
     
-    mainJoint.handlers.append(mainNewHandler)
+    joint0.handlers.append(newHandler0)
     
-    mainJoint.subJoints.append(subJoint)
+    joint0.subJoints.append(joint1)
     
-    return Chain<Out, Out, MainJoint>(joint: mainJoint) { $0 }
+    return Chain<Out0, Out0, Sender0>(joint: joint0) { $0 }
 }
