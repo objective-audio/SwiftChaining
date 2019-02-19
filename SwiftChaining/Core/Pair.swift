@@ -5,91 +5,95 @@
 import Foundation
 
 extension Chain where Sender: Fetchable {
-    public func tuple<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(HandlerOut?, SubOut?), (HandlerOut?, SubOut?), Sender> where SubSender: Fetchable {
-        return _tupleToMain(main: self, sub: subChain)
+    public func tuple<Out1, In1, Sender1>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(Out?, Out1?), (Out?, Out1?), Sender> where Sender1: Fetchable {
+        return _tuple0(chain0: self, chain1: chain1)
     }
     
-    public func tuple<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(HandlerOut?, SubOut?), (HandlerOut?, SubOut?), Sender> {
-        return _tupleToMain(main: self, sub: subChain)
+    public func tuple<Out1, In1, Sender1>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(Out?, Out1?), (Out?, Out1?), Sender> {
+        return _tuple0(chain0: self, chain1: chain1)
     }
 }
 
 extension Chain {
-    public func tuple<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(HandlerOut?, SubOut?), (HandlerOut?, SubOut?), SubSender> where SubSender: Fetchable {
-        return _tupleToSub(main: self, sub: subChain)
+    public func tuple<Out1, In1, Sender1>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(Out?, Out1?), (Out?, Out1?), Sender1> where Sender1: Fetchable {
+        return _tuple1(chain0: self, chain1: chain1)
     }
     
-    public func tuple<SubOut, SubIn, SubSender>(_ subChain: Chain<SubOut, SubIn, SubSender>) -> Chain<(HandlerOut?, SubOut?), (HandlerOut?, SubOut?), Sender> {
-        return _tupleToMain(main: self, sub: subChain)
+    public func tuple<Out1, In1, Sender1>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(Out?, Out1?), (Out?, Out1?), Sender> {
+        return _tuple0(chain0: self, chain1: chain1)
     }
 }
 
-private func _tupleToMain<MainOut, MainIn, MainSender, SubOut, SubIn, SubSender>(main: Chain<MainOut, MainIn, MainSender>, sub: Chain<SubOut, SubIn, SubSender>) -> Chain<(MainOut?, SubOut?), (MainOut?, SubOut?), MainSender> {
-    guard let mainJoint = main.joint, let subJoint = sub.joint else {
+private func _tuple0<Out0, In0, Sender0, Out1, In1, Sender1>(chain0: Chain<Out0, In0, Sender0>,
+                                                             chain1: Chain<Out1, In1, Sender1>) -> Chain<(Out0?, Out1?), (Out0?, Out1?), Sender0> {
+    guard let joint0 = chain0.joint, let joint1 = chain1.joint else {
         fatalError()
     }
     
-    main.joint = nil
-    sub.joint = nil
+    chain0.joint = nil
+    chain1.joint = nil
     
-    let mainHandler = main.handler
-    let subHandler = sub.handler
-    let nextIndex = mainJoint.handlers.count + 1
+    let handler0 = chain0.handler
+    let handler1 = chain1.handler
+    let nextIndex = joint0.handlers.count + 1
     
-    let subNewHandler: (SubIn) -> Void = { [weak mainJoint] value in
-        if let mainJoint = mainJoint {
-            let nextHandler = mainJoint.handlers[nextIndex] as! ((MainOut?, SubOut?)) -> Void
+    let newHandler1: (In1) -> Void = { [weak joint0] value in
+        if let joint0 = joint0 {
+            let nextHandler = joint0.handlers[nextIndex] as! ((Out0?, Out1?)) -> Void
+            nextHandler((nil, handler1(value)))
+        }
+    }
+    
+    joint1.handlers.append(newHandler1)
+    
+    let newHandler0: (In0) -> Void = { [weak joint0] value in
+        if let joint0 = joint0 {
+            let nextHandler = joint0.handlers[nextIndex] as! ((Out0?, Out1?)) -> Void
+            nextHandler((handler0(value), nil))
+        }
+    }
+    
+    joint0.handlers.append(newHandler0)
+    
+    joint0.subJoints.append(joint1)
+    
+    return Chain<(Out0?, Out1?), (Out0?, Out1?), Sender0>(joint: joint0) { $0 }
+}
+
+internal func _tuple1<Out0, In0, Sender0, Out1, In1, Sender1>(chain0: Chain<Out0, In0, Sender0>,
+                                                              chain1: Chain<Out1, In1, Sender1>) -> Chain<(Out0?, Out1?), (Out0?, Out1?), Sender1> {
+    guard let joint0 = chain0.joint, let joint1 = chain1.joint else {
+        fatalError()
+    }
+    
+    chain0.joint = nil
+    chain1.joint = nil
+    
+    let mainHandler = chain0.handler
+    let subHandler = chain1.handler
+    let nextIndex = joint1.handlers.count + 1
+    
+    let newHandler1: (In1) -> Void = { [weak joint1] value in
+        if let joint1 = joint1 {
+            let nextHandler = joint1.handlers[nextIndex] as! ((Out0?, Out1?)) -> Void
             nextHandler((nil, subHandler(value)))
         }
     }
     
-    subJoint.handlers.append(subNewHandler)
+    joint1.handlers.append(newHandler1)
     
-    let mainNewHandler: (MainIn) -> Void = { [weak mainJoint] value in
-        if let mainJoint = mainJoint {
-            let nextHandler = mainJoint.handlers[nextIndex] as! ((MainOut?, SubOut?)) -> Void
+    let newHandler0: (In0) -> Void = { [weak joint1] value in
+        if let joint1 = joint1 {
+            let nextHandler = joint1.handlers[nextIndex] as! ((Out0?, Out1?)) -> Void
             nextHandler((mainHandler(value), nil))
         }
     }
     
-    mainJoint.handlers.append(mainNewHandler)
+    joint0.handlers.append(newHandler0)
     
-    mainJoint.subJoints.append(subJoint)
+    joint1.subJoints.append(joint0)
     
-    return Chain<(MainOut?, SubOut?), (MainOut?, SubOut?), MainSender>(joint: mainJoint) { $0 }
+    return Chain<(Out0?, Out1?), (Out0?, Out1?), Sender1>(joint: joint1) { $0 }
 }
 
-internal func _tupleToSub<MainOut, MainIn, MainSender, SubOut, SubIn, SubSender>(main: Chain<MainOut, MainIn, MainSender>, sub: Chain<SubOut, SubIn, SubSender>) -> Chain<(MainOut?, SubOut?), (MainOut?, SubOut?), SubSender> {
-    guard let mainJoint = main.joint, let subJoint = sub.joint else {
-        fatalError()
-    }
-    
-    main.joint = nil
-    sub.joint = nil
-    
-    let mainHandler = main.handler
-    let subHandler = sub.handler
-    let nextIndex = subJoint.handlers.count + 1
-    
-    let subNewHandler: (SubIn) -> Void = { [weak subJoint] value in
-        if let subJoint = subJoint {
-            let nextHandler = subJoint.handlers[nextIndex] as! ((MainOut?, SubOut?)) -> Void
-            nextHandler((nil, subHandler(value)))
-        }
-    }
-    
-    subJoint.handlers.append(subNewHandler)
-    
-    let mainNewHandler: (MainIn) -> Void = { [weak subJoint] value in
-        if let subJoint = subJoint {
-            let nextHandler = subJoint.handlers[nextIndex] as! ((MainOut?, SubOut?)) -> Void
-            nextHandler((mainHandler(value), nil))
-        }
-    }
-    
-    mainJoint.handlers.append(mainNewHandler)
-    
-    subJoint.subJoints.append(mainJoint)
-    
-    return Chain<(MainOut?, SubOut?), (MainOut?, SubOut?), SubSender>(joint: subJoint) { $0 }
-}
+
