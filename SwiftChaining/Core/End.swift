@@ -22,7 +22,7 @@ extension Chain {
 extension Chain where Sender: Fetchable {
     public func sync() -> Observer<Sender> {
         let observer = self.end()
-        observer.broadcast()
+        observer.fetch()
         return observer
     }
 }
