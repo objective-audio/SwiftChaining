@@ -28,7 +28,7 @@ extension Observer: AnyObserver {
 }
 
 extension Observer where Sender: Fetchable {
-    internal func broadcast() {
+    internal func fetch() {
         self.joint.fetch()
     }
 }
