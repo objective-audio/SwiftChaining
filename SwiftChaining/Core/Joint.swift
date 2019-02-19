@@ -7,7 +7,7 @@ import Foundation
 public protocol JointClass: class {}
 
 internal protocol AnyJoint: JointClass {
-    func broadcast()
+    func fetch()
     func invalidate()
 }
 
@@ -36,13 +36,13 @@ internal class Joint<Sender: Sendable> {
 }
 
 extension Joint: AnyJoint {
-    internal func broadcast() {
+    internal func fetch() {
         if let canFetch = self.sender?.canFetch(), canFetch {
             self.sender?.fetch(for: self)
         }
         
         for subJoint in self.subJoints {
-            subJoint.broadcast()
+            subJoint.fetch()
         }
     }
     
