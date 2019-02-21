@@ -40,8 +40,6 @@ class ArrayHolderTests: XCTestCase {
         XCTAssertEqual(array.raw, [10, 200, 30])
     }
     
-    
-    
     func testRemoveElement() {
         let array = ArrayHolder([1, 2, 3])
         

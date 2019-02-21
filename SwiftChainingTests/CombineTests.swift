@@ -101,4 +101,82 @@ class CombineTests: XCTestCase {
         
         observer.invalidate()
     }
+    
+    func testTuple2() {
+        let holder0 = ValueHolder(0)
+        let holder1 = ValueHolder(1)
+        let holder2 = ValueHolder(2)
+        let notifier0 = Notifier<Int>()
+        let notifier1 = Notifier<Int>()
+        let notifier2 = Notifier<Int>()
+        
+        do {
+            var received: [(Int, Int, Int)] = []
+            
+            let observer = holder0.chain().combine(holder1.chain()).combine(holder2.chain()).do { received.append($0) }.sync()
+            
+            XCTAssertEqual(received.count, 1)
+            XCTAssertEqual(received[0].0, 0)
+            XCTAssertEqual(received[0].1, 1)
+            XCTAssertEqual(received[0].2, 2)
+            
+            observer.invalidate()
+        }
+        
+        do {
+            var received: [(Int, Int, Int)] = []
+            
+            let observer = holder0.chain().combine(holder1.chain()).combine(notifier2.chain()).do { received.append($0) }.sync()
+            
+            XCTAssertEqual(received.count, 0)
+            
+            notifier2.notify(value: 2)
+            
+            XCTAssertEqual(received.count, 1)
+            XCTAssertEqual(received[0].0, 0)
+            XCTAssertEqual(received[0].1, 1)
+            XCTAssertEqual(received[0].2, 2)
+            
+            observer.invalidate()
+        }
+        
+        do {
+            var received: [(Int, Int, Int)] = []
+            
+            let observer = notifier0.chain().combine(notifier1.chain()).combine(holder2.chain()).do { received.append($0) }.sync()
+            
+            notifier0.notify(value: 0)
+            
+            XCTAssertEqual(received.count, 0)
+            
+            notifier1.notify(value: 1)
+            
+            XCTAssertEqual(received.count, 1)
+            XCTAssertEqual(received[0].0, 0)
+            XCTAssertEqual(received[0].1, 1)
+            XCTAssertEqual(received[0].2, 2)
+            
+            observer.invalidate()
+        }
+        
+        do {
+            var received: [(Int, Int, Int)] = []
+            
+            let observer = notifier0.chain().combine(notifier1.chain()).combine(notifier2.chain()).do { received.append($0) }.end()
+            
+            notifier0.notify(value: 0)
+            notifier1.notify(value: 1)
+            
+            XCTAssertEqual(received.count, 0)
+            
+            notifier2.notify(value: 2)
+            
+            XCTAssertEqual(received.count, 1)
+            XCTAssertEqual(received[0].0, 0)
+            XCTAssertEqual(received[0].1, 1)
+            XCTAssertEqual(received[0].2, 2)
+            
+            observer.invalidate()
+        }
+    }
 }
