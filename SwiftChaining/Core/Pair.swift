@@ -133,14 +133,14 @@ internal func _tuple1<Out0, In0, Sender0, Out1, In1, Sender1>(chain0: Chain<Out0
     chain0.joint = nil
     chain1.joint = nil
     
-    let mainHandler = chain0.handler
-    let subHandler = chain1.handler
+    let handler0 = chain0.handler
+    let handler1 = chain1.handler
     let nextIndex = joint1.handlers.count + 1
     
     let newHandler1: (In1) -> Void = { [weak joint1] value in
         if let joint1 = joint1 {
             let nextHandler = joint1.handlers[nextIndex] as! ((Out0?, Out1?)) -> Void
-            nextHandler((nil, subHandler(value)))
+            nextHandler((nil, handler1(value)))
         }
     }
     
@@ -149,7 +149,7 @@ internal func _tuple1<Out0, In0, Sender0, Out1, In1, Sender1>(chain0: Chain<Out0
     let newHandler0: (In0) -> Void = { [weak joint1] value in
         if let joint1 = joint1 {
             let nextHandler = joint1.handlers[nextIndex] as! ((Out0?, Out1?)) -> Void
-            nextHandler((mainHandler(value), nil))
+            nextHandler((handler0(value), nil))
         }
     }
     
