@@ -4,20 +4,16 @@
 
 import Foundation
 
-public protocol AnySendable: class {
+public protocol Sendable: class {
+    associatedtype SendValue
+    typealias SenderChain = Chain<SendValue, SendValue, Self>
+    
     func fetch(for: JointClass)
 }
 
-extension AnySendable {
-    public func fetch(for: JointClass) {}
-}
-
-public protocol Sendable: AnySendable {
-    associatedtype SendValue
-    typealias SenderChain = Chain<SendValue, SendValue, Self>
-}
-
 extension Sendable {
+    public func fetch(for: JointClass) {}
+    
     public func broadcast(value: SendValue) {
         self.getCore()?.broadcast(value: value)
     }

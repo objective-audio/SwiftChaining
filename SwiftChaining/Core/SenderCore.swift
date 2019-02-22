@@ -11,7 +11,7 @@ public class SenderCore<T: Sendable>: AnySenderCore {
     private var joints: [Weak<Joint<T>>] = []
     private let removeId: ObjectIdentifier
     
-    public init(removeId: ObjectIdentifier) {
+    internal init(removeId: ObjectIdentifier) {
         self.removeId = removeId
     }
     

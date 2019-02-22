@@ -48,10 +48,7 @@ public class ObserverPool {
     
     public func remove(_ observer: AnyObserver) {
         let removing = ObjectIdentifier(observer)
-        
-        self.observers = self.observers.filter {
-            return ObjectIdentifier($0) != removing
-        }
+        self.observers.removeAll { ObjectIdentifier($0) == removing }
     }
 }
 
