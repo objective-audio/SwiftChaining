@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B60FC63422197A4B009D8BDD /* Tuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60FC63322197A4B009D8BDD /* Tuple.swift */; };
 		B65F618021F9FD0C0094AA09 /* RelayableValueHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65F617F21F9FD0C0094AA09 /* RelayableValueHolder.swift */; };
 		B6B09C95220B22A900B483BC /* SendTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C94220B22A900B483BC /* SendTo.swift */; };
-		B6B09C9B220B29C900B483BC /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C9A220B29C800B483BC /* Pair.swift */; };
+		B6B09C9B220B29C900B483BC /* Tuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C9A220B29C800B483BC /* Tuple.swift */; };
 		B6B09C9D220C530600B483BC /* Suspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C9C220C530600B483BC /* Suspender.swift */; };
 		B6B09C9F220C531C00B483BC /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C9E220C531B00B483BC /* Optional.swift */; };
 		B6B09CBC2210515800B483BC /* PropertyAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CBB2210515800B483BC /* PropertyAdapter.swift */; };
@@ -44,10 +43,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B60FC63322197A4B009D8BDD /* Tuple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tuple.swift; sourceTree = "<group>"; };
 		B65F617F21F9FD0C0094AA09 /* RelayableValueHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableValueHolder.swift; sourceTree = "<group>"; };
 		B6B09C94220B22A900B483BC /* SendTo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTo.swift; sourceTree = "<group>"; };
-		B6B09C9A220B29C800B483BC /* Pair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
+		B6B09C9A220B29C800B483BC /* Tuple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tuple.swift; sourceTree = "<group>"; };
 		B6B09C9C220C530600B483BC /* Suspender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suspender.swift; sourceTree = "<group>"; };
 		B6B09C9E220C531B00B483BC /* Optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		B6B09CBB2210515800B483BC /* PropertyAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyAdapter.swift; sourceTree = "<group>"; };
@@ -136,13 +134,12 @@
 				B6FABBAF21F4B8F40045872A /* Merge.swift */,
 				B6FABBA721F4B8F40045872A /* Observer.swift */,
 				B6B09C9E220C531B00B483BC /* Optional.swift */,
-				B6B09C9A220B29C800B483BC /* Pair.swift */,
+				B6B09C9A220B29C800B483BC /* Tuple.swift */,
 				B6FABBAC21F4B8F40045872A /* Receivable.swift */,
 				B6FABBB121F4B8F40045872A /* Sendable.swift */,
 				B6FABD2E21F75F990045872A /* SenderCore.swift */,
 				B6B09C94220B22A900B483BC /* SendTo.swift */,
 				B6B09C9C220C530600B483BC /* Suspender.swift */,
-				B60FC63322197A4B009D8BDD /* Tuple.swift */,
 				B6FABBB421F4B8F40045872A /* Weak.swift */,
 			);
 			name = Core;
@@ -269,7 +266,7 @@
 				B6D4C62421FC1D97004A95A8 /* RelayableDictionaryHolder.swift in Sources */,
 				B6FABBD221F4B8F40045872A /* Notifier.swift in Sources */,
 				B6FABBCE21F4B8F40045872A /* ValueHolder.swift in Sources */,
-				B6B09C9B220B29C900B483BC /* Pair.swift in Sources */,
+				B6B09C9B220B29C900B483BC /* Tuple.swift in Sources */,
 				B6FABBC221F4B8F40045872A /* Guard.swift in Sources */,
 				B6FABD2C21F75F8A0045872A /* Alias.swift in Sources */,
 				B6FABBC021F4B8F40045872A /* Observer.swift in Sources */,
@@ -283,7 +280,6 @@
 				B6D4C62321FC1D97004A95A8 /* RelayableArrayHolder.swift in Sources */,
 				B6FABBC521F4B8F40045872A /* Receivable.swift in Sources */,
 				B6FABBC121F4B8F40045872A /* Joint.swift in Sources */,
-				B60FC63422197A4B009D8BDD /* Tuple.swift in Sources */,
 				B6FABD2F21F75F990045872A /* SenderCore.swift in Sources */,
 				B6FABBCC21F4B8F40045872A /* ForEach.swift in Sources */,
 				B6FABBD021F4B8F40045872A /* DictionaryHolder.swift in Sources */,

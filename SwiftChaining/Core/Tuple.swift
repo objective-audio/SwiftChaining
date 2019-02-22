@@ -1,80 +1,163 @@
 //
-//  Tuple.swift
+//  Pair.swift
 //
 
 import Foundation
 
 extension Chain where Sender: Fetchable {
-    public func tuple<Out1, In1, Sender1, Out2, In2, Sender2>(_ chain1: Chain<Out1, In1, Sender1>,
-                                                              _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out?, Out1?, Out2?), ((Out?, Out1?)?, Out2?), Sender> {
-        return _tuple0(self, chain1, chain2)
+    public func tuple<Out1, In1, Sender1>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(Out?, Out1?), (Out?, Out1?), Sender> where Sender1: Fetchable {
+        return _tuple0(chain0: self, chain1: chain1)
     }
     
-    public func tuple<Out1, In1, Sender1, Out2, In2, Sender2>(_ chain1: Chain<Out1, In1, Sender1>,
-                                                              _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out?, Out1?, Out2?), ((Out?, Out1?)?, Out2?), Sender> where Sender1: Fetchable {
-        return _tuple0(self, chain1, chain2)
+    public func tuple<Out1, In1, Sender1, T0, T1>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(T0?, T1?, Out1?), (Out?, Out1?), Sender> where Out == (T0?, T1?), Sender1: Fetchable {
+        return _tuple0(chain0: self, chain1: chain1).map { ($0?.0, $0?.1, $1) }
     }
     
-    public func tuple<Out1, In1, Sender1, Out2, In2, Sender2>(_ chain1: Chain<Out1, In1, Sender1>,
-                                                              _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out?, Out1?, Out2?), ((Out?, Out1?)?, Out2?), Sender> where Sender2: Fetchable {
-        return _tuple0(self, chain1, chain2)
+    public func tuple<Out1, In1, Sender1, T0, T1, T2>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(T0?, T1?, T2?, Out1?), (Out?, Out1?), Sender> where Out == (T0?, T1?, T2?), Sender1: Fetchable {
+        return _tuple0(chain0: self, chain1: chain1).map { ($0?.0, $0?.1, $0?.2, $1) }
     }
     
-    public func tuple<Out1, In1, Sender1, Out2, In2, Sender2>(_ chain1: Chain<Out1, In1, Sender1>,
-                                                              _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out?, Out1?, Out2?), ((Out?, Out1?)?, Out2?), Sender> where Sender1: Fetchable, Sender2: Fetchable {
-        return _tuple0(self, chain1, chain2)
+    public func tuple<Out1, In1, Sender1, T0, T1, T2, T3>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(T0?, T1?, T2?, T3?, Out1?), (Out?, Out1?), Sender> where Out == (T0?, T1?, T2?, T3?), Sender1: Fetchable {
+        return _tuple0(chain0: self, chain1: chain1).map { ($0?.0, $0?.1, $0?.2, $0?.3, $1) }
+    }
+    
+    public func tuple<Out1, In1, Sender1, T0, T1, T2, T3, T4>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(T0?, T1?, T2?, T3?, T4?, Out1?), (Out?, Out1?), Sender> where Out == (T0?, T1?, T2?, T3?, T4?), Sender1: Fetchable {
+        return _tuple0(chain0: self, chain1: chain1).map { ($0?.0, $0?.1, $0?.2, $0?.3, $0?.4, $1) }
+    }
+    
+    public func tuple<Out1, In1, Sender1>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(Out?, Out1?), (Out?, Out1?), Sender> {
+        return _tuple0(chain0: self, chain1: chain1)
+    }
+    
+    public func tuple<Out1, In1, Sender1, T0, T1>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(T0?, T1?, Out1?), (Out?, Out1?), Sender> where Out == (T0?, T1?) {
+        return _tuple0(chain0: self, chain1: chain1).map { ($0?.0, $0?.1, $1) }
+    }
+    
+    public func tuple<Out1, In1, Sender1, T0, T1, T2>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(T0?, T1?, T2?, Out1?), (Out?, Out1?), Sender> where Out == (T0?, T1?, T2?) {
+        return _tuple0(chain0: self, chain1: chain1).map { ($0?.0, $0?.1, $0?.2, $1) }
+    }
+    
+    public func tuple<Out1, In1, Sender1, T0, T1, T2, T3>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(T0?, T1?, T2?, T3?, Out1?), (Out?, Out1?), Sender> where Out == (T0?, T1?, T2?, T3?) {
+        return _tuple0(chain0: self, chain1: chain1).map { ($0?.0, $0?.1, $0?.2, $0?.3, $1) }
+    }
+    
+    public func tuple<Out1, In1, Sender1, T0, T1, T2, T3, T4>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(T0?, T1?, T2?, T3?, T4?, Out1?), (Out?, Out1?), Sender> where Out == (T0?, T1?, T2?, T3?, T4?) {
+        return _tuple0(chain0: self, chain1: chain1).map { ($0?.0, $0?.1, $0?.2, $0?.3, $0?.4, $1) }
     }
 }
 
 extension Chain {
-    public func tuple<Out1, In1, Sender1, Out2, In2, Sender2>(_ chain1: Chain<Out1, In1, Sender1>,
-                                                              _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out?, Out1?, Out2?), ((Out?, Out1?)?, Out2?), Sender> {
-        return _tuple0(self, chain1, chain2)
+    public func tuple<Out1, In1, Sender1>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(Out?, Out1?), (Out?, Out1?), Sender1> where Sender1: Fetchable {
+        return _tuple1(chain0: self, chain1: chain1)
     }
     
-    public func tuple<Out1, In1, Sender1, Out2, In2, Sender2>(_ chain1: Chain<Out1, In1, Sender1>,
-                                                              _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out?, Out1?, Out2?), ((Out?, Out1?)?, Out2?), Sender1> where Sender1: Fetchable {
-        return _tuple1(self, chain1, chain2)
+    public func tuple<Out1, In1, Sender1, T0, T1>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(T0?, T1?, Out1?), (Out?, Out1?), Sender1> where Out == (T0?, T1?), Sender1: Fetchable {
+        return _tuple1(chain0: self, chain1: chain1).map { ($0?.0, $0?.1, $1) }
     }
     
-    public func tuple<Out1, In1, Sender1, Out2, In2, Sender2>(_ chain1: Chain<Out1, In1, Sender1>,
-                                                              _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out?, Out1?, Out2?), ((Out?, Out1?)?, Out2?), Sender2> where Sender2: Fetchable {
-        return _tuple2(self, chain1, chain2)
+    public func tuple<Out1, In1, Sender1, T0, T1, T2>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(T0?, T1?, T2?, Out1?), (Out?, Out1?), Sender1> where Out == (T0?, T1?, T2?), Sender1: Fetchable {
+        return _tuple1(chain0: self, chain1: chain1).map { ($0?.0, $0?.1, $0?.2, $1) }
     }
     
-    public func tuple<Out1, In1, Sender1, Out2, In2, Sender2>(_ chain1: Chain<Out1, In1, Sender1>,
-                                                              _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out?, Out1?, Out2?), ((Out?, Out1?)?, Out2?), Sender1> where Sender1: Fetchable, Sender2: Fetchable {
-        return _tuple1(self, chain1, chain2)
+    public func tuple<Out1, In1, Sender1, T0, T1, T2, T3>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(T0?, T1?, T2?, T3?, Out1?), (Out?, Out1?), Sender1> where Out == (T0?, T1?, T2?, T3?), Sender1: Fetchable {
+        return _tuple1(chain0: self, chain1: chain1).map { ($0?.0, $0?.1, $0?.2, $0?.3, $1) }
+    }
+    
+    public func tuple<Out1, In1, Sender1, T0, T1, T2, T3, T4>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(T0?, T1?, T2?, T3?, T4?, Out1?), (Out?, Out1?), Sender1> where Out == (T0?, T1?, T2?, T3?, T4?), Sender1: Fetchable {
+        return _tuple1(chain0: self, chain1: chain1).map { ($0?.0, $0?.1, $0?.2, $0?.3, $0?.4, $1) }
+    }
+    
+    public func tuple<Out1, In1, Sender1>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(Out?, Out1?), (Out?, Out1?), Sender> {
+        return _tuple0(chain0: self, chain1: chain1)
+    }
+    
+    public func tuple<Out1, In1, Sender1, T0, T1>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(T0?, T1?, Out1?), (Out?, Out1?), Sender> where Out == (T0?, T1?) {
+        return _tuple0(chain0: self, chain1: chain1).map { ($0?.0, $0?.1, $1) }
+    }
+    
+    public func tuple<Out1, In1, Sender1, T0, T1, T2>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(T0?, T1?, T2?, Out1?), (Out?, Out1?), Sender> where Out == (T0?, T1?, T2?) {
+        return _tuple0(chain0: self, chain1: chain1).map { ($0?.0, $0?.1, $0?.2, $1) }
+    }
+    
+    public func tuple<Out1, In1, Sender1, T0, T1, T2, T3>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(T0?, T1?, T2?, T3?, Out1?), (Out?, Out1?), Sender> where Out == (T0?, T1?, T2?, T3?) {
+        return _tuple0(chain0: self, chain1: chain1).map { ($0?.0, $0?.1, $0?.2, $0?.3, $1) }
+    }
+    
+    public func tuple<Out1, In1, Sender1, T0, T1, T2, T3, T4>(_ chain1: Chain<Out1, In1, Sender1>) -> Chain<(T0?, T1?, T2?, T3?, T4?, Out1?), (Out?, Out1?), Sender> where Out == (T0?, T1?, T2?, T3?, T4?) {
+        return _tuple0(chain0: self, chain1: chain1).map { ($0?.0, $0?.1, $0?.2, $0?.3, $0?.4, $1) }
     }
 }
 
-private func _tuple0<Out0, In0, Sender0, Out1, In1, Sender1, Out2, In2, Sender2>(_ chain0: Chain<Out0, In0, Sender0>,
-                                                                                 _ chain1: Chain<Out1, In1, Sender1>,
-                                                                                 _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out0?, Out1?, Out2?), ((Out0?, Out1?)?, Out2?), Sender0> {
-    return chain0.tuple(chain1).tuple(chain2).map(_flat3)
-}
-
-private func _tuple1<Out0, In0, Sender0, Out1, In1, Sender1, Out2, In2, Sender2>(_ chain0: Chain<Out0, In0, Sender0>,
-                                                                                 _ chain1: Chain<Out1, In1, Sender1>,
-                                                                                 _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out0?, Out1?, Out2?), ((Out0?, Out1?)?, Out2?), Sender1> {
-    return _tuple1(chain0: chain0, chain1: chain1).tuple(chain2).map(_flat3)
-}
-
-private func _tuple2<Out0, In0, Sender0, Out1, In1, Sender1, Out2, In2, Sender2>(_ chain0: Chain<Out0, In0, Sender0>,
-                                                                                 _ chain1: Chain<Out1, In1, Sender1>,
-                                                                                 _ chain2: Chain<Out2, In2, Sender2>) -> Chain<(Out0?, Out1?, Out2?), ((Out0?, Out1?)?, Out2?), Sender2> {
-    return _tuple1(chain0: chain0.tuple(chain1), chain1: chain2).map(_flat3)
-}
-
-private func _flat3<Out0, Out1, Out2>(_ lhs: (Out0?, Out1?)?, _ rhs: Out2?) -> (Out0?, Out1?, Out2?) {
-    if let lhs = lhs {
-        return (lhs.0, lhs.1, nil)
-    } else if let rhs = rhs {
-        return (nil, nil, rhs)
-    } else {
+private func _tuple0<Out0, In0, Sender0, Out1, In1, Sender1>(chain0: Chain<Out0, In0, Sender0>,
+                                                             chain1: Chain<Out1, In1, Sender1>) -> Chain<(Out0?, Out1?), (Out0?, Out1?), Sender0> {
+    guard let joint0 = chain0.joint, let joint1 = chain1.joint else {
         fatalError()
     }
+    
+    chain0.joint = nil
+    chain1.joint = nil
+    
+    let handler0 = chain0.handler
+    let handler1 = chain1.handler
+    let nextIndex = joint0.handlers.count + 1
+    
+    let newHandler1: (In1) -> Void = { [weak joint0] value in
+        if let joint0 = joint0 {
+            let nextHandler = joint0.handlers[nextIndex] as! ((Out0?, Out1?)) -> Void
+            nextHandler((nil, handler1(value)))
+        }
+    }
+    
+    joint1.handlers.append(newHandler1)
+    
+    let newHandler0: (In0) -> Void = { [weak joint0] value in
+        if let joint0 = joint0 {
+            let nextHandler = joint0.handlers[nextIndex] as! ((Out0?, Out1?)) -> Void
+            nextHandler((handler0(value), nil))
+        }
+    }
+    
+    joint0.handlers.append(newHandler0)
+    
+    joint0.subJoints.append(joint1)
+    
+    return Chain<(Out0?, Out1?), (Out0?, Out1?), Sender0>(joint: joint0) { $0 }
 }
 
+internal func _tuple1<Out0, In0, Sender0, Out1, In1, Sender1>(chain0: Chain<Out0, In0, Sender0>,
+                                                              chain1: Chain<Out1, In1, Sender1>) -> Chain<(Out0?, Out1?), (Out0?, Out1?), Sender1> {
+    guard let joint0 = chain0.joint, let joint1 = chain1.joint else {
+        fatalError()
+    }
+    
+    chain0.joint = nil
+    chain1.joint = nil
+    
+    let handler0 = chain0.handler
+    let handler1 = chain1.handler
+    let nextIndex = joint1.handlers.count + 1
+    
+    let newHandler1: (In1) -> Void = { [weak joint1] value in
+        if let joint1 = joint1 {
+            let nextHandler = joint1.handlers[nextIndex] as! ((Out0?, Out1?)) -> Void
+            nextHandler((nil, handler1(value)))
+        }
+    }
+    
+    joint1.handlers.append(newHandler1)
+    
+    let newHandler0: (In0) -> Void = { [weak joint1] value in
+        if let joint1 = joint1 {
+            let nextHandler = joint1.handlers[nextIndex] as! ((Out0?, Out1?)) -> Void
+            nextHandler((handler0(value), nil))
+        }
+    }
+    
+    joint0.handlers.append(newHandler0)
+    
+    joint1.subJoints.append(joint0)
+    
+    return Chain<(Out0?, Out1?), (Out0?, Out1?), Sender1>(joint: joint1) { $0 }
+}
 
 
