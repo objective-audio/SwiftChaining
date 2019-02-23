@@ -30,7 +30,7 @@ extension Sendable {
         
         joint.appendHandler(handler0)
         
-        return Chain(joint: joint)
+        return SenderChain(joint: joint)
     }
     
     fileprivate func getOrCreateCore() -> SenderCore<Self> {

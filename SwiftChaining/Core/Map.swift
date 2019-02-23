@@ -22,7 +22,7 @@ extension Chain {
         
         joint.appendHandler(handler)
         
-        return MapChain(joint: joint)
+        return MapChain<Next>(joint: joint)
     }
     
     public func replace<Next>(_ value: Next) -> MapChain<Next> {
