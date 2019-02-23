@@ -26,12 +26,9 @@ extension Chain {
 
 private func _merge2<Out0, Sender0, Sender1>(chain0: Chain<Out0, Sender0>,
                                              chain1: Chain<Out0, Sender1>) -> Chain<Out0, Sender0> {
-    guard let joint0 = chain0.joint, let joint1 = chain1.joint else {
+    guard let joint0 = chain0.pullJoint(), let joint1 = chain1.pullJoint() else {
         fatalError()
     }
-    
-    chain0.joint = nil
-    chain1.joint = nil
     
     let nextIndex =  joint0.handlers.count + 1
     

@@ -6,11 +6,9 @@ import Foundation
 
 extension Chain {
     public func `do`(_ doHandler: @escaping (Out) -> Void) -> Chain<Out, Sender> {
-        guard let joint = self.joint else {
+        guard let joint = self.pullJoint() else {
             fatalError()
         }
-        
-        self.joint = nil
         
         let nextIndex = joint.handlers.count + 1
         

@@ -8,11 +8,9 @@ extension Chain {
     public typealias MapChain<Next> = Chain<Next, Sender>
     
     public func map<Next>(_ transform: @escaping (Out) -> Next) -> MapChain<Next> {
-        guard let joint = self.joint else {
+        guard let joint = self.pullJoint() else {
             fatalError()
         }
-        
-        self.joint = nil
         
         let nextIndex = joint.handlers.count + 1
         

@@ -9,11 +9,9 @@ extension Chain where Out: Sequence {
     public typealias ForEachChain = Chain<ForEachOut, Sender>
     
     public func forEach() -> ForEachChain {
-        guard let joint = self.joint else {
+        guard let joint = self.pullJoint() else {
             fatalError()
         }
-        
-        self.joint = nil
         
         let nextIndex = joint.handlers.count + 1
         

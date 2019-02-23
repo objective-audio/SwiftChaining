@@ -8,11 +8,9 @@ extension Chain {
     public typealias GuardChain = Chain<Out, Sender>
     
     public func `guard`(_ isIncluded: @escaping (Out) -> Bool) -> GuardChain {
-        guard let joint = self.joint else {
+        guard let joint = self.pullJoint() else {
             fatalError()
         }
-        
-        self.joint = nil
         
         let nextIndex = joint.handlers.count + 1
         

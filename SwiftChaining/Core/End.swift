@@ -6,11 +6,9 @@ import Foundation
 
 extension Chain {
     public func end() -> Observer<Sender> {
-        guard let joint = self.joint else {
+        guard let joint = self.pullJoint() else {
             fatalError()
         }
-        
-        self.joint = nil
         
         let handler: JointHandler<Out> = { _, _ in }
         joint.handlers.append(handler)
