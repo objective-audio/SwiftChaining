@@ -77,16 +77,16 @@ private func _combine0<Out0, Sender0, Out1, Sender1>(chain0: Chain<Out0, Sender0
     var cache: (Out0?, Out1?) = (nil, nil)
     
     return chain0.tuple(chain1)
-        .map {
-            if let in0 = $0.0 {
+        .map { pair -> (Out0?, Out1?) in
+            if let in0 = pair.0 {
                 cache.0 = in0
-            } else if let in1 = $0.1 {
+            } else if let in1 = pair.1 {
                 cache.1 = in1
             }
             return cache
         }
         .guard { $0.0 != nil && $0.1 != nil }
-        .map { (value: (Out0?, Out1?)) in return (value.0!, value.1!) }
+        .map { ($0.0!, $0.1!) }
 }
 
 private func _combine1<Out0, Sender0, Out1, Sender1>(chain0: Chain<Out0, Sender0>,
@@ -94,15 +94,15 @@ private func _combine1<Out0, Sender0, Out1, Sender1>(chain0: Chain<Out0, Sender0
     var cache: (Out0?, Out1?) = (nil, nil)
     
     return chain0.tuple(chain1)
-        .map {
-            if let in0 = $0.0 {
+        .map { pair -> (Out0?, Out1?) in
+            if let in0 = pair.0 {
                 cache.0 = in0
-            } else if let in1 = $0.1 {
+            } else if let in1 = pair.1 {
                 cache.1 = in1
             }
             return cache
         }
         .guard { $0.0 != nil && $0.1 != nil }
-        .map { (value: (Out0?, Out1?)) in return (value.0!, value.1!) }
+        .map { ($0.0!, $0.1!) }
 }
 
