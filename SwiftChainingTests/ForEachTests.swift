@@ -17,7 +17,7 @@ class ForEachTests: XCTestCase {
     func testForEach() {
         let notifier = Notifier<[Int]>()
         
-        var received: [(index: Int, value: Int)] = []
+        var received: [Int] = []
         
         let observer = notifier.chain().forEach().do { received.append($0) }.end()
         
@@ -25,12 +25,9 @@ class ForEachTests: XCTestCase {
         
         // 配列の要素がバラバラに送られる
         XCTAssertEqual(received.count, 3)
-        XCTAssertEqual(received[0].index, 0)
-        XCTAssertEqual(received[0].value, 2)
-        XCTAssertEqual(received[1].index, 1)
-        XCTAssertEqual(received[1].value, 4)
-        XCTAssertEqual(received[2].index, 2)
-        XCTAssertEqual(received[2].value, 6)
+        XCTAssertEqual(received[0], 2)
+        XCTAssertEqual(received[1], 4)
+        XCTAssertEqual(received[2], 6)
         
         observer.invalidate()
     }
