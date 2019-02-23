@@ -5,27 +5,31 @@
 import Foundation
 
 extension Chain {
-    public typealias MapChain<Next> = Chain<Next, In, Sender>
+    public typealias MapChain<Next> = Chain<Next, Sender>
     
     public func map<Next>(_ transform: @escaping (Out) -> Next) -> MapChain<Next> {
-        guard let joint = self.joint else {
+        guard let joint = self.pullJoint() else {
             fatalError()
         }
         
-        self.joint = nil
+        let nextIndex = joint.handlerCount + 1
         
-        let handler = self.handler
-        
-        return MapChain(joint: joint) { value in
-            return transform(handler(value))
+        let handler: JointHandler<Out> = { value, joint in
+            if let nextHandler = joint.handler(at: nextIndex) as? JointHandler<Next> {
+                nextHandler(transform(value), joint)
+            }
         }
+        
+        joint.appendHandler(handler)
+        
+        return MapChain(joint: joint)
     }
     
     public func replace<Next>(_ value: Next) -> MapChain<Next> {
         return self.map { _ in value }
     }
     
-    public func replaceWithVoid() -> Chain<Void, In, Sender> {
+    public func replaceWithVoid() -> Chain<Void, Sender> {
         return self.map { _ in () }
     }
 }

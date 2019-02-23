@@ -5,15 +5,15 @@
 import Foundation
 
 extension Chain {
-    public func optional() -> Chain<Out?, In, Sender> {
+    public func optional() -> Chain<Out?, Sender> {
         return self.map { Optional($0) }
     }
     
-    public func guardUnwrap<Unwrapped>() -> Chain<Unwrapped, Unwrapped?, Sender> where Out == Unwrapped? {
+    public func guardUnwrap<Unwrapped>() -> Chain<Unwrapped, Sender> where Out == Unwrapped? {
         return self.guard { (wrapped: Unwrapped?) in wrapped != nil }.forceUnwrap()
     }
     
-    public func forceUnwrap<Unwrapped>() -> Chain<Unwrapped, In, Sender> where Out == Unwrapped? {
+    public func forceUnwrap<Unwrapped>() -> Chain<Unwrapped, Sender> where Out == Unwrapped? {
         return self.map { (wrapped: Unwrapped?) in wrapped! }
     }
 }

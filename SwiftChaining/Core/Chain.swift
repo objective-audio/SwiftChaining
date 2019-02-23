@@ -4,14 +4,15 @@
 
 import Foundation
 
-final public class Chain<Out, In, Sender: Sendable> {
-    typealias Handler = (In) -> Out
+final public class Chain<Out, Sender: Sendable> {
+    private var joint: Joint<Sender>?
     
-    internal var joint: Joint<Sender>?
-    internal let handler: Handler
-    
-    internal init(joint: Joint<Sender>, handler: @escaping (In) -> Out) {
+    internal init(joint: Joint<Sender>) {
         self.joint = joint
-        self.handler = handler
+    }
+    
+    internal func pullJoint() -> Joint<Sender>? {
+        defer { self.joint = nil }
+        return self.joint
     }
 }

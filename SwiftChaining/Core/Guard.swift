@@ -5,35 +5,32 @@
 import Foundation
 
 extension Chain {
-    public typealias GuardChain = Chain<Out, Out, Sender>
+    public typealias GuardChain = Chain<Out, Sender>
     
     public func `guard`(_ isIncluded: @escaping (Out) -> Bool) -> GuardChain {
-        guard let joint = self.joint else {
+        guard let joint = self.pullJoint() else {
             fatalError()
         }
         
-        self.joint = nil
+        let nextIndex = joint.handlerCount + 1
         
-        let handler = self.handler
-        let nextIndex = joint.handlers.count + 1
-        
-        let guardHandler: (In) -> Void = { [weak joint] value in
-            let result = handler(value)
-            
-            guard isIncluded(result) else {
+        let guardHandler: JointHandler<Out> = { value, joint in
+            guard isIncluded(value) else {
                 return
             }
             
-            if let nextHandler = joint?.handlers[nextIndex] as? (Out) -> Void {
-                nextHandler(result)
+            if let nextHandler = joint.handler(at: nextIndex) as? JointHandler<Out> {
+                nextHandler(value, joint)
             }
         }
         
-        joint.handlers.append(guardHandler)
+        joint.appendHandler(guardHandler)
         
-        return GuardChain(joint: joint) { $0 }
+        return GuardChain(joint: joint)
     }
-    
+}
+
+extension Chain {
     public typealias FilterChain = GuardChain
     
     public func filter(_ isIncluded: @escaping (Out) -> Bool) -> FilterChain {

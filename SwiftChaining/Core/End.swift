@@ -6,15 +6,13 @@ import Foundation
 
 extension Chain {
     public func end() -> Observer<Sender> {
-        guard let joint = self.joint else {
+        guard let joint = self.pullJoint() else {
             fatalError()
         }
         
-        self.joint = nil
+        let handler: JointHandler<Out> = { _, _ in }
+        joint.appendHandler(handler)
         
-        let handler = self.handler
-        
-        joint.handlers.append({ value in _ = handler(value) })
         return Observer<Sender>(joint: joint)
     }
 }
@@ -26,3 +24,4 @@ extension Chain where Sender: Fetchable {
         return observer
     }
 }
+

@@ -31,13 +31,13 @@ extension Suspender: Receivable {
 }
 
 extension Chain {
-    public func suspend(_ suspender: Suspender) -> Chain<Out, Out, Sender> {
+    public func suspend(_ suspender: Suspender) -> Chain<Out, Sender> {
         return self.guard { [weak suspender] _ in !(suspender?.isSuspend ?? false) }
     }
 }
 
 extension Chain where Sender: Fetchable {
-    public func suspend(_ suspender: Suspender) -> Chain<Out, Out?, Sender> {
+    public func suspend(_ suspender: Suspender) -> Chain<Out, Sender> {
         var cache: Out?
         
         let chain = self

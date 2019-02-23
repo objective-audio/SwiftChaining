@@ -5,19 +5,23 @@
 import Foundation
 
 extension Chain {
-    public func `do`(_ doHandler: @escaping (Out) -> Void) -> Chain<Out, In, Sender> {
-        guard let joint = self.joint else {
+    public func `do`(_ doHandler: @escaping (Out) -> Void) -> Chain<Out, Sender> {
+        guard let joint = self.pullJoint() else {
             fatalError()
         }
         
-        self.joint = nil
+        let nextIndex = joint.handlerCount + 1
         
-        let handler = self.handler
-        
-        return Chain<Out, In, Sender>(joint: joint) { value in
-            let result = handler(value)
-            doHandler(result)
-            return result
+        let handler: JointHandler<Out> = { value, joint in
+            doHandler(value)
+            if let nextHandler = joint.handler(at: nextIndex) as? JointHandler<Out> {
+                nextHandler(value, joint)
+            }
         }
+        
+        joint.appendHandler(handler)
+        
+        return Chain(joint: joint)
     }
 }
+

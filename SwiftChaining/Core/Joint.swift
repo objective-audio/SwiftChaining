@@ -7,15 +7,19 @@ import Foundation
 public protocol JointClass: class {}
 
 internal protocol AnyJoint: JointClass {
+    func handler(at: Int) -> Any
     func fetch()
     func invalidate()
 }
+
+internal typealias JointHandler<T> = (T, AnyJoint) -> Void
 
 internal class Joint<Sender: Sendable> {
     internal typealias Value = Sender.SendValue
     
     internal weak var sender: Sender?
-    internal var handlers: [Any] = []
+    private var handlers: [Any] = []
+    internal var handlerCount: Int { return self.handlers.count }
     internal var subJoints: [AnyJoint] = []
     private var core: AnySenderCore?
     
@@ -28,9 +32,17 @@ internal class Joint<Sender: Sendable> {
         self.sender?.getCore()?.remove(joint: self)
     }
     
+    internal func handler(at index: Int) -> Any {
+        return self.handlers[index]
+    }
+    
+    internal func appendHandler(_ handler: Any) {
+        self.handlers.append(handler)
+    }
+    
     internal func call(first value: Value) {
-        if let handler = self.handlers.first as? (Value) -> Void {
-            handler(value)
+        if let handler = self.handlers.first as? JointHandler<Value> {
+            handler(value, self)
         }
     }
 }
