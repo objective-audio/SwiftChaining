@@ -5,8 +5,8 @@
 import Foundation
 
 extension Chain where Out: Sequence {
-    public typealias ForEachOut = (Out.Element)
-    public typealias ForEachChain = Chain<ForEachOut, ForEachOut, Sender>
+    public typealias ForEachOut = Out.Element
+    public typealias ForEachChain = Chain<ForEachOut, Sender>
     
     public func forEach() -> ForEachChain {
         guard let joint = self.joint else {
@@ -15,19 +15,18 @@ extension Chain where Out: Sequence {
         
         self.joint = nil
         
-        let handler = self.handler
         let nextIndex = joint.handlers.count + 1
         
-        let newHandler: (In) -> Void = { [weak joint] value in
-            if let joint = joint, let nextHandler = joint.handlers[nextIndex] as? (ForEachOut) -> Void {
-                for element in handler(value) {
-                    nextHandler(element)
+        let handler: JointHandler<Out> = { value, joint in
+            if let nextHandler = joint.handlers[nextIndex] as? JointHandler<ForEachOut> {
+                for element in value {
+                    nextHandler(element, joint)
                 }
             }
         }
         
-        joint.handlers.append(newHandler)
+        joint.handlers.append(handler)
         
-        return ForEachChain(joint: joint) { $0 }
+        return ForEachChain(joint: joint)
     }
 }

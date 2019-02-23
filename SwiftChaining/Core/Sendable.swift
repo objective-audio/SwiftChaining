@@ -6,7 +6,7 @@ import Foundation
 
 public protocol Sendable: class {
     associatedtype SendValue
-    typealias SenderChain = Chain<SendValue, SendValue, Self>
+    typealias SenderChain = Chain<SendValue, Self>
     
     func fetch(for: JointClass)
 }
@@ -21,7 +21,16 @@ extension Sendable {
     public func chain() -> SenderChain {
         let core = self.getOrCreateCore()
         let joint = core.addJoint(sender: self)
-        return Chain(joint: joint, handler: { $0 })
+        
+        let handler0: JointHandler<SendValue> = { value, joint in
+            if let nextHandler = joint.handlers[1] as? JointHandler<SendValue> {
+                nextHandler(value, joint)
+            }
+        }
+        
+        joint.handlers = [handler0]
+        
+        return Chain(joint: joint)
     }
     
     fileprivate func getOrCreateCore() -> SenderCore<Self> {

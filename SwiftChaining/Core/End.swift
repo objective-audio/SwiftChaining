@@ -12,9 +12,9 @@ extension Chain {
         
         self.joint = nil
         
-        let handler = self.handler
+        let handler: JointHandler<Out> = { _, _ in }
+        joint.handlers.append(handler)
         
-        joint.handlers.append({ value in _ = handler(value) })
         return Observer<Sender>(joint: joint)
     }
 }
@@ -26,3 +26,4 @@ extension Chain where Sender: Fetchable {
         return observer
     }
 }
+

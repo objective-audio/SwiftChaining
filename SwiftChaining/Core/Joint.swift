@@ -7,9 +7,12 @@ import Foundation
 public protocol JointClass: class {}
 
 internal protocol AnyJoint: JointClass {
+    var handlers: [Any] { get }
     func fetch()
     func invalidate()
 }
+
+internal typealias JointHandler<T> = (T, AnyJoint) -> Void
 
 internal class Joint<Sender: Sendable> {
     internal typealias Value = Sender.SendValue
@@ -29,8 +32,8 @@ internal class Joint<Sender: Sendable> {
     }
     
     internal func call(first value: Value) {
-        if let handler = self.handlers.first as? (Value) -> Void {
-            handler(value)
+        if let handler = self.handlers.first as? JointHandler<Value> {
+            handler(value, self)
         }
     }
 }
