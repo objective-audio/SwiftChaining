@@ -30,23 +30,23 @@ private func _merge2<Out0, Sender0, Sender1>(chain0: Chain<Out0, Sender0>,
         fatalError()
     }
     
-    let nextIndex =  joint0.handlers.count + 1
+    let nextIndex =  joint0.handlerCount + 1
     
     let handler1: JointHandler<Out0> = { [weak joint0] value, _ in
-        if let joint0 = joint0, let nextHandler = joint0.handlers[nextIndex] as? JointHandler<Out0> {
+        if let joint0 = joint0, let nextHandler = joint0.handler(at: nextIndex) as? JointHandler<Out0> {
             nextHandler(value, joint0)
         }
     }
     
-    joint1.handlers.append(handler1)
+    joint1.appendHandler(handler1)
     
     let handler0: JointHandler<Out0> = { value, joint in
-        if let nextHandler = joint.handlers[nextIndex] as? JointHandler<Out0> {
+        if let nextHandler = joint.handler(at: nextIndex) as? JointHandler<Out0> {
             nextHandler(value, joint)
         }
     }
     
-    joint0.handlers.append(handler0)
+    joint0.appendHandler(handler0)
     
     joint0.subJoints.append(joint1)
     

@@ -23,12 +23,12 @@ extension Sendable {
         let joint = core.addJoint(sender: self)
         
         let handler0: JointHandler<SendValue> = { value, joint in
-            if let nextHandler = joint.handlers[1] as? JointHandler<SendValue> {
+            if let nextHandler = joint.handler(at: 1) as? JointHandler<SendValue> {
                 nextHandler(value, joint)
             }
         }
         
-        joint.handlers = [handler0]
+        joint.appendHandler(handler0)
         
         return Chain(joint: joint)
     }

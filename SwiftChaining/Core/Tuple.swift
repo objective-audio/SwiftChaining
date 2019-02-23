@@ -79,25 +79,25 @@ private func _tuple0<Out0, Sender0, Out1, Sender1>(chain0: Chain<Out0, Sender0>,
         fatalError()
     }
     
-    let nextIndex = joint0.handlers.count + 1
+    let nextIndex = joint0.handlerCount + 1
     
     let handler1: JointHandler<Out1> = { [weak joint0] value, _ in
         if let joint0 = joint0 {
-            if let nextHandler = joint0.handlers[nextIndex] as? JointHandler<(Out0?, Out1?)> {
+            if let nextHandler = joint0.handler(at: nextIndex) as? JointHandler<(Out0?, Out1?)> {
                 nextHandler((nil, value), joint0)
             }
         }
     }
     
-    joint1.handlers.append(handler1)
+    joint1.appendHandler(handler1)
     
     let handler0: JointHandler<Out0> = { value, joint in
-        if let nextHandler = joint.handlers[nextIndex] as? JointHandler<(Out0?, Out1?)> {
+        if let nextHandler = joint.handler(at: nextIndex) as? JointHandler<(Out0?, Out1?)> {
             nextHandler((value, nil), joint)
         }
     }
     
-    joint0.handlers.append(handler0)
+    joint0.appendHandler(handler0)
     
     joint0.subJoints.append(joint1)
     
@@ -110,23 +110,23 @@ internal func _tuple1<Out0, Sender0, Out1, Sender1>(chain0: Chain<Out0, Sender0>
         fatalError()
     }
     
-    let nextIndex = joint1.handlers.count + 1
+    let nextIndex = joint1.handlerCount + 1
     
     let newHandler1: JointHandler<Out1> = { value, joint in
-        if let nextHandler = joint.handlers[nextIndex] as? JointHandler<(Out0?, Out1?)> {
+        if let nextHandler = joint.handler(at: nextIndex) as? JointHandler<(Out0?, Out1?)> {
             nextHandler((nil, value), joint)
         }
     }
     
-    joint1.handlers.append(newHandler1)
+    joint1.appendHandler(newHandler1)
     
     let newHandler0: JointHandler<Out0> = { [weak joint1] value, _ in
-        if let joint1 = joint1, let nextHandler = joint1.handlers[nextIndex] as? JointHandler<(Out0?, Out1?)> {
+        if let joint1 = joint1, let nextHandler = joint1.handler(at: nextIndex) as? JointHandler<(Out0?, Out1?)> {
             nextHandler((value, nil), joint1)
         }
     }
     
-    joint0.handlers.append(newHandler0)
+    joint0.appendHandler(newHandler0)
     
     joint1.subJoints.append(joint0)
     

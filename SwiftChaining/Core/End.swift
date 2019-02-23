@@ -11,7 +11,7 @@ extension Chain {
         }
         
         let handler: JointHandler<Out> = { _, _ in }
-        joint.handlers.append(handler)
+        joint.appendHandler(handler)
         
         return Observer<Sender>(joint: joint)
     }
