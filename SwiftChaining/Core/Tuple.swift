@@ -73,8 +73,7 @@ extension Chain {
 }
 
 private func _tuple0<Out0, Sender0, Out1, Sender1>(chain0: Chain<Out0, Sender0>,
-                                                   chain1: Chain<Out1,
-    Sender1>) -> Chain<(Out0?, Out1?), Sender0> {
+                                                   chain1: Chain<Out1, Sender1>) -> Chain<(Out0?, Out1?), Sender0> {
     guard let joint0 = chain0.pullJoint(), let joint1 = chain1.pullJoint() else {
         fatalError()
     }
@@ -132,4 +131,3 @@ internal func _tuple1<Out0, Sender0, Out1, Sender1>(chain0: Chain<Out0, Sender0>
     
     return Chain<(Out0?, Out1?), Sender1>(joint: joint1)
 }
-

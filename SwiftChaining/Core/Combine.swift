@@ -105,4 +105,3 @@ private func _combine1<Out0, Sender0, Out1, Sender1>(chain0: Chain<Out0, Sender0
         .guard { $0.0 != nil && $0.1 != nil }
         .map { ($0.0!, $0.1!) }
 }
-
