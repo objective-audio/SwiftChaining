@@ -52,4 +52,3 @@ private func _merge2<Out0, Sender0, Sender1>(chain0: Chain<Out0, Sender0>,
     
     return Chain<Out0, Sender0>(joint: joint0)
 }
-
