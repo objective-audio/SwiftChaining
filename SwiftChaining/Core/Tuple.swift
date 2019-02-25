@@ -9,32 +9,8 @@ extension Chain where Sender: Fetchable {
         return self.tuple0(chain1)
     }
     
-    public func tuple<Out1, Sender1, T0, T1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0?, T1?, Out1?), Sender> where Out == (T0?, T1?), Sender1: Fetchable {
-        return self.tuple0(chain1).map { ($0?.0, $0?.1, $1) }
-    }
-    
-    public func tuple<Out1, Sender1, T0, T1, T2>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0?, T1?, T2?, Out1?), Sender> where Out == (T0?, T1?, T2?), Sender1: Fetchable {
-        return self.tuple0(chain1).map { ($0?.0, $0?.1, $0?.2, $1) }
-    }
-    
-    public func tuple<Out1, Sender1, T0, T1, T2, T3>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0?, T1?, T2?, T3?, Out1?), Sender> where Out == (T0?, T1?, T2?, T3?), Sender1: Fetchable {
-        return self.tuple0(chain1).map { ($0?.0, $0?.1, $0?.2, $0?.3, $1) }
-    }
-    
     public func tuple<Out1, Sender1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(Out?, Out1?), Sender> {
         return self.tuple0(chain1)
-    }
-    
-    public func tuple<Out1, Sender1, T0, T1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0?, T1?, Out1?), Sender> where Out == (T0?, T1?) {
-        return self.tuple0(chain1).map { ($0?.0, $0?.1, $1) }
-    }
-    
-    public func tuple<Out1, Sender1, T0, T1, T2>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0?, T1?, T2?, Out1?), Sender> where Out == (T0?, T1?, T2?) {
-        return self.tuple0(chain1).map { ($0?.0, $0?.1, $0?.2, $1) }
-    }
-    
-    public func tuple<Out1, Sender1, T0, T1, T2, T3>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0?, T1?, T2?, T3?, Out1?), Sender> where Out == (T0?, T1?, T2?, T3?) {
-        return self.tuple0(chain1).map { ($0?.0, $0?.1, $0?.2, $0?.3, $1) }
     }
 }
 
@@ -43,32 +19,8 @@ extension Chain {
         return self.tuple1(chain1)
     }
     
-    public func tuple<Out1, Sender1, T0, T1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0?, T1?, Out1?), Sender1> where Out == (T0?, T1?), Sender1: Fetchable {
-        return self.tuple1(chain1).map { ($0?.0, $0?.1, $1) }
-    }
-    
-    public func tuple<Out1, Sender1, T0, T1, T2>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0?, T1?, T2?, Out1?), Sender1> where Out == (T0?, T1?, T2?), Sender1: Fetchable {
-        return self.tuple1(chain1).map { ($0?.0, $0?.1, $0?.2, $1) }
-    }
-    
-    public func tuple<Out1, Sender1, T0, T1, T2, T3>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0?, T1?, T2?, T3?, Out1?), Sender1> where Out == (T0?, T1?, T2?, T3?), Sender1: Fetchable {
-        return self.tuple1(chain1).map { ($0?.0, $0?.1, $0?.2, $0?.3, $1) }
-    }
-    
     public func tuple<Out1, Sender1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(Out?, Out1?), Sender> {
         return self.tuple0(chain1)
-    }
-    
-    public func tuple<Out1, Sender1, T0, T1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0?, T1?, Out1?), Sender> where Out == (T0?, T1?) {
-        return self.tuple0(chain1).map { ($0?.0, $0?.1, $1) }
-    }
-    
-    public func tuple<Out1, Sender1, T0, T1, T2>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0?, T1?, T2?, Out1?), Sender> where Out == (T0?, T1?, T2?) {
-        return self.tuple0(chain1).map { ($0?.0, $0?.1, $0?.2, $1) }
-    }
-    
-    public func tuple<Out1, Sender1, T0, T1, T2, T3>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0?, T1?, T2?, T3?, Out1?), Sender> where Out == (T0?, T1?, T2?, T3?) {
-        return self.tuple0(chain1).map { ($0?.0, $0?.1, $0?.2, $0?.3, $1) }
     }
 }
 
