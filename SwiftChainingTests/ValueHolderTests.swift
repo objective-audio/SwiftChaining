@@ -68,4 +68,22 @@ class ValueHolderTests: XCTestCase {
         
         observer.invalidate()
     }
+    
+    func testRecursive() {
+        struct NonEquatable {
+            let value: Int
+        }
+        
+        let holder = ValueHolder(NonEquatable(value: 0))
+        
+        var received: [NonEquatable] = []
+        
+        let observer = holder.chain().do { received.append($0) }.sendTo(holder).end()
+        
+        holder.value = NonEquatable(value: 1)
+        
+        XCTAssertEqual(received.count, 1)
+        
+        observer.invalidate()
+    }
 }

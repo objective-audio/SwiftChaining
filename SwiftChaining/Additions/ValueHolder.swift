@@ -17,7 +17,6 @@ extension Alias: ValueReadable where T: ValueReadable {
 
 final public class ValueHolder<T> {
     public private(set) var raw: T
-    private let lock = NSLock()
     
     public init(_ initial: T) {
         self.raw = initial
@@ -25,11 +24,8 @@ final public class ValueHolder<T> {
     
     public var value: T {
         set {
-            if self.lock.try() {
-                self.raw = newValue
-                self.broadcast(value: newValue)
-                self.lock.unlock()
-            }
+            self.raw = newValue
+            self.broadcast(value: newValue)
         }
         get { return self.raw }
     }
@@ -48,12 +44,9 @@ extension ValueHolder: Fetchable {
 extension ValueHolder where T: Equatable {
     public var value: T {
         set {
-            if self.lock.try() {
-                if self.raw != newValue {
-                    self.raw = newValue
-                    self.broadcast(value: newValue)
-                }
-                self.lock.unlock()
+            if self.raw != newValue {
+                self.raw = newValue
+                self.broadcast(value: newValue)
             }
         }
         get { return self.raw }
