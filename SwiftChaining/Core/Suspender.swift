@@ -63,7 +63,7 @@ extension Chain where Sender: Fetchable {
                     fatalError()
                 }
             }
-            .guardUnwrap()
+            .unwrap()
         
         return chain
     }
