@@ -39,7 +39,6 @@
 		B6FABD1621F7529A0045872A /* UIControlAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3E21F4BDB70045872A /* UIControlAdapter.swift */; };
 		B6FABD1721F753410045872A /* ArrayHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3B21F4BDB70045872A /* ArrayHolder.swift */; };
 		B6FABD1A21F754490045872A /* DictionaryHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3A21F4BDB70045872A /* DictionaryHolder.swift */; };
-		B6FABD2521F75F260045872A /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABD2421F75F260045872A /* Alias.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,7 +76,6 @@
 		B6FABC3F21F4BDB70045872A /* NotificationAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationAdapter.swift; sourceTree = "<group>"; };
 		B6FABC4021F4BDB70045872A /* KVOAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOAdapter.swift; sourceTree = "<group>"; };
 		B6FABD0521F60A120045872A /* SenderCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderCore.swift; sourceTree = "<group>"; };
-		B6FABD2421F75F260045872A /* Alias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alias.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +147,6 @@
 		B6FABC3721F4BDB70045872A /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				B6FABD2421F75F260045872A /* Alias.swift */,
 				B6FABC3B21F4BDB70045872A /* ArrayHolder.swift */,
 				B6FABC3A21F4BDB70045872A /* DictionaryHolder.swift */,
 				B6FABC3021F4BDB70045872A /* Fetcher.swift */,
@@ -270,7 +267,6 @@
 				B6FABC4621F4BDB70045872A /* Chain.swift in Sources */,
 				1A4163D1220C380600AEE119 /* Suspender.swift in Sources */,
 				B6FABC4C21F4BDB70045872A /* Sendable.swift in Sources */,
-				B6FABD2521F75F260045872A /* Alias.swift in Sources */,
 				B6FABD1421F752590045872A /* KVOAdapter.swift in Sources */,
 				B6FABD1A21F754490045872A /* DictionaryHolder.swift in Sources */,
 				B6FABD1221F751F40045872A /* NotificationAdapter.swift in Sources */,
