@@ -60,4 +60,19 @@ class PropertyAdapterTests: XCTestCase {
         
         observer.invalidate()
     }
+    
+    func testRecursive() {
+        let testObj = TestClass()
+        let adapter = PropertyAdapter(testObj, keyPath: \TestClass.value)
+        
+        var received: [Int] = []
+        
+        let observer = adapter.chain().do { received.append($0) }.sendTo(adapter).end()
+        
+        adapter.value = 1
+        
+        XCTAssertEqual(received.count, 1)
+        
+        observer.invalidate()
+    }
 }
