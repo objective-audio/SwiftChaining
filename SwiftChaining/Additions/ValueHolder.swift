@@ -4,11 +4,6 @@
 
 import Foundation
 
-public protocol ValueReadable {
-    associatedtype Val
-    var value: Val { get }
-}
-
 final public class ValueHolder<T> {
     public private(set) var raw: T
     
@@ -24,8 +19,6 @@ final public class ValueHolder<T> {
         get { return self.raw }
     }
 }
-
-extension ValueHolder: ValueReadable {}
 
 extension ValueHolder: Fetchable {
     public typealias SendValue = T
