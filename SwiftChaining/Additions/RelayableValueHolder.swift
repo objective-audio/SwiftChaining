@@ -12,7 +12,6 @@ final public class RelayableValueHolder<T: Sendable> {
     }
     
     public private(set) var rawValue: T
-    private let lock = NSLock()
     private var observer: AnyObserver?
     
     public init(_ initial: T) {
@@ -22,12 +21,9 @@ final public class RelayableValueHolder<T: Sendable> {
     
     public var value: T {
         set {
-            if self.lock.try() {
-                self.rawValue = newValue
-                self.relaying()
-                self.broadcast(value: .current(newValue))
-                self.lock.unlock()
-            }
+            self.rawValue = newValue
+            self.relaying()
+            self.broadcast(value: .current(newValue))
         }
         get { return self.rawValue }
     }
@@ -50,13 +46,10 @@ extension RelayableValueHolder: Fetchable {
 extension RelayableValueHolder where T: Equatable {
     public var value: T {
         set {
-            if self.lock.try() {
-                if self.rawValue != newValue {
-                    self.rawValue = newValue
-                    self.relaying()
-                    self.broadcast(value: .current(newValue))
-                }
-                self.lock.unlock()
+            if self.rawValue != newValue {
+                self.rawValue = newValue
+                self.relaying()
+                self.broadcast(value: .current(newValue))
             }
         }
         get { return self.rawValue }

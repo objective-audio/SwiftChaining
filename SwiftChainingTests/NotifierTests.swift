@@ -62,4 +62,18 @@ class NotifierTests: XCTestCase {
         observer.invalidate()
         receivingObserver.invalidate()
     }
+    
+    func testRecursive() {
+        let notifier = Notifier<Int>()
+        
+        var received: [Int] = []
+        
+        let observer = notifier.chain().do { received.append($0) }.sendTo(notifier).end()
+        
+        notifier.notify(value: 1)
+        
+        XCTAssertEqual(received.count, 1)
+        
+        observer.invalidate()
+    }
 }

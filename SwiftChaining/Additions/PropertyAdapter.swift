@@ -12,11 +12,8 @@ public final class PropertyAdapter<Root: AnyObject, T>: AnyPropertyAdapter {
         get { return self.target![keyPath: self.keyPath] }
         set {
             if let target = self.target {
-                if self.lock.try() {
-                    target[keyPath: self.keyPath] = newValue
-                    self.broadcast(value: newValue)
-                    self.lock.unlock()
-                }
+                target[keyPath: self.keyPath] = newValue
+                self.broadcast(value: newValue)
             }
         }
     }
@@ -31,7 +28,6 @@ public final class PropertyAdapter<Root: AnyObject, T>: AnyPropertyAdapter {
     private weak var target: Root?
     private let targetId: ObjectIdentifier?
     private let keyPath: ReferenceWritableKeyPath<Root, T>
-    private let lock = NSLock()
     
     public init(_ target: Root, keyPath: ReferenceWritableKeyPath<Root, T>) {
         self.target = target

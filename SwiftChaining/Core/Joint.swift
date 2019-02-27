@@ -22,6 +22,7 @@ internal class Joint<Sender: Sendable> {
     internal var handlerCount: Int { return self.handlers.count }
     internal var subJoints: [AnyJoint] = []
     private var core: AnySenderCore?
+    private let lock = NSLock()
     
     internal init(sender: Sender, core: AnySenderCore) {
         self.sender = sender
@@ -41,8 +42,11 @@ internal class Joint<Sender: Sendable> {
     }
     
     internal func call(first value: Value) {
-        if let handler = self.handlers.first as? JointHandler<Value> {
-            handler(value, self)
+        if self.lock.try() {
+            if let handler = self.handlers.first as? JointHandler<Value> {
+                handler(value, self)
+            }
+            self.lock.unlock()
         }
     }
 }
