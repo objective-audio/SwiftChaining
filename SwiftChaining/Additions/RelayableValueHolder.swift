@@ -33,8 +33,6 @@ final public class RelayableValueHolder<T: Sendable> {
     }
 }
 
-extension RelayableValueHolder: ValueReadable {}
-
 extension RelayableValueHolder: Fetchable {
     public typealias SendValue = Event
     
