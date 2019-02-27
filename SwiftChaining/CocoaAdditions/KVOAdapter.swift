@@ -5,34 +5,27 @@
 import Foundation
 
 final public class KVOAdapter<Root: NSObject, T> {
-    private let holder: ValueHolder<T>
-    private var observer: AnyObserver?
+    private weak var target: Root?
+    private let keyPath: ReferenceWritableKeyPath<Root, T>
     private var observation: NSKeyValueObservation?
-    private let lock = NSLock()
     
     public var value: T {
-        set { self.holder.value = newValue }
-        get { return self.holder.value }
+        get { return self.target![keyPath: self.keyPath] }
+        set { self.target?[keyPath: self.keyPath] = newValue }
     }
     
-    public init(_ object: Root, keyPath: ReferenceWritableKeyPath<Root, T>) {
-        self.holder = ValueHolder(object[keyPath: keyPath])
+    public var safeValue: T? {
+        guard let target = self.target else { return nil }
+        return target[keyPath: self.keyPath]
+    }
+    
+    public init(_ target: Root, keyPath: ReferenceWritableKeyPath<Root, T>) {
+        self.target = target
+        self.keyPath = keyPath
         
-        self.observer = self.holder.chain().do({ [weak object, unowned self] value in
-            if self.lock.try() {
-                if let object = object {
-                    object[keyPath: keyPath] = value
-                }
-                self.lock.unlock()
-            }
-        }).sync()
-        
-        self.observation = object.observe(keyPath, options: [.new]) { [unowned self] (root, change) in
-            if self.lock.try() {
-                if let value = change.newValue {
-                    self.holder.value = value
-                }
-                self.lock.unlock()
+        self.observation = target.observe(keyPath, options: [.new]) { [unowned self] (root, change) in
+            if let value = change.newValue {
+                self.broadcast(value: value)
             }
         }
     }
@@ -41,15 +34,21 @@ final public class KVOAdapter<Root: NSObject, T> {
         self.invalidate()
     }
     
-    public func chain() -> ValueHolder<T>.SenderChain {
-        return self.holder.chain()
-    }
-    
     public func invalidate() {
         self.observation?.invalidate()
-        self.observer?.invalidate()
-        
         self.observation = nil
+    }
+}
+
+extension KVOAdapter: Fetchable {
+    public typealias SendValue = T
+    
+    public func canFetch() -> Bool {
+        return self.target != nil
+    }
+    
+    public func fetchedValue() -> KVOAdapter<Root, T>.SendValue {
+        return self.value
     }
 }
 
