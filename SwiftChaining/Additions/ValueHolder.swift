@@ -9,12 +9,6 @@ public protocol ValueReadable {
     var value: Val { get }
 }
 
-extension Alias: ValueReadable where T: ValueReadable {
-    public typealias Val = T.Val
-    
-    public var value: T.Val { return self.sender.value }
-}
-
 final public class ValueHolder<T> {
     public private(set) var raw: T
     

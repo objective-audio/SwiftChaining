@@ -16,13 +16,6 @@ extension DictionaryReadable {
     public var capacity: Int { return self.raw.capacity }
 }
 
-extension Alias: DictionaryReadable where T: DictionaryReadable {
-    public typealias Key = T.Key
-    public typealias Value = T.Value
-    
-    public var raw: [Key: Value] { return self.sender.raw }
-}
-
 final public class DictionaryHolder<K: Hashable, V> {
     public typealias Key = K
     public typealias Value = V
