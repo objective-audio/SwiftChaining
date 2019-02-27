@@ -131,4 +131,30 @@ class RelayableValueHolderTests: XCTestCase {
         XCTAssertEqual(holder1, holder1b)
         XCTAssertNotEqual(holder1, holder2)
     }
+    
+    func testRecursive() {
+        let holder = RelayableValueHolder(Notifier<Int>())
+        
+        var received: [RelayableValueHolder<Notifier<Int>>.Event] = []
+        
+        let observer = holder.chain()
+            .map { event in
+                received.append(event)
+                
+                switch event {
+                case .current(let value):
+                    return value
+                default:
+                    fatalError()
+                }
+            }
+            .sendTo(holder)
+            .end()
+        
+        holder.value = Notifier<Int>()
+        
+        XCTAssertEqual(received.count, 1)
+        
+        observer.invalidate()
+    }
 }
