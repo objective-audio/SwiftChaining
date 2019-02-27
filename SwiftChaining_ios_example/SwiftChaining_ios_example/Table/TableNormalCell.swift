@@ -26,15 +26,8 @@ struct NormalCellData: CellData {
 
 class TableNormalCell: UITableViewCell {
     private var pool = ObserverPool()
-    private var textAdapter: KVOAdapter<UILabel, String?>!
-    private var detailTextAdapter: KVOAdapter<UILabel, String?>!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        self.textAdapter = KVOAdapter(self.textLabel!, keyPath: \UILabel.text)
-        self.detailTextAdapter = KVOAdapter(self.detailTextLabel!, keyPath: \UILabel.text)
-    }
+    private lazy var textAdapter = { KVOAdapter(self.textLabel!, keyPath: \.text) }()
+    private lazy var detailTextAdapter = { KVOAdapter(self.detailTextLabel!, keyPath: \.text) }()
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -51,7 +44,7 @@ extension TableNormalCell: CellDataSettable {
             fatalError()
         }
         
-        self.pool += normalCellData.text.chain().map { String?($0) }.sendTo(self.textAdapter).sync()
-        self.pool += normalCellData.detailText.chain().map { String?($0) }.sendTo(self.detailTextAdapter).sync()
+        self.pool += normalCellData.text.chain().map { String($0) }.sendTo(self.textAdapter).sync()
+        self.pool += normalCellData.detailText.chain().map { String($0) }.sendTo(self.detailTextAdapter).sync()
     }
 }

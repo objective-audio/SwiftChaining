@@ -22,17 +22,10 @@ class TableCustomCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var stepper: UIStepper!
     
-    private var labelAdapter: KVOAdapter<UILabel, String?>!
-    private var stepperAdapter: KVOAdapter<UIStepper, Double>!
+    private lazy var labelAdapter = { KVOAdapter(self.label, keyPath: \.text) }()
+    private lazy var stepperAdapter = { KVOAdapter(self.stepper, keyPath: \.value) }()
     
     private var pool = ObserverPool()
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        self.labelAdapter = KVOAdapter(self.label, keyPath: \UILabel.text)
-        self.stepperAdapter = KVOAdapter(self.stepper, keyPath: \UIStepper.value)
-    }
 
     override func prepareForReuse() {
         super.prepareForReuse()

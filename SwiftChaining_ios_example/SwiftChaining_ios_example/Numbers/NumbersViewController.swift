@@ -14,25 +14,17 @@ class NumbersViewController: UIViewController {
     private typealias TextAdapter = KVOAdapter<UITextField, String?>
     private typealias ChangedAdapter = UIControlAdapter<UITextField>
     
-    private var textAdapter1: TextAdapter!
-    private var textAdapter2: TextAdapter!
-    private var textAdapter3: TextAdapter!
-    private var changedAdapter1: ChangedAdapter!
-    private var changedAdapter2: ChangedAdapter!
-    private var changedAdapter3: ChangedAdapter!
-    private var resultAdapter: KVOAdapter<UILabel, String?>!
+    private lazy var textAdapter1 = { KVOAdapter(self.number1Field, keyPath: \.text) }()
+    private lazy var textAdapter2 = { KVOAdapter(self.number2Field, keyPath: \.text) }()
+    private lazy var textAdapter3 = { KVOAdapter(self.number3Field, keyPath: \.text) }()
+    private lazy var changedAdapter1 = { UIControlAdapter(self.number1Field, events: .editingChanged) }()
+    private lazy var changedAdapter2 = { UIControlAdapter(self.number2Field, events: .editingChanged) }()
+    private lazy var changedAdapter3 = { UIControlAdapter(self.number3Field, events: .editingChanged) }()
+    private lazy var resultAdapter = { KVOAdapter(self.resultLabel, keyPath: \.text) }()
     private var observer: AnyObserver?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.textAdapter1 = KVOAdapter(self.number1Field, keyPath: \UITextField.text)
-        self.textAdapter2 = KVOAdapter(self.number2Field, keyPath: \UITextField.text)
-        self.textAdapter3 = KVOAdapter(self.number3Field, keyPath: \UITextField.text)
-        self.changedAdapter1 = UIControlAdapter(self.number1Field, events: .editingChanged)
-        self.changedAdapter2 = UIControlAdapter(self.number2Field, events: .editingChanged)
-        self.changedAdapter3 = UIControlAdapter(self.number3Field, events: .editingChanged)
-        self.resultAdapter = KVOAdapter(self.resultLabel, keyPath: \UILabel.text)
         
         let makeChain = { (textAdapter: TextAdapter, changedAdapter: ChangedAdapter) in
             return changedAdapter.chain().map { $0.text }.merge(textAdapter.chain()).map { string in Int(string ?? "") ?? 0 }
