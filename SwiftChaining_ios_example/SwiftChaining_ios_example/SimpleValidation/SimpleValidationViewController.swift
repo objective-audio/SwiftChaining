@@ -16,14 +16,14 @@ class SimpleValidationViewController: UIViewController {
     private typealias ChangedAdapter = UIControlAdapter<UITextField>
     private typealias HiddenAdapter = KVOAdapter<UILabel, Bool>
     
-    private var usernameTextAdapter: TextAdapter!
-    private var passwordTextAdapter: TextAdapter!
-    private var usernameChangedAdapter: ChangedAdapter!
-    private var passwordChangedAdapter: ChangedAdapter!
-    private var usernameHiddenAdapter: HiddenAdapter!
-    private var passwordHiddenAdapter: HiddenAdapter!
-    private var buttonEnabledAdapter: KVOAdapter<UIButton, Bool>!
-    private var buttonTappedAdapter: UIControlAdapter<UIButton>!
+    private lazy var usernameTextAdapter = { KVOAdapter(self.usernameField, keyPath: \.text) }()
+    private lazy var passwordTextAdapter = { KVOAdapter(self.passwordField, keyPath: \.text) }()
+    private lazy var usernameChangedAdapter = { UIControlAdapter(self.usernameField, events: .editingChanged) }()
+    private lazy var passwordChangedAdapter = { UIControlAdapter(self.passwordField, events: .editingChanged) }()
+    private lazy var usernameHiddenAdapter = { KVOAdapter(self.usernameValidLabel, keyPath: \.isHidden) }()
+    private lazy var passwordHiddenAdapter = { KVOAdapter(self.passwordValidLabel, keyPath: \.isHidden) }()
+    private lazy var buttonEnabledAdapter = { KVOAdapter(self.doSomethingButton, keyPath: \.isEnabled) }()
+    private lazy var buttonTappedAdapter = { UIControlAdapter(self.doSomethingButton, events: .touchUpInside) }()
     
     private var observer = ObserverPool()
     
@@ -32,15 +32,6 @@ class SimpleValidationViewController: UIViewController {
         
         self.usernameValidLabel.text = "Username has to be at least 5 characters"
         self.passwordValidLabel.text = "Password has to be at least 5 characters"
-
-        self.usernameTextAdapter = KVOAdapter(self.usernameField, keyPath: \UITextField.text)
-        self.passwordTextAdapter = KVOAdapter(self.passwordField, keyPath: \UITextField.text)
-        self.usernameChangedAdapter = UIControlAdapter(self.usernameField, events: .editingChanged)
-        self.passwordChangedAdapter = UIControlAdapter(self.passwordField, events: .editingChanged)
-        self.usernameHiddenAdapter = KVOAdapter(self.usernameValidLabel, keyPath: \UILabel.isHidden)
-        self.passwordHiddenAdapter = KVOAdapter(self.passwordValidLabel, keyPath: \UILabel.isHidden)
-        self.buttonEnabledAdapter = KVOAdapter(self.doSomethingButton, keyPath: \UIButton.isEnabled)
-        self.buttonTappedAdapter = UIControlAdapter(self.doSomethingButton, events: .touchUpInside)
         
         let makeValidChain = { (textAdapter: TextAdapter, changedAdapter: ChangedAdapter, hiddenAdapter: HiddenAdapter) in
             return changedAdapter

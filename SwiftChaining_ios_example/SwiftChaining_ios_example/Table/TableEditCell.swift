@@ -17,16 +17,9 @@ struct EditCellData: CellData {
 class TableEditCell: UITableViewCell {
     @IBOutlet weak var editingSwitch: UISwitch!
     
-    private var switchIsOnAdapter: KVOAdapter<UISwitch, Bool>!
-    private var switchChangedAdapter: UIControlAdapter<UISwitch>!
+    private lazy var switchIsOnAdapter = { KVOAdapter(self.editingSwitch, keyPath: \.isOn) }()
+    private lazy var switchChangedAdapter = { UIControlAdapter(self.editingSwitch, events: .valueChanged) }()
     private var pool = ObserverPool()
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        self.switchIsOnAdapter = KVOAdapter(self.editingSwitch, keyPath: \UISwitch.isOn)
-        self.switchChangedAdapter = UIControlAdapter(self.editingSwitch, events: .valueChanged)
-    }
 
     override func prepareForReuse() {
         super.prepareForReuse()
