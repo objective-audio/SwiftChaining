@@ -31,7 +31,7 @@ class OptionalTests: XCTestCase {
         
         var received: [Int] = []
         
-        let observer = notifier.chain().guardUnwrap().do { received.append($0) }.end()
+        let observer = notifier.chain().unwrap().do { received.append($0) }.end()
         
         notifier.notify(value: 1)
         

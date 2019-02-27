@@ -9,7 +9,7 @@ extension Chain {
         return self.map { Optional($0) }
     }
     
-    public func guardUnwrap<Unwrapped>() -> Chain<Unwrapped, Sender> where Out == Unwrapped? {
+    public func unwrap<Unwrapped>() -> Chain<Unwrapped, Sender> where Out == Unwrapped? {
         return self.guard { (wrapped: Unwrapped?) in wrapped != nil }.forceUnwrap()
     }
     
