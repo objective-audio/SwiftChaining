@@ -30,19 +30,24 @@ class NotificationAdapterTests: XCTestCase {
         super.tearDown()
     }
 
-    func testNotificationAdapter() {
-        let postObj = TestPostObject()
+    func testNameAndObject() {
+        let postObj1 = TestPostObject()
+        let postObj2 = TestPostObject()
         
-        let adapter = NotificationAdapter(.testNotification, object: postObj)
+        let adapter = NotificationAdapter(.testNotification, object: postObj1)
         
-        var received: TestPostObject?
+        var received: [TestPostObject?] = []
         
-        let observer = adapter.chain().do { value in received = value.object as? TestPostObject }.end()
+        let observer = adapter.chain().do { received.append($0.object as? TestPostObject) }.end()
         
-        postObj.post()
+        postObj1.post()
         
-        XCTAssertNotNil(received)
-        XCTAssertEqual(ObjectIdentifier(received!), ObjectIdentifier(postObj))
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(ObjectIdentifier(received[0]!), ObjectIdentifier(postObj1))
+        
+        postObj2.post()
+        
+        XCTAssertEqual(received.count, 1)
         
         observer.invalidate()
     }
@@ -90,20 +95,47 @@ class NotificationAdapterTests: XCTestCase {
     }
     
     func testNotificationCenter() {
-        let center = NotificationCenter()
+        let center1 = NotificationCenter()
+        let center2 = NotificationCenter()
         
-        let postObj = TestPostObject(center)
+        let postObj1 = TestPostObject(center1)
+        let postObj2 = TestPostObject(center2)
         
-        let adapter = NotificationAdapter(.testNotification, object: postObj, notificationCenter: center)
+        let adapter = NotificationAdapter(.testNotification, object: postObj1, notificationCenter: center1)
         
         var received: [TestPostObject?] = []
         
         let observer = adapter.chain().do { received.append($0.object as? TestPostObject) }.end()
         
-        postObj.post()
+        postObj1.post()
         
         XCTAssertEqual(received.count, 1)
-        XCTAssertEqual(ObjectIdentifier(received[0]!), ObjectIdentifier(postObj))
+        XCTAssertEqual(ObjectIdentifier(received[0]!), ObjectIdentifier(postObj1))
+        
+        postObj2.post()
+        
+        XCTAssertEqual(received.count, 1)
+        
+        observer.invalidate()
+    }
+    
+    func testNameOnly() {
+        let postObj1 = TestPostObject()
+        let postObj2 = TestPostObject()
+        
+        let adapter = NotificationAdapter(.testNotification)
+        
+        var received: [TestPostObject?] = []
+        
+        let observer = adapter.chain().do { received.append($0.object as? TestPostObject) }.end()
+        
+        postObj1.post()
+        
+        XCTAssertEqual(received.count, 1)
+        
+        postObj2.post()
+        
+        XCTAssertEqual(received.count, 2)
         
         observer.invalidate()
     }
