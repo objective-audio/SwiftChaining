@@ -17,12 +17,13 @@ class FetchableTests: XCTestCase {
     func testFetcher() {
         let fetcher = Fetcher<Int> { 1 }
         
-        var received: Int?
+        var received: [Int] = []
         
-        let observer = fetcher.chain().do { received = $0 }.sync()
+        let observer = fetcher.chain().do { received.append($0) }.sync()
         
         // syncでフェッチされる
-        XCTAssertEqual(received, 1)
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0], 1)
         
         observer.invalidate()
     }
@@ -30,15 +31,16 @@ class FetchableTests: XCTestCase {
     func testFetcherReceivable() {
         let fetcher = Fetcher<Int> { 1 }
         
-        var received: Int?
+        var received: [Int] = []
         
-        let observer = fetcher.chain().do { received = $0 }.end()
+        let observer = fetcher.chain().do { received.append($0) }.end()
         
-        XCTAssertNil(received)
+        XCTAssertEqual(received.count, 0)
         
         fetcher.receive(value: ())
         
-        XCTAssertEqual(received, 1)
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0], 1)
         
         observer.invalidate()
     }
@@ -46,15 +48,16 @@ class FetchableTests: XCTestCase {
     func testFetcherBroadcast() {
         let fetcher = Fetcher<Int> { 1 }
         
-        var received: Int?
+        var received: [Int] = []
         
-        let observer = fetcher.chain().do { received = $0 }.end()
+        let observer = fetcher.chain().do { received.append($0) }.end()
         
-        XCTAssertNil(received)
+        XCTAssertEqual(received.count, 0)
         
         fetcher.broadcast()
         
-        XCTAssertEqual(received, 1)
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0], 1)
         
         observer.invalidate()
     }

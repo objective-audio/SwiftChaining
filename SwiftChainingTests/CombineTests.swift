@@ -20,13 +20,14 @@ class CombineTests: XCTestCase {
         let main = ValueHolder<Int>(1)
         let sub = ValueHolder<String>("2")
         
-        var received: (Int, String)?
+        var received: [(Int, String)] = []
         
-        let observer = main.chain().combine(sub.chain()).do { received = $0 }.sync()
+        let observer = main.chain().combine(sub.chain()).do { received.append($0) }.sync()
         
         // syncだけで両方送られてdoが呼ばれる
-        XCTAssertEqual(received?.0, 1)
-        XCTAssertEqual(received?.1, "2")
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0].0, 1)
+        XCTAssertEqual(received[0].1, "2")
         
         observer.invalidate()
     }
@@ -37,18 +38,19 @@ class CombineTests: XCTestCase {
         let main = ValueHolder<Int>(1)
         let sub = Notifier<String>()
         
-        var received: (Int, String)?
+        var received: [(Int, String)] = []
         
-        let observer = main.chain().combine(sub.chain()).do { received = $0 }.sync()
+        let observer = main.chain().combine(sub.chain()).do { received.append($0) }.sync()
         
         // syncではメインからのみ送信
-        XCTAssertNil(received)
+        XCTAssertEqual(received.count, 0)
         
         sub.notify(value: "2")
         
         // サブからも送られてdoが呼ばれる
-        XCTAssertEqual(received?.0, 1)
-        XCTAssertEqual(received?.1, "2")
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0].0, 1)
+        XCTAssertEqual(received[0].1, "2")
         
         observer.invalidate()
     }
@@ -59,18 +61,19 @@ class CombineTests: XCTestCase {
         let main = Notifier<Int>()
         let sub = ValueHolder<String>("1")
         
-        var received: (Int, String)?
+        var received: [(Int, String)] = []
         
-        let observer = main.chain().combine(sub.chain()).do { received = $0 }.sync()
+        let observer = main.chain().combine(sub.chain()).do { received.append($0) }.sync()
         
         // syncではサブからのみ送信
-        XCTAssertNil(received)
+        XCTAssertEqual(received.count, 0)
         
         main.notify(value: 2)
         
         // メインからも送られてdoが呼ばれる
-        XCTAssertEqual(received?.0, 2)
-        XCTAssertEqual(received?.1, "1")
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0].0, 2)
+        XCTAssertEqual(received[0].1, "1")
         
         observer.invalidate()
     }
@@ -81,23 +84,24 @@ class CombineTests: XCTestCase {
         let main = Notifier<Int>()
         let sub = Notifier<String>()
         
-        var received: (Int, String)?
+        var received: [(Int, String)] = []
         
-        let observer = main.chain().combine(sub.chain()).do { received = $0 }.end()
+        let observer = main.chain().combine(sub.chain()).do { received.append($0) }.end()
         
         // まだどちらからも送信されていない
-        XCTAssertNil(received)
+        XCTAssertEqual(received.count, 0)
         
         main.notify(value: 1)
         
         // メインからのみ送信されているので止まっている
-        XCTAssertNil(received)
+        XCTAssertEqual(received.count, 0)
         
         sub.notify(value: "2")
         
         // サブからも送信されたのでdoが呼ばれる
-        XCTAssertEqual(received?.0, 1)
-        XCTAssertEqual(received?.1, "2")
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0].0, 1)
+        XCTAssertEqual(received[0].1, "2")
         
         observer.invalidate()
     }

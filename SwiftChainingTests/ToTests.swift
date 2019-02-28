@@ -17,15 +17,16 @@ class ToTests: XCTestCase {
     func testToValue() {
         let notifier = Notifier<Int>()
         
-        var received: String?
+        var received: [String] = []
         
-        let observer = notifier.chain().replace("text").do { received = $0 }.end()
+        let observer = notifier.chain().replace("text").do { received.append($0) }.end()
         
-        XCTAssertNil(received)
+        XCTAssertEqual(received.count, 0)
         
         notifier.notify(value: 1)
         
-        XCTAssertEqual(received, "text")
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0], "text")
         
         observer.invalidate()
     }
@@ -33,15 +34,15 @@ class ToTests: XCTestCase {
     func testToVoid() {
         let notifier = Notifier<Int>()
         
-        var received: Bool = false
+        var received: [Void] = []
         
-        let observer = notifier.chain().replaceWithVoid().do { received = true }.end()
+        let observer = notifier.chain().replaceWithVoid().do { received.append($0) }.end()
         
-        XCTAssertFalse(received)
+        XCTAssertEqual(received.count, 0)
         
         notifier.notify(value: 1)
         
-        XCTAssertTrue(received)
+        XCTAssertEqual(received.count, 1)
         
         observer.invalidate()
     }

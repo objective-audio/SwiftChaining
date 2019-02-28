@@ -20,30 +20,30 @@ class ObserverTests: XCTestCase {
         let mainNotifier = Notifier<Int>()
         let subNotifier = Notifier<Int>()
         
-        var received: Int?
+        var received: [Int] = []
         
-        let observer = mainNotifier.chain().merge(subNotifier.chain()).do { received = $0 }.end()
+        let observer = mainNotifier.chain().merge(subNotifier.chain()).do { received.append($0) }.end()
         
         mainNotifier.notify(value: 1)
         
-        XCTAssertEqual(received, 1)
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0], 1)
         
         subNotifier.notify(value: 2)
         
-        XCTAssertEqual(received, 2)
-        
-        received = nil
+        XCTAssertEqual(received.count, 2)
+        XCTAssertEqual(received[1], 2)
         
         // invalidateされると送信しない
         observer.invalidate()
         
         mainNotifier.notify(value: 3)
         
-        XCTAssertNil(received)
+        XCTAssertEqual(received.count, 2)
         
         subNotifier.notify(value: 4)
         
-        XCTAssertNil(received)
+        XCTAssertEqual(received.count, 2)
     }
     
     func testObserverPool() {
@@ -53,23 +53,23 @@ class ObserverTests: XCTestCase {
         let notifier = Notifier<Int>()
         let holder = ValueHolder<String>("0")
         
-        var notifierReceived: Int?
-        var holderReceived: String?
+        var notifierReceived: [Int] = []
+        var holderReceived: [String] = []
         
         // +=でObserverPoolにObserverを追加
-        pool += notifier.chain().do { notifierReceived = $0 }.end()
-        pool += holder.chain().do { holderReceived = $0 }.sync()
+        pool += notifier.chain().do { notifierReceived.append($0) }.end()
+        pool += holder.chain().do { holderReceived.append($0) }.sync()
         
-        XCTAssertEqual(holderReceived, "0")
+        XCTAssertEqual(holderReceived.count, 1)
+        XCTAssertEqual(holderReceived[0], "0")
         
         notifier.notify(value: 1)
         holder.value = "2"
         
-        XCTAssertEqual(notifierReceived, 1)
-        XCTAssertEqual(holderReceived, "2")
-        
-        notifierReceived = nil
-        holderReceived = nil
+        XCTAssertEqual(notifierReceived.count, 1)
+        XCTAssertEqual(notifierReceived[0], 1)
+        XCTAssertEqual(holderReceived.count, 2)
+        XCTAssertEqual(holderReceived[1], "2")
         
         // invalidateを呼ぶと送信しない
         pool.invalidate()
@@ -77,8 +77,8 @@ class ObserverTests: XCTestCase {
         notifier.notify(value: 3)
         holder.value = "4"
         
-        XCTAssertNil(notifierReceived)
-        XCTAssertNil(holderReceived)
+        XCTAssertEqual(notifierReceived.count, 1)
+        XCTAssertEqual(holderReceived.count, 2)
     }
     
     func testObserverPoolRemove() {
@@ -88,25 +88,25 @@ class ObserverTests: XCTestCase {
         let notifier = Notifier<Int>()
         let holder = ValueHolder<String>("0")
         
-        var notifierReceived: Int?
-        var holderReceived: String?
+        var notifierReceived: [Int] = []
+        var holderReceived: [String] = []
         
-        let notifierObserver = notifier.chain().do { notifierReceived = $0 }.end()
-        let holderObserver = holder.chain().do { holderReceived = $0 }.sync()
+        let notifierObserver = notifier.chain().do { notifierReceived.append($0) }.end()
+        let holderObserver = holder.chain().do { holderReceived.append($0) }.sync()
         
         pool += notifierObserver
         pool += holderObserver
         
-        XCTAssertEqual(holderReceived, "0")
+        XCTAssertEqual(holderReceived.count, 1)
+        XCTAssertEqual(holderReceived[0], "0")
         
         notifier.notify(value: 1)
         holder.value = "2"
         
-        XCTAssertEqual(notifierReceived, 1)
-        XCTAssertEqual(holderReceived, "2")
-        
-        notifierReceived = nil
-        holderReceived = nil
+        XCTAssertEqual(notifierReceived.count, 1)
+        XCTAssertEqual(notifierReceived[0], 1)
+        XCTAssertEqual(holderReceived.count, 2)
+        XCTAssertEqual(holderReceived[1], "2")
         
         // -=された方はpoolでinvalidateされなくなる
         pool -= holderObserver
@@ -116,7 +116,8 @@ class ObserverTests: XCTestCase {
         notifier.notify(value: 3)
         holder.value = "4"
         
-        XCTAssertNil(notifierReceived)
-        XCTAssertEqual(holderReceived, "4")
+        XCTAssertEqual(notifierReceived.count, 1)
+        XCTAssertEqual(holderReceived.count, 3)
+        XCTAssertEqual(holderReceived[2], "4")
     }
 }

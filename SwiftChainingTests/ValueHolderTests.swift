@@ -23,15 +23,17 @@ class ValueHolderTests: XCTestCase {
         
         XCTAssertEqual(holder.value, 1)
         
-        var received: Int?
+        var received: [Int] = []
         
-        let observer = holder.chain().do { received = $0 }.sync()
+        let observer = holder.chain().do { received.append($0) }.sync()
         
-        XCTAssertEqual(received, 1)
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0], 1)
         
         holder.value = 2
         
-        XCTAssertEqual(received, 2)
+        XCTAssertEqual(received.count, 2)
+        XCTAssertEqual(received[1], 2)
         
         observer.invalidate()
     }

@@ -35,22 +35,25 @@ class TupleTests: XCTestCase {
         let main = ValueHolder<Int>(0)
         let sub = Notifier<String>()
         
-        var received: (Int?, String?)?
+        var received: [(Int?, String?)] = []
         
-        let observer = main.chain().tuple(sub.chain()).do { received = $0 }.sync()
+        let observer = main.chain().tuple(sub.chain()).do { received.append($0) }.sync()
         
-        XCTAssertEqual(received?.0, 0)
-        XCTAssertNil(received?.1)
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0].0, 0)
+        XCTAssertNil(received[0].1)
         
         main.value = 1
         
-        XCTAssertEqual(received?.0, 1)
-        XCTAssertNil(received?.1)
+        XCTAssertEqual(received.count, 2)
+        XCTAssertEqual(received[1].0, 1)
+        XCTAssertNil(received[1].1)
         
         sub.notify(value: "2")
         
-        XCTAssertNil(received?.0)
-        XCTAssertEqual(received?.1, "2")
+        XCTAssertEqual(received.count, 3)
+        XCTAssertNil(received[2].0)
+        XCTAssertEqual(received[2].1, "2")
         
         observer.invalidate()
     }
@@ -59,22 +62,25 @@ class TupleTests: XCTestCase {
         let main = Notifier<Int>()
         let sub = ValueHolder<String>("")
         
-        var received: (Int?, String?)?
+        var received: [(Int?, String?)] = []
         
-        let observer = main.chain().tuple(sub.chain()).do { received = $0 }.sync()
+        let observer = main.chain().tuple(sub.chain()).do { received.append($0) }.sync()
         
-        XCTAssertNil(received?.0)
-        XCTAssertEqual(received?.1, "")
+        XCTAssertEqual(received.count, 1)
+        XCTAssertNil(received[0].0)
+        XCTAssertEqual(received[0].1, "")
         
         main.notify(value: 1)
         
-        XCTAssertEqual(received?.0, 1)
-        XCTAssertNil(received?.1)
+        XCTAssertEqual(received.count, 2)
+        XCTAssertEqual(received[1].0, 1)
+        XCTAssertNil(received[1].1)
         
         sub.value = "2"
         
-        XCTAssertNil(received?.0)
-        XCTAssertEqual(received?.1, "2")
+        XCTAssertEqual(received.count, 3)
+        XCTAssertNil(received[2].0)
+        XCTAssertEqual(received[2].1, "2")
         
         observer.invalidate()
     }
@@ -83,21 +89,23 @@ class TupleTests: XCTestCase {
         let main = Notifier<Int>()
         let sub = Notifier<String>()
         
-        var received: (Int?, String?)?
+        var received: [(Int?, String?)] = []
         
-        let observer = main.chain().tuple(sub.chain()).do { received = $0 }.end()
+        let observer = main.chain().tuple(sub.chain()).do { received.append($0) }.end()
         
-        XCTAssertNil(received)
+        XCTAssertEqual(received.count, 0)
         
         main.notify(value: 1)
         
-        XCTAssertEqual(received?.0, 1)
-        XCTAssertNil(received?.1)
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0].0, 1)
+        XCTAssertNil(received[0].1)
         
         sub.notify(value: "2")
         
-        XCTAssertNil(received?.0)
-        XCTAssertEqual(received?.1, "2")
+        XCTAssertEqual(received.count, 2)
+        XCTAssertNil(received[1].0)
+        XCTAssertEqual(received[1].1, "2")
         
         observer.invalidate()
     }
