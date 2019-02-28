@@ -30,6 +30,20 @@ extension Chain {
     }
 }
 
+extension Chain where Out: Equatable {
+    public func guardIfEqual() -> GuardChain {
+        var cache: Out? = nil
+        return self.guard { value in
+            defer { cache = value }
+            if let cache = cache {
+                return cache != value
+            } else {
+                return true
+            }
+        }
+    }
+}
+
 extension Chain {
     public typealias FilterChain = GuardChain
     
