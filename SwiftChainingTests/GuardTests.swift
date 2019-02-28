@@ -33,4 +33,28 @@ class GuardTests: XCTestCase {
         
         observer.invalidate()
     }
+    
+    func testGuardIfEqual() {
+        let notifier = Notifier<Int>()
+        
+        var received: [Int] = []
+        
+        let observer = notifier.chain().guardIfEqual().do { received.append($0) }.end()
+        
+        notifier.notify(value: 0)
+        
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0], 0)
+        
+        notifier.notify(value: 1)
+        
+        XCTAssertEqual(received.count, 2)
+        XCTAssertEqual(received[1], 1)
+        
+        notifier.notify(value: 1)
+        
+        XCTAssertEqual(received.count, 2)
+        
+        observer.invalidate()
+    }
 }
