@@ -17,15 +17,16 @@ class NotifierTests: XCTestCase {
     func testChainValue() {
         let notifier = Notifier<Int>()
         
-        var received: Int?
+        var received: [Int] = []
         
-        let observer = notifier.chain().do { received = $0 }.end()
+        let observer = notifier.chain().do { received.append($0) }.end()
         
-        XCTAssertNil(received)
+        XCTAssertEqual(received.count, 0)
         
         notifier.notify(value: 3)
         
-        XCTAssertEqual(received, 3)
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0], 3)
         
         observer.invalidate()
     }
@@ -52,12 +53,13 @@ class NotifierTests: XCTestCase {
         
         let observer = notifier.chain().sendTo(receivingNotifier).end()
         
-        var received: Int?
-        let receivingObserver = receivingNotifier.chain().do { received = $0 }.end()
+        var received: [Int] = []
+        let receivingObserver = receivingNotifier.chain().do { received.append($0) }.end()
         
         notifier.notify(value: 1)
         
-        XCTAssertEqual(received, 1)
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0], 1)
         
         observer.invalidate()
         receivingObserver.invalidate()

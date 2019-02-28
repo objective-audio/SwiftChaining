@@ -17,19 +17,20 @@ class GuardTests: XCTestCase {
     func testGuard() {
         let notifier = Notifier<Int>()
         
-        var received: Int?
+        var received: [Int] = []
         
-        let observer = notifier.chain().guard { return $0 > 0 }.do { received = $0 }.end()
+        let observer = notifier.chain().guard { return $0 > 0 }.do { received.append($0) }.end()
         
         notifier.notify(value: 0)
         
         // 0以下なので呼ばれない
-        XCTAssertNil(received)
+        XCTAssertEqual(received.count, 0)
         
         notifier.notify(value: 1)
         
         // 0より大きいので呼ばれる
-        XCTAssertEqual(received, 1)
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0], 1)
         
         observer.invalidate()
     }
