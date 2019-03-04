@@ -17,7 +17,7 @@ final class TableSection {
     let title: ValueHolder<String?>
     let rows: CellDataArray
     
-    private var pool = ObserverPool()
+    private let pool = ObserverPool()
     
     convenience init() {
         self.init(title: nil, rows: [])
@@ -27,8 +27,8 @@ final class TableSection {
         self.title = ValueHolder(title)
         self.rows = ArrayHolder(rows)
         
-        self.pool += self.rows.chain().map { .rows($0) }.sendTo(self).end()
-        self.pool += self.title.chain().map { .title($0) }.sendTo(self).end()
+        self.rows.chain().map { .rows($0) }.sendTo(self).end().addTo(self.pool)
+        self.title.chain().map { .title($0) }.sendTo(self).end().addTo(self.pool)
     }
 }
 

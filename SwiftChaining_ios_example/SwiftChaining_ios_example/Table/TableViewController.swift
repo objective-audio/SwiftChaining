@@ -8,12 +8,12 @@ import Chaining
 class TableViewController: UITableViewController {
     let controller: TableController = TableController()
     
-    var pool = ObserverPool()
+    let pool = ObserverPool()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.pool += self.controller.sections.chain().do({ [weak self] event in
+        self.controller.sections.chain().do({ [weak self] event in
             switch event {
             case .fetched, .any:
                 self?.tableView.reloadData()
@@ -46,20 +46,19 @@ class TableViewController: UITableViewController {
                     }
                 }
             }
-        }).sync()
+        }).sync().addTo(self.pool)
         
-        self.pool += self.controller.isEditing.chain().do { [weak self] isEditing in self?.setEditing(isEditing, animated: true) }.sync()
+        self.controller.isEditing.chain().do { [weak self] isEditing in self?.setEditing(isEditing, animated: true) }.sync().addTo(self.pool)
         
-        self.pool +=
-            self.controller.showAlertNotifier
-                .chain()
-                .do { [weak self] alertData in
-                    let alert = UIAlertController(title: alertData.title,
-                                                  message: alertData.message,
-                                                  preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self?.present(alert, animated: true, completion: nil)
-                }.end()
+        self.controller.showAlertNotifier
+            .chain()
+            .do { [weak self] alertData in
+                let alert = UIAlertController(title: alertData.title,
+                                              message: alertData.message,
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
+            }.end().addTo(self.pool)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

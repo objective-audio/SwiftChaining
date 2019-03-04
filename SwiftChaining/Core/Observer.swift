@@ -19,6 +19,10 @@ public class Observer<Sender: Sendable> {
         self.invalidate()
     }
     
+    public func addTo(_ pool: ObserverPool) {
+        pool.add(self)
+    }
+    
     public func invalidate() {
         self.joint.invalidate()
     }
@@ -58,15 +62,5 @@ extension ObserverPool: AnyObserver {
             observer.invalidate()
         }
         self.observers = []
-    }
-}
-
-extension ObserverPool {
-    static public func += (left: inout ObserverPool, right: AnyObserver) {
-        left.add(right)
-    }
-    
-    static public func -= (left: inout ObserverPool, right: AnyObserver) {
-        left.remove(right)
     }
 }

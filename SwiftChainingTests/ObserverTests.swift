@@ -49,16 +49,16 @@ class ObserverTests: XCTestCase {
     func testObserverPool() {
         // ObserverPoolの動作
         
-        var pool = ObserverPool()
+        let pool = ObserverPool()
         let notifier = Notifier<Int>()
         let holder = ValueHolder<String>("0")
         
         var notifierReceived: [Int] = []
         var holderReceived: [String] = []
         
-        // +=でObserverPoolにObserverを追加
-        pool += notifier.chain().do { notifierReceived.append($0) }.end()
-        pool += holder.chain().do { holderReceived.append($0) }.sync()
+        // ObserverPoolにObserverを追加
+        pool.add(notifier.chain().do { notifierReceived.append($0) }.end())
+        pool.add(holder.chain().do { holderReceived.append($0) }.sync())
         
         XCTAssertEqual(holderReceived.count, 1)
         XCTAssertEqual(holderReceived[0], "0")
@@ -82,9 +82,9 @@ class ObserverTests: XCTestCase {
     }
     
     func testObserverPoolRemove() {
-        // ObserverPoolから-=で削除する
+        // ObserverPoolから削除する
         
-        var pool = ObserverPool()
+        let pool = ObserverPool()
         let notifier = Notifier<Int>()
         let holder = ValueHolder<String>("0")
         
@@ -94,8 +94,8 @@ class ObserverTests: XCTestCase {
         let notifierObserver = notifier.chain().do { notifierReceived.append($0) }.end()
         let holderObserver = holder.chain().do { holderReceived.append($0) }.sync()
         
-        pool += notifierObserver
-        pool += holderObserver
+        pool.add(notifierObserver)
+        pool.add(holderObserver)
         
         XCTAssertEqual(holderReceived.count, 1)
         XCTAssertEqual(holderReceived[0], "0")
@@ -108,8 +108,8 @@ class ObserverTests: XCTestCase {
         XCTAssertEqual(holderReceived.count, 2)
         XCTAssertEqual(holderReceived[1], "2")
         
-        // -=された方はpoolでinvalidateされなくなる
-        pool -= holderObserver
+        // 削除された方はpoolでinvalidateされなくなる
+        pool.remove(holderObserver)
         
         pool.invalidate()
         
@@ -119,5 +119,26 @@ class ObserverTests: XCTestCase {
         XCTAssertEqual(notifierReceived.count, 1)
         XCTAssertEqual(holderReceived.count, 3)
         XCTAssertEqual(holderReceived[2], "4")
+    }
+    
+    func testAddTo() {
+        let pool = ObserverPool()
+        
+        let notifier = Notifier<Int>()
+        
+        var received: [Int] = []
+        
+        notifier.chain().do { received.append($0) }.end().addTo(pool)
+        
+        notifier.notify(value: 1)
+        
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0], 1)
+        
+        pool.invalidate()
+        
+        notifier.notify(value: 2)
+        
+        XCTAssertEqual(received.count, 1)
     }
 }
