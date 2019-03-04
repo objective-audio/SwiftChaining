@@ -25,7 +25,7 @@ class SimpleValidationViewController: UIViewController {
     private lazy var buttonEnabledAdapter = { KVOAdapter(self.doSomethingButton, keyPath: \.isEnabled) }()
     private lazy var buttonTappedAdapter = { UIControlAdapter(self.doSomethingButton, events: .touchUpInside) }()
     
-    private var observer = ObserverPool()
+    private let pool = ObserverPool()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,16 +45,16 @@ class SimpleValidationViewController: UIViewController {
         let usernameChain = makeValidChain(self.usernameTextAdapter, self.usernameChangedAdapter, self.usernameHiddenAdapter)
         let passwordChain = makeValidChain(self.passwordTextAdapter, self.passwordChangedAdapter, self.passwordHiddenAdapter)
         
-        self.observer += usernameChain.combine(passwordChain).map { $0.0 && $0.1 }.sendTo(buttonEnabledAdapter).sync()
+        usernameChain.combine(passwordChain).map { $0.0 && $0.1 }.sendTo(buttonEnabledAdapter).sync().addTo(self.pool)
         
-        self.observer +=
-            self.buttonTappedAdapter
-                .chain()
-                .do { [weak self] _ in
-                    let alert = UIAlertController(title: "Chaining Example", message: "This is wonderful", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self?.present(alert, animated: true, completion: nil)
-                }
-                .end()
+        self.buttonTappedAdapter
+            .chain()
+            .do { [weak self] _ in
+                let alert = UIAlertController(title: "Chaining Example", message: "This is wonderful", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
+            }
+            .end()
+            .addTo(self.pool)
     }
 }

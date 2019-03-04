@@ -63,17 +63,17 @@ class FetchableTests: XCTestCase {
     }
     
     func testFetchOnlyJustSynced() {
-        var pool = ObserverPool()
+        let pool = ObserverPool()
         
         let fetcher = Fetcher<Int> { 1 }
         
         var received: [Int] = []
         
-        pool += fetcher.chain().do { received.append($0) }.sync()
+        fetcher.chain().do { received.append($0) }.sync().addTo(pool)
         
         XCTAssertEqual(received.count, 1)
         
-        pool += fetcher.chain().do { received.append($0) }.sync()
+        fetcher.chain().do { received.append($0) }.sync().addTo(pool)
         
         // 同じFetcherから複数chainしても、syncしたchainしか呼ばれない
         XCTAssertEqual(received.count, 2)

@@ -25,19 +25,19 @@ class SuspendViewController: UIViewController {
     let suspender = Suspender()
     let srcNumber = ValueHolder(0)
     let dstNumber = ValueHolder(0)
-    var observers = ObserverPool()
+    let pool = ObserverPool()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.observers += self.srcNumber.chain().suspend(self.suspender).sendTo(self.dstNumber).sync()
-        self.observers += self.srcNumber.chain().map { "\($0)" }.sendTo(self.srcTextAdapter).sync()
-        self.observers += self.dstNumber.chain().map { "\($0)" }.sendTo(self.dstTextAdapter).sync()
-        self.observers += self.suspender.chain().sendTo(self.resumeEnabledAdapter).map { !$0 }.sendTo(self.suspendEnabledAdapter).sync()
-        self.observers += self.suspender.chain().map { $0 ? "-" : "↓" }.sendTo(self.arrowTextAdapter).sync()
-        self.observers += self.suspendTapAdapter.chain().replace(true).sendTo(self.suspender).end()
-        self.observers += self.resumeTapAdapter.chain().replace(false).sendTo(self.suspender).end()
-        self.observers += self.randomTapAdapter.chain().map { _ in Int.random(in: 0..<100) }.sendTo(self.srcNumber).end()
+        self.srcNumber.chain().suspend(self.suspender).sendTo(self.dstNumber).sync().addTo(self.pool)
+        self.srcNumber.chain().map { "\($0)" }.sendTo(self.srcTextAdapter).sync().addTo(self.pool)
+        self.dstNumber.chain().map { "\($0)" }.sendTo(self.dstTextAdapter).sync().addTo(self.pool)
+        self.suspender.chain().sendTo(self.resumeEnabledAdapter).map { !$0 }.sendTo(self.suspendEnabledAdapter).sync().addTo(self.pool)
+        self.suspender.chain().map { $0 ? "-" : "↓" }.sendTo(self.arrowTextAdapter).sync().addTo(self.pool)
+        self.suspendTapAdapter.chain().replace(true).sendTo(self.suspender).end().addTo(self.pool)
+        self.resumeTapAdapter.chain().replace(false).sendTo(self.suspender).end().addTo(self.pool)
+        self.randomTapAdapter.chain().map { _ in Int.random(in: 0..<100) }.sendTo(self.srcNumber).end().addTo(self.pool)
     }
     
 }

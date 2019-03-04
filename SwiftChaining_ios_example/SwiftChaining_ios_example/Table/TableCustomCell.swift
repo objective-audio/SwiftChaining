@@ -25,7 +25,7 @@ class TableCustomCell: UITableViewCell {
     private lazy var labelAdapter = { KVOAdapter(self.label, keyPath: \.text) }()
     private lazy var stepperAdapter = { KVOAdapter(self.stepper, keyPath: \.value) }()
     
-    private var pool = ObserverPool()
+    private let pool = ObserverPool()
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -42,8 +42,8 @@ extension TableCustomCell: CellDataSettable {
             fatalError()
         }
         
-        self.pool += customCellData.number.chain().map { String($0) }.sendTo(self.labelAdapter).sync()
-        self.pool += customCellData.number.chain().map { Double($0) }.sendTo(self.stepperAdapter).sync()
-        self.pool += self.stepperAdapter.chain().map { Int($0) }.sendTo(customCellData.number).sync()
+        customCellData.number.chain().map { String($0) }.sendTo(self.labelAdapter).sync().addTo(self.pool)
+        customCellData.number.chain().map { Double($0) }.sendTo(self.stepperAdapter).sync().addTo(self.pool)
+        self.stepperAdapter.chain().map { Int($0) }.sendTo(customCellData.number).sync().addTo(self.pool)
     }
 }
