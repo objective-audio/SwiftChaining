@@ -183,13 +183,13 @@ holder.value = 1
 ```
 ### ObserverPool: AnyObserver
 ```swift
-var observerPool = ObserverPool()
+let observerPool = ObserverPool()
 
 let notifier = Notifier<Int>()
 
-// add()または+=でObserverPoolにObserverを追加
+// add()またはaddTo()でObserverPoolにObserverを追加
 observerPool.add(notifier.chain().do { print("a:\($0)") }.end())
-observerPool += notifier.chain().do { print("b:\($0)") }.end()
+notifier.chain().do { print("b:\($0)") }.end().addTo(observerPool)
 
 // 送信される
 notifier.notify(value: 1)
