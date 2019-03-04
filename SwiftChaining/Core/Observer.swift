@@ -19,6 +19,10 @@ public class Observer<Sender: Sendable> {
         self.invalidate()
     }
     
+    public func addTo(_ pool: ObserverPool) {
+        pool.add(self)
+    }
+    
     public func invalidate() {
         self.joint.invalidate()
     }
