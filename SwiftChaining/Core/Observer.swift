@@ -64,13 +64,3 @@ extension ObserverPool: AnyObserver {
         self.observers = []
     }
 }
-
-extension ObserverPool {
-    static public func += (left: inout ObserverPool, right: AnyObserver) {
-        left.add(right)
-    }
-    
-    static public func -= (left: inout ObserverPool, right: AnyObserver) {
-        left.remove(right)
-    }
-}
