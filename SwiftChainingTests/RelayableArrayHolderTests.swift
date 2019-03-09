@@ -24,7 +24,7 @@ class RelayableArrayHolderTests: XCTestCase {
         XCTAssertEqual(array.raw, [ValueHolder(2), ValueHolder(3), ValueHolder(1)])
     }
     
-    func testReplaceElements() {
+    func testSetElements() {
         let holder1 = ValueHolder(1)
         let holder2 = ValueHolder(2)
         let holder3 = ValueHolder(3)
@@ -35,7 +35,7 @@ class RelayableArrayHolderTests: XCTestCase {
         XCTAssertEqual(array[0], ValueHolder(1))
         XCTAssertEqual(array[1], ValueHolder(2))
         
-        array.replace([holder3])
+        array.set([holder3])
         
         XCTAssertEqual(array.count, 1)
         XCTAssertEqual(array[0], ValueHolder(3))
@@ -164,7 +164,7 @@ class RelayableArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        array.replace([ValueHolder(1000), ValueHolder(999)])
+        array.set([ValueHolder(1000), ValueHolder(999)])
         
         XCTAssertEqual(received.count, 8)
         

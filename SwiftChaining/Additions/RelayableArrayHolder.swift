@@ -30,10 +30,10 @@ final public class RelayableArrayHolder<Element: Sendable> {
     public convenience init(_ elements: [Element]) {
         self.init()
         
-        self.replace(elements)
+        self.set(elements)
     }
     
-    public func replace(_ elements: [Element]) {
+    public func set(_ elements: [Element]) {
         for wrapper in self.observerArray {
             if let observer = wrapper.observer {
                 observer.invalidate()
