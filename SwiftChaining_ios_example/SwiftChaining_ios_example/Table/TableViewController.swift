@@ -31,7 +31,7 @@ class TableViewController: UITableViewController {
                     self?.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
                 case .rows(let rowEvent):
                     switch rowEvent {
-                    case .fetched, .any:
+                    case .fetched, .set:
                         self?.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
                     case .inserted(let row, _):
                         self?.tableView.insertRows(at: [IndexPath(row: row, section: section)], with: .automatic)

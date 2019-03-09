@@ -205,7 +205,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 7)
         
-        if case .any(let elements) = received[6] {
+        if case .set(let elements) = received[6] {
             XCTAssertEqual(elements, [1000, 999])
         } else {
             XCTAssertTrue(false)
@@ -215,7 +215,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 8)
         
-        if case .any(let elements) = received[7] {
+        if case .set(let elements) = received[7] {
             XCTAssertEqual(elements, [])
         } else {
             XCTAssertTrue(false)

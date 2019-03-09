@@ -32,7 +32,7 @@ final public class ArrayHolder<E> {
     
     public enum Event {
         case fetched([Element])
-        case any([Element])
+        case set([Element])
         case inserted(at: Int, element: Element)
         case removed(at: Int, element: Element)
         case replaced(at: Int, element: Element)
@@ -57,7 +57,7 @@ final public class ArrayHolder<E> {
     
     public func set(_ elements: [Element]) {
         self.raw = elements
-        self.broadcast(value: .any(elements))
+        self.broadcast(value: .set(elements))
     }
     
     public func replace(_ element: Element, at index: Int) {
@@ -89,7 +89,7 @@ final public class ArrayHolder<E> {
         
         self.raw.removeAll(keepingCapacity: keepCapacity)
         
-        self.broadcast(value: .any([]))
+        self.broadcast(value: .set([]))
     }
     
     public func move(at from: Int, to: Int) {
