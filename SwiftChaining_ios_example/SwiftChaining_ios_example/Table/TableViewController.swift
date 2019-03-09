@@ -15,7 +15,7 @@ class TableViewController: UITableViewController {
         
         self.controller.sections.chain().do({ [weak self] event in
             switch event {
-            case .fetched, .any:
+            case .fetched, .set:
                 self?.tableView.reloadData()
             case .inserted(let section, _):
                 self?.tableView.insertSections(IndexSet(integer: section), with: .automatic)

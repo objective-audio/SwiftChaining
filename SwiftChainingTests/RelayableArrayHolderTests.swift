@@ -168,7 +168,7 @@ class RelayableArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 8)
         
-        if case .any(let elements) = received[7] {
+        if case .set(let elements) = received[7] {
             XCTAssertEqual(elements, [ValueHolder(1000), ValueHolder(999)])
         } else {
             XCTAssertTrue(false)
@@ -190,7 +190,7 @@ class RelayableArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 10)
         
-        if case .any(let elements) = received[9] {
+        if case .set(let elements) = received[9] {
             XCTAssertEqual(elements, [])
         } else {
             XCTAssertTrue(false)
