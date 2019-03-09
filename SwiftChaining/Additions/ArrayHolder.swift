@@ -36,7 +36,7 @@ final public class ArrayHolder<E> {
         case inserted(at: Int, element: Element)
         case removed(at: Int, element: Element)
         case replaced(at: Int, element: Element)
-        case moved(from: Int, to: Int, element: Element)
+        case moved(at: Int, to: Int, element: Element)
     }
     
     public enum Action {
@@ -97,7 +97,7 @@ final public class ArrayHolder<E> {
         
         let element = self.raw.remove(at: from)
         self.raw.insert(element, at: to)
-        self.broadcast(value: .moved(from: from, to: to, element: element))
+        self.broadcast(value: .moved(at: from, to: to, element: element))
     }
     
     public func reserveCapacity(_ capacity: Int) {
