@@ -39,6 +39,14 @@ final public class ArrayHolder<E> {
         case moved(from: Int, to: Int, element: Element)
     }
     
+    public enum Action {
+        case set([Element])
+        case insert(element: Element, at: Int)
+        case remove(at: Int)
+        case replace(element: Element, at: Int)
+        case move(at: Int, to: Int)
+    }
+    
     public init() {}
     
     public convenience init(_ elements: [Element]) {
@@ -109,5 +117,24 @@ extension ArrayHolder: Fetchable {
     
     public func fetchedValue() -> Event {
         return .fetched(self.raw)
+    }
+}
+
+extension ArrayHolder: Receivable {
+    public typealias ReceiveValue = Action
+    
+    public func receive(value: Action) {
+        switch value {
+        case .set(let elements):
+            self.replace(elements)
+        case .insert(let element, let index):
+            self.insert(element, at: index)
+        case .remove(let index):
+            self.remove(at: index)
+        case .replace(let element, let index):
+            self.replace(element, at: index)
+        case .move(let fromIndex, let toIndex):
+            self.move(at: fromIndex, to: toIndex)
+        }
     }
 }
