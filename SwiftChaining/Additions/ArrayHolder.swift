@@ -52,10 +52,10 @@ final public class ArrayHolder<E> {
     public convenience init(_ elements: [Element]) {
         self.init()
         
-        self.replace(elements)
+        self.set(elements)
     }
     
-    public func replace(_ elements: [Element]) {
+    public func set(_ elements: [Element]) {
         self.raw = elements
         self.broadcast(value: .any(elements))
     }
@@ -126,7 +126,7 @@ extension ArrayHolder: Receivable {
     public func receive(value: Action) {
         switch value {
         case .set(let elements):
-            self.replace(elements)
+            self.set(elements)
         case .insert(let element, let index):
             self.insert(element, at: index)
         case .remove(let index):

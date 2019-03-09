@@ -20,17 +20,17 @@ class ArrayHolderTests: XCTestCase {
         XCTAssertEqual(array.raw, [])
     }
     
-    func testReplaceElements() {
+    func testSetElements() {
         let array = ArrayHolder([10, 20])
         
         XCTAssertEqual(array.raw, [10, 20])
         
-        array.replace([30, 40, 50])
+        array.set([30, 40, 50])
         
         XCTAssertEqual(array.raw, [30, 40, 50])
     }
     
-    func testReplaceElementWithRelayableValue() {
+    func testReplaceElement() {
         let array = ArrayHolder([10, 20, 30])
         
         XCTAssertEqual(array.raw, [10, 20, 30])
@@ -83,7 +83,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertNil(array.first)
         
-        array.replace([1, 2])
+        array.set([1, 2])
         
         XCTAssertEqual(array.first, 1)
     }
@@ -93,7 +93,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertNil(array.last)
         
-        array.replace([1, 2])
+        array.set([1, 2])
         
         XCTAssertEqual(array.last, 2)
     }
@@ -201,7 +201,7 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        array.replace([1000, 999])
+        array.set([1000, 999])
         
         XCTAssertEqual(received.count, 7)
         
