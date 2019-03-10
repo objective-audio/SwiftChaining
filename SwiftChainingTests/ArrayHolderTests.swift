@@ -252,7 +252,7 @@ class ArrayHolderTests: XCTestCase {
         
         let observer = notifier.chain().sendTo(array).end()
         
-        notifier.notify(value: .insert(element: 100, at: 2))
+        notifier.notify(value: .insert(100, at: 2))
         
         XCTAssertEqual(array.count, 3)
         XCTAssertEqual(array[2], 100)
@@ -269,7 +269,7 @@ class ArrayHolderTests: XCTestCase {
         XCTAssertEqual(array[0], 20)
         XCTAssertEqual(array[1], 100)
         
-        notifier.notify(value: .replace(element: 500, at: 0))
+        notifier.notify(value: .replace(500, at: 0))
         
         XCTAssertEqual(array[0], 500)
         

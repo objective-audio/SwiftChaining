@@ -229,7 +229,7 @@ class RelayableArrayHolderTests: XCTestCase {
         
         let observer = notifier.chain().sendTo(array).end()
         
-        notifier.notify(value: .insert(element: ValueHolder(100), at: 2))
+        notifier.notify(value: .insert(ValueHolder(100), at: 2))
         
         XCTAssertEqual(array.count, 3)
         XCTAssertEqual(array[2], ValueHolder(100))
@@ -246,7 +246,7 @@ class RelayableArrayHolderTests: XCTestCase {
         XCTAssertEqual(array[0], ValueHolder(20))
         XCTAssertEqual(array[1], ValueHolder(100))
         
-        notifier.notify(value: .replace(element: ValueHolder(500), at: 0))
+        notifier.notify(value: .replace(ValueHolder(500), at: 0))
         
         XCTAssertEqual(array[0], ValueHolder(500))
         

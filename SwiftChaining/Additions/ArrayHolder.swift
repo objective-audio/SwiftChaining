@@ -35,9 +35,9 @@ extension ArrayReadable {
 
 public enum ArrayAction<Element> {
     case set([Element])
-    case insert(element: Element, at: Int)
+    case insert(_ element: Element, at: Int)
     case remove(at: Int)
-    case replace(element: Element, at: Int)
+    case replace(_ element: Element, at: Int)
     case move(at: Int, to: Int)
 }
 
