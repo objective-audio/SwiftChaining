@@ -33,6 +33,29 @@ final public class RelayableArrayHolder<Element: Sendable> {
         self.set(elements)
     }
     
+    public func reserveCapacity(_ capacity: Int) {
+        self.raw.reserveCapacity(capacity)
+    }
+    
+    public subscript(index: Int) -> Element {
+        get { return self.element(at: index) }
+        set(element) { self.replace(element, at: index) }
+    }
+    
+    private func relayingWrapper(element: Element) -> ObserverWrapper {
+        let wrapper = ObserverWrapper()
+        wrapper.observer = element.chain().do({ [weak self, weak wrapper] value in
+            if let self = self, let wrapper = wrapper {
+                if let index = self.observerArray.index(where: { return ObjectIdentifier($0) == ObjectIdentifier(wrapper) }) {
+                    self.broadcast(value: .relayed(value, at: index, element: self.raw[index]))
+                }
+            }
+        }).end()
+        return wrapper
+    }
+}
+
+extension RelayableArrayHolder: ArrayWritable {
     public func set(_ elements: [Element]) {
         for wrapper in self.observerArray {
             if let observer = wrapper.observer {
@@ -119,30 +142,11 @@ final public class RelayableArrayHolder<Element: Sendable> {
         
         self.broadcast(value: .moved(at: from, to: to, element: element))
     }
-    
-    public func reserveCapacity(_ capacity: Int) {
-        self.raw.reserveCapacity(capacity)
-    }
-    
-    public subscript(index: Int) -> Element {
-        get { return self.element(at: index) }
-        set(element) { self.replace(element, at: index) }
-    }
-    
-    private func relayingWrapper(element: Element) -> ObserverWrapper {
-        let wrapper = ObserverWrapper()
-        wrapper.observer = element.chain().do({ [weak self, weak wrapper] value in
-            if let self = self, let wrapper = wrapper {
-                if let index = self.observerArray.index(where: { return ObjectIdentifier($0) == ObjectIdentifier(wrapper) }) {
-                    self.broadcast(value: .relayed(value, at: index, element: self.raw[index]))
-                }
-            }
-        }).end()
-        return wrapper
-    }
 }
 
-extension RelayableArrayHolder: ArrayReadable {}
+extension RelayableArrayHolder: Receivable {
+    public typealias ReceiveValue = ArrayAction
+}
 
 extension RelayableArrayHolder: Fetchable {
     public typealias SendValue = Event
