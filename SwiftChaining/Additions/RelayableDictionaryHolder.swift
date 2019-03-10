@@ -11,7 +11,7 @@ final public class RelayableDictionaryHolder<Key: Hashable, Value: Sendable> {
     
     public enum Event {
         case fetched([Key: Value])
-        case any([Key: Value])
+        case set([Key: Value])
         case inserted(key: Key, value: Value)
         case removed(key: Key, value: Value)
         case replaced(key: Key, value: Value)
@@ -51,7 +51,7 @@ final public class RelayableDictionaryHolder<Key: Hashable, Value: Sendable> {
         }
         self.raw = dictionary
         
-        self.broadcast(value: .any(dictionary))
+        self.broadcast(value: .set(dictionary))
     }
     
     public func replace(key: Key, value: Value) {
@@ -103,7 +103,7 @@ final public class RelayableDictionaryHolder<Key: Hashable, Value: Sendable> {
         self.observerDictionary.removeAll(keepingCapacity: keepCapacity)
         self.raw.removeAll(keepingCapacity: keepCapacity)
         
-        self.broadcast(value: .any([:]))
+        self.broadcast(value: .set([:]))
     }
     
     public func reserveCapacity(_ capacity: Int) {

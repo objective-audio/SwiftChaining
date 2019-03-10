@@ -20,17 +20,17 @@ class ArrayHolderTests: XCTestCase {
         XCTAssertEqual(array.raw, [])
     }
     
-    func testReplaceElements() {
+    func testSetElements() {
         let array = ArrayHolder([10, 20])
         
         XCTAssertEqual(array.raw, [10, 20])
         
-        array.replace([30, 40, 50])
+        array.set([30, 40, 50])
         
         XCTAssertEqual(array.raw, [30, 40, 50])
     }
     
-    func testReplaceElementWithRelayableValue() {
+    func testReplaceElement() {
         let array = ArrayHolder([10, 20, 30])
         
         XCTAssertEqual(array.raw, [10, 20, 30])
@@ -83,7 +83,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertNil(array.first)
         
-        array.replace([1, 2])
+        array.set([1, 2])
         
         XCTAssertEqual(array.first, 1)
     }
@@ -93,7 +93,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertNil(array.last)
         
-        array.replace([1, 2])
+        array.set([1, 2])
         
         XCTAssertEqual(array.last, 2)
     }
@@ -201,11 +201,11 @@ class ArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        array.replace([1000, 999])
+        array.set([1000, 999])
         
         XCTAssertEqual(received.count, 7)
         
-        if case .any(let elements) = received[6] {
+        if case .set(let elements) = received[6] {
             XCTAssertEqual(elements, [1000, 999])
         } else {
             XCTAssertTrue(false)
@@ -215,7 +215,7 @@ class ArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 8)
         
-        if case .any(let elements) = received[7] {
+        if case .set(let elements) = received[7] {
             XCTAssertEqual(elements, [])
         } else {
             XCTAssertTrue(false)
@@ -242,6 +242,42 @@ class ArrayHolderTests: XCTestCase {
         array.removeAll()
         
         XCTAssertEqual(received.count, 1);
+        
+        observer.invalidate()
+    }
+    
+    func testReceivable() {
+        let notifier = Notifier<ArrayAction<Int>>()
+        let array = ArrayHolder([10, 20])
+        
+        let observer = notifier.chain().sendTo(array).end()
+        
+        notifier.notify(value: .insert(100, at: 2))
+        
+        XCTAssertEqual(array.count, 3)
+        XCTAssertEqual(array[2], 100)
+        
+        notifier.notify(value: .move(at: 0, to: 1))
+        
+        XCTAssertEqual(array[0], 20)
+        XCTAssertEqual(array[1], 10)
+        XCTAssertEqual(array[2], 100)
+        
+        notifier.notify(value: .remove(at: 1))
+        
+        XCTAssertEqual(array.count, 2)
+        XCTAssertEqual(array[0], 20)
+        XCTAssertEqual(array[1], 100)
+        
+        notifier.notify(value: .replace(500, at: 0))
+        
+        XCTAssertEqual(array[0], 500)
+        
+        notifier.notify(value: .set([1000, 1001]))
+        
+        XCTAssertEqual(array.count, 2)
+        XCTAssertEqual(array[0], 1000)
+        XCTAssertEqual(array[1], 1001)
         
         observer.invalidate()
     }

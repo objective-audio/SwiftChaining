@@ -11,11 +11,11 @@ final public class RelayableArrayHolder<Element: Sendable> {
     
     public enum Event {
         case fetched([Element])
-        case any([Element])
+        case set([Element])
         case inserted(at: Int, element: Element)
         case removed(at: Int, element: Element)
         case replaced(at: Int, element: Element)
-        case moved(from: Int, to: Int, element: Element)
+        case moved(at: Int, to: Int, element: Element)
         case relayed(Element.SendValue, at: Int, element: Element)
     }
     
@@ -30,10 +30,35 @@ final public class RelayableArrayHolder<Element: Sendable> {
     public convenience init(_ elements: [Element]) {
         self.init()
         
-        self.replace(elements)
+        self.set(elements)
     }
     
-    public func replace(_ elements: [Element]) {
+    public func reserveCapacity(_ capacity: Int) {
+        self.raw.reserveCapacity(capacity)
+    }
+    
+    public subscript(index: Int) -> Element {
+        get { return self.element(at: index) }
+        set(element) { self.replace(element, at: index) }
+    }
+    
+    private func relayingWrapper(element: Element) -> ObserverWrapper {
+        let wrapper = ObserverWrapper()
+        wrapper.observer = element.chain().do({ [weak self, weak wrapper] value in
+            if let self = self, let wrapper = wrapper {
+                if let index = self.observerArray.index(where: { return ObjectIdentifier($0) == ObjectIdentifier(wrapper) }) {
+                    self.broadcast(value: .relayed(value, at: index, element: self.raw[index]))
+                }
+            }
+        }).end()
+        return wrapper
+    }
+}
+
+extension RelayableArrayHolder: ArrayReadable {}
+
+extension RelayableArrayHolder: ArrayWritable {
+    public func set(_ elements: [Element]) {
         for wrapper in self.observerArray {
             if let observer = wrapper.observer {
                 observer.invalidate()
@@ -50,7 +75,7 @@ final public class RelayableArrayHolder<Element: Sendable> {
         
         self.raw = elements
         
-        self.broadcast(value: .any(elements))
+        self.broadcast(value: .set(elements))
     }
     
     public func replace(_ element: Element, at index: Int) {
@@ -105,10 +130,10 @@ final public class RelayableArrayHolder<Element: Sendable> {
         self.observerArray.removeAll(keepingCapacity: keepCapacity)
         self.raw.removeAll(keepingCapacity: keepCapacity)
         
-        self.broadcast(value: .any([]))
+        self.broadcast(value: .set([]))
     }
     
-    public func move(from: Int, to: Int) {
+    public func move(at from: Int, to: Int) {
         if from == to { return }
         
         let element = self.raw.remove(at: from)
@@ -117,32 +142,9 @@ final public class RelayableArrayHolder<Element: Sendable> {
         self.raw.insert(element, at: to)
         self.observerArray.insert(wrapper, at: to)
         
-        self.broadcast(value: .moved(from: from, to: to, element: element))
-    }
-    
-    public func reserveCapacity(_ capacity: Int) {
-        self.raw.reserveCapacity(capacity)
-    }
-    
-    public subscript(index: Int) -> Element {
-        get { return self.element(at: index) }
-        set(element) { self.replace(element, at: index) }
-    }
-    
-    private func relayingWrapper(element: Element) -> ObserverWrapper {
-        let wrapper = ObserverWrapper()
-        wrapper.observer = element.chain().do({ [weak self, weak wrapper] value in
-            if let self = self, let wrapper = wrapper {
-                if let index = self.observerArray.index(where: { return ObjectIdentifier($0) == ObjectIdentifier(wrapper) }) {
-                    self.broadcast(value: .relayed(value, at: index, element: self.raw[index]))
-                }
-            }
-        }).end()
-        return wrapper
+        self.broadcast(value: .moved(at: from, to: to, element: element))
     }
 }
-
-extension RelayableArrayHolder: ArrayReadable {}
 
 extension RelayableArrayHolder: Fetchable {
     public typealias SendValue = Event
