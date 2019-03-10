@@ -108,7 +108,7 @@ final public class RelayableArrayHolder<Element: Sendable> {
         self.broadcast(value: .set([]))
     }
     
-    public func move(from: Int, to: Int) {
+    public func move(at from: Int, to: Int) {
         if from == to { return }
         
         let element = self.raw.remove(at: from)

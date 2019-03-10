@@ -15,11 +15,11 @@ class RelayableArrayHolderTests: XCTestCase {
     func testMove() {
         let array = RelayableArrayHolder([ValueHolder(1), ValueHolder(2), ValueHolder(3)])
         
-        array.move(from: 1, to: 0)
+        array.move(at: 1, to: 0)
         
         XCTAssertEqual(array.raw, [ValueHolder(2), ValueHolder(1), ValueHolder(3)])
         
-        array.move(from: 1, to: 2)
+        array.move(at: 1, to: 2)
         
         XCTAssertEqual(array.raw, [ValueHolder(2), ValueHolder(3), ValueHolder(1)])
     }
@@ -152,7 +152,7 @@ class RelayableArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(array.raw, [ValueHolder(11), ValueHolder(500), ValueHolder(100)])
         
-        array.move(from: 1, to: 0)
+        array.move(at: 1, to: 0)
         
         XCTAssertEqual(received.count, 7)
         
