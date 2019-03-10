@@ -35,10 +35,12 @@ extension ArrayReadable {
 
 public enum ArrayAction<Element> {
     case set([Element])
+    case append(_ element: Element)
     case insert(_ element: Element, at: Int)
     case remove(at: Int)
     case replace(_ element: Element, at: Int)
     case move(at: Int, to: Int)
+    case removeAll
 }
 
 extension ArrayWritable where ReceiveValue == ArrayAction<Element> {
@@ -46,6 +48,8 @@ extension ArrayWritable where ReceiveValue == ArrayAction<Element> {
         switch value {
         case .set(let elements):
             self.set(elements)
+        case .append(let element):
+            self.append(element)
         case .insert(let element, let index):
             self.insert(element, at: index)
         case .remove(let index):
@@ -54,6 +58,8 @@ extension ArrayWritable where ReceiveValue == ArrayAction<Element> {
             self.replace(element, at: index)
         case .move(let fromIndex, let toIndex):
             self.move(at: fromIndex, to: toIndex)
+        case .removeAll:
+            self.removeAll(keepingCapacity: false)
         }
     }
 }
