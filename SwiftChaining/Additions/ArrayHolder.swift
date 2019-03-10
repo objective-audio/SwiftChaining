@@ -31,6 +31,31 @@ extension ArrayReadable {
     public var last: Element? { return self.raw.last }
 }
 
+public enum ArrayAction<Element> {
+    case set([Element])
+    case insert(element: Element, at: Int)
+    case remove(at: Int)
+    case replace(element: Element, at: Int)
+    case move(at: Int, to: Int)
+}
+
+extension ArrayWritable {
+    public func receive(value: ArrayAction<Element>) {
+        switch value {
+        case .set(let elements):
+            self.set(elements)
+        case .insert(let element, let index):
+            self.insert(element, at: index)
+        case .remove(let index):
+            self.remove(at: index)
+        case .replace(let element, let index):
+            self.replace(element, at: index)
+        case .move(let fromIndex, let toIndex):
+            self.move(at: fromIndex, to: toIndex)
+        }
+    }
+}
+
 final public class ArrayHolder<E> {
     public typealias Element = E
     
@@ -43,14 +68,6 @@ final public class ArrayHolder<E> {
         case removed(at: Int, element: Element)
         case replaced(at: Int, element: Element)
         case moved(at: Int, to: Int, element: Element)
-    }
-    
-    public enum Action {
-        case set([Element])
-        case insert(element: Element, at: Int)
-        case remove(at: Int)
-        case replace(element: Element, at: Int)
-        case move(at: Int, to: Int)
     }
     
     public init() {}
@@ -127,20 +144,5 @@ extension ArrayHolder: Fetchable {
 }
 
 extension ArrayHolder: Receivable {
-    public typealias ReceiveValue = Action
-    
-    public func receive(value: Action) {
-        switch value {
-        case .set(let elements):
-            self.set(elements)
-        case .insert(let element, let index):
-            self.insert(element, at: index)
-        case .remove(let index):
-            self.remove(at: index)
-        case .replace(let element, let index):
-            self.replace(element, at: index)
-        case .move(let fromIndex, let toIndex):
-            self.move(at: fromIndex, to: toIndex)
-        }
-    }
+    public typealias ReceiveValue = ArrayAction
 }
