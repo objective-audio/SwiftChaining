@@ -10,7 +10,9 @@ public protocol ArrayReadable {
     var raw: [Element] { get }
 }
 
-public protocol ArrayWritable: ArrayReadable {
+public protocol ArrayWritable {
+    associatedtype Element
+    
     func set(_ elements: [Element])
     func replace(_ element: Element, at index: Int)
     func append(_ element: Element)
@@ -87,6 +89,8 @@ final public class ArrayHolder<E> {
         set(element) { self.replace(element, at: index) }
     }
 }
+
+extension ArrayHolder: ArrayReadable {}
 
 extension ArrayHolder: ArrayWritable {
     public func set(_ elements: [Element]) {

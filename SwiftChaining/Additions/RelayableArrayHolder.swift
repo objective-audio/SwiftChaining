@@ -55,6 +55,8 @@ final public class RelayableArrayHolder<Element: Sendable> {
     }
 }
 
+extension RelayableArrayHolder: ArrayReadable {}
+
 extension RelayableArrayHolder: ArrayWritable {
     public func set(_ elements: [Element]) {
         for wrapper in self.observerArray {
