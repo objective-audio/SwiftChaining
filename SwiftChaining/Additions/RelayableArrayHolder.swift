@@ -146,10 +146,6 @@ extension RelayableArrayHolder: ArrayWritable {
     }
 }
 
-extension RelayableArrayHolder: Receivable {
-    public typealias ReceiveValue = ArrayAction
-}
-
 extension RelayableArrayHolder: Fetchable {
     public typealias SendValue = Event
     

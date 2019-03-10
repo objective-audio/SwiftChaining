@@ -222,4 +222,40 @@ class RelayableArrayHolderTests: XCTestCase {
         
         observer.invalidate()
     }
+    
+    func testReceivable() {
+        let notifier = Notifier<ArrayAction<ValueHolder<Int>>>()
+        let array = RelayableArrayHolder([ValueHolder(10), ValueHolder(20)])
+        
+        let observer = notifier.chain().sendTo(array).end()
+        
+        notifier.notify(value: .insert(element: ValueHolder(100), at: 2))
+        
+        XCTAssertEqual(array.count, 3)
+        XCTAssertEqual(array[2], ValueHolder(100))
+        
+        notifier.notify(value: .move(at: 0, to: 1))
+        
+        XCTAssertEqual(array[0], ValueHolder(20))
+        XCTAssertEqual(array[1], ValueHolder(10))
+        XCTAssertEqual(array[2], ValueHolder(100))
+        
+        notifier.notify(value: .remove(at: 1))
+        
+        XCTAssertEqual(array.count, 2)
+        XCTAssertEqual(array[0], ValueHolder(20))
+        XCTAssertEqual(array[1], ValueHolder(100))
+        
+        notifier.notify(value: .replace(element: ValueHolder(500), at: 0))
+        
+        XCTAssertEqual(array[0], ValueHolder(500))
+        
+        notifier.notify(value: .set([ValueHolder(1000), ValueHolder(1001)]))
+        
+        XCTAssertEqual(array.count, 2)
+        XCTAssertEqual(array[0], ValueHolder(1000))
+        XCTAssertEqual(array[1], ValueHolder(1001))
+        
+        observer.invalidate()
+    }
 }
