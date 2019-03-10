@@ -245,4 +245,40 @@ class ArrayHolderTests: XCTestCase {
         
         observer.invalidate()
     }
+    
+    func testReceivable() {
+        let notifier = Notifier<ArrayAction<Int>>()
+        let array = ArrayHolder([10, 20])
+        
+        let observer = notifier.chain().sendTo(array).end()
+        
+        notifier.notify(value: .insert(element: 100, at: 2))
+        
+        XCTAssertEqual(array.count, 3)
+        XCTAssertEqual(array[2], 100)
+        
+        notifier.notify(value: .move(at: 0, to: 1))
+        
+        XCTAssertEqual(array[0], 20)
+        XCTAssertEqual(array[1], 10)
+        XCTAssertEqual(array[2], 100)
+        
+        notifier.notify(value: .remove(at: 1))
+        
+        XCTAssertEqual(array.count, 2)
+        XCTAssertEqual(array[0], 20)
+        XCTAssertEqual(array[1], 100)
+        
+        notifier.notify(value: .replace(element: 500, at: 0))
+        
+        XCTAssertEqual(array[0], 500)
+        
+        notifier.notify(value: .set([1000, 1001]))
+        
+        XCTAssertEqual(array.count, 2)
+        XCTAssertEqual(array[0], 1000)
+        XCTAssertEqual(array[1], 1001)
+        
+        observer.invalidate()
+    }
 }
