@@ -10,6 +10,16 @@ public protocol ArrayReadable {
     var raw: [Element] { get }
 }
 
+public protocol ArrayWritable: ArrayReadable {
+    func set(_ elements: [Element])
+    func replace(_ element: Element, at index: Int)
+    func append(_ element: Element)
+    func insert(_ element: Element, at index: Int)
+    func remove(at index: Int) -> Element
+    func removeAll(keepingCapacity keepCapacity: Bool)
+    func move(at from: Int, to: Int)
+}
+
 extension ArrayReadable {
     public func element(at index: Int) -> Element {
         return self.raw[index]
@@ -19,10 +29,6 @@ extension ArrayReadable {
     public var capacity: Int { return self.raw.capacity }
     public var first: Element? { return self.raw.first }
     public var last: Element? { return self.raw.last }
-    
-    public subscript(index: Int) -> Element {
-        get { return self.element(at: index) }
-    }
 }
 
 final public class ArrayHolder<E> {
@@ -55,6 +61,17 @@ final public class ArrayHolder<E> {
         self.set(elements)
     }
     
+    public func reserveCapacity(_ capacity: Int) {
+        self.raw.reserveCapacity(capacity)
+    }
+    
+    public subscript(index: Int) -> Element {
+        get { return self.element(at: index) }
+        set(element) { self.replace(element, at: index) }
+    }
+}
+
+extension ArrayHolder: ArrayWritable {
     public func set(_ elements: [Element]) {
         self.raw = elements
         self.broadcast(value: .set(elements))
@@ -99,18 +116,7 @@ final public class ArrayHolder<E> {
         self.raw.insert(element, at: to)
         self.broadcast(value: .moved(at: from, to: to, element: element))
     }
-    
-    public func reserveCapacity(_ capacity: Int) {
-        self.raw.reserveCapacity(capacity)
-    }
-    
-    public subscript(index: Int) -> Element {
-        get { return self.element(at: index) }
-        set(element) { self.replace(element, at: index) }
-    }
 }
-
-extension ArrayHolder: ArrayReadable {}
 
 extension ArrayHolder: Fetchable {
     public typealias SendValue = Event
