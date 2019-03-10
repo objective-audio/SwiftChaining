@@ -10,7 +10,7 @@ public protocol ArrayReadable {
     var raw: [Element] { get }
 }
 
-public protocol ArrayWritable {
+public protocol ArrayWritable: Receivable {
     associatedtype Element
     
     func set(_ elements: [Element])
@@ -41,7 +41,7 @@ public enum ArrayAction<Element> {
     case move(at: Int, to: Int)
 }
 
-extension ArrayWritable {
+extension ArrayWritable where ReceiveValue == ArrayAction<Element> {
     public func receive(value: ArrayAction<Element>) {
         switch value {
         case .set(let elements):
@@ -145,8 +145,4 @@ extension ArrayHolder: Fetchable {
     public func fetchedValue() -> Event {
         return .fetched(self.raw)
     }
-}
-
-extension ArrayHolder: Receivable {
-    public typealias ReceiveValue = ArrayAction
 }
