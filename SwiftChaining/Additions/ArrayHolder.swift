@@ -15,7 +15,7 @@ public protocol ArrayWritable: ArrayReadable {
     func replace(_ element: Element, at index: Int)
     func append(_ element: Element)
     func insert(_ element: Element, at index: Int)
-    func remove(at index: Int) -> Element
+    @discardableResult func remove(at index: Int) -> Element
     func removeAll(keepingCapacity keepCapacity: Bool)
     func move(at from: Int, to: Int)
 }
