@@ -6,6 +6,16 @@ import XCTest
 import Chaining
 
 class FetchableTests: XCTestCase {
+    class TestFetcher: Fetchable {
+        typealias SendValue = Int
+        
+        var value: Int = 0
+        
+        func fetchedValue() -> Int {
+            return value
+        }
+    }
+    
     override func setUp() {
         super.setUp()
     }
