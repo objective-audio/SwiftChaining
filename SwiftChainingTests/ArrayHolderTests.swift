@@ -279,6 +279,15 @@ class ArrayHolderTests: XCTestCase {
         XCTAssertEqual(array[0], 1000)
         XCTAssertEqual(array[1], 1001)
         
+        notifier.notify(value: .append(1002))
+        
+        XCTAssertEqual(array.count, 3)
+        XCTAssertEqual(array[2], 1002)
+        
+        notifier.notify(value: .removeAll)
+        
+        XCTAssertEqual(array.count, 0)
+        
         observer.invalidate()
     }
 }
