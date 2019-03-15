@@ -6,13 +6,22 @@ import XCTest
 import Chaining
 
 class FetchableTests: XCTestCase {
-    class TestFetcher: Fetchable {
-        typealias SendValue = Int
+    class TestFetcher<T>: Fetchable {
+        typealias SendValue = T
         
-        var value: Int = 0
+        var value: T
+        var can: Bool = true
         
-        func fetchedValue() -> Int {
-            return value
+        func fetchedValue() -> T {
+            return self.value
+        }
+        
+        init(_ initial: T) {
+            self.value = initial
+        }
+        
+        func canFetch() -> Bool {
+            return self.can
         }
     }
     
@@ -27,7 +36,7 @@ class FetchableTests: XCTestCase {
     func testFetchOnlyJustSynced() {
         let pool = ObserverPool()
         
-        let fetcher = Fetcher<Int> { 1 }
+        let fetcher = TestFetcher(1)
         
         var received: [Int] = []
         
@@ -42,49 +51,53 @@ class FetchableTests: XCTestCase {
     }
     
     func testFetchOptional() {
-        var optValue: Int? = nil
-        
-        let fetcher = Fetcher<Int?> { optValue }
+        let fetcher = TestFetcher<Int?>(nil)
         
         var received: [Int?] = []
+        let pool = ObserverPool()
         
-        let observer = fetcher.chain().do({ value in
-            received.append(value)
-        }).sync()
+        fetcher.chain()
+            .do { value in
+                received.append(value)
+            }
+            .sync().addTo(pool)
         
         XCTAssertEqual(received.count, 1)
         XCTAssertNil(received[0])
         
-        optValue = 1
+        fetcher.value = 1
         
-        fetcher.broadcast()
+        fetcher.chain()
+            .do { value in
+                received.append(value)
+            }
+            .sync().addTo(pool)
         
         XCTAssertEqual(received.count, 2)
         XCTAssertEqual(received[1], 1)
         
-        observer.invalidate()
+        pool.invalidate()
     }
     
     func testCanFetch() {
-        var optValue: Int? = nil
-        
-        let fetcher = Fetcher<Int>({ optValue! }, canFetch: { return optValue != nil })
-        
+        let pool = ObserverPool()
         var received: [Int] = []
         
-        let observer1 = fetcher.chain().do { received.append($0) }.sync()
+        let fetcher = TestFetcher<Int>(1)
         
-        XCTAssertEqual(received.count, 0)
+        fetcher.can = true
         
-        observer1.invalidate()
-        
-        optValue = 1
-        
-        let observer2 = fetcher.chain().do { received.append($0) }.sync()
+        fetcher.chain().do { received.append($0) }.sync().addTo(pool)
         
         XCTAssertEqual(received.count, 1)
         XCTAssertEqual(received[0], 1)
         
-        observer2.invalidate()
+        fetcher.can = false
+        
+        fetcher.chain().do { received.append($0) }.sync().addTo(pool)
+        
+        XCTAssertEqual(received.count, 1)
+        
+        pool.invalidate()
     }
 }

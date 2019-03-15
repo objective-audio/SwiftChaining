@@ -60,4 +60,26 @@ class FetcherTests: XCTestCase {
         
         observer.invalidate()
     }
+    
+    func testCanFetch() {
+        var canFetch = true
+        
+        let fetcher = Fetcher<Int>({ 1 }, canFetch: { canFetch })
+        
+        var received: [Int] = []
+        
+        let observer = fetcher.chain().do { received.append($0) }.end()
+        
+        fetcher.broadcast()
+        
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0], 1)
+        
+        canFetch = false
+        fetcher.broadcast()
+        
+        XCTAssertEqual(received.count, 1)
+        
+        observer.invalidate()
+    }
 }
