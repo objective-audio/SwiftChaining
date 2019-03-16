@@ -16,6 +16,7 @@
 		B6B09CB0220DD4D100B483BC /* SendToTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CAF220DD4D100B483BC /* SendToTests.swift */; };
 		B6B09CB82210387900B483BC /* PropertyAdapterCommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CB72210387900B483BC /* PropertyAdapterCommonTests.swift */; };
 		B6B8BB6B223B32F100DE6734 /* FetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B8BB6A223B32F100DE6734 /* FetcherTests.swift */; };
+		B6B8BB6F223C9A7300DE6734 /* RetainSenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B8BB6E223C9A7300DE6734 /* RetainSenderTests.swift */; };
 		B6D4C62621FC2EC0004A95A8 /* RelayableArrayHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62521FC2EC0004A95A8 /* RelayableArrayHolderTests.swift */; };
 		B6D4C62821FC2ED2004A95A8 /* RelayableDictionaryHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4C62721FC2ED2004A95A8 /* RelayableDictionaryHolderTests.swift */; };
 		B6FABC7421F4BE530045872A /* Chaining.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FABC7321F4BE530045872A /* Chaining.framework */; };
@@ -46,6 +47,7 @@
 		B6B09CB72210387900B483BC /* PropertyAdapterCommonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyAdapterCommonTests.swift; sourceTree = "<group>"; };
 		B6B09D0A2215A6C700B483BC /* SwiftChaining_ios.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SwiftChaining_ios.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B6B8BB6A223B32F100DE6734 /* FetcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherTests.swift; sourceTree = "<group>"; };
+		B6B8BB6E223C9A7300DE6734 /* RetainSenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetainSenderTests.swift; sourceTree = "<group>"; };
 		B6D4C62521FC2EC0004A95A8 /* RelayableArrayHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableArrayHolderTests.swift; sourceTree = "<group>"; };
 		B6D4C62721FC2ED2004A95A8 /* RelayableDictionaryHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableDictionaryHolderTests.swift; sourceTree = "<group>"; };
 		B6FABC6321F4BE2B0045872A /* SwiftChaining_ios_tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftChaining_ios_tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +144,7 @@
 				B6FABC7B21F4BE630045872A /* ToTests.swift */,
 				B6FABC8421F4BE630045872A /* TupleTests.swift */,
 				B6FABC7821F4BE630045872A /* ValueHolderTests.swift */,
+				B6B8BB6E223C9A7300DE6734 /* RetainSenderTests.swift */,
 			);
 			name = SwiftChainingTests;
 			path = ../../SwiftChainingTests;
@@ -230,6 +233,7 @@
 				B65C1E4C2220E92D002EAC54 /* MapTests.swift in Sources */,
 				B6FABD0D21F7519A0045872A /* ObserverTests.swift in Sources */,
 				B6517EFE220EC56C0082F37F /* PropertyAdapterTests.swift in Sources */,
+				B6B8BB6F223C9A7300DE6734 /* RetainSenderTests.swift in Sources */,
 				B6FABD1B21F754CB0045872A /* DictionaryHolderTests.swift in Sources */,
 				B6FABD0821F74D750045872A /* NotifierTests.swift in Sources */,
 				B6FABD0A21F74DA50045872A /* ToTests.swift in Sources */,

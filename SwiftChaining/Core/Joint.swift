@@ -18,6 +18,7 @@ internal class Joint<Sender: Sendable> {
     internal typealias Value = Sender.SendValue
     
     internal weak var sender: Sender?
+    internal var strongSender: Sender?
     private var handlers: [Any] = []
     internal var handlerCount: Int { return self.handlers.count }
     internal var subJoints: [AnyJoint] = []
