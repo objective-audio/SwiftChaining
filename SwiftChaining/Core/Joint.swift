@@ -17,16 +17,16 @@ internal typealias JointHandler<T> = (T, AnyJoint) -> Void
 internal class Joint<Sender: Sendable> {
     internal typealias Value = Sender.SendValue
     
-    internal weak var sender: Sender?
-    internal var strongSender: Sender?
+    internal var sender: Sender? { return self.senderReference?.value }
+    internal private(set) var senderReference: Reference<Sender>?
     private var handlers: [Any] = []
     internal var handlerCount: Int { return self.handlers.count }
     internal var subJoints: [AnyJoint] = []
     private var core: AnySenderCore?
     private let lock = NSLock()
     
-    internal init(sender: Sender, core: AnySenderCore) {
-        self.sender = sender
+    internal init(sender: Reference<Sender>, core: AnySenderCore) {
+        self.senderReference = sender
         self.core = core
     }
     
@@ -67,7 +67,7 @@ extension Joint: AnyJoint {
         }
         
         self.sender?.getCore()?.remove(joint: self)
-        self.sender = nil
+        self.senderReference = nil
         self.core = nil
         self.handlers = []
         self.subJoints = []

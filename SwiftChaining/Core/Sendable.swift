@@ -28,11 +28,10 @@ extension Sendable {
     
     internal func chain(retained: Bool) -> SenderChain {
         let core = self.getOrCreateCore()
-        let joint = core.addJoint(sender: self)
         
-        if retained {
-            joint.strongSender = self
-        }
+        let sender: Reference<Self> = retained ? .strong(self) : .weak(Weak(self))
+        
+        let joint = core.addJoint(sender: sender)
         
         let handler0: JointHandler<SendValue> = { value, joint in
             if let nextHandler = joint.handler(at: 1) as? JointHandler<SendValue> {
