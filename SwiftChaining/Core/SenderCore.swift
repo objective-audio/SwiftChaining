@@ -35,7 +35,7 @@ public class SenderCore<T: Sendable>: AnySenderCore {
         }
     }
     
-    internal func addJoint(sender: T) -> Joint<T> {
+    internal func addJoint(sender: Reference<T>) -> Joint<T> {
         let joint = Joint(sender: sender, core: self)
         self.joints.append(Weak(joint))
         return joint

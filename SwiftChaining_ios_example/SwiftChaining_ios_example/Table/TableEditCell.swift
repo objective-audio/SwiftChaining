@@ -18,7 +18,6 @@ class TableEditCell: UITableViewCell {
     @IBOutlet weak var editingSwitch: UISwitch!
     
     private lazy var switchIsOnAdapter = { KVOAdapter(self.editingSwitch, keyPath: \.isOn) }()
-    private lazy var switchChangedAdapter = { UIControlAdapter(self.editingSwitch, events: .valueChanged) }()
     private let pool = ObserverPool()
 
     override func prepareForReuse() {
@@ -37,6 +36,13 @@ extension TableEditCell: CellDataSettable {
         }
         
         editCellData.isEditing.chain().sendTo(self.switchIsOnAdapter).sync().addTo(self.pool)
-        self.switchChangedAdapter.chain().map { $0.isOn }.sendTo(editCellData.isEditing).end().addTo(self.pool)
+        
+        UIControlAdapter(self.editingSwitch, events: .valueChanged)
+            .retain()
+            .chain()
+            .map { $0.isOn }
+            .sendTo(editCellData.isEditing)
+            .end()
+            .addTo(self.pool)
     }
 }
