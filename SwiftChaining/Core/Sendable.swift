@@ -11,16 +11,6 @@ public protocol Sendable: class {
     func fetch(for: JointClass)
 }
 
-public struct Retainer<T> {
-    internal let object: T
-}
-
-extension Retainer where T: Sendable {
-    public func chain() -> T.SenderChain {
-        return object.chain(retained: true)
-    }
-}
-
 extension Sendable {
     public func fetch(for: JointClass) {}
     
@@ -36,7 +26,7 @@ extension Sendable {
         return self.chain(retained: false)
     }
     
-    fileprivate func chain(retained: Bool) -> SenderChain {
+    internal func chain(retained: Bool) -> SenderChain {
         let core = self.getOrCreateCore()
         let joint = core.addJoint(sender: self)
         
