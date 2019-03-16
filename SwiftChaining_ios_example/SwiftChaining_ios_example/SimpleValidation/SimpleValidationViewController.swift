@@ -23,7 +23,6 @@ class SimpleValidationViewController: UIViewController {
     private lazy var usernameHiddenAdapter = { KVOAdapter(self.usernameValidLabel, keyPath: \.isHidden) }()
     private lazy var passwordHiddenAdapter = { KVOAdapter(self.passwordValidLabel, keyPath: \.isHidden) }()
     private lazy var buttonEnabledAdapter = { KVOAdapter(self.doSomethingButton, keyPath: \.isEnabled) }()
-    private lazy var buttonTappedAdapter = { UIControlAdapter(self.doSomethingButton, events: .touchUpInside) }()
     
     private let pool = ObserverPool()
     
@@ -47,7 +46,8 @@ class SimpleValidationViewController: UIViewController {
         
         usernameChain.combine(passwordChain).map { $0.0 && $0.1 }.sendTo(buttonEnabledAdapter).sync().addTo(self.pool)
         
-        self.buttonTappedAdapter
+        UIControlAdapter(self.doSomethingButton, events: .touchUpInside)
+            .retain()
             .chain()
             .do { [weak self] _ in
                 let alert = UIAlertController(title: "Chaining Example", message: "This is wonderful", preferredStyle: .alert)
