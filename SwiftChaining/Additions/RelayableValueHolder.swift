@@ -55,6 +55,8 @@ extension RelayableValueHolder where T: Equatable {
 }
 
 extension RelayableValueHolder: Receivable {
+    public typealias ReceiveValue = T
+    
     public func receive(value: T) {
         self.value = value
     }

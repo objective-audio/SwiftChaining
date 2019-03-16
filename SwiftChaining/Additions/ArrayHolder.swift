@@ -99,6 +99,8 @@ final public class ArrayHolder<E> {
 extension ArrayHolder: ArrayReadable {}
 
 extension ArrayHolder: ArrayWritable {
+    public typealias ReceiveValue = ArrayAction<Element>
+    
     public func set(_ elements: [Element]) {
         self.raw = elements
         self.broadcast(value: .set(elements))

@@ -58,6 +58,8 @@ final public class RelayableArrayHolder<Element: Sendable> {
 extension RelayableArrayHolder: ArrayReadable {}
 
 extension RelayableArrayHolder: ArrayWritable {
+    public typealias ReceiveValue = ArrayAction<Element>
+    
     public func set(_ elements: [Element]) {
         for wrapper in self.observerArray {
             if let observer = wrapper.observer {
