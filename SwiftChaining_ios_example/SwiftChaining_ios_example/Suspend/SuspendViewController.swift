@@ -13,9 +13,6 @@ class SuspendViewController: UIViewController {
     @IBOutlet weak var arrowLabel: UILabel!
     @IBOutlet weak var dstLabel: UILabel!
     
-    lazy var suspendTapAdapter = { UIControlAdapter(self.suspendButton, events: .touchUpInside) }()
-    lazy var resumeTapAdapter = { UIControlAdapter(self.resumeButton, events: .touchUpInside) }()
-    lazy var randomTapAdapter = { UIControlAdapter(self.randomButton, events: .touchUpInside) }()
     lazy var suspendEnabledAdapter = { KVOAdapter(self.suspendButton, keyPath: \.isEnabled) }()
     lazy var resumeEnabledAdapter = { KVOAdapter(self.resumeButton, keyPath: \.isEnabled) }()
     lazy var srcTextAdapter = { KVOAdapter(self.srcLabel, keyPath: \.text) }()
@@ -35,9 +32,28 @@ class SuspendViewController: UIViewController {
         self.dstNumber.chain().map { "\($0)" }.sendTo(self.dstTextAdapter).sync().addTo(self.pool)
         self.suspender.chain().sendTo(self.resumeEnabledAdapter).map { !$0 }.sendTo(self.suspendEnabledAdapter).sync().addTo(self.pool)
         self.suspender.chain().map { $0 ? "-" : "↓" }.sendTo(self.arrowTextAdapter).sync().addTo(self.pool)
-        self.suspendTapAdapter.chain().replace(true).sendTo(self.suspender).end().addTo(self.pool)
-        self.resumeTapAdapter.chain().replace(false).sendTo(self.suspender).end().addTo(self.pool)
-        self.randomTapAdapter.chain().map { _ in Int.random(in: 0..<100) }.sendTo(self.srcNumber).end().addTo(self.pool)
+        
+        UIControlAdapter(self.suspendButton, events: .touchUpInside)
+            .retain()
+            .chain()
+            .replace(true)
+            .sendTo(self.suspender)
+            .end()
+            .addTo(self.pool)
+        UIControlAdapter(self.resumeButton, events: .touchUpInside)
+            .retain()
+            .chain()
+            .replace(false)
+            .sendTo(self.suspender)
+            .end()
+            .addTo(self.pool)
+        UIControlAdapter(self.randomButton, events: .touchUpInside)
+            .retain()
+            .chain()
+            .map { _ in Int.random(in: 0..<100) }
+            .sendTo(self.srcNumber)
+            .end()
+            .addTo(self.pool)
     }
     
 }
