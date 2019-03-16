@@ -16,10 +16,6 @@ class SimpleValidationViewController: UIViewController {
     private typealias ChangedAdapter = UIControlAdapter<UITextField>
     private typealias HiddenAdapter = KVOAdapter<UILabel, Bool>
     
-    private lazy var usernameTextAdapter = { KVOAdapter(self.usernameField, keyPath: \.text) }()
-    private lazy var passwordTextAdapter = { KVOAdapter(self.passwordField, keyPath: \.text) }()
-    private lazy var usernameChangedAdapter = { UIControlAdapter(self.usernameField, events: .editingChanged) }()
-    private lazy var passwordChangedAdapter = { UIControlAdapter(self.passwordField, events: .editingChanged) }()
     private lazy var usernameHiddenAdapter = { KVOAdapter(self.usernameValidLabel, keyPath: \.isHidden) }()
     private lazy var passwordHiddenAdapter = { KVOAdapter(self.passwordValidLabel, keyPath: \.isHidden) }()
     private lazy var buttonEnabledAdapter = { KVOAdapter(self.doSomethingButton, keyPath: \.isEnabled) }()
@@ -34,15 +30,20 @@ class SimpleValidationViewController: UIViewController {
         
         let makeValidChain = { (textAdapter: TextAdapter, changedAdapter: ChangedAdapter, hiddenAdapter: HiddenAdapter) in
             return changedAdapter
+                .retain()
                 .chain()
                 .map { $0.text }
-                .merge(textAdapter.chain())
+                .merge(textAdapter.retain().chain())
                 .map { $0?.count ?? 0 >= 5 }
                 .sendTo(hiddenAdapter)
         }
         
-        let usernameChain = makeValidChain(self.usernameTextAdapter, self.usernameChangedAdapter, self.usernameHiddenAdapter)
-        let passwordChain = makeValidChain(self.passwordTextAdapter, self.passwordChangedAdapter, self.passwordHiddenAdapter)
+        let usernameChain = makeValidChain(KVOAdapter(self.usernameField, keyPath: \.text),
+                                           UIControlAdapter(self.usernameField, events: .editingChanged),
+                                           self.usernameHiddenAdapter)
+        let passwordChain = makeValidChain(KVOAdapter(self.passwordField, keyPath: \.text),
+                                           UIControlAdapter(self.passwordField, events: .editingChanged),
+                                           self.passwordHiddenAdapter)
         
         usernameChain.combine(passwordChain).map { $0.0 && $0.1 }.sendTo(buttonEnabledAdapter).sync().addTo(self.pool)
         
