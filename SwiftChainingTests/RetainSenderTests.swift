@@ -36,4 +36,23 @@ class RetainSenderTests: XCTestCase {
         
         XCTAssertEqual(received.count, 1)
     }
+    
+    func testNoRetainSender() {
+        let pool = ObserverPool()
+        let name = Notification.Name("NoRetainSenderTest")
+        
+        var received: [Notification] = []
+        
+        NotificationAdapter(name)
+            .chain()
+            .do { received.append($0) }
+            .end()
+            .addTo(pool)
+        
+        NotificationCenter.default.post(name: name, object: nil)
+        
+        XCTAssertEqual(received.count, 0)
+        
+        pool.invalidate()
+    }
 }
