@@ -14,12 +14,6 @@ class NumbersViewController: UIViewController {
     private typealias TextAdapter = KVOAdapter<UITextField, String?>
     private typealias ChangedAdapter = UIControlAdapter<UITextField>
     
-    private lazy var textAdapter1 = { KVOAdapter(self.number1Field, keyPath: \.text) }()
-    private lazy var textAdapter2 = { KVOAdapter(self.number2Field, keyPath: \.text) }()
-    private lazy var textAdapter3 = { KVOAdapter(self.number3Field, keyPath: \.text) }()
-    private lazy var changedAdapter1 = { UIControlAdapter(self.number1Field, events: .editingChanged) }()
-    private lazy var changedAdapter2 = { UIControlAdapter(self.number2Field, events: .editingChanged) }()
-    private lazy var changedAdapter3 = { UIControlAdapter(self.number3Field, events: .editingChanged) }()
     private lazy var resultAdapter = { KVOAdapter(self.resultLabel, keyPath: \.text) }()
     private var observer: AnyObserver?
     
@@ -27,12 +21,20 @@ class NumbersViewController: UIViewController {
         super.viewDidLoad()
         
         let makeChain = { (textAdapter: TextAdapter, changedAdapter: ChangedAdapter) in
-            return changedAdapter.chain().map { $0.text }.merge(textAdapter.chain()).map { string in Int(string ?? "") ?? 0 }
+            return changedAdapter
+                .retain()
+                .chain()
+                .map { $0.text }
+                .merge(textAdapter.retain().chain())
+                .map { string in Int(string ?? "") ?? 0 }
         }
         
-        let chain1 = makeChain(self.textAdapter1, self.changedAdapter1)
-        let chain2 = makeChain(self.textAdapter2, self.changedAdapter2)
-        let chain3 = makeChain(self.textAdapter3, self.changedAdapter3)
+        let chain1 = makeChain(KVOAdapter(self.number1Field, keyPath: \.text),
+                               UIControlAdapter(self.number1Field, events: .editingChanged))
+        let chain2 = makeChain(KVOAdapter(self.number2Field, keyPath: \.text),
+                               UIControlAdapter(self.number2Field, events: .editingChanged))
+        let chain3 = makeChain(KVOAdapter(self.number3Field, keyPath: \.text),
+                               UIControlAdapter(self.number3Field, events: .editingChanged))
         
         self.observer =
             chain1
