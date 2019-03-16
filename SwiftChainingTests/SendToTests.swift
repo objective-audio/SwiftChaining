@@ -256,7 +256,7 @@ class SendToTests: XCTestCase {
         
         let receiver0 = ValueHolder<Int?>(10)
         let receiver1 = ValueHolder<String?>("11")
-        let receiver2 = ValueHolder<Double>(12.0)
+        let receiver2 = ValueHolder<Double?>(12.0)
         
         let observer = sender0.chain()
             .combine(sender1.chain())
