@@ -43,11 +43,14 @@ class RetainSenderTests: XCTestCase {
         
         var received: [Notification] = []
         
-        NotificationAdapter(name)
-            .chain()
-            .do { received.append($0) }
-            .end()
-            .addTo(pool)
+        do {
+            let adapter = NotificationAdapter(name)
+            
+            adapter.chain()
+                .do { received.append($0) }
+                .end()
+                .addTo(pool)
+        }
         
         NotificationCenter.default.post(name: name, object: nil)
         
