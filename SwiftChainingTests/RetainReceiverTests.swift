@@ -53,4 +53,30 @@ class RetainReceiverTests: XCTestCase {
         
         pool.invalidate()
     }
+    
+    func testRecursiveRetainHolder() {
+        let pool = ObserverPool()
+        
+        weak var weakHolder: ValueHolder<Int>?
+        
+        var received: [Int] = []
+        
+        do {
+            let holder = ValueHolder(0)
+            weakHolder = holder
+            
+            holder.retain().chain().sendTo(holder.retain()).do { received.append($0) }.end().addTo(pool)
+        }
+        
+        XCTAssertNotNil(weakHolder)
+        
+        weakHolder?.value = 1
+        
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0], 1)
+        
+        pool.invalidate()
+        
+        XCTAssertNil(weakHolder)
+    }
 }
