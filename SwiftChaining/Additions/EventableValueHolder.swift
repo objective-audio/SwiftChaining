@@ -46,6 +46,8 @@ extension EventableValueHolder where T: Equatable {
 }
 
 extension EventableValueHolder: Receivable {
+    public typealias ReceiveValue = T
+    
     public func receive(value: T) {
         self.value = value
     }

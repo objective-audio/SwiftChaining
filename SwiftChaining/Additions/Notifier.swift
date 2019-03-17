@@ -21,6 +21,8 @@ extension Notifier: Sendable {
 }
 
 extension Notifier: Receivable {
+    public typealias ReceiveValue = T
+    
     public func receive(value: T) {
         self.lockedSend(value: value)
     }

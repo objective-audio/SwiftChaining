@@ -25,6 +25,8 @@ public class Suspender {
 }
 
 extension Suspender: Receivable {
+    public typealias ReceiveValue = Bool
+    
     public func receive(value: Bool) {
         self.holder.receive(value: value)
     }

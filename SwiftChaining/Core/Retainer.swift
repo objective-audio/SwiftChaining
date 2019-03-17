@@ -10,6 +10,14 @@ public struct Retainer<T> {
 
 extension Retainer where T: Sendable {
     public func chain() -> T.SenderChain {
-        return object.chain(retained: true)
+        return self.object.chain(retained: true)
+    }
+}
+
+extension Retainer: ReceiveReferencable where T: ValueReceivable {
+    public typealias ReceiveObject = T
+    
+    public func reference() -> Reference<ReceiveObject> {
+        return .strong(self.object)
     }
 }
