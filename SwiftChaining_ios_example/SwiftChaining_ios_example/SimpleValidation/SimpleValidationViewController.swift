@@ -16,10 +16,6 @@ class SimpleValidationViewController: UIViewController {
     private typealias ChangedAdapter = UIControlAdapter<UITextField>
     private typealias HiddenAdapter = KVOAdapter<UILabel, Bool>
     
-    private lazy var usernameHiddenAdapter = { KVOAdapter(self.usernameValidLabel, keyPath: \.isHidden) }()
-    private lazy var passwordHiddenAdapter = { KVOAdapter(self.passwordValidLabel, keyPath: \.isHidden) }()
-    private lazy var buttonEnabledAdapter = { KVOAdapter(self.doSomethingButton, keyPath: \.isEnabled) }()
-    
     private let pool = ObserverPool()
     
     override func viewDidLoad() {
@@ -35,17 +31,22 @@ class SimpleValidationViewController: UIViewController {
                 .map { $0.text }
                 .merge(textAdapter.retain().chain())
                 .map { $0?.count ?? 0 >= 5 }
-                .sendTo(hiddenAdapter)
+                .sendTo(hiddenAdapter.retain())
         }
         
         let usernameChain = makeValidChain(KVOAdapter(self.usernameField, keyPath: \.text),
                                            UIControlAdapter(self.usernameField, events: .editingChanged),
-                                           self.usernameHiddenAdapter)
+                                           KVOAdapter(self.usernameValidLabel, keyPath: \.isHidden))
         let passwordChain = makeValidChain(KVOAdapter(self.passwordField, keyPath: \.text),
                                            UIControlAdapter(self.passwordField, events: .editingChanged),
-                                           self.passwordHiddenAdapter)
+                                           KVOAdapter(self.passwordValidLabel, keyPath: \.isHidden))
         
-        usernameChain.combine(passwordChain).map { $0.0 && $0.1 }.sendTo(buttonEnabledAdapter).sync().addTo(self.pool)
+        usernameChain
+            .combine(passwordChain)
+            .map { $0.0 && $0.1 }
+            .sendTo(KVOAdapter(self.doSomethingButton, keyPath: \.isEnabled).retain())
+            .sync()
+            .addTo(self.pool)
         
         UIControlAdapter(self.doSomethingButton, events: .touchUpInside)
             .retain()
