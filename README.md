@@ -91,8 +91,11 @@ sender.broadcast(value: 2)
 ```
 ### Receivable
 ```swift
-public protocol Receivable: class {
+public typealias Receivable = ValueReceivable & ReceiveReferencable
+
+public protocol ValueReceivable: class {
     associatedtype ReceiveValue
+    
     func receive(value: ReceiveValue)
 }
 ```
