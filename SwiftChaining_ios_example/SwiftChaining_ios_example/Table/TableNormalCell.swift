@@ -26,8 +26,6 @@ struct NormalCellData: CellData {
 
 class TableNormalCell: UITableViewCell {
     private let pool = ObserverPool()
-    private lazy var textAdapter = { KVOAdapter(self.textLabel!, keyPath: \.text) }()
-    private lazy var detailTextAdapter = { KVOAdapter(self.detailTextLabel!, keyPath: \.text) }()
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -44,7 +42,16 @@ extension TableNormalCell: CellDataSettable {
             fatalError()
         }
         
-        normalCellData.text.chain().map { String($0) }.sendTo(self.textAdapter).sync().addTo(self.pool)
-        normalCellData.detailText.chain().map { String($0) }.sendTo(self.detailTextAdapter).sync().addTo(self.pool)
+        normalCellData.text.chain()
+            .map { String($0) }
+            .sendTo(KVOAdapter(self.textLabel!, keyPath: \.text).retain())
+            .sync()
+            .addTo(self.pool)
+        
+        normalCellData.detailText.chain()
+            .map { String($0) }
+            .sendTo(KVOAdapter(self.detailTextLabel!, keyPath: \.text).retain())
+            .sync()
+            .addTo(self.pool)
     }
 }

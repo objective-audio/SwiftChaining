@@ -14,7 +14,6 @@ class NumbersViewController: UIViewController {
     private typealias TextAdapter = KVOAdapter<UITextField, String?>
     private typealias ChangedAdapter = UIControlAdapter<UITextField>
     
-    private lazy var resultAdapter = { KVOAdapter(self.resultLabel, keyPath: \.text) }()
     private var observer: AnyObserver?
     
     override func viewDidLoad() {
@@ -41,7 +40,7 @@ class NumbersViewController: UIViewController {
                 .combine(chain2)
                 .combine(chain3)
                 .map { String($0.0 + $0.1 + $0.2) }
-                .sendTo(self.resultAdapter)
+                .sendTo(KVOAdapter(self.resultLabel, keyPath: \.text).retain())
                 .sync()
     }
 }

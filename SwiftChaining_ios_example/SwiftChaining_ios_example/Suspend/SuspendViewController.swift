@@ -13,12 +13,6 @@ class SuspendViewController: UIViewController {
     @IBOutlet weak var arrowLabel: UILabel!
     @IBOutlet weak var dstLabel: UILabel!
     
-    lazy var suspendEnabledAdapter = { KVOAdapter(self.suspendButton, keyPath: \.isEnabled) }()
-    lazy var resumeEnabledAdapter = { KVOAdapter(self.resumeButton, keyPath: \.isEnabled) }()
-    lazy var srcTextAdapter = { KVOAdapter(self.srcLabel, keyPath: \.text) }()
-    lazy var arrowTextAdapter = { KVOAdapter(self.arrowLabel, keyPath: \.text) }()
-    lazy var dstTextAdapter = { KVOAdapter(self.dstLabel, keyPath: \.text) }()
-    
     let suspender = Suspender()
     let srcNumber = ValueHolder(0)
     let dstNumber = ValueHolder(0)
@@ -27,11 +21,36 @@ class SuspendViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.srcNumber.chain().suspend(self.suspender).sendTo(self.dstNumber).sync().addTo(self.pool)
-        self.srcNumber.chain().map { "\($0)" }.sendTo(self.srcTextAdapter).sync().addTo(self.pool)
-        self.dstNumber.chain().map { "\($0)" }.sendTo(self.dstTextAdapter).sync().addTo(self.pool)
-        self.suspender.chain().sendTo(self.resumeEnabledAdapter).map { !$0 }.sendTo(self.suspendEnabledAdapter).sync().addTo(self.pool)
-        self.suspender.chain().map { $0 ? "-" : "↓" }.sendTo(self.arrowTextAdapter).sync().addTo(self.pool)
+        self.srcNumber.chain()
+            .suspend(self.suspender)
+            .sendTo(self.dstNumber)
+            .sync()
+            .addTo(self.pool)
+        
+        self.srcNumber.chain()
+            .map { "\($0)" }
+            .sendTo(KVOAdapter(self.srcLabel, keyPath: \.text).retain())
+            .sync()
+            .addTo(self.pool)
+        
+        self.dstNumber.chain()
+            .map { "\($0)" }
+            .sendTo(KVOAdapter(self.dstLabel, keyPath: \.text).retain())
+            .sync()
+            .addTo(self.pool)
+        
+        self.suspender.chain()
+            .sendTo(KVOAdapter(self.resumeButton, keyPath: \.isEnabled).retain())
+            .map { !$0 }
+            .sendTo(KVOAdapter(self.suspendButton, keyPath: \.isEnabled).retain())
+            .sync()
+            .addTo(self.pool)
+        
+        self.suspender.chain()
+            .map { $0 ? "-" : "↓" }
+            .sendTo(KVOAdapter(self.arrowLabel, keyPath: \.text).retain())
+            .sync()
+            .addTo(self.pool)
         
         UIControlAdapter(self.suspendButton, events: .touchUpInside)
             .retain()
@@ -40,6 +59,7 @@ class SuspendViewController: UIViewController {
             .sendTo(self.suspender)
             .end()
             .addTo(self.pool)
+        
         UIControlAdapter(self.resumeButton, events: .touchUpInside)
             .retain()
             .chain()
@@ -47,6 +67,7 @@ class SuspendViewController: UIViewController {
             .sendTo(self.suspender)
             .end()
             .addTo(self.pool)
+        
         UIControlAdapter(self.randomButton, events: .touchUpInside)
             .retain()
             .chain()
