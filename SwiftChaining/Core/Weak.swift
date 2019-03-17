@@ -4,7 +4,7 @@
 
 import Foundation
 
-internal enum Reference<T: AnyObject> {
+public enum Reference<T: AnyObject> {
     case strong(_: T)
     case weak(_: Weak<T>)
     
@@ -18,7 +18,7 @@ internal enum Reference<T: AnyObject> {
     }
 }
 
-internal struct Weak<T: AnyObject> {
+public struct Weak<T: AnyObject> {
     internal private(set) weak var value: T?
     internal let id: ObjectIdentifier
 
@@ -29,11 +29,11 @@ internal struct Weak<T: AnyObject> {
 }
 
 extension Weak: Hashable {
-    internal var hashValue: Int {
+    public var hashValue: Int {
         return id.hashValue
     }
     
-    internal static func == (lhs: Weak<T>, rhs: Weak<T>) -> Bool {
+    public static func == (lhs: Weak<T>, rhs: Weak<T>) -> Bool {
         return lhs.id == rhs.id
     }
 }
