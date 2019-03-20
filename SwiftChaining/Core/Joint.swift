@@ -31,7 +31,9 @@ internal class Joint<Sender: Sendable> {
     }
     
     deinit {
-        self.sender?.getCore()?.remove(joint: self)
+        if let sender = self.sender {
+            CoreGlobal.core(for: sender)?.remove(joint: self)
+        }
     }
     
     internal func handler(at index: Int) -> Any {
@@ -66,7 +68,10 @@ extension Joint: AnyJoint {
             subJoint.invalidate()
         }
         
-        self.sender?.getCore()?.remove(joint: self)
+        if let sender = self.sender {
+            CoreGlobal.core(for: sender)?.remove(joint: self)
+        }
+        
         self.senderReference = nil
         self.core = nil
         self.handlers = []
