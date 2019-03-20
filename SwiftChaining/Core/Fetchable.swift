@@ -16,7 +16,7 @@ extension Fetchable {
     
     public func fetch(for joint: JointClass) {
         if self.canFetch() {
-            self.getCore()?.send(value: self.fetchedValue(), to: joint)
+            CoreGlobal.shared.core(for: self)?.send(value: self.fetchedValue(), to: joint)
         }
     }
 }

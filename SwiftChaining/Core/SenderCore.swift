@@ -65,6 +65,10 @@ internal class CoreGlobal {
     }
     
     internal func core<T: AnySenderCore>(for id: ObjectIdentifier) -> T? {
-        return cores[id]?.core as? T
+        return self.cores[id]?.core as? T
+    }
+    
+    internal func core<Sender: Sendable>(for sender: Sender) -> SenderCore<Sender>? {
+        return CoreGlobal.shared.core(for: ObjectIdentifier(sender)) as SenderCore<Sender>?
     }
 }
