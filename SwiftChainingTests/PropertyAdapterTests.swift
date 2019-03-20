@@ -42,7 +42,7 @@ class PropertyAdapterTests: XCTestCase {
         XCTAssertNil(adapter.safeValue)
     }
 
-    func testChain() {
+    func testSend() {
         let testObj = TestClass()
         let adapter = PropertyAdapter(testObj, keyPath: \TestClass.value)
         
@@ -57,6 +57,21 @@ class PropertyAdapterTests: XCTestCase {
         
         XCTAssertEqual(received.count, 2)
         XCTAssertEqual(received[1], 1)
+        
+        observer.invalidate()
+    }
+    
+    func testReceive() {
+        let testObj = TestClass()
+        let adapter = PropertyAdapter(testObj, keyPath: \TestClass.value)
+        let notifier = Notifier<Int>()
+        
+        let observer = notifier.chain().sendTo(adapter).end()
+        
+        notifier.notify(value: 1)
+        
+        XCTAssertEqual(adapter.value, 1)
+        XCTAssertEqual(testObj.value, 1)
         
         observer.invalidate()
     }
