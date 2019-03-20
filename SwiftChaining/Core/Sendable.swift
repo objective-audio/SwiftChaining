@@ -27,7 +27,7 @@ extension Sendable {
     }
     
     internal func chain(retained: Bool) -> SenderChain {
-        let core = self.getOrCreateCore()
+        let core = CoreGlobal.shared.getOrCreateCore(for: self)
         
         let sender: Reference<Self> = retained ? .strong(self) : .weak(Weak(self))
         
@@ -42,17 +42,5 @@ extension Sendable {
         joint.appendHandler(handler0)
         
         return SenderChain(joint: joint)
-    }
-    
-    fileprivate func getOrCreateCore() -> SenderCore<Self> {
-        let id = ObjectIdentifier(self)
-        
-        if let core = CoreGlobal.shared.core(for: id) as SenderCore<Self>? {
-            return core
-        } else {
-            let core = SenderCore<Self>(removeId: id)
-            CoreGlobal.shared.set(core: core, for: id)
-            return core
-        }
     }
 }

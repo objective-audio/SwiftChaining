@@ -64,11 +64,18 @@ internal class CoreGlobal {
         self.cores.removeValue(forKey: id)
     }
     
-    internal func core<T: AnySenderCore>(for id: ObjectIdentifier) -> T? {
-        return self.cores[id]?.core as? T
-    }
-    
     internal func core<Sender: Sendable>(for sender: Sender) -> SenderCore<Sender>? {
         return self.cores[ObjectIdentifier(sender)]?.core as? SenderCore<Sender>
+    }
+    
+    internal func getOrCreateCore<Sender: Sendable>(for sender: Sender) -> SenderCore<Sender> {
+        if let core = self.core(for: sender) {
+            return core
+        } else {
+            let id = ObjectIdentifier(sender)
+            let core = SenderCore<Sender>(removeId: id)
+            CoreGlobal.shared.set(core: core, for: id)
+            return core
+        }
     }
 }
