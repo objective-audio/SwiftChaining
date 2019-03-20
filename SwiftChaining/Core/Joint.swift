@@ -32,7 +32,7 @@ internal class Joint<Sender: Sendable> {
     
     deinit {
         if let sender = self.sender {
-            CoreGlobal.shared.core(for: sender)?.remove(joint: self)
+            CoreGlobal.core(for: sender)?.remove(joint: self)
         }
     }
     
@@ -69,7 +69,7 @@ extension Joint: AnyJoint {
         }
         
         if let sender = self.sender {
-            CoreGlobal.shared.core(for: sender)?.remove(joint: self)
+            CoreGlobal.core(for: sender)?.remove(joint: self)
         }
         
         self.senderReference = nil

@@ -15,7 +15,7 @@ extension Sendable {
     public func fetch(for: JointClass) {}
     
     public func broadcast(value: SendValue) {
-        CoreGlobal.shared.core(for: self)?.broadcast(value: value)
+        CoreGlobal.core(for: self)?.broadcast(value: value)
     }
     
     public func retain() -> Retainer<Self> {
@@ -27,7 +27,7 @@ extension Sendable {
     }
     
     internal func chain(retained: Bool) -> SenderChain {
-        let core = CoreGlobal.shared.getOrCreateCore(for: self)
+        let core = CoreGlobal.getOrCreateCore(for: self)
         
         let sender: Reference<Self> = retained ? .strong(self) : .weak(Weak(self))
         
