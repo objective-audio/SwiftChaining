@@ -28,12 +28,6 @@ extension Chain {
         }
     }
     
-    public func sendTo<Root: AnyObject>(_ receiver: Root, keyPath: ReferenceWritableKeyPath<Root, Out>) -> Chain<Out, Sender> {
-        return self.do { [weak receiver] value in
-            receiver?[keyPath: keyPath] = value
-        }
-    }
-    
     public func send0To<R: ReceiveReferencable, T0, T1>(_ receiver: R) -> Chain<Out, Sender> where Out == (T0, T1), R.ReceiveObject.ReceiveValue == T0 {
         let reference = receiver.reference()
         return self.do { value in
