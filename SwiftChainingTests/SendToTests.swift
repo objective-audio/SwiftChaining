@@ -13,25 +13,6 @@ class SendToTests: XCTestCase {
     override func tearDown() {
     }
 
-    func testSendToWithKeyPath() {
-        class TestClass {
-            var value: Int = 0
-        }
-        
-        let notifier = Notifier<Int>()
-        let testObj = TestClass()
-        
-        let observer = notifier.chain()
-            .sendTo(testObj, keyPath: \TestClass.value)
-            .end()
-        
-        notifier.notify(value: 1)
-        
-        XCTAssertEqual(testObj.value, 1)
-        
-        observer.invalidate()
-    }
-    
     func testSendXTo_tuple2() {
         let sender = ValueHolder((0, "1"))
         
