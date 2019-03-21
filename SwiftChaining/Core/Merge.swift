@@ -5,27 +5,27 @@
 import Foundation
 
 extension Chain where Chainer: Fetchable {
-    public func merge<Sender1>(_ chain1: Chain<Out, Sender1>) -> Chain<Out, Chainer> where Sender1: Fetchable {
+    public func merge<Chainer1>(_ chain1: Chain<Out, Chainer1>) -> Chain<Out, Chainer> where Chainer1: Fetchable {
         return _merge2(chain0: self, chain1: chain1)
     }
     
-    public func merge<Sender1>(_ chain1: Chain<Out, Sender1>) -> Chain<Out, Chainer> {
+    public func merge<Chainer1>(_ chain1: Chain<Out, Chainer1>) -> Chain<Out, Chainer> {
         return _merge2(chain0: self, chain1: chain1)
     }
 }
 
 extension Chain {
-    public func merge<Sender1>(_ chain1: Chain<Out, Sender1>) -> Chain<Out, Sender1> where Sender1: Fetchable {
+    public func merge<Chainer1>(_ chain1: Chain<Out, Chainer1>) -> Chain<Out, Chainer1> where Chainer1: Fetchable {
         return _merge2(chain0: chain1, chain1: self)
     }
     
-    public func merge<Sender1>(_ chain1: Chain<Out, Sender1>) -> Chain<Out, Chainer> {
+    public func merge<Chainer1>(_ chain1: Chain<Out, Chainer1>) -> Chain<Out, Chainer> {
         return _merge2(chain0: self, chain1: chain1)
     }
 }
 
-private func _merge2<Out0, Sender0, Sender1>(chain0: Chain<Out0, Sender0>,
-                                             chain1: Chain<Out0, Sender1>) -> Chain<Out0, Sender0> {
+private func _merge2<Out0, Sender0, Chainer1>(chain0: Chain<Out0, Sender0>,
+                                             chain1: Chain<Out0, Chainer1>) -> Chain<Out0, Sender0> {
     guard let joint0 = chain0.pullJoint(), let joint1 = chain1.pullJoint() else {
         fatalError()
     }

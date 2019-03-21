@@ -5,79 +5,79 @@
 import Foundation
 
 extension Chain where Chainer: Fetchable {
-    public func combine<Out1, Sender1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(Out, Out1), Chainer> where Sender1: Fetchable {
+    public func combine<Out1, Chainer1>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(Out, Out1), Chainer> where Chainer1: Fetchable {
         return self.combine0(chain1)
     }
     
-    public func combine<Out1, Sender1, T0, T1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0, T1, Out1), Chainer> where Out == (T0, T1), Sender1: Fetchable {
+    public func combine<Out1, Chainer1, T0, T1>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(T0, T1, Out1), Chainer> where Out == (T0, T1), Chainer1: Fetchable {
         return self.combine0(chain1).map { ($0.0, $0.1, $1) }
     }
     
-    public func combine<Out1, Sender1, T0, T1, T2>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0, T1, T2, Out1), Chainer> where Out == (T0, T1, T2), Sender1: Fetchable {
+    public func combine<Out1, Chainer1, T0, T1, T2>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(T0, T1, T2, Out1), Chainer> where Out == (T0, T1, T2), Chainer1: Fetchable {
         return self.combine0(chain1).map { ($0.0, $0.1, $0.2, $1) }
     }
     
-    public func combine<Out1, Sender1, T0, T1, T2, T3>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0, T1, T2, T3, Out1), Chainer> where Out == (T0, T1, T2, T3), Sender1: Fetchable {
+    public func combine<Out1, Chainer1, T0, T1, T2, T3>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(T0, T1, T2, T3, Out1), Chainer> where Out == (T0, T1, T2, T3), Chainer1: Fetchable {
         return self.combine0(chain1).map { ($0.0, $0.1, $0.2, $0.3, $1) }
     }
     
-    public func combine<Out1, Sender1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(Out, Out1), Chainer> {
+    public func combine<Out1, Chainer1>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(Out, Out1), Chainer> {
         return self.combine0(chain1)
     }
     
-    public func combine<Out1, Sender1, T0, T1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0, T1, Out1), Chainer> where Out == (T0, T1) {
+    public func combine<Out1, Chainer1, T0, T1>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(T0, T1, Out1), Chainer> where Out == (T0, T1) {
         return self.combine0(chain1).map { ($0.0, $0.1, $1) }
     }
     
-    public func combine<Out1, Sender1, T0, T1, T2>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0, T1, T2, Out1), Chainer> where Out == (T0, T1, T2) {
+    public func combine<Out1, Chainer1, T0, T1, T2>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(T0, T1, T2, Out1), Chainer> where Out == (T0, T1, T2) {
         return self.combine0(chain1).map { ($0.0, $0.1, $0.2, $1) }
     }
     
-    public func combine<Out1, Sender1, T0, T1, T2, T3>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0, T1, T2, T3, Out1), Chainer> where Out == (T0, T1, T2, T3) {
+    public func combine<Out1, Chainer1, T0, T1, T2, T3>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(T0, T1, T2, T3, Out1), Chainer> where Out == (T0, T1, T2, T3) {
         return self.combine0(chain1).map { ($0.0, $0.1, $0.2, $0.3, $1) }
     }
 }
 
 extension Chain {
-    public func combine<Out1, Sender1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(Out, Out1), Sender1> where Sender1: Fetchable {
+    public func combine<Out1, Chainer1>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(Out, Out1), Chainer1> where Chainer1: Fetchable {
         return self.combine1(chain1)
     }
     
-    public func combine<Out1, Sender1, T0, T1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0, T1, Out1), Sender1> where Out == (T0, T1), Sender1: Fetchable {
+    public func combine<Out1, Chainer1, T0, T1>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(T0, T1, Out1), Chainer1> where Out == (T0, T1), Chainer1: Fetchable {
         return self.combine1(chain1).map { ($0.0, $0.1, $1) }
     }
     
-    public func combine<Out1, Sender1, T0, T1, T2>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0, T1, T2, Out1), Sender1> where Out == (T0, T1, T2), Sender1: Fetchable {
+    public func combine<Out1, Chainer1, T0, T1, T2>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(T0, T1, T2, Out1), Chainer1> where Out == (T0, T1, T2), Chainer1: Fetchable {
         return self.combine1(chain1).map { ($0.0, $0.1, $0.2, $1) }
     }
     
-    public func combine<Out1, Sender1, T0, T1, T2, T3>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0, T1, T2, T3, Out1), Sender1> where Out == (T0, T1, T2, T3), Sender1: Fetchable {
+    public func combine<Out1, Chainer1, T0, T1, T2, T3>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(T0, T1, T2, T3, Out1), Chainer1> where Out == (T0, T1, T2, T3), Chainer1: Fetchable {
         return self.combine1(chain1).map { ($0.0, $0.1, $0.2, $0.3, $1) }
     }
     
-    public func combine<Out1, Sender1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(Out, Out1), Chainer> {
+    public func combine<Out1, Chainer1>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(Out, Out1), Chainer> {
         return self.combine0(chain1)
     }
     
-    public func combine<Out1, Sender1, T0, T1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0, T1, Out1), Chainer> where Out == (T0, T1) {
+    public func combine<Out1, Chainer1, T0, T1>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(T0, T1, Out1), Chainer> where Out == (T0, T1) {
         return self.combine0(chain1).map { ($0.0, $0.1, $1) }
     }
     
-    public func combine<Out1, Sender1, T0, T1, T2>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0, T1, T2, Out1), Chainer> where Out == (T0, T1, T2) {
+    public func combine<Out1, Chainer1, T0, T1, T2>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(T0, T1, T2, Out1), Chainer> where Out == (T0, T1, T2) {
         return self.combine0(chain1).map { ($0.0, $0.1, $0.2, $1) }
     }
     
-    public func combine<Out1, Sender1, T0, T1, T2, T3>(_ chain1: Chain<Out1, Sender1>) -> Chain<(T0, T1, T2, T3, Out1), Chainer> where Out == (T0, T1, T2, T3) {
+    public func combine<Out1, Chainer1, T0, T1, T2, T3>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(T0, T1, T2, T3, Out1), Chainer> where Out == (T0, T1, T2, T3) {
         return self.combine0(chain1).map { ($0.0, $0.1, $0.2, $0.3, $1) }
     }
 }
 
 extension Chain {
-    private func combine0<Out1, Sender1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(Out, Out1), Chainer> {
+    private func combine0<Out1, Chainer1>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(Out, Out1), Chainer> {
         return self.tuple(chain1).cache().complete()
     }
     
-    private func combine1<Out1, Sender1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(Out, Out1), Sender1> where Sender1: Fetchable {
+    private func combine1<Out1, Chainer1>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(Out, Out1), Chainer1> where Chainer1: Fetchable {
         return self.tuple(chain1).cache().complete()
     }
     
