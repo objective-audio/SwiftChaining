@@ -8,7 +8,7 @@ final public class Chain<Out, Chainer: Chainable> {
     private var joint: Joint<Chainer>?
     
     internal init(joint: Joint<Chainer>) {
-        precondition(joint.chainer != nil, "Sender must be retained while chaining.")
+        precondition(joint.chainer != nil, "Chainer must be retained while chaining.")
         
         self.joint = joint
     }
