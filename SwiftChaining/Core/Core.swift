@@ -7,7 +7,7 @@ import Foundation
 public protocol AnyCore: class {
 }
 
-public class Core<T: Sendable>: AnyCore {
+public class Core<T: Chainable>: AnyCore {
     private var joints: [Weak<Joint<T>>] = []
     private let removeId: ObjectIdentifier
     
@@ -64,11 +64,11 @@ internal class CoreGlobal {
         CoreGlobal.shared.cores.removeValue(forKey: id)
     }
     
-    internal class func core<Sender: Sendable>(for sender: Sender) -> Core<Sender>? {
+    internal class func core<Sender: Chainable>(for sender: Sender) -> Core<Sender>? {
         return CoreGlobal.shared.cores[ObjectIdentifier(sender)]?.core as? Core<Sender>
     }
     
-    internal class func getOrCreateCore<Sender: Sendable>(for sender: Sender) -> Core<Sender> {
+    internal class func getOrCreateCore<Sender: Chainable>(for sender: Sender) -> Core<Sender> {
         if let core = self.core(for: sender) {
             return core
         } else {

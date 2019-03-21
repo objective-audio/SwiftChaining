@@ -8,7 +8,7 @@ public protocol AnyObserver: class {
     func invalidate()
 }
 
-public class Observer<Sender: Sendable> {
+public class Observer<Sender: Chainable> {
     private let joint: Joint<Sender>
     
     internal init(joint: Joint<Sender>) {

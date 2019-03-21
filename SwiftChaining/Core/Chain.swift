@@ -4,7 +4,7 @@
 
 import Foundation
 
-final public class Chain<Out, Sender: Sendable> {
+final public class Chain<Out, Sender: Chainable> {
     private var joint: Joint<Sender>?
     
     internal init(joint: Joint<Sender>) {
