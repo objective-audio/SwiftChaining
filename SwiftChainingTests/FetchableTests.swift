@@ -40,11 +40,15 @@ class FetchableTests: XCTestCase {
         
         var received: [Int] = []
         
-        fetcher.chain().do { received.append($0) }.sync().addTo(pool)
+        fetcher.chain()
+            .do { received.append($0) }
+            .sync().addTo(pool)
         
         XCTAssertEqual(received.count, 1)
         
-        fetcher.chain().do { received.append($0) }.sync().addTo(pool)
+        fetcher.chain()
+            .do { received.append($0) }
+            .sync().addTo(pool)
         
         // 同じFetcherから複数chainしても、syncしたchainしか呼ばれない
         XCTAssertEqual(received.count, 2)
@@ -87,14 +91,18 @@ class FetchableTests: XCTestCase {
         
         fetcher.can = true
         
-        fetcher.chain().do { received.append($0) }.sync().addTo(pool)
+        fetcher.chain()
+            .do { received.append($0) }
+            .sync().addTo(pool)
         
         XCTAssertEqual(received.count, 1)
         XCTAssertEqual(received[0], 1)
         
         fetcher.can = false
         
-        fetcher.chain().do { received.append($0) }.sync().addTo(pool)
+        fetcher.chain()
+            .do { received.append($0) }
+            .sync().addTo(pool)
         
         XCTAssertEqual(received.count, 1)
         

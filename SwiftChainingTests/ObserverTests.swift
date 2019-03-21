@@ -128,7 +128,9 @@ class ObserverTests: XCTestCase {
         
         var received: [Int] = []
         
-        notifier.chain().do { received.append($0) }.end().addTo(pool)
+        notifier.chain()
+            .do { received.append($0) }
+            .end().addTo(pool)
         
         notifier.notify(value: 1)
         

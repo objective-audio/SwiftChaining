@@ -13,52 +13,58 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.controller.sections.chain().do({ [weak self] event in
-            switch event {
-            case .fetched, .set:
-                self?.tableView.reloadData()
-            case .inserted(let section, _):
-                self?.tableView.insertSections(IndexSet(integer: section), with: .automatic)
-            case .removed(let section, _):
-                self?.tableView.deleteSections(IndexSet(integer: section), with: .automatic)
-            case .replaced(let section, _):
-                self?.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
-            case .moved:
-                self?.tableView.reloadData()
-            case .relayed(let sectionEvent, let section, _):
-                switch sectionEvent {
-                case .all, .title:
+        self.controller.sections.chain()
+            .do { [weak self] event in
+                switch event {
+                case .fetched, .set:
+                    self?.tableView.reloadData()
+                case .inserted(let section, _):
+                    self?.tableView.insertSections(IndexSet(integer: section), with: .automatic)
+                case .removed(let section, _):
+                    self?.tableView.deleteSections(IndexSet(integer: section), with: .automatic)
+                case .replaced(let section, _):
                     self?.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
-                case .rows(let rowEvent):
-                    switch rowEvent {
-                    case .fetched, .set:
+                case .moved:
+                    self?.tableView.reloadData()
+                case .relayed(let sectionEvent, let section, _):
+                    switch sectionEvent {
+                    case .all, .title:
                         self?.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
-                    case .inserted(let row, _):
-                        self?.tableView.insertRows(at: [IndexPath(row: row, section: section)], with: .automatic)
-                    case .removed(let row, _):
-                        self?.tableView.deleteRows(at: [IndexPath(row: row, section: section)], with: .automatic)
-                    case .moved:
-                        self?.tableView.reloadData()
-                    case .replaced(let row, let cellData):
-                        if let cell = self?.tableView.cellForRow(at: IndexPath(row: row, section: section)) as? CellDataSettable {
-                            cell.set(cellData: cellData)
+                    case .rows(let rowEvent):
+                        switch rowEvent {
+                        case .fetched, .set:
+                            self?.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
+                        case .inserted(let row, _):
+                            self?.tableView.insertRows(at: [IndexPath(row: row, section: section)], with: .automatic)
+                        case .removed(let row, _):
+                            self?.tableView.deleteRows(at: [IndexPath(row: row, section: section)], with: .automatic)
+                        case .moved:
+                            self?.tableView.reloadData()
+                        case .replaced(let row, let cellData):
+                            if let cell = self?.tableView.cellForRow(at: IndexPath(row: row, section: section)) as? CellDataSettable {
+                                cell.set(cellData: cellData)
+                            }
                         }
                     }
                 }
             }
-        }).sync().addTo(self.pool)
+            .sync().addTo(self.pool)
         
-        self.controller.isEditing.chain().do { [weak self] isEditing in self?.setEditing(isEditing, animated: true) }.sync().addTo(self.pool)
+        self.controller.isEditing.chain()
+            .do { [weak self] isEditing in
+                self?.setEditing(isEditing, animated: true)
+            }
+            .sync().addTo(self.pool)
         
-        self.controller.showAlertNotifier
-            .chain()
+        self.controller.showAlertNotifier.chain()
             .do { [weak self] alertData in
                 let alert = UIAlertController(title: alertData.title,
                                               message: alertData.message,
                                               preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self?.present(alert, animated: true, completion: nil)
-            }.end().addTo(self.pool)
+            }
+            .end().addTo(self.pool)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

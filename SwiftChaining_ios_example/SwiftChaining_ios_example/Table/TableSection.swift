@@ -27,8 +27,15 @@ final class TableSection {
         self.title = ValueHolder(title)
         self.rows = ArrayHolder(rows)
         
-        self.rows.chain().map { .rows($0) }.sendTo(self).end().addTo(self.pool)
-        self.title.chain().map { .title($0) }.sendTo(self).end().addTo(self.pool)
+        self.rows.chain()
+            .map { .rows($0) }
+            .sendTo(self)
+            .end().addTo(self.pool)
+        
+        self.title.chain()
+            .map { .title($0) }
+            .sendTo(self)
+            .end().addTo(self.pool)
     }
 }
 

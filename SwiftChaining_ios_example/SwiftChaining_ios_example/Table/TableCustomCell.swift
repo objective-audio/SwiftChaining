@@ -40,21 +40,18 @@ extension TableCustomCell: CellDataSettable {
         customCellData.number.chain()
             .map { String($0) }
             .sendTo(KVOAdapter(self.label, keyPath: \.text).retain())
-            .sync()
-            .addTo(self.pool)
+            .sync().addTo(self.pool)
         
         let retainedStepperAdapter = KVOAdapter(self.stepper, keyPath: \.value).retain()
         
         customCellData.number.chain()
             .map { Double($0) }
             .sendTo(retainedStepperAdapter)
-            .sync()
-            .addTo(self.pool)
+            .sync().addTo(self.pool)
         
         retainedStepperAdapter.chain()
             .map { Int($0) }
             .sendTo(customCellData.number)
-            .sync()
-            .addTo(self.pool)
+            .sync().addTo(self.pool)
     }
 }

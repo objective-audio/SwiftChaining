@@ -23,7 +23,9 @@ class RetainReceiverTests: XCTestCase {
             let receiver = ValueHolder(0)
             weakReceiver = receiver
             
-            notifier.chain().sendTo(receiver.retain()).end().addTo(pool)
+            notifier.chain()
+                .sendTo(receiver.retain())
+                .end().addTo(pool)
         }
         
         notifier.notify(value: 1)
@@ -46,7 +48,9 @@ class RetainReceiverTests: XCTestCase {
             let receiver = ValueHolder(0)
             weakReceiver = receiver
             
-            notifier.chain().sendTo(receiver).end().addTo(pool)
+            notifier.chain()
+                .sendTo(receiver)
+                .end().addTo(pool)
         }
         
         XCTAssertNil(weakReceiver)
@@ -65,7 +69,10 @@ class RetainReceiverTests: XCTestCase {
             let holder = ValueHolder(0)
             weakHolder = holder
             
-            holder.retain().chain().sendTo(holder.retain()).do { received.append($0) }.end().addTo(pool)
+            holder.retain().chain()
+                .sendTo(holder.retain())
+                .do { received.append($0) }
+                .end().addTo(pool)
         }
         
         XCTAssertNotNil(weakHolder)

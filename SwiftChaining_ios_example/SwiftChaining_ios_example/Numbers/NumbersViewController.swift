@@ -21,8 +21,7 @@ class NumbersViewController: UIViewController {
         
         let makeChain = { (textAdapter: TextAdapter, changedAdapter: ChangedAdapter) in
             return changedAdapter
-                .retain()
-                .chain()
+                .retain().chain()
                 .map { $0.text }
                 .merge(textAdapter.retain().chain())
                 .map { string in Int(string ?? "") ?? 0 }
