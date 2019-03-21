@@ -31,16 +31,26 @@ import Chaining
 
 ## Protocols
 
-### Sendable
+### Chainable
 ```swift
-public protocol Sendable: AnySendable {
-    associatedtype SendValue
-    typealias SenderChain = Chain<SendValue, SendValue, Self>
+public protocol Chainable: class {
+    associatedtype ChainValue
+    typealias BeginChain = Chain<ChainValue, Self>
+}
+
+extension Chainable {
+    public func retain() -> Retainer<Self> { ... }
+    public func chain() -> BeginChain { ... }
+}
+```
+
+### Sendable: Chainable
+```swift
+public protocol Sendable: Chainable {
 }
 
 extension Sendable {
-    public func broadcast(value: SendValue) { ... }
-    public func chain() -> SenderChain { ... }
+    public func broadcast(value: ChainValue) { ... }
 }
 ```
 ```swift
@@ -57,10 +67,10 @@ let observer = sender.chain().do { print($0) }.end()
 // broadcastで値を送信する
 sender.broadcast(value: 1)
 ```
-### Fetchable: Sendable
+### Fetchable: Chainable
 ```swift
-public protocol Fetchable: Sendable {
-    func fetchedValue() -> SendValue
+public protocol Fetchable: Chainable {
+    func fetchedValue() -> ChainValue
     func canFetch() -> Bool
 }
 
