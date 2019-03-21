@@ -17,7 +17,7 @@ internal typealias JointHandler<T> = (T, AnyJoint) -> Void
 internal class Joint<Chainer: Chainable> {
     internal typealias Value = Chainer.ChainValue
     
-    internal var sender: Chainer? { return self.senderReference?.value }
+    internal var chainer: Chainer? { return self.senderReference?.value }
     internal private(set) var senderReference: Reference<Chainer>?
     private var handlers: [Any] = []
     internal var handlerCount: Int { return self.handlers.count }
@@ -31,7 +31,7 @@ internal class Joint<Chainer: Chainable> {
     }
     
     deinit {
-        if let sender = self.sender {
+        if let sender = self.chainer {
             CoreGlobal.core(for: sender)?.remove(joint: self)
         }
     }
@@ -60,7 +60,7 @@ internal class Joint<Chainer: Chainable> {
 
 extension Joint: AnyJoint {
     internal func fetch() {
-        self.sender?.fetch(for: self)
+        self.chainer?.fetch(for: self)
         
         for subJoint in self.subJoints {
             subJoint.fetch()
@@ -72,7 +72,7 @@ extension Joint: AnyJoint {
             subJoint.invalidate()
         }
         
-        if let sender = self.sender {
+        if let sender = self.chainer {
             CoreGlobal.core(for: sender)?.remove(joint: self)
         }
         

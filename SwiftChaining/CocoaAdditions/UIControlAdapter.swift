@@ -28,9 +28,9 @@ final public class UIControlAdapter<T: UIControl>: NSObject {
         self.control = nil
     }
     
-    @objc private func notify(_ sender: UIControl) {
-        if let sender = sender as? T {
-            self.broadcast(value: sender)
+    @objc private func notify(_ chainer: UIControl) {
+        if let chainer = chainer as? T {
+            self.broadcast(value: chainer)
         }
     }
 }
