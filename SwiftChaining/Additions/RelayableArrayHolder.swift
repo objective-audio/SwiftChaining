@@ -44,13 +44,17 @@ final public class RelayableArrayHolder<Element: Sendable> {
     
     private func relayingWrapper(element: Element) -> ObserverWrapper {
         let wrapper = ObserverWrapper()
-        wrapper.observer = element.chain().do({ [weak self, weak wrapper] value in
-            if let self = self, let wrapper = wrapper {
-                if let index = self.observerArray.index(where: { return ObjectIdentifier($0) == ObjectIdentifier(wrapper) }) {
-                    self.broadcast(value: .relayed(value, at: index, element: self.raw[index]))
+        
+        wrapper.observer = element.chain()
+            .do { [weak self, weak wrapper] value in
+                if let self = self, let wrapper = wrapper {
+                    if let index = self.observerArray.index(where: { return ObjectIdentifier($0) == ObjectIdentifier(wrapper) }) {
+                        self.broadcast(value: .relayed(value, at: index, element: self.raw[index]))
+                    }
                 }
             }
-        }).end()
+            .end()
+        
         return wrapper
     }
 }

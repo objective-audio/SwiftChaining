@@ -40,16 +40,21 @@ class SimpleValidationViewController: UIViewController {
                                            UIControlAdapter(self.passwordField, events: .editingChanged),
                                            KVOAdapter(self.passwordValidLabel, keyPath: \.isHidden))
         
-        usernameChain
-            .combine(passwordChain)
+        usernameChain.combine(passwordChain)
             .map { $0.0 && $0.1 }
             .sendTo(KVOAdapter(self.doSomethingButton, keyPath: \.isEnabled).retain())
             .sync().addTo(self.pool)
         
         UIControlAdapter(self.doSomethingButton, events: .touchUpInside).retain().chain()
             .do { [weak self] _ in
-                let alert = UIAlertController(title: "Chaining Example", message: "This is wonderful", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                let alert = UIAlertController(title: "Chaining Example",
+                                              message: "This is wonderful",
+                                              preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "OK",
+                                              style: .default,
+                                              handler: nil))
+                
                 self?.present(alert, animated: true, completion: nil)
             }
             .end().addTo(self.pool)

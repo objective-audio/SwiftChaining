@@ -104,7 +104,8 @@ internal class PropertyAdapterCommon {
     
     private var targetWrappers: [ObjectIdentifier: TargetWrapper] = [:]
     
-    fileprivate func getOrCreateAdapter<Root: AnyObject, T>(_ target: Root, keyPath: ReferenceWritableKeyPath<Root, T>) -> PropertyAdapter<Root, T> {
+    fileprivate func getOrCreateAdapter<Root: AnyObject, T>(_ target: Root,
+                                                            keyPath: ReferenceWritableKeyPath<Root, T>) -> PropertyAdapter<Root, T> {
         let targetId = ObjectIdentifier(target)
         
         if let targetWrapper = self.targetWrappers[targetId], targetWrapper.target == nil {

@@ -82,7 +82,10 @@ class PropertyAdapterTests: XCTestCase {
         
         var received: [Int] = []
         
-        let observer = adapter.chain().do { received.append($0) }.sendTo(adapter).end()
+        let observer = adapter.chain()
+            .do { received.append($0) }
+            .sendTo(adapter)
+            .end()
         
         adapter.value = 1
         

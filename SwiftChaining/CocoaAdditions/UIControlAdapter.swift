@@ -16,7 +16,9 @@ final public class UIControlAdapter<T: UIControl>: NSObject {
         
         super.init()
         
-        control.addTarget(self, action: #selector(UIControlAdapter.notify(_:)), for: events)
+        control.addTarget(self,
+                          action: #selector(UIControlAdapter.notify(_:)),
+                          for: events)
     }
     
     deinit {
@@ -24,7 +26,9 @@ final public class UIControlAdapter<T: UIControl>: NSObject {
     }
     
     public func invalidate() {
-        self.control?.removeTarget(self, action: #selector(UIControlAdapter.notify(_:)), for: self.events)
+        self.control?.removeTarget(self,
+                                   action: #selector(UIControlAdapter.notify(_:)),
+                                   for: self.events)
         self.control = nil
     }
     

@@ -22,7 +22,10 @@ class CombineTests: XCTestCase {
         
         var received: [(Int, String)] = []
         
-        let observer = main.chain().combine(sub.chain()).do { received.append($0) }.sync()
+        let observer =
+            main.chain().combine(sub.chain())
+                .do { received.append($0) }
+                .sync()
         
         // syncだけで両方送られてdoが呼ばれる
         XCTAssertEqual(received.count, 1)
@@ -40,7 +43,10 @@ class CombineTests: XCTestCase {
         
         var received: [(Int, String)] = []
         
-        let observer = main.chain().combine(sub.chain()).do { received.append($0) }.sync()
+        let observer =
+            main.chain().combine(sub.chain())
+                .do { received.append($0) }
+                .sync()
         
         // syncではメインからのみ送信
         XCTAssertEqual(received.count, 0)
@@ -63,7 +69,10 @@ class CombineTests: XCTestCase {
         
         var received: [(Int, String)] = []
         
-        let observer = main.chain().combine(sub.chain()).do { received.append($0) }.sync()
+        let observer =
+            main.chain().combine(sub.chain())
+                .do { received.append($0) }
+                .sync()
         
         // syncではサブからのみ送信
         XCTAssertEqual(received.count, 0)
@@ -86,7 +95,10 @@ class CombineTests: XCTestCase {
         
         var received: [(Int, String)] = []
         
-        let observer = main.chain().combine(sub.chain()).do { received.append($0) }.end()
+        let observer =
+            main.chain().combine(sub.chain())
+                .do { received.append($0) }
+                .end()
         
         // まだどちらからも送信されていない
         XCTAssertEqual(received.count, 0)
@@ -117,7 +129,12 @@ class CombineTests: XCTestCase {
         do {
             var received: [(Int, Int, Int)] = []
             
-            let observer = holder0.chain().combine(holder1.chain()).combine(holder2.chain()).do { received.append($0) }.sync()
+            let observer =
+                holder0.chain()
+                    .combine(holder1.chain())
+                    .combine(holder2.chain())
+                    .do { received.append($0) }
+                    .sync()
             
             XCTAssertEqual(received.count, 1)
             XCTAssertEqual(received[0].0, 0)
@@ -130,7 +147,12 @@ class CombineTests: XCTestCase {
         do {
             var received: [(Int, Int, Int)] = []
             
-            let observer = holder0.chain().combine(holder1.chain()).combine(notifier2.chain()).do { received.append($0) }.sync()
+            let observer =
+                holder0.chain()
+                    .combine(holder1.chain())
+                    .combine(notifier2.chain())
+                    .do { received.append($0) }
+                    .sync()
             
             XCTAssertEqual(received.count, 0)
             
@@ -147,7 +169,12 @@ class CombineTests: XCTestCase {
         do {
             var received: [(Int, Int, Int)] = []
             
-            let observer = notifier0.chain().combine(notifier1.chain()).combine(holder2.chain()).do { received.append($0) }.sync()
+            let observer =
+                notifier0.chain()
+                    .combine(notifier1.chain())
+                    .combine(holder2.chain())
+                    .do { received.append($0) }
+                    .sync()
             
             notifier0.notify(value: 0)
             
@@ -166,7 +193,12 @@ class CombineTests: XCTestCase {
         do {
             var received: [(Int, Int, Int)] = []
             
-            let observer = notifier0.chain().combine(notifier1.chain()).combine(notifier2.chain()).do { received.append($0) }.end()
+            let observer =
+                notifier0.chain()
+                    .combine(notifier1.chain())
+                    .combine(notifier2.chain())
+                    .do { received.append($0) }
+                    .end()
             
             notifier0.notify(value: 0)
             notifier1.notify(value: 1)
@@ -201,7 +233,8 @@ class CombineTests: XCTestCase {
                 .combine(holder1.chain())
                 .combine(holder2.chain())
                 .combine(holder3.chain())
-                .do { received.append($0) }.sync()
+                .do { received.append($0) }
+                .sync()
             
             XCTAssertEqual(received.count, 1)
             XCTAssertEqual(received[0].0, 0)
@@ -219,7 +252,8 @@ class CombineTests: XCTestCase {
                 .combine(holder1.chain())
                 .combine(holder2.chain())
                 .combine(notifier3.chain())
-                .do { received.append($0) }.sync()
+                .do { received.append($0) }
+                .sync()
             
             XCTAssertEqual(received.count, 0)
             
@@ -241,7 +275,8 @@ class CombineTests: XCTestCase {
                 .combine(notifier1.chain())
                 .combine(notifier2.chain())
                 .combine(holder3.chain())
-                .do { received.append($0) }.sync()
+                .do { received.append($0) }
+                .sync()
             
             notifier0.notify(value: 0)
             notifier1.notify(value: 1)
@@ -266,7 +301,8 @@ class CombineTests: XCTestCase {
                 .combine(notifier1.chain())
                 .combine(notifier2.chain())
                 .combine(notifier3.chain())
-                .do { received.append($0) }.end()
+                .do { received.append($0) }
+                .end()
             
             notifier0.notify(value: 0)
             notifier1.notify(value: 1)
@@ -306,7 +342,8 @@ class CombineTests: XCTestCase {
                 .combine(holder2.chain())
                 .combine(holder3.chain())
                 .combine(holder4.chain())
-                .do { received.append($0) }.sync()
+                .do { received.append($0) }
+                .sync()
             
             XCTAssertEqual(received.count, 1)
             XCTAssertEqual(received[0].0, 0)
@@ -326,7 +363,8 @@ class CombineTests: XCTestCase {
                 .combine(holder2.chain())
                 .combine(holder3.chain())
                 .combine(notifier4.chain())
-                .do { received.append($0) }.sync()
+                .do { received.append($0) }
+                .sync()
             
             XCTAssertEqual(received.count, 0)
             
@@ -350,7 +388,8 @@ class CombineTests: XCTestCase {
                 .combine(notifier2.chain())
                 .combine(notifier3.chain())
                 .combine(holder4.chain())
-                .do { received.append($0) }.sync()
+                .do { received.append($0) }
+                .sync()
             
             notifier0.notify(value: 0)
             notifier1.notify(value: 1)
@@ -378,7 +417,8 @@ class CombineTests: XCTestCase {
                 .combine(notifier2.chain())
                 .combine(notifier3.chain())
                 .combine(notifier4.chain())
-                .do { received.append($0) }.end()
+                .do { received.append($0) }
+                .end()
             
             notifier0.notify(value: 0)
             notifier1.notify(value: 1)

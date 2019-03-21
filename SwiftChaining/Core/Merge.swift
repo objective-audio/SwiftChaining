@@ -25,12 +25,12 @@ extension Chain {
 }
 
 private func _merge2<Out0, Chainer0, Chainer1>(chain0: Chain<Out0, Chainer0>,
-                                             chain1: Chain<Out0, Chainer1>) -> Chain<Out0, Chainer0> {
+                                               chain1: Chain<Out0, Chainer1>) -> Chain<Out0, Chainer0> {
     guard let joint0 = chain0.pullJoint(), let joint1 = chain1.pullJoint() else {
         fatalError()
     }
     
-    let nextIndex =  joint0.handlerCount + 1
+    let nextIndex =  joint0.handlers.count + 1
     
     let handler1: JointHandler<Out0> = { [weak joint0] value, _ in
         if let joint0 = joint0, let nextHandler = joint0.handler(at: nextIndex) as? JointHandler<Out0> {
@@ -41,7 +41,7 @@ private func _merge2<Out0, Chainer0, Chainer1>(chain0: Chain<Out0, Chainer0>,
     joint1.appendHandler(handler1)
     
     let handler0: JointHandler<Out0> = { value, joint in
-        if let nextHandler = joint.handler(at: nextIndex) as? JointHandler<Out0> {
+        if let nextHandler = joint.handlers[nextIndex] as? JointHandler<Out0> {
             nextHandler(value, joint)
         }
     }

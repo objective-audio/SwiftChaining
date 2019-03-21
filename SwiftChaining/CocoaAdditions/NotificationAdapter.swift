@@ -16,8 +16,11 @@ final public class NotificationAdapter {
     }
     
     public init(_ name: Notification.Name, object: Any?, notificationCenter: NotificationCenter) {
-        self.observer = notificationCenter.addObserver(forName: name, object: object, queue: OperationQueue.main) { [unowned self] notification in
-            self.broadcast(value: notification)
+        self.observer =
+            notificationCenter.addObserver(forName: name,
+                                           object: object,
+                                           queue: OperationQueue.main) { [unowned self] notification in
+                                            self.broadcast(value: notification)
         }
     }
     

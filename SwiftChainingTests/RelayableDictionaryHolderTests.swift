@@ -17,7 +17,8 @@ class RelayableDictionaryHolderTests: XCTestCase {
         let holder2 = ValueHolder(2)
         let holder3 = ValueHolder(3)
         
-        let dictionary = RelayableDictionaryHolder([1: holder1, 2: holder2])
+        let dictionary = RelayableDictionaryHolder([1: holder1,
+                                                    2: holder2])
         
         XCTAssertEqual(dictionary.raw.count, 2)
         XCTAssertEqual(dictionary[1], ValueHolder(1))
@@ -36,38 +37,52 @@ class RelayableDictionaryHolderTests: XCTestCase {
         let holder2b = ValueHolder(22)
         let holder3b = ValueHolder(33)
         
-        let dictionary = RelayableDictionaryHolder([1: holder1, 2: holder2, 3: holder3])
+        let dictionary = RelayableDictionaryHolder([1: holder1,
+                                                    2: holder2,
+                                                    3: holder3])
         
-        XCTAssertEqual(dictionary.raw, [1: holder1, 2: holder2, 3: holder3])
+        XCTAssertEqual(dictionary.raw, [1: holder1,
+                                        2: holder2,
+                                        3: holder3])
         
         dictionary.replace(key: 2, value: holder2b)
         
         XCTAssertEqual(dictionary.count, 3)
-        XCTAssertEqual(dictionary.raw, [1: holder1, 2: holder2b, 3: holder3])
+        XCTAssertEqual(dictionary.raw, [1: holder1,
+                                        2: holder2b,
+                                        3: holder3])
         
         dictionary[3] = holder3b
         
-        XCTAssertEqual(dictionary.raw, [1: holder1, 2: holder2b, 3: holder3b])
+        XCTAssertEqual(dictionary.raw, [1: holder1,
+                                        2: holder2b,
+                                        3: holder3b])
     }
     
     func testRemoveValue() {
-        let array = RelayableDictionaryHolder([1: ValueHolder("1"), 2: ValueHolder("2"), 3: ValueHolder("3")])
+        let array = RelayableDictionaryHolder([1: ValueHolder("1"),
+                                               2: ValueHolder("2"),
+                                               3: ValueHolder("3")])
         
         let removed2 = array.removeValue(forKey: 2)
         
         XCTAssertEqual(array.count, 2)
-        XCTAssertEqual(array.raw, [1: ValueHolder("1"), 3: ValueHolder("3")])
+        XCTAssertEqual(array.raw, [1: ValueHolder("1"),
+                                   3: ValueHolder("3")])
         XCTAssertEqual(removed2, ValueHolder("2"))
         
         let removed4 = array.removeValue(forKey: 4)
         
         XCTAssertEqual(array.count, 2)
-        XCTAssertEqual(array.raw, [1: ValueHolder("1"), 3: ValueHolder("3")])
+        XCTAssertEqual(array.raw, [1: ValueHolder("1"),
+                                   3: ValueHolder("3")])
         XCTAssertNil(removed4)
     }
     
     func testRemoveAll() {
-        let dictionary = RelayableDictionaryHolder([1: ValueHolder("1"), 2: ValueHolder("2"), 3: ValueHolder("3")])
+        let dictionary = RelayableDictionaryHolder([1: ValueHolder("1"),
+                                                    2: ValueHolder("2"),
+                                                    3: ValueHolder("3")])
         
         dictionary.removeAll()
         
@@ -94,11 +109,13 @@ class RelayableDictionaryHolderTests: XCTestCase {
         
         dictionary[20] = ValueHolder(20)
         
-        XCTAssertEqual(dictionary.raw, [10: ValueHolder(10), 20: ValueHolder(20)])
+        XCTAssertEqual(dictionary.raw, [10: ValueHolder(10),
+                                        20: ValueHolder(20)])
         
         dictionary[10] = ValueHolder(100)
         
-        XCTAssertEqual(dictionary.raw, [10: ValueHolder(100), 20: ValueHolder(20)])
+        XCTAssertEqual(dictionary.raw, [10: ValueHolder(100),
+                                        20: ValueHolder(20)])
         
         dictionary[20] = nil
         
@@ -106,7 +123,8 @@ class RelayableDictionaryHolderTests: XCTestCase {
     }
     
     func testEvent() {
-        let dictionary = RelayableDictionaryHolder([10: ValueHolder(10), 20: ValueHolder(20)])
+        let dictionary = RelayableDictionaryHolder([10: ValueHolder(10),
+                                                    20: ValueHolder(20)])
         
         var received: [RelayableDictionaryHolder<Int, ValueHolder<Int>>.Event] = []
         
@@ -115,7 +133,8 @@ class RelayableDictionaryHolderTests: XCTestCase {
         XCTAssertEqual(received.count, 1)
         
         if case .fetched(let elements) = received[0] {
-            XCTAssertEqual(elements, [10: ValueHolder<Int>(10), 20: ValueHolder<Int>(20)])
+            XCTAssertEqual(elements, [10: ValueHolder<Int>(10),
+                                      20: ValueHolder<Int>(20)])
         } else {
             XCTAssertTrue(false)
         }
@@ -131,7 +150,9 @@ class RelayableDictionaryHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(dictionary.raw, [10: ValueHolder(10), 20: ValueHolder(20), 100: ValueHolder(100)])
+        XCTAssertEqual(dictionary.raw, [10: ValueHolder(10),
+                                        20: ValueHolder(20),
+                                        100: ValueHolder(100)])
         
         dictionary.removeValue(forKey: 20)
         
@@ -144,7 +165,8 @@ class RelayableDictionaryHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(dictionary.raw, [10: ValueHolder(10), 100: ValueHolder(100)])
+        XCTAssertEqual(dictionary.raw, [10: ValueHolder(10),
+                                        100: ValueHolder(100)])
         
         dictionary[10]?.value = 11
         
@@ -158,7 +180,8 @@ class RelayableDictionaryHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(dictionary.raw, [10: ValueHolder(11), 100: ValueHolder(100)])
+        XCTAssertEqual(dictionary.raw, [10: ValueHolder(11),
+                                        100: ValueHolder(100)])
         
         dictionary.replace(key: 100, value: ValueHolder(500))
         
@@ -171,14 +194,17 @@ class RelayableDictionaryHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(dictionary.raw, [10: ValueHolder(11), 100: ValueHolder(500)])
+        XCTAssertEqual(dictionary.raw, [10: ValueHolder(11),
+                                        100: ValueHolder(500)])
         
-        dictionary.set([1000: ValueHolder(1000), 999: ValueHolder(999)])
+        dictionary.set([1000: ValueHolder(1000),
+                        999: ValueHolder(999)])
         
         XCTAssertEqual(received.count, 6)
         
         if case .set(let dictionary) = received[5] {
-            XCTAssertEqual(dictionary, [1000: ValueHolder(1000), 999: ValueHolder(999)])
+            XCTAssertEqual(dictionary, [1000: ValueHolder(1000),
+                                        999: ValueHolder(999)])
         } else {
             XCTAssertTrue(false)
         }

@@ -6,17 +6,13 @@ import Foundation
 
 final public class Notifier<T> {
     public init() {}
-    
-    private func lockedSend(value: T) {
-        self.broadcast(value: value)
-    }
 }
 
 extension Notifier: Sendable {
     public typealias ChainValue = T
     
     public func notify(value: T) {
-        self.lockedSend(value: value)
+        self.broadcast(value: value)
     }
 }
 
@@ -24,12 +20,12 @@ extension Notifier: Receivable {
     public typealias ReceiveValue = T
     
     public func receive(value: T) {
-        self.lockedSend(value: value)
+        self.broadcast(value: value)
     }
 }
 
 extension Notifier where T == Void {
     public func notify() {
-        self.lockedSend(value: ())
+        self.broadcast(value: ())
     }
 }

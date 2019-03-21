@@ -13,15 +13,21 @@ class RelayableArrayHolderTests: XCTestCase {
     }
     
     func testMove() {
-        let array = RelayableArrayHolder([ValueHolder(1), ValueHolder(2), ValueHolder(3)])
+        let array = RelayableArrayHolder([ValueHolder(1),
+                                          ValueHolder(2),
+                                          ValueHolder(3)])
         
         array.move(at: 1, to: 0)
         
-        XCTAssertEqual(array.raw, [ValueHolder(2), ValueHolder(1), ValueHolder(3)])
+        XCTAssertEqual(array.raw, [ValueHolder(2),
+                                   ValueHolder(1),
+                                   ValueHolder(3)])
         
         array.move(at: 1, to: 2)
         
-        XCTAssertEqual(array.raw, [ValueHolder(2), ValueHolder(3), ValueHolder(1)])
+        XCTAssertEqual(array.raw, [ValueHolder(2),
+                                   ValueHolder(3),
+                                   ValueHolder(1)])
     }
     
     func testSetElements() {
@@ -72,7 +78,8 @@ class RelayableArrayHolderTests: XCTestCase {
     }
     
     func testEvent() {
-        let array = RelayableArrayHolder([ValueHolder(10), ValueHolder(20)])
+        let array = RelayableArrayHolder([ValueHolder(10),
+                                          ValueHolder(20)])
         
         var received: [RelayableArrayHolder<ValueHolder<Int>>.Event] = []
         
@@ -81,7 +88,8 @@ class RelayableArrayHolderTests: XCTestCase {
         XCTAssertEqual(received.count, 1)
         
         if case .fetched(let elements) = received[0] {
-            XCTAssertEqual(elements, [ValueHolder<Int>(10), ValueHolder<Int>(20)])
+            XCTAssertEqual(elements, [ValueHolder<Int>(10),
+                                      ValueHolder<Int>(20)])
         } else {
             XCTAssertTrue(false)
         }
@@ -97,7 +105,9 @@ class RelayableArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.raw, [ValueHolder(10), ValueHolder(20), ValueHolder(100)])
+        XCTAssertEqual(array.raw, [ValueHolder(10),
+                                   ValueHolder(20),
+                                   ValueHolder(100)])
         
         array.insert(ValueHolder(200), at: 1)
         
@@ -110,7 +120,10 @@ class RelayableArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.raw, [ValueHolder(10), ValueHolder(200), ValueHolder(20), ValueHolder(100)])
+        XCTAssertEqual(array.raw, [ValueHolder(10),
+                                   ValueHolder(200),
+                                   ValueHolder(20),
+                                   ValueHolder(100)])
         
         array.remove(at: 2)
         
@@ -123,7 +136,9 @@ class RelayableArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.raw, [ValueHolder(10), ValueHolder(200), ValueHolder(100)])
+        XCTAssertEqual(array.raw, [ValueHolder(10),
+                                   ValueHolder(200),
+                                   ValueHolder(100)])
         
         array[0].value = 11
         
@@ -137,7 +152,9 @@ class RelayableArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.raw, [ValueHolder(11), ValueHolder(200), ValueHolder(100)])
+        XCTAssertEqual(array.raw, [ValueHolder(11),
+                                   ValueHolder(200),
+                                   ValueHolder(100)])
         
         array.replace(ValueHolder(500), at: 1)
         
@@ -150,7 +167,9 @@ class RelayableArrayHolderTests: XCTestCase {
             XCTAssertTrue(false)
         }
         
-        XCTAssertEqual(array.raw, [ValueHolder(11), ValueHolder(500), ValueHolder(100)])
+        XCTAssertEqual(array.raw, [ValueHolder(11),
+                                   ValueHolder(500),
+                                   ValueHolder(100)])
         
         array.move(at: 1, to: 0)
         
@@ -169,7 +188,8 @@ class RelayableArrayHolderTests: XCTestCase {
         XCTAssertEqual(received.count, 8)
         
         if case .set(let elements) = received[7] {
-            XCTAssertEqual(elements, [ValueHolder(1000), ValueHolder(999)])
+            XCTAssertEqual(elements, [ValueHolder(1000),
+                                      ValueHolder(999)])
         } else {
             XCTAssertTrue(false)
         }
@@ -225,7 +245,8 @@ class RelayableArrayHolderTests: XCTestCase {
     
     func testReceivable() {
         let notifier = Notifier<ArrayAction<ValueHolder<Int>>>()
-        let array = RelayableArrayHolder([ValueHolder(10), ValueHolder(20)])
+        let array = RelayableArrayHolder([ValueHolder(10),
+                                          ValueHolder(20)])
         
         let observer = notifier.chain().sendTo(array).end()
         
@@ -250,7 +271,8 @@ class RelayableArrayHolderTests: XCTestCase {
         
         XCTAssertEqual(array[0], ValueHolder(500))
         
-        notifier.notify(value: .set([ValueHolder(1000), ValueHolder(1001)]))
+        notifier.notify(value: .set([ValueHolder(1000),
+                                     ValueHolder(1001)]))
         
         XCTAssertEqual(array.count, 2)
         XCTAssertEqual(array[0], ValueHolder(1000))

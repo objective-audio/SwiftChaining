@@ -7,7 +7,7 @@ import Foundation
 public protocol JointClass: class {}
 
 internal protocol AnyJoint: JointClass {
-    func handler(at: Int) -> Any
+    var handlers: [Any] { get }
     func fetch()
     func invalidate()
 }
@@ -19,8 +19,7 @@ internal class Joint<Chainer: Chainable> {
     
     internal var chainer: Chainer? { return self.chainerRef?.value }
     private var chainerRef: Reference<Chainer>?
-    private var handlers: [Any] = []
-    internal var handlerCount: Int { return self.handlers.count }
+    internal private(set) var handlers: [Any] = []
     private var subJoints: [AnyJoint] = []
     private var core: AnyCore?
     private let lock = NSLock()

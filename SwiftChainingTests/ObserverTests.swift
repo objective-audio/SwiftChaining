@@ -22,7 +22,11 @@ class ObserverTests: XCTestCase {
         
         var received: [Int] = []
         
-        let observer = mainNotifier.chain().merge(subNotifier.chain()).do { received.append($0) }.end()
+        let observer =
+            mainNotifier.chain()
+                .merge(subNotifier.chain())
+                .do { received.append($0) }
+                .end()
         
         mainNotifier.notify(value: 1)
         
