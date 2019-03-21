@@ -1,14 +1,14 @@
 //
-//  ForEach.swift
+//  Each.swift
 //
 
 import Foundation
 
 extension Chain where Out: Sequence {
-    public typealias ForEachOut = Out.Element
-    public typealias ForEachChain = Chain<ForEachOut, Chainer>
+    public typealias EachOut = Out.Element
+    public typealias EachChain = Chain<EachOut, Chainer>
     
-    public func forEach() -> ForEachChain {
+    public func each() -> EachChain {
         guard let joint = self.pullJoint() else {
             fatalError()
         }
@@ -16,7 +16,7 @@ extension Chain where Out: Sequence {
         let nextIndex = joint.handlerCount + 1
         
         let handler: JointHandler<Out> = { value, joint in
-            if let nextHandler = joint.handler(at: nextIndex) as? JointHandler<ForEachOut> {
+            if let nextHandler = joint.handler(at: nextIndex) as? JointHandler<EachOut> {
                 for element in value {
                     nextHandler(element, joint)
                 }
@@ -25,6 +25,6 @@ extension Chain where Out: Sequence {
         
         joint.appendHandler(handler)
         
-        return ForEachChain(joint: joint)
+        return EachChain(joint: joint)
     }
 }
