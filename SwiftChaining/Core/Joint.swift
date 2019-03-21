@@ -15,7 +15,7 @@ internal protocol AnyJoint: JointClass {
 internal typealias JointHandler<T> = (T, AnyJoint) -> Void
 
 internal class Joint<Sender: Chainable> {
-    internal typealias Value = Sender.SendValue
+    internal typealias Value = Sender.ChainValue
     
     internal var sender: Sender? { return self.senderReference?.value }
     internal private(set) var senderReference: Reference<Sender>?

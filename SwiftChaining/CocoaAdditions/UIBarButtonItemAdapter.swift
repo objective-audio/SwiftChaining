@@ -36,7 +36,7 @@ final public class UIBarButtonItemAdapter: NSObject {
 }
 
 extension UIBarButtonItemAdapter: Sendable {
-    public typealias SendValue = UIBarButtonItem
+    public typealias ChainValue = UIBarButtonItem
 }
 
 #endif

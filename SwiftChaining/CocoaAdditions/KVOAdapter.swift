@@ -41,13 +41,13 @@ final public class KVOAdapter<Root: NSObject, T> {
 }
 
 extension KVOAdapter: Fetchable {
-    public typealias SendValue = T
+    public typealias ChainValue = T
     
     public func canFetch() -> Bool {
         return self.target != nil
     }
     
-    public func fetchedValue() -> KVOAdapter<Root, T>.SendValue {
+    public func fetchedValue() -> KVOAdapter<Root, T>.ChainValue {
         return self.value
     }
 }

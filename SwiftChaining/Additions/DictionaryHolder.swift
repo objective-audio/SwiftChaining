@@ -104,7 +104,7 @@ final public class DictionaryHolder<K: Hashable, V> {
 extension DictionaryHolder: DictionaryReadable {}
 
 extension DictionaryHolder: Fetchable {
-    public typealias SendValue = Event
+    public typealias ChainValue = Event
     
     public func fetchedValue() -> Event {
         return .fetched(self.raw)

@@ -5,8 +5,8 @@
 import Foundation
 
 public protocol Chainable: class {
-    associatedtype SendValue
-    typealias SenderChain = Chain<SendValue, Self>
+    associatedtype ChainValue
+    typealias SenderChain = Chain<ChainValue, Self>
     
     func fetch(for: JointClass)
 }
@@ -29,8 +29,8 @@ extension Chainable {
         
         let joint = core.addJoint(sender: sender)
         
-        let handler0: JointHandler<SendValue> = { value, joint in
-            if let nextHandler = joint.handler(at: 1) as? JointHandler<SendValue> {
+        let handler0: JointHandler<ChainValue> = { value, joint in
+            if let nextHandler = joint.handler(at: 1) as? JointHandler<ChainValue> {
                 nextHandler(value, joint)
             }
         }

@@ -8,7 +8,7 @@ final public class RelayableValueHolder<T: Sendable> {
     public enum Event {
         case fetched(T)
         case current(T)
-        case relayed(T.SendValue)
+        case relayed(T.ChainValue)
     }
     
     public private(set) var rawValue: T
@@ -34,7 +34,7 @@ final public class RelayableValueHolder<T: Sendable> {
 }
 
 extension RelayableValueHolder: Fetchable {
-    public typealias SendValue = Event
+    public typealias ChainValue = Event
     
     public func fetchedValue() -> Event {
         return .fetched(self.value)
@@ -68,7 +68,7 @@ extension RelayableValueHolder: Equatable where T: Equatable {
     }
 }
 
-extension RelayableValueHolder.Event: Equatable where T: Equatable, T.SendValue: Equatable {
+extension RelayableValueHolder.Event: Equatable where T: Equatable, T.ChainValue: Equatable {
     public static func == (lhs: RelayableValueHolder.Event, rhs: RelayableValueHolder.Event) -> Bool {
         switch (lhs, rhs) {
         case (.fetched(let lhsFetched), .fetched(let rhsFetched)):

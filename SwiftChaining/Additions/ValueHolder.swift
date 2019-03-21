@@ -21,7 +21,7 @@ final public class ValueHolder<T> {
 }
 
 extension ValueHolder: Fetchable {
-    public typealias SendValue = T
+    public typealias ChainValue = T
     
     public func fetchedValue() -> T {
         return self.value

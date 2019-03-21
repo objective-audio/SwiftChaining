@@ -19,13 +19,13 @@ public class Core<T: Chainable>: AnyCore {
         CoreGlobal.removeCore(for: self.removeId)
     }
     
-    internal func broadcast(value: T.SendValue) {
+    internal func broadcast(value: T.ChainValue) {
         for joint in self.joints {
             joint.value?.call(first: value)
         }
     }
     
-    internal func send(value: T.SendValue, to target: JointClass) {
+    internal func send(value: T.ChainValue, to target: JointClass) {
         let targetId = ObjectIdentifier(target)
         for joint in self.joints {
             if joint.id == targetId {

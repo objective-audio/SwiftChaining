@@ -148,7 +148,7 @@ extension ArrayHolder: ArrayWritable {
 }
 
 extension ArrayHolder: Fetchable {
-    public typealias SendValue = Event
+    public typealias ChainValue = Event
     
     public func fetchedValue() -> Event {
         return .fetched(self.raw)
