@@ -64,16 +64,16 @@ internal class CoreGlobal {
         CoreGlobal.shared.cores.removeValue(forKey: id)
     }
     
-    internal class func core<Sender: Chainable>(for sender: Sender) -> Core<Sender>? {
-        return CoreGlobal.shared.cores[ObjectIdentifier(sender)]?.core as? Core<Sender>
+    internal class func core<Chainer: Chainable>(for sender: Chainer) -> Core<Chainer>? {
+        return CoreGlobal.shared.cores[ObjectIdentifier(sender)]?.core as? Core<Chainer>
     }
     
-    internal class func getOrCreateCore<Sender: Chainable>(for sender: Sender) -> Core<Sender> {
+    internal class func getOrCreateCore<Chainer: Chainable>(for sender: Chainer) -> Core<Chainer> {
         if let core = self.core(for: sender) {
             return core
         } else {
             let id = ObjectIdentifier(sender)
-            let core = Core<Sender>(removeId: id)
+            let core = Core<Chainer>(removeId: id)
             self.set(core: core, for: id)
             return core
         }
