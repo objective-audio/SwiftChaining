@@ -4,4 +4,4 @@
 
 import Foundation
 
-public typealias Syncable = Fetchable
+public typealias Syncable = Fetchable & Sendable
