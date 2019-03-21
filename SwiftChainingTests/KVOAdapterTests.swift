@@ -21,7 +21,7 @@ class KVOAdapterTests: XCTestCase {
     func testSetByOriginal() {
         let object = TestObject()
         
-        let adapter = KVOAdapter(object, keyPath: \TestObject.text)
+        let adapter = KVOAdapter(object, keyPath: \.text)
         
         var received: [String] = []
         
@@ -41,7 +41,7 @@ class KVOAdapterTests: XCTestCase {
     func testSetByAdapter() {
         let object = TestObject()
         
-        let adapter = KVOAdapter(object, keyPath: \TestObject.text)
+        let adapter = KVOAdapter(object, keyPath: \.text)
         
         var received: [String] = []
         
@@ -64,7 +64,7 @@ class KVOAdapterTests: XCTestCase {
         do {
             let object = TestObject()
             
-            adapter = KVOAdapter(object, keyPath: \TestObject.text)
+            adapter = KVOAdapter(object, keyPath: \.text)
             
             XCTAssertEqual(adapter?.safeValue, "initial")
         }
@@ -76,7 +76,7 @@ class KVOAdapterTests: XCTestCase {
     func testInvalidate() {
         let object = TestObject()
         
-        let adapter = KVOAdapter(object, keyPath: \TestObject.text)
+        let adapter = KVOAdapter(object, keyPath: \.text)
         
         var received: [String] = []
         
@@ -100,7 +100,7 @@ class KVOAdapterTests: XCTestCase {
         var received: [String] = []
         
         do {
-            let adapter = KVOAdapter(object, keyPath: \TestObject.text)
+            let adapter = KVOAdapter(object, keyPath: \.text)
             
             let observer = adapter.chain().do { received.append($0) }.sync()
             
@@ -122,7 +122,7 @@ class KVOAdapterTests: XCTestCase {
     
     func testRecursive() {
         let object = TestObject()
-        let adapter = KVOAdapter(object, keyPath: \TestObject.text)
+        let adapter = KVOAdapter(object, keyPath: \.text)
         
         var received: [String] = []
         

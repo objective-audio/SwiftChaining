@@ -21,9 +21,9 @@ class PropertyAdapterCommonTests: XCTestCase {
     func testManyAdapter() {
         let testObj = TestClass()
         
-        let adapter1a = PropertyAdapter.common(testObj, keyPath: \TestClass.value1)
-        let adapter1b = PropertyAdapter.common(testObj, keyPath: \TestClass.value1)
-        let adapter2 = PropertyAdapter.common(testObj, keyPath: \TestClass.value2)
+        let adapter1a = PropertyAdapter.common(testObj, keyPath: \.value1)
+        let adapter1b = PropertyAdapter.common(testObj, keyPath: \.value1)
+        let adapter2 = PropertyAdapter.common(testObj, keyPath: \.value2)
         
         XCTAssertEqual(ObjectIdentifier(adapter1a), ObjectIdentifier(adapter1b))
         XCTAssertNotEqual(ObjectIdentifier(adapter1a), ObjectIdentifier(adapter2))
@@ -52,7 +52,7 @@ class PropertyAdapterCommonTests: XCTestCase {
     func testTargetRemoved() {
         var testObj: TestClass? = TestClass()
         
-        let adapter = PropertyAdapter.common(testObj!, keyPath: \TestClass.value1)
+        let adapter = PropertyAdapter.common(testObj!, keyPath: \.value1)
         
         var received: [Int] = []
         

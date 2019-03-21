@@ -19,7 +19,7 @@ class PropertyAdapterTests: XCTestCase {
     
     func testValue() {
         let testObj = TestClass()
-        let adapter = PropertyAdapter(testObj, keyPath: \TestClass.value)
+        let adapter = PropertyAdapter(testObj, keyPath: \.value)
         
         XCTAssertEqual(adapter.value, 0)
         
@@ -32,7 +32,7 @@ class PropertyAdapterTests: XCTestCase {
     func testSafeValue() {
         var testObj: TestClass? = TestClass()
         
-        let adapter = PropertyAdapter(testObj!, keyPath: \TestClass.value)
+        let adapter = PropertyAdapter(testObj!, keyPath: \.value)
         
         XCTAssertNotNil(adapter.safeValue)
         XCTAssertEqual(adapter.safeValue, 0)
@@ -44,7 +44,7 @@ class PropertyAdapterTests: XCTestCase {
 
     func testSend() {
         let testObj = TestClass()
-        let adapter = PropertyAdapter(testObj, keyPath: \TestClass.value)
+        let adapter = PropertyAdapter(testObj, keyPath: \.value)
         
         var received: [Int] = []
         
@@ -63,7 +63,7 @@ class PropertyAdapterTests: XCTestCase {
     
     func testReceive() {
         let testObj = TestClass()
-        let adapter = PropertyAdapter(testObj, keyPath: \TestClass.value)
+        let adapter = PropertyAdapter(testObj, keyPath: \.value)
         let notifier = Notifier<Int>()
         
         let observer = notifier.chain().sendTo(adapter).end()
@@ -78,7 +78,7 @@ class PropertyAdapterTests: XCTestCase {
     
     func testRecursive() {
         let testObj = TestClass()
-        let adapter = PropertyAdapter(testObj, keyPath: \TestClass.value)
+        let adapter = PropertyAdapter(testObj, keyPath: \.value)
         
         var received: [Int] = []
         
