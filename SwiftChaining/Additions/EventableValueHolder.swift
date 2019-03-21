@@ -25,7 +25,7 @@ final public class EventableValueHolder<T> {
     }
 }
 
-extension EventableValueHolder: Fetchable {
+extension EventableValueHolder: Syncable {
     public typealias ChainValue = Event
     
     public func fetchedValue() -> Event {

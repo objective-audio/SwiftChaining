@@ -140,7 +140,7 @@ final public class RelayableDictionaryHolder<Key: Hashable, Value: Sendable> {
 
 extension RelayableDictionaryHolder: DictionaryReadable {}
 
-extension RelayableDictionaryHolder: Fetchable {
+extension RelayableDictionaryHolder: Syncable {
     public typealias ChainValue = Event
     
     public func fetchedValue() -> Event {

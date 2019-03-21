@@ -33,7 +33,7 @@ final public class RelayableValueHolder<T: Sendable> {
     }
 }
 
-extension RelayableValueHolder: Fetchable {
+extension RelayableValueHolder: Syncable {
     public typealias ChainValue = Event
     
     public func fetchedValue() -> Event {

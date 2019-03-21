@@ -147,7 +147,7 @@ extension ArrayHolder: ArrayWritable {
     }
 }
 
-extension ArrayHolder: Fetchable {
+extension ArrayHolder: Syncable {
     public typealias ChainValue = Event
     
     public func fetchedValue() -> Event {

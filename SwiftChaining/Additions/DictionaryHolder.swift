@@ -103,7 +103,7 @@ final public class DictionaryHolder<K: Hashable, V> {
 
 extension DictionaryHolder: DictionaryReadable {}
 
-extension DictionaryHolder: Fetchable {
+extension DictionaryHolder: Syncable {
     public typealias ChainValue = Event
     
     public func fetchedValue() -> Event {

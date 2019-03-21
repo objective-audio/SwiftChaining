@@ -40,7 +40,7 @@ final public class KVOAdapter<Root: NSObject, T> {
     }
 }
 
-extension KVOAdapter: Fetchable {
+extension KVOAdapter: Syncable {
     public typealias ChainValue = T
     
     public func canFetch() -> Bool {

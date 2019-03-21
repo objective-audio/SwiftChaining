@@ -6,7 +6,7 @@ import XCTest
 import Chaining
 
 class FetchableTests: XCTestCase {
-    class TestFetcher<T>: Fetchable {
+    class TestFetcher<T>: Syncable {
         typealias ChainValue = T
         
         var value: T

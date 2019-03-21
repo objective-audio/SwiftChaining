@@ -20,7 +20,7 @@ final public class ValueHolder<T> {
     }
 }
 
-extension ValueHolder: Fetchable {
+extension ValueHolder: Syncable {
     public typealias ChainValue = T
     
     public func fetchedValue() -> T {
