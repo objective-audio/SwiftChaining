@@ -5,7 +5,6 @@
 import Foundation
 
 public protocol Sendable: Chainable {
-    typealias SenderChain = Chain<SendValue, Self>
 }
 
 extension Sendable {
