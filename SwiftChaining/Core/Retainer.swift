@@ -9,7 +9,7 @@ public struct Retainer<T> {
 }
 
 extension Retainer where T: Chainable {
-    public func chain() -> T.BeginChain {
+    public func chain() -> T.FirstChain {
         return self.object.chain(retained: true)
     }
 }

@@ -6,7 +6,7 @@ import Foundation
 
 public protocol Chainable: class {
     associatedtype ChainValue
-    typealias BeginChain = Chain<ChainValue, Self>
+    typealias FirstChain = Chain<ChainValue, Self>
     
     func fetch(for: JointClass)
 }
@@ -18,11 +18,11 @@ extension Chainable {
         return Retainer(object: self)
     }
     
-    public func chain() -> BeginChain {
+    public func chain() -> FirstChain {
         return self.chain(retained: false)
     }
     
-    internal func chain(retained: Bool) -> BeginChain {
+    internal func chain(retained: Bool) -> FirstChain {
         let core = CoreGlobal.getOrCreateCore(for: self)
         
         let chainer: Reference<Self> = retained ? .strong(self) : .weak(Weak(self))
@@ -37,6 +37,6 @@ extension Chainable {
         
         joint.appendHandler(handler0)
         
-        return BeginChain(joint: joint)
+        return FirstChain(joint: joint)
     }
 }
