@@ -4,11 +4,8 @@
 
 import Foundation
 
-public protocol Sendable: class {
-    associatedtype SendValue
+public protocol Sendable: Chainable {
     typealias SenderChain = Chain<SendValue, Self>
-    
-    func fetch(for: JointClass)
 }
 
 extension Sendable {
