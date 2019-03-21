@@ -34,7 +34,7 @@
 		B6FABC4B21F4BDB70045872A /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3221F4BDB70045872A /* Combine.swift */; };
 		B6FABC4C21F4BDB70045872A /* Sendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3321F4BDB70045872A /* Sendable.swift */; };
 		B6FABC4D21F4BDB70045872A /* End.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3421F4BDB70045872A /* End.swift */; };
-		B6FABC4E21F4BDB70045872A /* ForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3521F4BDB70045872A /* ForEach.swift */; };
+		B6FABC4E21F4BDB70045872A /* Each.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3521F4BDB70045872A /* Each.swift */; };
 		B6FABC4F21F4BDB70045872A /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3621F4BDB70045872A /* Weak.swift */; };
 		B6FABD0621F60A120045872A /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABD0521F60A120045872A /* Core.swift */; };
 		B6FABD0721F74B310045872A /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3C21F4BDB70045872A /* Notifier.swift */; };
@@ -76,7 +76,7 @@
 		B6FABC3221F4BDB70045872A /* Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Combine.swift; sourceTree = "<group>"; };
 		B6FABC3321F4BDB70045872A /* Sendable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sendable.swift; sourceTree = "<group>"; };
 		B6FABC3421F4BDB70045872A /* End.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = End.swift; sourceTree = "<group>"; };
-		B6FABC3521F4BDB70045872A /* ForEach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForEach.swift; sourceTree = "<group>"; };
+		B6FABC3521F4BDB70045872A /* Each.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Each.swift; sourceTree = "<group>"; };
 		B6FABC3621F4BDB70045872A /* Weak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
 		B6FABC3821F4BDB70045872A /* ValueHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueHolder.swift; sourceTree = "<group>"; };
 		B6FABC3A21F4BDB70045872A /* DictionaryHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryHolder.swift; sourceTree = "<group>"; };
@@ -135,9 +135,9 @@
 				B6FABC3221F4BDB70045872A /* Combine.swift */,
 				B6FABD0521F60A120045872A /* Core.swift */,
 				B6FABC2821F4BDB70045872A /* Do.swift */,
+				B6FABC3521F4BDB70045872A /* Each.swift */,
 				B6FABC3421F4BDB70045872A /* End.swift */,
 				B6FABC2F21F4BDB70045872A /* Fetchable.swift */,
-				B6FABC3521F4BDB70045872A /* ForEach.swift */,
 				B6FABC2B21F4BDB70045872A /* Guard.swift */,
 				B6FABC2A21F4BDB70045872A /* Joint.swift */,
 				B6FABC2C21F4BDB70045872A /* Map.swift */,
@@ -298,7 +298,7 @@
 				B6FABC4721F4BDB70045872A /* Receivable.swift in Sources */,
 				B6FABC4321F4BDB70045872A /* Joint.swift in Sources */,
 				B6D4C62021FC1743004A95A8 /* RelayableDictionaryHolder.swift in Sources */,
-				B6FABC4E21F4BDB70045872A /* ForEach.swift in Sources */,
+				B6FABC4E21F4BDB70045872A /* Each.swift in Sources */,
 				B6FABC4921F4BDB70045872A /* Fetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

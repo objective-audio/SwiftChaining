@@ -1,11 +1,11 @@
 //
-//  ForEachTests.swift
+//  EachTests.swift
 //
 
 import XCTest
 import Chaining
 
-class ForEachTests: XCTestCase {
+class EachTests: XCTestCase {
     override func setUp() {
         super.setUp()
     }
@@ -14,12 +14,12 @@ class ForEachTests: XCTestCase {
         super.tearDown()
     }
 
-    func testForEach() {
+    func testEach() {
         let notifier = Notifier<[Int]>()
         
         var received: [Int] = []
         
-        let observer = notifier.chain().forEach().do { received.append($0) }.end()
+        let observer = notifier.chain().each().do { received.append($0) }.end()
         
         notifier.notify(value: [2, 4, 6])
         
