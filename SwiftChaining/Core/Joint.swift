@@ -14,18 +14,18 @@ internal protocol AnyJoint: JointClass {
 
 internal typealias JointHandler<T> = (T, AnyJoint) -> Void
 
-internal class Joint<Sender: Chainable> {
-    internal typealias Value = Sender.ChainValue
+internal class Joint<Chainer: Chainable> {
+    internal typealias Value = Chainer.ChainValue
     
-    internal var sender: Sender? { return self.senderReference?.value }
-    internal private(set) var senderReference: Reference<Sender>?
+    internal var sender: Chainer? { return self.senderReference?.value }
+    internal private(set) var senderReference: Reference<Chainer>?
     private var handlers: [Any] = []
     internal var handlerCount: Int { return self.handlers.count }
     private var subJoints: [AnyJoint] = []
     private var core: AnyCore?
     private let lock = NSLock()
     
-    internal init(sender: Reference<Sender>, core: AnyCore) {
+    internal init(sender: Reference<Chainer>, core: AnyCore) {
         self.senderReference = sender
         self.core = core
     }
