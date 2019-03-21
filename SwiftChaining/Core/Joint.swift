@@ -21,7 +21,7 @@ internal class Joint<Sender: Sendable> {
     internal private(set) var senderReference: Reference<Sender>?
     private var handlers: [Any] = []
     internal var handlerCount: Int { return self.handlers.count }
-    internal var subJoints: [AnyJoint] = []
+    private var subJoints: [AnyJoint] = []
     private var core: AnySenderCore?
     private let lock = NSLock()
     
@@ -42,6 +42,10 @@ internal class Joint<Sender: Sendable> {
     
     internal func appendHandler(_ handler: Any) {
         self.handlers.append(handler)
+    }
+    
+    internal func appendSubJoint(_ joint: AnyJoint) {
+        self.subJoints.append(joint)
     }
     
     internal func call(first value: Value) {
