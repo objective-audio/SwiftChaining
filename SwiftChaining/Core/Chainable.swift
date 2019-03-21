@@ -25,9 +25,9 @@ extension Chainable {
     internal func chain(retained: Bool) -> BeginChain {
         let core = CoreGlobal.getOrCreateCore(for: self)
         
-        let sender: Reference<Self> = retained ? .strong(self) : .weak(Weak(self))
+        let chainer: Reference<Self> = retained ? .strong(self) : .weak(Weak(self))
         
-        let joint = core.addJoint(chainer: sender)
+        let joint = core.addJoint(chainer: chainer)
         
         let handler0: JointHandler<ChainValue> = { value, joint in
             if let nextHandler = joint.handler(at: 1) as? JointHandler<ChainValue> {
