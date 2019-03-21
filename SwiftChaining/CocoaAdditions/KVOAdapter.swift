@@ -23,7 +23,8 @@ final public class KVOAdapter<Root: NSObject, T> {
         self.target = target
         self.keyPath = keyPath
         
-        self.observation = target.observe(keyPath, options: [.new]) { [unowned self] (root, change) in
+        self.observation = target.observe(keyPath,
+                                          options: [.new]) { [unowned self] (root, change) in
             if let value = change.newValue {
                 self.broadcast(value: value)
             }

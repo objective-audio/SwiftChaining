@@ -129,11 +129,14 @@ final public class RelayableDictionaryHolder<Key: Hashable, Value: Sendable> {
     }
     
     private func relayingWrapper(key: Key, value: Value) -> ObserverWrapper {
-        let observer = value.chain().do({ [weak self] relayedValue in
-            if let self = self {
-                self.broadcast(value: .relayed(relayedValue, key: key, value: value))
+        let observer = value.chain()
+            .do { [weak self] relayedValue in
+                if let self = self {
+                    self.broadcast(value: .relayed(relayedValue, key: key, value: value))
+                }
             }
-        }).end()
+            .end()
+        
         return ObserverWrapper(observer: observer)
     }
 }
