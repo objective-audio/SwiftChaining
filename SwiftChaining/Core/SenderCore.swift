@@ -4,10 +4,10 @@
 
 import Foundation
 
-public protocol AnySenderCore: class {
+public protocol AnyCore: class {
 }
 
-public class SenderCore<T: Sendable>: AnySenderCore {
+public class SenderCore<T: Sendable>: AnyCore {
     private var joints: [Weak<Joint<T>>] = []
     private let removeId: ObjectIdentifier
     
@@ -51,12 +51,12 @@ internal class CoreGlobal {
     private static let shared = CoreGlobal()
     
     private struct CoreWrapper {
-        weak var core: AnySenderCore?
+        weak var core: AnyCore?
     }
     
     private var cores: [ObjectIdentifier: CoreWrapper] = [:]
     
-    internal class func set(core: AnySenderCore, for id: ObjectIdentifier) {
+    internal class func set(core: AnyCore, for id: ObjectIdentifier) {
         CoreGlobal.shared.cores[id] = CoreWrapper(core: core)
     }
     

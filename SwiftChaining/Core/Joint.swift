@@ -22,10 +22,10 @@ internal class Joint<Sender: Sendable> {
     private var handlers: [Any] = []
     internal var handlerCount: Int { return self.handlers.count }
     private var subJoints: [AnyJoint] = []
-    private var core: AnySenderCore?
+    private var core: AnyCore?
     private let lock = NSLock()
     
-    internal init(sender: Reference<Sender>, core: AnySenderCore) {
+    internal init(sender: Reference<Sender>, core: AnyCore) {
         self.senderReference = sender
         self.core = core
     }
