@@ -35,8 +35,8 @@ public class Core<T: Chainable>: AnyCore {
         }
     }
     
-    internal func addJoint(sender: Reference<T>) -> Joint<T> {
-        let joint = Joint(sender: sender, core: self)
+    internal func addJoint(chainer: Reference<T>) -> Joint<T> {
+        let joint = Joint(chainer: chainer, core: self)
         self.joints.append(Weak(joint))
         return joint
     }

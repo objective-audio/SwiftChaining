@@ -27,7 +27,7 @@ extension Chainable {
         
         let sender: Reference<Self> = retained ? .strong(self) : .weak(Weak(self))
         
-        let joint = core.addJoint(sender: sender)
+        let joint = core.addJoint(chainer: sender)
         
         let handler0: JointHandler<ChainValue> = { value, joint in
             if let nextHandler = joint.handler(at: 1) as? JointHandler<ChainValue> {

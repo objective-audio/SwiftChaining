@@ -25,14 +25,14 @@ internal class Joint<Chainer: Chainable> {
     private var core: AnyCore?
     private let lock = NSLock()
     
-    internal init(sender: Reference<Chainer>, core: AnyCore) {
-        self.senderReference = sender
+    internal init(chainer: Reference<Chainer>, core: AnyCore) {
+        self.senderReference = chainer
         self.core = core
     }
     
     deinit {
-        if let sender = self.chainer {
-            CoreGlobal.core(for: sender)?.remove(joint: self)
+        if let chainer = self.chainer {
+            CoreGlobal.core(for: chainer)?.remove(joint: self)
         }
     }
     
