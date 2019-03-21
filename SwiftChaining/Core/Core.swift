@@ -68,7 +68,25 @@ internal class CoreGlobal {
         return CoreGlobal.shared.cores[ObjectIdentifier(sender)]?.core as? Core<Chainer>
     }
     
-    internal class func getOrCreateCore<Chainer: Chainable>(for sender: Chainer) -> Core<Chainer> {
+    internal class func makeChain<Chainer: Chainable>(chainer: Chainer, retained: Bool) -> Chainer.FirstChain {
+        let core = self.getOrCreateCore(for: chainer)
+        
+        let chainer: Reference<Chainer> = retained ? .strong(chainer) : .weak(Weak(chainer))
+        
+        let joint = core.addJoint(chainer: chainer)
+        
+        let handler0: JointHandler<Chainer.ChainValue> = { value, joint in
+            if let nextHandler = joint.handler(at: 1) as? JointHandler<Chainer.ChainValue> {
+                nextHandler(value, joint)
+            }
+        }
+        
+        joint.appendHandler(handler0)
+        
+        return Chainer.FirstChain(joint: joint)
+    }
+    
+    private class func getOrCreateCore<Chainer: Chainable>(for sender: Chainer) -> Core<Chainer> {
         if let core = self.core(for: sender) {
             return core
         } else {

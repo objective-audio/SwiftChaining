@@ -19,24 +19,6 @@ extension Chainable {
     }
     
     public func chain() -> FirstChain {
-        return self.chain(retained: false)
-    }
-    
-    internal func chain(retained: Bool) -> FirstChain {
-        let core = CoreGlobal.getOrCreateCore(for: self)
-        
-        let chainer: Reference<Self> = retained ? .strong(self) : .weak(Weak(self))
-        
-        let joint = core.addJoint(chainer: chainer)
-        
-        let handler0: JointHandler<ChainValue> = { value, joint in
-            if let nextHandler = joint.handler(at: 1) as? JointHandler<ChainValue> {
-                nextHandler(value, joint)
-            }
-        }
-        
-        joint.appendHandler(handler0)
-        
-        return FirstChain(joint: joint)
+        return CoreGlobal.makeChain(chainer: self, retained: false)
     }
 }
