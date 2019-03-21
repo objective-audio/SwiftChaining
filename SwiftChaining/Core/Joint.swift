@@ -18,7 +18,7 @@ internal class Joint<Chainer: Chainable> {
     internal typealias Value = Chainer.ChainValue
     
     internal var chainer: Chainer? { return self.chainerRef?.value }
-    internal private(set) var chainerRef: Reference<Chainer>?
+    private var chainerRef: Reference<Chainer>?
     private var handlers: [Any] = []
     internal var handlerCount: Int { return self.handlers.count }
     private var subJoints: [AnyJoint] = []
