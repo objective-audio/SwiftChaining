@@ -5,9 +5,9 @@
 import Foundation
 
 extension Chain {
-    public typealias DoChain = Chain<Out, Sender>
+    public typealias DoChain = Chain<Out, Chainer>
     
-    public func `do`(_ doHandler: @escaping (Out) -> Void) -> Chain<Out, Sender> {
+    public func `do`(_ doHandler: @escaping (Out) -> Void) -> Chain<Out, Chainer> {
         guard let joint = self.pullJoint() else {
             fatalError()
         }

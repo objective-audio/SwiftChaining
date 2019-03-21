@@ -5,7 +5,7 @@
 import Foundation
 
 extension Chain {
-    public func end() -> Observer<Sender> {
+    public func end() -> Observer<Chainer> {
         guard let joint = self.pullJoint() else {
             fatalError()
         }
@@ -13,12 +13,12 @@ extension Chain {
         let handler: JointHandler<Out> = { _, _ in }
         joint.appendHandler(handler)
         
-        return Observer<Sender>(joint: joint)
+        return Observer<Chainer>(joint: joint)
     }
 }
 
-extension Chain where Sender: Fetchable {
-    public func sync() -> Observer<Sender> {
+extension Chain where Chainer: Fetchable {
+    public func sync() -> Observer<Chainer> {
         let observer = self.end()
         observer.fetch()
         return observer

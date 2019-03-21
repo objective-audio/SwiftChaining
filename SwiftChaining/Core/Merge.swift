@@ -4,12 +4,12 @@
 
 import Foundation
 
-extension Chain where Sender: Fetchable {
-    public func merge<Sender1>(_ chain1: Chain<Out, Sender1>) -> Chain<Out, Sender> where Sender1: Fetchable {
+extension Chain where Chainer: Fetchable {
+    public func merge<Sender1>(_ chain1: Chain<Out, Sender1>) -> Chain<Out, Chainer> where Sender1: Fetchable {
         return _merge2(chain0: self, chain1: chain1)
     }
     
-    public func merge<Sender1>(_ chain1: Chain<Out, Sender1>) -> Chain<Out, Sender> {
+    public func merge<Sender1>(_ chain1: Chain<Out, Sender1>) -> Chain<Out, Chainer> {
         return _merge2(chain0: self, chain1: chain1)
     }
 }
@@ -19,7 +19,7 @@ extension Chain {
         return _merge2(chain0: chain1, chain1: self)
     }
     
-    public func merge<Sender1>(_ chain1: Chain<Out, Sender1>) -> Chain<Out, Sender> {
+    public func merge<Sender1>(_ chain1: Chain<Out, Sender1>) -> Chain<Out, Chainer> {
         return _merge2(chain0: self, chain1: chain1)
     }
 }
