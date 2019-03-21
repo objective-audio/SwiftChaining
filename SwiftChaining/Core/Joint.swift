@@ -17,8 +17,8 @@ internal typealias JointHandler<T> = (T, AnyJoint) -> Void
 internal class Joint<Chainer: Chainable> {
     internal typealias Value = Chainer.ChainValue
     
-    internal var chainer: Chainer? { return self.senderReference?.value }
-    internal private(set) var senderReference: Reference<Chainer>?
+    internal var chainer: Chainer? { return self.chainerRef?.value }
+    internal private(set) var chainerRef: Reference<Chainer>?
     private var handlers: [Any] = []
     internal var handlerCount: Int { return self.handlers.count }
     private var subJoints: [AnyJoint] = []
@@ -26,7 +26,7 @@ internal class Joint<Chainer: Chainable> {
     private let lock = NSLock()
     
     internal init(chainer: Reference<Chainer>, core: AnyCore) {
-        self.senderReference = chainer
+        self.chainerRef = chainer
         self.core = core
     }
     
@@ -76,7 +76,7 @@ extension Joint: AnyJoint {
             CoreGlobal.core(for: sender)?.remove(joint: self)
         }
         
-        self.senderReference = nil
+        self.chainerRef = nil
         self.core = nil
         self.handlers = []
         self.subJoints = []
