@@ -25,9 +25,7 @@ class SimpleValidationViewController: UIViewController {
         self.passwordValidLabel.text = "Password has to be at least 5 characters"
         
         let makeValidChain = { (textAdapter: TextAdapter, changedAdapter: ChangedAdapter, hiddenAdapter: HiddenAdapter) in
-            return changedAdapter
-                .retain()
-                .chain()
+            return changedAdapter.retain().chain()
                 .map { $0.text }
                 .merge(textAdapter.retain().chain())
                 .map { $0?.count ?? 0 >= 5 }
@@ -37,6 +35,7 @@ class SimpleValidationViewController: UIViewController {
         let usernameChain = makeValidChain(KVOAdapter(self.usernameField, keyPath: \.text),
                                            UIControlAdapter(self.usernameField, events: .editingChanged),
                                            KVOAdapter(self.usernameValidLabel, keyPath: \.isHidden))
+        
         let passwordChain = makeValidChain(KVOAdapter(self.passwordField, keyPath: \.text),
                                            UIControlAdapter(self.passwordField, events: .editingChanged),
                                            KVOAdapter(self.passwordValidLabel, keyPath: \.isHidden))
@@ -45,18 +44,14 @@ class SimpleValidationViewController: UIViewController {
             .combine(passwordChain)
             .map { $0.0 && $0.1 }
             .sendTo(KVOAdapter(self.doSomethingButton, keyPath: \.isEnabled).retain())
-            .sync()
-            .addTo(self.pool)
+            .sync().addTo(self.pool)
         
-        UIControlAdapter(self.doSomethingButton, events: .touchUpInside)
-            .retain()
-            .chain()
+        UIControlAdapter(self.doSomethingButton, events: .touchUpInside).retain().chain()
             .do { [weak self] _ in
                 let alert = UIAlertController(title: "Chaining Example", message: "This is wonderful", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self?.present(alert, animated: true, completion: nil)
             }
-            .end()
-            .addTo(self.pool)
+            .end().addTo(self.pool)
     }
 }

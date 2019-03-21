@@ -19,12 +19,9 @@ class RetainSenderTests: XCTestCase {
         
         var received: [Notification] = []
         
-        NotificationAdapter(name)
-            .retain()
-            .chain()
+        NotificationAdapter(name).retain().chain()
             .do { received.append($0) }
-            .end()
-            .addTo(pool)
+            .end().addTo(pool)
         
         NotificationCenter.default.post(name: name, object: nil)
         
@@ -48,8 +45,7 @@ class RetainSenderTests: XCTestCase {
             
             adapter.chain()
                 .do { received.append($0) }
-                .end()
-                .addTo(pool)
+                .end().addTo(pool)
         }
         
         NotificationCenter.default.post(name: name, object: nil)

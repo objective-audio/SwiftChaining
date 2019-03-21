@@ -45,13 +45,11 @@ extension TableNormalCell: CellDataSettable {
         normalCellData.text.chain()
             .map { String($0) }
             .sendTo(KVOAdapter(self.textLabel!, keyPath: \.text).retain())
-            .sync()
-            .addTo(self.pool)
+            .sync().addTo(self.pool)
         
         normalCellData.detailText.chain()
             .map { String($0) }
             .sendTo(KVOAdapter(self.detailTextLabel!, keyPath: \.text).retain())
-            .sync()
-            .addTo(self.pool)
+            .sync().addTo(self.pool)
     }
 }

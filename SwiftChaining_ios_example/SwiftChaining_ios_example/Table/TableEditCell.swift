@@ -36,15 +36,11 @@ extension TableEditCell: CellDataSettable {
         
         editCellData.isEditing.chain()
             .sendTo(KVOAdapter(self.editingSwitch, keyPath: \.isOn).retain())
-            .sync()
-            .addTo(self.pool)
+            .sync().addTo(self.pool)
         
-        UIControlAdapter(self.editingSwitch, events: .valueChanged)
-            .retain()
-            .chain()
+        UIControlAdapter(self.editingSwitch, events: .valueChanged).retain().chain()
             .map { $0.isOn }
             .sendTo(editCellData.isEditing)
-            .end()
-            .addTo(self.pool)
+            .end().addTo(self.pool)
     }
 }
