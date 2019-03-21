@@ -64,8 +64,8 @@ internal class CoreGlobal {
         CoreGlobal.shared.cores.removeValue(forKey: id)
     }
     
-    internal class func core<Chainer: Chainable>(for sender: Chainer) -> Core<Chainer>? {
-        return CoreGlobal.shared.cores[ObjectIdentifier(sender)]?.core as? Core<Chainer>
+    internal class func core<Chainer: Chainable>(for chainer: Chainer) -> Core<Chainer>? {
+        return CoreGlobal.shared.cores[ObjectIdentifier(chainer)]?.core as? Core<Chainer>
     }
     
     internal class func makeChain<Chainer: Chainable>(chainer: Chainer, retained: Bool) -> Chainer.FirstChain {
@@ -86,11 +86,11 @@ internal class CoreGlobal {
         return Chainer.FirstChain(joint: joint)
     }
     
-    private class func getOrCreateCore<Chainer: Chainable>(for sender: Chainer) -> Core<Chainer> {
-        if let core = self.core(for: sender) {
+    private class func getOrCreateCore<Chainer: Chainable>(for chainer: Chainer) -> Core<Chainer> {
+        if let core = self.core(for: chainer) {
             return core
         } else {
-            let id = ObjectIdentifier(sender)
+            let id = ObjectIdentifier(chainer)
             let core = Core<Chainer>(removeId: id)
             self.set(core: core, for: id)
             return core
