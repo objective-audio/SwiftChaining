@@ -14,7 +14,7 @@ class NumbersViewController: UIViewController {
     private typealias TextAdapter = KVOAdapter<UITextField, String?>
     private typealias ChangedAdapter = UIControlAdapter<UITextField>
     
-    private var observer: AnyObserver?
+    private let pool = ObserverPool()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,12 +34,9 @@ class NumbersViewController: UIViewController {
         let chain3 = makeChain(KVOAdapter(self.number3Field, keyPath: \.text),
                                UIControlAdapter(self.number3Field, events: .editingChanged))
         
-        self.observer =
-            chain1
-                .combine(chain2)
-                .combine(chain3)
-                .map { String($0.0 + $0.1 + $0.2) }
-                .sendTo(KVOAdapter(self.resultLabel, keyPath: \.text).retain())
-                .sync()
+        chain1.combine(chain2).combine(chain3)
+            .map { String($0.0 + $0.1 + $0.2) }
+            .sendTo(KVOAdapter(self.resultLabel, keyPath: \.text).retain())
+            .sync().addTo(self.pool)
     }
 }

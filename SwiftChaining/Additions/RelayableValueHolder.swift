@@ -29,7 +29,12 @@ final public class RelayableValueHolder<T: Sendable> {
     }
     
     private func relaying() {
-        self.observer = self.rawValue.chain().do { [weak self] value in self?.broadcast(value: .relayed(value)) }.end()
+        self.observer =
+            self.rawValue.chain()
+                .do { [weak self] value in
+                    self?.broadcast(value: .relayed(value))
+                }
+                .end()
     }
 }
 
@@ -63,13 +68,15 @@ extension RelayableValueHolder: Receivable {
 }
 
 extension RelayableValueHolder: Equatable where T: Equatable {
-    public static func == (lhs: RelayableValueHolder, rhs: RelayableValueHolder) -> Bool {
+    public static func == (lhs: RelayableValueHolder,
+                           rhs: RelayableValueHolder) -> Bool {
         return lhs.rawValue == rhs.rawValue
     }
 }
 
 extension RelayableValueHolder.Event: Equatable where T: Equatable, T.ChainValue: Equatable {
-    public static func == (lhs: RelayableValueHolder.Event, rhs: RelayableValueHolder.Event) -> Bool {
+    public static func == (lhs: RelayableValueHolder.Event,
+                           rhs: RelayableValueHolder.Event) -> Bool {
         switch (lhs, rhs) {
         case (.fetched(let lhsFetched), .fetched(let rhsFetched)):
             return lhsFetched == rhsFetched

@@ -25,7 +25,7 @@ extension Chain {
 }
 
 private func _merge2<Out0, Chainer0, Chainer1>(chain0: Chain<Out0, Chainer0>,
-                                             chain1: Chain<Out0, Chainer1>) -> Chain<Out0, Chainer0> {
+                                               chain1: Chain<Out0, Chainer1>) -> Chain<Out0, Chainer0> {
     guard let joint0 = chain0.pullJoint(), let joint1 = chain1.pullJoint() else {
         fatalError()
     }

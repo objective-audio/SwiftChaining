@@ -115,7 +115,8 @@ class SendToTests: XCTestCase {
     }
     
     func testSendOptionalXTo_tuple2() {
-        let sender = ValueHolder((Optional(0), Optional("1")))
+        let sender = ValueHolder((Optional(0),
+                                  Optional("1")))
         
         let receiver0 = ValueHolder(10)
         let receiver1 = ValueHolder("11")
@@ -132,7 +133,9 @@ class SendToTests: XCTestCase {
     }
     
     func testSendOptionalXTo_tuple3() {
-        let sender = ValueHolder((Optional(0), Optional("1"), Optional(2.0)))
+        let sender = ValueHolder((Optional(0),
+                                  Optional("1"),
+                                  Optional(2.0)))
         
         let receiver0 = ValueHolder(10)
         let receiver1 = ValueHolder("11")
@@ -152,7 +155,10 @@ class SendToTests: XCTestCase {
     }
     
     func testSendOptionalXTo_tuple4() {
-        let sender0 = ValueHolder((Optional(0), Optional("1"), Optional(2.0), Optional(3)))
+        let sender0 = ValueHolder((Optional(0),
+                                   Optional("1"),
+                                   Optional(2.0),
+                                   Optional(3)))
         
         let receiver0 = ValueHolder(10)
         let receiver1 = ValueHolder("11")
@@ -175,7 +181,11 @@ class SendToTests: XCTestCase {
     }
     
     func testSendOptionalXTo_tuple5() {
-        let sender = ValueHolder((Optional(0), Optional("1"), Optional(2.0), Optional(3), Optional("4")))
+        let sender = ValueHolder((Optional(0),
+                                  Optional("1"),
+                                  Optional(2.0),
+                                  Optional(3),
+                                  Optional("4")))
         
         let receiver0 = ValueHolder(10)
         let receiver1 = ValueHolder("11")

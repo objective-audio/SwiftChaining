@@ -19,7 +19,11 @@ class GuardTests: XCTestCase {
         
         var received: [Int] = []
         
-        let observer = notifier.chain().guard { return $0 > 0 }.do { received.append($0) }.end()
+        let observer =
+            notifier.chain()
+                .guard { return $0 > 0 }
+                .do { received.append($0) }
+                .end()
         
         notifier.notify(value: 0)
         
@@ -40,7 +44,11 @@ class GuardTests: XCTestCase {
         
         var received: [Int] = []
         
-        let observer = notifier.chain().guardIfEqual().do { received.append($0) }.end()
+        let observer =
+            notifier.chain()
+                .guardIfEqual()
+                .do { received.append($0) }
+                .end()
         
         notifier.notify(value: 0)
         

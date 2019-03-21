@@ -61,7 +61,9 @@ class TableViewController: UITableViewController {
                 let alert = UIAlertController(title: alertData.title,
                                               message: alertData.message,
                                               preferredStyle: .alert)
+                
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                
                 self?.present(alert, animated: true, completion: nil)
             }
             .end().addTo(self.pool)

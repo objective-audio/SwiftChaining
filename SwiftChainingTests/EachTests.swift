@@ -19,7 +19,11 @@ class EachTests: XCTestCase {
         
         var received: [Int] = []
         
-        let observer = notifier.chain().each().do { received.append($0) }.end()
+        let observer =
+            notifier.chain()
+                .each()
+                .do { received.append($0) }
+                .end()
         
         notifier.notify(value: [2, 4, 6])
         
