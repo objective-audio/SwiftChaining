@@ -19,7 +19,7 @@ public class Suspender {
         self.observer = self.holder.chain().sendTo(self.notifier).end()
     }
     
-    public func chain() -> ValueHolder<Bool>.SenderChain {
+    public func chain() -> ValueHolder<Bool>.BeginChain {
         return self.holder.chain()
     }
 }

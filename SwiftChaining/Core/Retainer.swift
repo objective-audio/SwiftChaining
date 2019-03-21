@@ -9,7 +9,7 @@ public struct Retainer<T> {
 }
 
 extension Retainer where T: Sendable {
-    public func chain() -> T.SenderChain {
+    public func chain() -> T.BeginChain {
         return self.object.chain(retained: true)
     }
 }
