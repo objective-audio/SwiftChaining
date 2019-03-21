@@ -8,7 +8,7 @@ public struct Retainer<T> {
     internal let object: T
 }
 
-extension Retainer where T: Sendable {
+extension Retainer where T: Chainable {
     public func chain() -> T.BeginChain {
         return self.object.chain(retained: true)
     }
