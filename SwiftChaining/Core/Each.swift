@@ -13,10 +13,10 @@ extension Chain where Out: Sequence {
             fatalError()
         }
         
-        let nextIndex = joint.handlerCount + 1
+        let nextIndex = joint.handlers.count + 1
         
         let handler: JointHandler<Out> = { value, joint in
-            if let nextHandler = joint.handler(at: nextIndex) as? JointHandler<EachOut> {
+            if let nextHandler = joint.handlers[nextIndex] as? JointHandler<EachOut> {
                 for element in value {
                     nextHandler(element, joint)
                 }

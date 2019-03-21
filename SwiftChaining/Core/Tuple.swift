@@ -30,7 +30,7 @@ extension Chain {
             fatalError()
         }
         
-        let nextIndex = joint0.handlerCount + 1
+        let nextIndex = joint0.handlers.count + 1
         
         let handler1: JointHandler<Out1> = { [weak joint0] value, _ in
             if let joint0 = joint0 {
@@ -43,7 +43,7 @@ extension Chain {
         joint1.appendHandler(handler1)
         
         let handler0: JointHandler<Out> = { value, joint in
-            if let nextHandler = joint.handler(at: nextIndex) as? JointHandler<(Out?, Out1?)> {
+            if let nextHandler = joint.handlers[nextIndex] as? JointHandler<(Out?, Out1?)> {
                 nextHandler((value, nil), joint)
             }
         }
@@ -59,10 +59,10 @@ extension Chain {
             fatalError()
         }
         
-        let nextIndex = joint1.handlerCount + 1
+        let nextIndex = joint1.handlers.count + 1
         
         let newHandler1: JointHandler<Out1> = { value, joint in
-            if let nextHandler = joint.handler(at: nextIndex) as? JointHandler<(Out?, Out1?)> {
+            if let nextHandler = joint.handlers[nextIndex] as? JointHandler<(Out?, Out1?)> {
                 nextHandler((nil, value), joint)
             }
         }

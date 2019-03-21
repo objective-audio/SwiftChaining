@@ -12,14 +12,14 @@ extension Chain {
             fatalError()
         }
         
-        let nextIndex = joint.handlerCount + 1
+        let nextIndex = joint.handlers.count + 1
         
         let guardHandler: JointHandler<Out> = { value, joint in
             guard isIncluded(value) else {
                 return
             }
             
-            if let nextHandler = joint.handler(at: nextIndex) as? JointHandler<Out> {
+            if let nextHandler = joint.handlers[nextIndex] as? JointHandler<Out> {
                 nextHandler(value, joint)
             }
         }

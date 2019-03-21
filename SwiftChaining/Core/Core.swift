@@ -76,7 +76,7 @@ internal class CoreGlobal {
         let joint = core.addJoint(chainer: chainer)
         
         let handler0: JointHandler<Chainer.ChainValue> = { value, joint in
-            if let nextHandler = joint.handler(at: 1) as? JointHandler<Chainer.ChainValue> {
+            if let nextHandler = joint.handlers[1] as? JointHandler<Chainer.ChainValue> {
                 nextHandler(value, joint)
             }
         }
