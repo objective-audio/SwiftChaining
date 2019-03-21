@@ -34,7 +34,7 @@
 		B6FABC4D21F4BDB70045872A /* End.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3421F4BDB70045872A /* End.swift */; };
 		B6FABC4E21F4BDB70045872A /* ForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3521F4BDB70045872A /* ForEach.swift */; };
 		B6FABC4F21F4BDB70045872A /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3621F4BDB70045872A /* Weak.swift */; };
-		B6FABD0621F60A120045872A /* SenderCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABD0521F60A120045872A /* SenderCore.swift */; };
+		B6FABD0621F60A120045872A /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABD0521F60A120045872A /* Core.swift */; };
 		B6FABD0721F74B310045872A /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3C21F4BDB70045872A /* Notifier.swift */; };
 		B6FABD0B21F74E1D0045872A /* ValueHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3821F4BDB70045872A /* ValueHolder.swift */; };
 		B6FABD1221F751F40045872A /* NotificationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FABC3F21F4BDB70045872A /* NotificationAdapter.swift */; };
@@ -81,7 +81,7 @@
 		B6FABC3E21F4BDB70045872A /* UIControlAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIControlAdapter.swift; sourceTree = "<group>"; };
 		B6FABC3F21F4BDB70045872A /* NotificationAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationAdapter.swift; sourceTree = "<group>"; };
 		B6FABC4021F4BDB70045872A /* KVOAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOAdapter.swift; sourceTree = "<group>"; };
-		B6FABD0521F60A120045872A /* SenderCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderCore.swift; sourceTree = "<group>"; };
+		B6FABD0521F60A120045872A /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +141,7 @@
 				B6FABC2E21F4BDB70045872A /* Receivable.swift */,
 				B6B8BB70223CB5C800DE6734 /* Retainer.swift */,
 				B6FABC3321F4BDB70045872A /* Sendable.swift */,
-				B6FABD0521F60A120045872A /* SenderCore.swift */,
+				B6FABD0521F60A120045872A /* Core.swift */,
 				B6B09C96220B28BB00B483BC /* SendTo.swift */,
 				1A4163D0220C380600AEE119 /* Suspender.swift */,
 				B6B09C98220B292F00B483BC /* Tuple.swift */,
@@ -264,7 +264,7 @@
 				B6FABC4F21F4BDB70045872A /* Weak.swift in Sources */,
 				B6FABC4821F4BDB70045872A /* Fetchable.swift in Sources */,
 				B6FABD1621F7529A0045872A /* UIControlAdapter.swift in Sources */,
-				B6FABD0621F60A120045872A /* SenderCore.swift in Sources */,
+				B6FABD0621F60A120045872A /* Core.swift in Sources */,
 				B6B09C97220B28BB00B483BC /* SendTo.swift in Sources */,
 				B634EFB421F9EB3100D61E3F /* RelayableValueHolder.swift in Sources */,
 				B6FABC4121F4BDB70045872A /* Do.swift in Sources */,

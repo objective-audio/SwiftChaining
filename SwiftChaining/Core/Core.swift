@@ -1,5 +1,5 @@
 //
-//  SenderCore.swift
+//  Core.swift
 //
 
 import Foundation
@@ -7,7 +7,7 @@ import Foundation
 public protocol AnyCore: class {
 }
 
-public class SenderCore<T: Sendable>: AnyCore {
+public class Core<T: Sendable>: AnyCore {
     private var joints: [Weak<Joint<T>>] = []
     private let removeId: ObjectIdentifier
     
@@ -64,16 +64,16 @@ internal class CoreGlobal {
         CoreGlobal.shared.cores.removeValue(forKey: id)
     }
     
-    internal class func core<Sender: Sendable>(for sender: Sender) -> SenderCore<Sender>? {
-        return CoreGlobal.shared.cores[ObjectIdentifier(sender)]?.core as? SenderCore<Sender>
+    internal class func core<Sender: Sendable>(for sender: Sender) -> Core<Sender>? {
+        return CoreGlobal.shared.cores[ObjectIdentifier(sender)]?.core as? Core<Sender>
     }
     
-    internal class func getOrCreateCore<Sender: Sendable>(for sender: Sender) -> SenderCore<Sender> {
+    internal class func getOrCreateCore<Sender: Sendable>(for sender: Sender) -> Core<Sender> {
         if let core = self.core(for: sender) {
             return core
         } else {
             let id = ObjectIdentifier(sender)
-            let core = SenderCore<Sender>(removeId: id)
+            let core = Core<Sender>(removeId: id)
             self.set(core: core, for: id)
             return core
         }
