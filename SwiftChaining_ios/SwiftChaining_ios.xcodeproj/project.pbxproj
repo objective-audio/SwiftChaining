@@ -147,9 +147,9 @@
 				B6FABC2E21F4BDB70045872A /* Receivable.swift */,
 				B6B8BB70223CB5C800DE6734 /* Retainer.swift */,
 				B6FABC3321F4BDB70045872A /* Sendable.swift */,
-				B6E070182243177A006EBC4F /* Syncable.swift */,
 				B6B09C96220B28BB00B483BC /* SendTo.swift */,
 				1A4163D0220C380600AEE119 /* Suspender.swift */,
+				B6E070182243177A006EBC4F /* Syncable.swift */,
 				B6B09C98220B292F00B483BC /* Tuple.swift */,
 				B6FABC3621F4BDB70045872A /* Weak.swift */,
 			);
