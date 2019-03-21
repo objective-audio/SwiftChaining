@@ -49,8 +49,7 @@ extension Chain {
         }
         
         joint0.appendHandler(handler0)
-        
-        joint0.subJoints.append(joint1)
+        joint0.appendSubJoint(joint1)
         
         return Chain<(Out?, Out1?), Sender>(joint: joint0)
     }
@@ -77,8 +76,7 @@ extension Chain {
         }
         
         joint0.appendHandler(newHandler0)
-        
-        joint1.subJoints.append(joint0)
+        joint1.appendSubJoint(joint0)
         
         return Chain<(Out?, Out1?), Sender1>(joint: joint1)
     }

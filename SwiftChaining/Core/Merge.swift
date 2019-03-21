@@ -47,8 +47,7 @@ private func _merge2<Out0, Sender0, Sender1>(chain0: Chain<Out0, Sender0>,
     }
     
     joint0.appendHandler(handler0)
-    
-    joint0.subJoints.append(joint1)
+    joint0.appendSubJoint(joint1)
     
     return Chain<Out0, Sender0>(joint: joint0)
 }
