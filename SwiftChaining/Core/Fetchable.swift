@@ -4,9 +4,9 @@
 
 import Foundation
 
-public protocol Fetchable: Sendable {
+public protocol Fetchable: Chainable {
     func canFetch() -> Bool
-    func fetchedValue() -> SendValue
+    func fetchedValue() -> ChainValue
 }
 
 extension Fetchable {

@@ -6,7 +6,7 @@ import Foundation
 
 extension Chain where Out: Sequence {
     public typealias ForEachOut = Out.Element
-    public typealias ForEachChain = Chain<ForEachOut, Sender>
+    public typealias ForEachChain = Chain<ForEachOut, Chainer>
     
     public func forEach() -> ForEachChain {
         guard let joint = self.pullJoint() else {

@@ -24,8 +24,8 @@ final public class Fetcher<T> {
     }
 }
 
-extension Fetcher: Fetchable {
-    public typealias SendValue = T
+extension Fetcher: Syncable {
+    public typealias ChainValue = T
     
     public func canFetch() -> Bool {
         return self.canFetchHandler()

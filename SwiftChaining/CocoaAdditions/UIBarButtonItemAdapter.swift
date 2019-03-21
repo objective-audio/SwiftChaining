@@ -30,13 +30,13 @@ final public class UIBarButtonItemAdapter: NSObject {
         self.item = nil
     }
     
-    @objc private func notify(_ sender: UIBarButtonItem) {
-        self.broadcast(value: sender)
+    @objc private func notify(_ chainer: UIBarButtonItem) {
+        self.broadcast(value: chainer)
     }
 }
 
 extension UIBarButtonItemAdapter: Sendable {
-    public typealias SendValue = UIBarButtonItem
+    public typealias ChainValue = UIBarButtonItem
 }
 
 #endif

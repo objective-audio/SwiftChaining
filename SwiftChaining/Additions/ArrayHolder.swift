@@ -147,8 +147,8 @@ extension ArrayHolder: ArrayWritable {
     }
 }
 
-extension ArrayHolder: Fetchable {
-    public typealias SendValue = Event
+extension ArrayHolder: Syncable {
+    public typealias ChainValue = Event
     
     public func fetchedValue() -> Event {
         return .fetched(self.raw)

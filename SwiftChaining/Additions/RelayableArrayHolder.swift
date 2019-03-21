@@ -16,7 +16,7 @@ final public class RelayableArrayHolder<Element: Sendable> {
         case removed(at: Int, element: Element)
         case replaced(at: Int, element: Element)
         case moved(at: Int, to: Int, element: Element)
-        case relayed(Element.SendValue, at: Int, element: Element)
+        case relayed(Element.ChainValue, at: Int, element: Element)
     }
     
     private class ObserverWrapper {
@@ -148,8 +148,8 @@ extension RelayableArrayHolder: ArrayWritable {
     }
 }
 
-extension RelayableArrayHolder: Fetchable {
-    public typealias SendValue = Event
+extension RelayableArrayHolder: Syncable {
+    public typealias ChainValue = Event
     
     public func fetchedValue() -> Event {
         return .fetched(self.raw)

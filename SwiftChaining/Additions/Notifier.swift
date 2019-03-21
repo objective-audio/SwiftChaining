@@ -13,7 +13,7 @@ final public class Notifier<T> {
 }
 
 extension Notifier: Sendable {
-    public typealias SendValue = T
+    public typealias ChainValue = T
     
     public func notify(value: T) {
         self.lockedSend(value: value)

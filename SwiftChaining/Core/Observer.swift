@@ -8,10 +8,10 @@ public protocol AnyObserver: class {
     func invalidate()
 }
 
-public class Observer<Sender: Sendable> {
-    private let joint: Joint<Sender>
+public class Observer<Chainer: Chainable> {
+    private let joint: Joint<Chainer>
     
-    internal init(joint: Joint<Sender>) {
+    internal init(joint: Joint<Chainer>) {
         self.joint = joint
     }
     
@@ -31,7 +31,7 @@ public class Observer<Sender: Sendable> {
 extension Observer: AnyObserver {
 }
 
-extension Observer where Sender: Fetchable {
+extension Observer where Chainer: Fetchable {
     internal func fetch() {
         self.joint.fetch()
     }

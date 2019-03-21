@@ -4,28 +4,28 @@
 
 import Foundation
 
-extension Chain where Sender: Fetchable {
-    public func tuple<Out1, Sender1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(Out?, Out1?), Sender> where Sender1: Fetchable {
+extension Chain where Chainer: Fetchable {
+    public func tuple<Out1, Chainer1>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(Out?, Out1?), Chainer> where Chainer1: Fetchable {
         return self.tuple0(chain1)
     }
     
-    public func tuple<Out1, Sender1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(Out?, Out1?), Sender> {
+    public func tuple<Out1, Chainer1>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(Out?, Out1?), Chainer> {
         return self.tuple0(chain1)
     }
 }
 
 extension Chain {
-    public func tuple<Out1, Sender1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(Out?, Out1?), Sender1> where Sender1: Fetchable {
+    public func tuple<Out1, Chainer1>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(Out?, Out1?), Chainer1> where Chainer1: Fetchable {
         return self.tuple1(chain1)
     }
     
-    public func tuple<Out1, Sender1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(Out?, Out1?), Sender> {
+    public func tuple<Out1, Chainer1>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(Out?, Out1?), Chainer> {
         return self.tuple0(chain1)
     }
 }
 
 extension Chain {
-    private func tuple0<Out1, Sender1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(Out?, Out1?), Sender> {
+    private func tuple0<Out1, Chainer1>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(Out?, Out1?), Chainer> {
         guard let joint0 = self.pullJoint(), let joint1 = chain1.pullJoint() else {
             fatalError()
         }
@@ -51,10 +51,10 @@ extension Chain {
         joint0.appendHandler(handler0)
         joint0.appendSubJoint(joint1)
         
-        return Chain<(Out?, Out1?), Sender>(joint: joint0)
+        return Chain<(Out?, Out1?), Chainer>(joint: joint0)
     }
     
-    private func tuple1<Out1, Sender1>(_ chain1: Chain<Out1, Sender1>) -> Chain<(Out?, Out1?), Sender1> {
+    private func tuple1<Out1, Chainer1>(_ chain1: Chain<Out1, Chainer1>) -> Chain<(Out?, Out1?), Chainer1> {
         guard let joint0 = self.pullJoint(), let joint1 = chain1.pullJoint() else {
             fatalError()
         }
@@ -78,6 +78,6 @@ extension Chain {
         joint0.appendHandler(newHandler0)
         joint1.appendSubJoint(joint0)
         
-        return Chain<(Out?, Out1?), Sender1>(joint: joint1)
+        return Chain<(Out?, Out1?), Chainer1>(joint: joint1)
     }
 }

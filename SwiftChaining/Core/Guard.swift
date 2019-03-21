@@ -5,7 +5,7 @@
 import Foundation
 
 extension Chain {
-    public typealias GuardChain = Chain<Out, Sender>
+    public typealias GuardChain = Chain<Out, Chainer>
     
     public func `guard`(_ isIncluded: @escaping (Out) -> Bool) -> GuardChain {
         guard let joint = self.pullJoint() else {

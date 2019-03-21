@@ -58,14 +58,14 @@ public final class PropertyAdapter<Root: AnyObject, T>: AnyPropertyAdapter {
     }
 }
 
-extension PropertyAdapter: Fetchable {
-    public typealias SendValue = T
+extension PropertyAdapter: Syncable {
+    public typealias ChainValue = T
     
     public func canFetch() -> Bool {
         return self.target != nil
     }
     
-    public func fetchedValue() -> PropertyAdapter<Root, T>.SendValue {
+    public func fetchedValue() -> PropertyAdapter<Root, T>.ChainValue {
         return self.value
     }
 }

@@ -1,13 +1,13 @@
 //
-//  SenderCore.swift
+//  Core.swift
 //
 
 import Foundation
 
-public protocol AnySenderCore: class {
+public protocol AnyCore: class {
 }
 
-public class SenderCore<T: Sendable>: AnySenderCore {
+public class Core<T: Chainable>: AnyCore {
     private var joints: [Weak<Joint<T>>] = []
     private let removeId: ObjectIdentifier
     
@@ -19,13 +19,13 @@ public class SenderCore<T: Sendable>: AnySenderCore {
         CoreGlobal.removeCore(for: self.removeId)
     }
     
-    internal func broadcast(value: T.SendValue) {
+    internal func broadcast(value: T.ChainValue) {
         for joint in self.joints {
             joint.value?.call(first: value)
         }
     }
     
-    internal func send(value: T.SendValue, to target: JointClass) {
+    internal func send(value: T.ChainValue, to target: JointClass) {
         let targetId = ObjectIdentifier(target)
         for joint in self.joints {
             if joint.id == targetId {
@@ -35,8 +35,8 @@ public class SenderCore<T: Sendable>: AnySenderCore {
         }
     }
     
-    internal func addJoint(sender: Reference<T>) -> Joint<T> {
-        let joint = Joint(sender: sender, core: self)
+    internal func addJoint(chainer: Reference<T>) -> Joint<T> {
+        let joint = Joint(chainer: chainer, core: self)
         self.joints.append(Weak(joint))
         return joint
     }
@@ -51,12 +51,12 @@ internal class CoreGlobal {
     private static let shared = CoreGlobal()
     
     private struct CoreWrapper {
-        weak var core: AnySenderCore?
+        weak var core: AnyCore?
     }
     
     private var cores: [ObjectIdentifier: CoreWrapper] = [:]
     
-    internal class func set(core: AnySenderCore, for id: ObjectIdentifier) {
+    internal class func set(core: AnyCore, for id: ObjectIdentifier) {
         CoreGlobal.shared.cores[id] = CoreWrapper(core: core)
     }
     
@@ -64,16 +64,16 @@ internal class CoreGlobal {
         CoreGlobal.shared.cores.removeValue(forKey: id)
     }
     
-    internal class func core<Sender: Sendable>(for sender: Sender) -> SenderCore<Sender>? {
-        return CoreGlobal.shared.cores[ObjectIdentifier(sender)]?.core as? SenderCore<Sender>
+    internal class func core<Chainer: Chainable>(for sender: Chainer) -> Core<Chainer>? {
+        return CoreGlobal.shared.cores[ObjectIdentifier(sender)]?.core as? Core<Chainer>
     }
     
-    internal class func getOrCreateCore<Sender: Sendable>(for sender: Sender) -> SenderCore<Sender> {
+    internal class func getOrCreateCore<Chainer: Chainable>(for sender: Chainer) -> Core<Chainer> {
         if let core = self.core(for: sender) {
             return core
         } else {
             let id = ObjectIdentifier(sender)
-            let core = SenderCore<Sender>(removeId: id)
+            let core = Core<Chainer>(removeId: id)
             self.set(core: core, for: id)
             return core
         }

@@ -14,25 +14,25 @@ internal protocol AnyJoint: JointClass {
 
 internal typealias JointHandler<T> = (T, AnyJoint) -> Void
 
-internal class Joint<Sender: Sendable> {
-    internal typealias Value = Sender.SendValue
+internal class Joint<Chainer: Chainable> {
+    internal typealias Value = Chainer.ChainValue
     
-    internal var sender: Sender? { return self.senderReference?.value }
-    internal private(set) var senderReference: Reference<Sender>?
+    internal var chainer: Chainer? { return self.chainerRef?.value }
+    private var chainerRef: Reference<Chainer>?
     private var handlers: [Any] = []
     internal var handlerCount: Int { return self.handlers.count }
     private var subJoints: [AnyJoint] = []
-    private var core: AnySenderCore?
+    private var core: AnyCore?
     private let lock = NSLock()
     
-    internal init(sender: Reference<Sender>, core: AnySenderCore) {
-        self.senderReference = sender
+    internal init(chainer: Reference<Chainer>, core: AnyCore) {
+        self.chainerRef = chainer
         self.core = core
     }
     
     deinit {
-        if let sender = self.sender {
-            CoreGlobal.core(for: sender)?.remove(joint: self)
+        if let chainer = self.chainer {
+            CoreGlobal.core(for: chainer)?.remove(joint: self)
         }
     }
     
@@ -60,7 +60,7 @@ internal class Joint<Sender: Sendable> {
 
 extension Joint: AnyJoint {
     internal func fetch() {
-        self.sender?.fetch(for: self)
+        self.chainer?.fetch(for: self)
         
         for subJoint in self.subJoints {
             subJoint.fetch()
@@ -72,11 +72,11 @@ extension Joint: AnyJoint {
             subJoint.invalidate()
         }
         
-        if let sender = self.sender {
-            CoreGlobal.core(for: sender)?.remove(joint: self)
+        if let chainer = self.chainer {
+            CoreGlobal.core(for: chainer)?.remove(joint: self)
         }
         
-        self.senderReference = nil
+        self.chainerRef = nil
         self.core = nil
         self.handlers = []
         self.subJoints = []

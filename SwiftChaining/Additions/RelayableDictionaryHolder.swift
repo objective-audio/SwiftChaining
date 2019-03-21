@@ -15,7 +15,7 @@ final public class RelayableDictionaryHolder<Key: Hashable, Value: Sendable> {
         case inserted(key: Key, value: Value)
         case removed(key: Key, value: Value)
         case replaced(key: Key, value: Value)
-        case relayed(Value.SendValue, key: Key, value: Value)
+        case relayed(Value.ChainValue, key: Key, value: Value)
     }
     
     private struct ObserverWrapper {
@@ -140,8 +140,8 @@ final public class RelayableDictionaryHolder<Key: Hashable, Value: Sendable> {
 
 extension RelayableDictionaryHolder: DictionaryReadable {}
 
-extension RelayableDictionaryHolder: Fetchable {
-    public typealias SendValue = Event
+extension RelayableDictionaryHolder: Syncable {
+    public typealias ChainValue = Event
     
     public func fetchedValue() -> Event {
         return .fetched(self.raw)

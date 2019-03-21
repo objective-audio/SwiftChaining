@@ -31,16 +31,26 @@ import Chaining
 
 ## Protocols
 
+### Chainable
+```swift
+public protocol Chainable: class {
+    associatedtype ChainValue
+    typealias BeginChain = Chain<ChainValue, Self>
+}
+
+extension Chainable {
+    public func retain() -> Retainer<Self> { ... }
+    public func chain() -> BeginChain { ... }
+}
+```
+
 ### Sendable
 ```swift
-public protocol Sendable: AnySendable {
-    associatedtype SendValue
-    typealias SenderChain = Chain<SendValue, SendValue, Self>
+public protocol Sendable: Chainable {
 }
 
 extension Sendable {
-    public func broadcast(value: SendValue) { ... }
-    public func chain() -> SenderChain { ... }
+    public func broadcast(value: ChainValue) { ... }
 }
 ```
 ```swift
@@ -57,10 +67,10 @@ let observer = sender.chain().do { print($0) }.end()
 // broadcastで値を送信する
 sender.broadcast(value: 1)
 ```
-### Fetchable: Sendable
+### Fetchable
 ```swift
-public protocol Fetchable: Sendable {
-    func fetchedValue() -> SendValue
+public protocol Fetchable: Chainable {
+    func fetchedValue() -> ChainValue
     func canFetch() -> Bool
 }
 
@@ -85,10 +95,12 @@ let fetcher = MyFetcher()
 
 // sync()でfetchedValue()の値を取得し送信する
 let observer = fetcher.chain().do { print($0) }.sync()
-
-// broadcastで値を送信する
-sender.broadcast(value: 2)
 ```
+### Syncable
+```swift
+public typealias Syncable = Fetchable & Sendable
+```
+
 ### Receivable
 ```swift
 public typealias Receivable = ValueReceivable & ReceiveReferencable
@@ -163,7 +175,7 @@ let observer = notifier.chain().do { print($0) }.end()
 // notify(value:)で値を送信
 notifier.notify(value: 1)
 ```
-### Fetcher: Fetchable, Receivable
+### Fetcher: Syncable, Receivable
 ```swift
 // 送信する値をクロージャで返す
 let fetcher = Fetcher { 1 }
@@ -174,7 +186,7 @@ let observer = fetcher.chain().do { print($0) }.sync()
 // 強制的に送信
 fetcher.broadcast()
 ```
-### ValueHolder: Fetchable, Receivable
+### ValueHolder: Syncable, Receivable
 ```swift
 let holder = ValueHolder(0)
 
@@ -203,7 +215,7 @@ observerPool.invalidate()
 // 送信されない
 notifier.notify(value: 2)
 ```
-### ArrayHolder: Fetchable
+### ArrayHolder: Syncable
 ```swift
 let holder = ArrayHolder([0, 1, 2])
 
@@ -261,7 +273,7 @@ let observer = adapter.chain().do { print($0) }.end()
 
 object.post()
 ```
-### KVOAdapter: Fetchable
+### KVOAdapter: Syncable
 ```swift
 class MyObject: NSObject {
     @objc dynamic var value: Int = 0

@@ -4,16 +4,16 @@
 
 import Foundation
 
-final public class Chain<Out, Sender: Sendable> {
-    private var joint: Joint<Sender>?
+final public class Chain<Out, Chainer: Chainable> {
+    private var joint: Joint<Chainer>?
     
-    internal init(joint: Joint<Sender>) {
-        precondition(joint.sender != nil, "Sender must be retained while chaining.")
+    internal init(joint: Joint<Chainer>) {
+        precondition(joint.chainer != nil, "Chainer must be retained while chaining.")
         
         self.joint = joint
     }
     
-    internal func pullJoint() -> Joint<Sender>? {
+    internal func pullJoint() -> Joint<Chainer>? {
         defer { self.joint = nil }
         return self.joint
     }

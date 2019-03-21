@@ -32,8 +32,8 @@ final class TableSection {
     }
 }
 
-extension TableSection: Fetchable {
-    typealias SendValue = Event
+extension TableSection: Syncable {
+    typealias ChainValue = Event
     
     func fetchedValue() -> Event {
         return .all(self.rows.raw, self.title.value)
