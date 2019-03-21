@@ -72,8 +72,8 @@ extension Joint: AnyJoint {
             subJoint.invalidate()
         }
         
-        if let sender = self.chainer {
-            CoreGlobal.core(for: sender)?.remove(joint: self)
+        if let chainer = self.chainer {
+            CoreGlobal.core(for: chainer)?.remove(joint: self)
         }
         
         self.chainerRef = nil
