@@ -49,7 +49,8 @@ extension ValueHolder: Receivable {
 }
 
 extension ValueHolder: Equatable where T: Equatable {
-    public static func == (lhs: ValueHolder, rhs: ValueHolder) -> Bool {
+    public static func == (lhs: ValueHolder,
+                           rhs: ValueHolder) -> Bool {
         return lhs.raw == rhs.raw
     }
 }
