@@ -23,4 +23,8 @@ Pod::Spec.new do |s|
 
   s.swift_version = '4.2'
 
+  s.subspec 'Core' do |core|
+    core.source_files = 'SwiftChaining/Core/*'
+  end
+
 end
