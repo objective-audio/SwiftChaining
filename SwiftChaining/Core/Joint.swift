@@ -23,7 +23,7 @@ internal class Joint<Chainer: Chainable> {
     internal private(set) var handlers: [Any] = []
     private var subJoints: [AnyJoint] = []
     private var core: AnyCore?
-    internal var references: [AnyReference] = []
+    private var references: [AnyReference] = []
     private let lock = NSLock()
     
     internal init(chainer: Reference<Chainer>, core: AnyCore) {
@@ -56,6 +56,10 @@ internal class Joint<Chainer: Chainable> {
             }
             self.lock.unlock()
         }
+    }
+    
+    internal func appendReference(_ reference: AnyReference) {
+        self.references.append(reference)
     }
     
     internal func checkAllReferencesRetained() -> Bool {

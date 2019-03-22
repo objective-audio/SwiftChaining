@@ -315,7 +315,7 @@ extension Chain {
         let nextIndex = joint.handlers.count + 1
         
         let reference = receiver.reference()
-        joint.references.append(reference)
+        joint.appendReference(reference)
         
         let handler: JointHandler<Out> = { value, joint in
             sendToHandler(reference, value)
