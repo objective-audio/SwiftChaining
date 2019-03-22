@@ -4,6 +4,10 @@
 
 import Foundation
 
+public protocol AnyReference {
+    var hasValue: Bool { get }
+}
+
 public enum Reference<T: AnyObject> {
     case strong(_: T)
     case weak(_: Weak<T>)
@@ -15,6 +19,12 @@ public enum Reference<T: AnyObject> {
         case .weak(let weak):
             return weak.value
         }
+    }
+}
+
+extension Reference: AnyReference {
+    public var hasValue: Bool {
+        return self.value != nil
     }
 }
 
