@@ -12,7 +12,7 @@ public class Observer<Chainer: Chainable> {
     private let joint: Joint<Chainer>
     
     internal init(joint: Joint<Chainer>) {
-        precondition(joint.checkAllReferencesRetained())
+        precondition(joint.checkAllReferencesRetained(), "Chainer must be retained while chaining.")
         
         self.joint = joint
     }
