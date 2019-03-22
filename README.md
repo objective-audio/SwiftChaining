@@ -84,7 +84,7 @@ extension Fetchable {
 class MyFetcher: Fetchable {
     // 送信する値の型を指定する
     typealias SendValue = Int
-    
+
     // 送信する値を返す
     func fetchedValue() -> SendValue {
         return 1
@@ -107,7 +107,7 @@ public typealias Receivable = ValueReceivable & ReceiveReferencable
 
 public protocol ValueReceivable: class {
     associatedtype ReceiveValue
-    
+
     func receive(value: ReceiveValue)
 }
 ```
@@ -115,7 +115,7 @@ public protocol ValueReceivable: class {
 class MyReceiver: Receivable {
     // 受信する型を指定する
     typealias ReceiveValue = Int
-    
+
     // 受信した時の処理
     func receive(value: Int) {
         print(value)
@@ -157,7 +157,7 @@ let holder = ValueHolder("initial")
 do {
     // syncを呼ぶと処理の流れが確定しobserverが返る
     let observer: AnyObserver = holder.chain().do { print($0) }.sync()
-    
+
     // 送信される
     holder.value = "send"
 }
@@ -259,7 +259,7 @@ holder.replace([0, 1])
 ```swift
 class MyNotifier {
     static let name = Notification.Name("TestName")
-    
+
     func post() {
         NotificationCenter.default.post(name: MyNotifier.name, object: self)
     }
@@ -300,14 +300,31 @@ class MyViewController: UIViewController {
     @IBOutlet weak var button: UIButton!
     lazy var adapter = { UIControlAdapter(button, events: .touchUpInside) }()
     var observer: AnyObserver?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // ボタンをタップすると送信される
         self.observer = self.adapter.chain().do { print($0) }.end()
     }
 }
+```
+### Retainer
+```swift
+// retain()を呼ぶことでAdapterがObserverに保持される
+let observer = NotificationAdapter(name)
+    .retain()
+    .chain()
+    .do { ... }
+    .end()
+```
+```swift
+let holder = ValueHolder(0)
+
+// retain()を呼ぶことでholderがObserverに保持される
+let observer = holder.chain()
+    .sendTo(holder.retain())
+    .end()
 ```
 ## Chain Methods
 ### do
