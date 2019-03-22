@@ -10,6 +10,7 @@ internal protocol AnyJoint: JointClass {
     var handlers: [Any] { get }
     func fetch()
     func invalidate()
+    func checkAllReferencesRetained() -> Bool
 }
 
 internal typealias JointHandler<T> = (T, AnyJoint) -> Void
@@ -22,6 +23,7 @@ internal class Joint<Chainer: Chainable> {
     internal private(set) var handlers: [Any] = []
     private var subJoints: [AnyJoint] = []
     private var core: AnyCore?
+    internal var references: [AnyReference] = []
     private let lock = NSLock()
     
     internal init(chainer: Reference<Chainer>, core: AnyCore) {
@@ -54,6 +56,16 @@ internal class Joint<Chainer: Chainable> {
             }
             self.lock.unlock()
         }
+    }
+    
+    internal func checkAllReferencesRetained() -> Bool {
+        defer {
+            self.references = []
+        }
+        guard self.references.allSatisfy({ $0.hasValue }) else {
+            return false
+        }
+        return self.subJoints.allSatisfy { $0.checkAllReferencesRetained() }
     }
 }
 
