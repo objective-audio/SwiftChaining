@@ -12,6 +12,7 @@
 		B634EFB621F9ECFA00D61E3F /* RelayableValueHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634EFB521F9ECFA00D61E3F /* RelayableValueHolderTests.swift */; };
 		B6517EFE220EC56C0082F37F /* PropertyAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6517EFD220EC56C0082F37F /* PropertyAdapterTests.swift */; };
 		B65C1E4C2220E92D002EAC54 /* MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65C1E4B2220E92D002EAC54 /* MapTests.swift */; };
+		B672117E2247155200931F47 /* WeakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B672117D2247155200931F47 /* WeakTests.swift */; };
 		B6B09CA3220C556B00B483BC /* SuspenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CA2220C556B00B483BC /* SuspenderTests.swift */; };
 		B6B09CB0220DD4D100B483BC /* SendToTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CAF220DD4D100B483BC /* SendToTests.swift */; };
 		B6B09CB82210387900B483BC /* PropertyAdapterCommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09CB72210387900B483BC /* PropertyAdapterCommonTests.swift */; };
@@ -43,6 +44,7 @@
 		B634EFB521F9ECFA00D61E3F /* RelayableValueHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableValueHolderTests.swift; sourceTree = "<group>"; };
 		B6517EFD220EC56C0082F37F /* PropertyAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyAdapterTests.swift; sourceTree = "<group>"; };
 		B65C1E4B2220E92D002EAC54 /* MapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTests.swift; sourceTree = "<group>"; };
+		B672117D2247155200931F47 /* WeakTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakTests.swift; sourceTree = "<group>"; };
 		B6B09CA2220C556B00B483BC /* SuspenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuspenderTests.swift; sourceTree = "<group>"; };
 		B6B09CAF220DD4D100B483BC /* SendToTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendToTests.swift; sourceTree = "<group>"; };
 		B6B09CB72210387900B483BC /* PropertyAdapterCommonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyAdapterCommonTests.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				B6FABC7B21F4BE630045872A /* ToTests.swift */,
 				B6FABC8421F4BE630045872A /* TupleTests.swift */,
 				B6FABC7821F4BE630045872A /* ValueHolderTests.swift */,
+				B672117D2247155200931F47 /* WeakTests.swift */,
 			);
 			name = SwiftChainingTests;
 			path = ../../SwiftChainingTests;
@@ -228,6 +231,7 @@
 				B6D4C62621FC2EC0004A95A8 /* RelayableArrayHolderTests.swift in Sources */,
 				B6FABD0F21F751A90045872A /* MergeTests.swift in Sources */,
 				B634EFB621F9ECFA00D61E3F /* RelayableValueHolderTests.swift in Sources */,
+				B672117E2247155200931F47 /* WeakTests.swift in Sources */,
 				B6FABD1F21F755110045872A /* FetchableTests.swift in Sources */,
 				B6B09CB82210387900B483BC /* PropertyAdapterCommonTests.swift in Sources */,
 				B6FABD1121F751DE0045872A /* CombineTests.swift in Sources */,
