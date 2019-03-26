@@ -5,6 +5,20 @@
 import Foundation
 
 final public class KVOAdapter<Root: NSObject, T> {
+    public enum Default {
+        case value(T)
+        case none
+        
+        public var hasValue: Bool {
+            switch self {
+            case .value:
+                return true
+            case .none:
+                return false
+            }
+        }
+    }
+    
     private enum Kind {
         case typed(ReferenceWritableKeyPath<Root, T>, NSKeyValueObservation)
         case untyped(String, KVOAdapterUntypedObserver)
@@ -13,15 +27,13 @@ final public class KVOAdapter<Root: NSObject, T> {
     
     private weak var target: Root?
     private var kind: Kind = .invalid
+    private let `default`: Default
     
     public var value: T {
         get {
-            switch self.kind {
-            case .typed(let keyPath, _):
-                return self.target![keyPath: keyPath]
-            case .untyped(let keyPath, _):
-                return self.target!.value(forKeyPath: keyPath) as! T
-            case .invalid:
+            if let safeValue = self.safeValue {
+                return safeValue
+            } else {
                 fatalError()
             }
         }
@@ -51,13 +63,16 @@ final public class KVOAdapter<Root: NSObject, T> {
         }
     }
     
-    public init(_ target: Root, keyPath: ReferenceWritableKeyPath<Root, T>) {
+    public init(_ target: Root, keyPath: ReferenceWritableKeyPath<Root, T>, `default` def: Default = .none) {
         self.target = target
+        self.default = def
         
         let observation =
             target.observe(keyPath,
                            options: [.new]) { [unowned self] (root, change) in
                             if let value = change.newValue {
+                                self.broadcast(value: value)
+                            } else if case .value(let value) = self.default {
                                 self.broadcast(value: value)
                             }
         }
@@ -65,11 +80,14 @@ final public class KVOAdapter<Root: NSObject, T> {
         self.kind = .typed(keyPath, observation)
     }
     
-    public init(_ target: Root, keyPath: String) {
+    public init(_ target: Root, keyPath: String, `default` def: Default = .none) {
         self.target = target
+        self.default = def
         
         let observer = KVOAdapterUntypedObserver(keyPath: keyPath) { [unowned self] newValue in
             if let value = newValue as? T {
+                self.broadcast(value: value)
+            } else if case .value(let value) = self.default {
                 self.broadcast(value: value)
             }
         }
@@ -104,17 +122,21 @@ extension KVOAdapter: Syncable {
     
     public func canFetch() -> Bool {
         switch self.kind {
-        case .typed:
-            return self.target != nil
-        case .untyped:
-            return self.target != nil && self.safeValue != nil
+        case .typed, .untyped:
+            return self.safeValue != nil || self.default.hasValue
         case .invalid:
             return false
         }
     }
     
     public func fetchedValue() -> KVOAdapter<Root, T>.ChainValue {
-        return self.value
+        if let value = self.safeValue {
+            return value
+        } else if case .value(let value) = self.default {
+            return value
+        } else {
+            fatalError()
+        }
     }
 }
 

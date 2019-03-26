@@ -8,6 +8,7 @@ import Chaining
 fileprivate class TestObject: NSObject {
     @objc dynamic var text: String = "initial"
     @objc dynamic var number: Int = 0
+    @objc dynamic var optText: String? = nil
 }
 
 class KVOAdapterTests: XCTestCase {
@@ -57,6 +58,14 @@ class KVOAdapterTests: XCTestCase {
         XCTAssertEqual(received[1], "test_value")
         
         observer.invalidate()
+    }
+    
+    func testValue() {
+        let object = TestObject()
+        
+        let adapter = KVOAdapter(object, keyPath: \.text)
+        
+        XCTAssertEqual(adapter.value, "initial")
     }
     
     func testSafeValue() {
@@ -138,6 +147,56 @@ class KVOAdapterTests: XCTestCase {
         observer.invalidate()
     }
     
+    func testOptionalValue() {
+        let object = TestObject()
+        
+        let adapter = KVOAdapter(object, keyPath: \.optText)
+        
+        var received: [String?] = []
+        
+        let observer = adapter.chain().do { received.append($0) }.sync()
+        
+        XCTAssertEqual(received.count, 1)
+        XCTAssertNil(received[0])
+        
+        object.optText = "test_value"
+        
+        XCTAssertEqual(received.count, 2)
+        XCTAssertEqual(received[1], "test_value")
+        
+        object.optText = nil
+        
+        // nilの通知は無視されてしまう
+        XCTAssertEqual(received.count, 2)
+        
+        observer.invalidate()
+    }
+    
+    func testOptionalValueWithDefault() {
+        let object = TestObject()
+        
+        let adapter = KVOAdapter(object, keyPath: \.optText, default: .value(nil))
+        
+        var received: [String?] = []
+        
+        let observer = adapter.chain().do { received.append($0) }.sync()
+        
+        XCTAssertEqual(received.count, 1)
+        XCTAssertNil(received[0])
+        
+        object.optText = "test_value"
+        
+        XCTAssertEqual(received.count, 2)
+        XCTAssertEqual(received[1], "test_value")
+        
+        object.optText = nil
+        
+        XCTAssertEqual(received.count, 3)
+        XCTAssertNil(received[2])
+        
+        observer.invalidate()
+    }
+    
     func testUntypedSetByOriginal() {
         let object = TestObject()
         
@@ -176,6 +235,14 @@ class KVOAdapterTests: XCTestCase {
         XCTAssertEqual(received[1], "test_value")
         
         observer.invalidate()
+    }
+    
+    func testUntypedValue() {
+        let object = TestObject()
+        
+        let adapter = KVOAdapter<TestObject, String>(object, keyPath: "text")
+        
+        XCTAssertEqual(adapter.value, "initial")
     }
     
     func testUntypedSafeValueNilValue() {
@@ -304,5 +371,63 @@ class KVOAdapterTests: XCTestCase {
         XCTAssertEqual(numberReceived[1], 1)
         
         pool.invalidate()
+    }
+    
+    func testUntypedOptionalValue() {
+        let object = TestObject()
+        
+        let adapter = KVOAdapter<TestObject, String?>(object, keyPath: "optText")
+        
+        var received: [String?] = []
+        
+        let observer = adapter.chain().do { received.append($0) }.sync()
+        
+        XCTAssertEqual(received.count, 1)
+        XCTAssertNil(received[0])
+        
+        object.optText = "test_value"
+        
+        XCTAssertEqual(received.count, 2)
+        XCTAssertEqual(received[1], "test_value")
+        
+        object.optText = nil
+        
+        // nilの通知は無視されてしまう
+        XCTAssertEqual(received.count, 2)
+        
+        observer.invalidate()
+    }
+    
+    func testUntypedOptionalValueWithDefault() {
+        let object = TestObject()
+        
+        let adapter = KVOAdapter<TestObject, String?>(object, keyPath: "optText", default: .value(nil))
+        
+        var received: [String?] = []
+        
+        let observer = adapter.chain().do { received.append($0) }.sync()
+        
+        XCTAssertEqual(received.count, 1)
+        XCTAssertNil(received[0])
+        
+        object.optText = "test_value"
+        
+        XCTAssertEqual(received.count, 2)
+        XCTAssertEqual(received[1], "test_value")
+        
+        object.optText = nil
+        
+        XCTAssertEqual(received.count, 3)
+        XCTAssertNil(received[2])
+        
+        observer.invalidate()
+    }
+    
+    func testDefaultHasValue() {
+        let valueDefault = KVOAdapter<TestObject, String>.Default.value("value")
+        let noneDefault = KVOAdapter<TestObject, String>.Default.none
+        
+        XCTAssertTrue(valueDefault.hasValue)
+        XCTAssertFalse(noneDefault.hasValue)
     }
 }
