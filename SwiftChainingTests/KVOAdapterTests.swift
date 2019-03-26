@@ -382,18 +382,18 @@ class KVOAdapterTests: XCTestCase {
         
         let observer = adapter.chain().do { received.append($0) }.sync()
         
-        XCTAssertEqual(received.count, 1)
-        XCTAssertNil(received[0])
+        // 値がnilなので通知されない
+        XCTAssertEqual(received.count, 0)
         
         object.optText = "test_value"
         
-        XCTAssertEqual(received.count, 2)
-        XCTAssertEqual(received[1], "test_value")
+        XCTAssertEqual(received.count, 1)
+        XCTAssertEqual(received[0], "test_value")
         
         object.optText = nil
         
         // nilの通知は無視されてしまう
-        XCTAssertEqual(received.count, 2)
+        XCTAssertEqual(received.count, 1)
         
         observer.invalidate()
     }
