@@ -57,7 +57,7 @@ final public class KVOAdapter<Root: NSObject, T> {
         case .typed(let keyPath, _):
             return target[keyPath: keyPath]
         case .untyped(let keyPath, _):
-            return self.target?.value(forKeyPath: keyPath) as? T
+            return target.value(forKeyPath: keyPath) as? T
         case .invalid:
             return nil
         }
