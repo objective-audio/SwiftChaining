@@ -48,7 +48,7 @@ final public class RelayableArrayHolder<Element: Sendable> {
         wrapper.observer = element.chain()
             .do { [weak self, weak wrapper] value in
                 if let self = self, let wrapper = wrapper {
-                    if let index = self.observerArray.index(where: { return ObjectIdentifier($0) == ObjectIdentifier(wrapper) }) {
+                    if let index = self.observerArray.firstIndex(where: { return ObjectIdentifier($0) == ObjectIdentifier(wrapper) }) {
                         self.broadcast(value: .relayed(value, at: index, element: self.raw[index]))
                     }
                 }
