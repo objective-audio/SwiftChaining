@@ -84,8 +84,8 @@ final public class KVOAdapter<Root: NSObject, T> {
         self.target = target
         self.default = def
         
-        let observer = KVOAdapterUntypedObserver(keyPath: keyPath) { [unowned self] newValue in
-            if let value = newValue as? T {
+        let observer = KVOAdapterUntypedObserver(keyPath: keyPath) { [unowned self] change in
+            if let value = change[.newKey] as? T {
                 self.broadcast(value: value)
             } else if case .value(let value) = self.default {
                 self.broadcast(value: value)
@@ -150,9 +150,9 @@ extension KVOAdapter: Receivable {
 
 @objc fileprivate class KVOAdapterUntypedObserver: NSObject {
     private let keyPath: String
-    private let handler: (Any) -> Void
+    private let handler: ([NSKeyValueChangeKey : Any]) -> Void
     
-    init(keyPath: String, handler: @escaping (Any) -> Void) {
+    init(keyPath: String, handler: @escaping ([NSKeyValueChangeKey : Any]) -> Void) {
         self.keyPath = keyPath
         self.handler = handler
         
@@ -163,8 +163,8 @@ extension KVOAdapter: Receivable {
                                of object: Any?,
                                change: [NSKeyValueChangeKey : Any]?,
                                context: UnsafeMutableRawPointer?) {
-        if self.keyPath == keyPath, let value = change?[.newKey] {
-            self.handler(value)
+        if self.keyPath == keyPath, let change = change {
+            self.handler(change)
         }
     }
 }
