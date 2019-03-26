@@ -372,7 +372,7 @@ class KVOAdapterTests: XCTestCase {
         
         pool.invalidate()
     }
-    
+    /*
     func testUntypedOptionalValue() {
         let object = TestObject()
         
@@ -397,7 +397,7 @@ class KVOAdapterTests: XCTestCase {
         
         observer.invalidate()
     }
-    
+    */
     func testUntypedOptionalValueWithDefault() {
         let object = TestObject()
         
