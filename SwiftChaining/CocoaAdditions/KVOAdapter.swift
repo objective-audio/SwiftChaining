@@ -5,30 +5,78 @@
 import Foundation
 
 final public class KVOAdapter<Root: NSObject, T> {
+    private enum Kind {
+        case typed(ReferenceWritableKeyPath<Root, T>, NSKeyValueObservation)
+        case untyped(String, KVOAdapterUntypedObserver)
+        case invalid
+    }
+    
     private weak var target: Root?
-    private let keyPath: ReferenceWritableKeyPath<Root, T>
-    private var observation: NSKeyValueObservation?
+    private var kind: Kind = .invalid
     
     public var value: T {
-        get { return self.target![keyPath: self.keyPath] }
-        set { self.target?[keyPath: self.keyPath] = newValue }
+        get {
+            switch self.kind {
+            case .typed(let keyPath, _):
+                return self.target![keyPath: keyPath]
+            case .untyped(let keyPath, _):
+                return self.target!.value(forKeyPath: keyPath) as! T
+            case .invalid:
+                fatalError()
+            }
+        }
+            
+        set {
+            switch self.kind {
+            case .typed(let keyPath, _):
+                self.target?[keyPath: keyPath] = newValue
+            case .untyped(let keyPath, _):
+                self.target?.setValue(newValue, forKeyPath: keyPath)
+            case .invalid:
+                break
+            }
+        }
     }
     
     public var safeValue: T? {
         guard let target = self.target else { return nil }
-        return target[keyPath: self.keyPath]
+
+        switch self.kind {
+        case .typed(let keyPath, _):
+            return target[keyPath: keyPath]
+        case .untyped(let keyPath, _):
+            return self.target?.value(forKeyPath: keyPath) as? T
+        case .invalid:
+            return nil
+        }
     }
     
     public init(_ target: Root, keyPath: ReferenceWritableKeyPath<Root, T>) {
         self.target = target
-        self.keyPath = keyPath
         
-        self.observation = target.observe(keyPath,
-                                          options: [.new]) { [unowned self] (root, change) in
-            if let value = change.newValue {
+        let observation =
+            target.observe(keyPath,
+                           options: [.new]) { [unowned self] (root, change) in
+                            if let value = change.newValue {
+                                self.broadcast(value: value)
+                            }
+        }
+        
+        self.kind = .typed(keyPath, observation)
+    }
+    
+    public init(_ target: Root, keyPath: String) {
+        self.target = target
+        
+        let observer = KVOAdapterUntypedObserver(keyPath: keyPath) { [unowned self] newValue in
+            if let value = newValue as? T {
                 self.broadcast(value: value)
             }
         }
+        
+        self.kind = .untyped(keyPath, observer)
+        
+        target.addObserver(observer, forKeyPath: keyPath, options: .new, context: nil)
     }
     
     deinit {
@@ -36,8 +84,18 @@ final public class KVOAdapter<Root: NSObject, T> {
     }
     
     public func invalidate() {
-        self.observation?.invalidate()
-        self.observation = nil
+        switch self.kind {
+        case .typed(_, let observation):
+            observation.invalidate()
+            self.kind = .invalid
+        case .untyped(let keyPath, let observer):
+            self.target?.removeObserver(observer, forKeyPath: keyPath)
+            self.kind = .invalid
+        case .invalid:
+            break
+        }
+        
+        self.target = nil
     }
 }
 
@@ -45,7 +103,14 @@ extension KVOAdapter: Syncable {
     public typealias ChainValue = T
     
     public func canFetch() -> Bool {
-        return self.target != nil
+        switch self.kind {
+        case .typed:
+            return self.target != nil
+        case .untyped:
+            return self.target != nil && self.safeValue != nil
+        case .invalid:
+            return false
+        }
     }
     
     public func fetchedValue() -> KVOAdapter<Root, T>.ChainValue {
@@ -58,5 +123,26 @@ extension KVOAdapter: Receivable {
     
     public func receive(value: T) {
         self.value = value
+    }
+}
+
+@objc fileprivate class KVOAdapterUntypedObserver: NSObject {
+    private let keyPath: String
+    private let handler: (Any) -> Void
+    
+    init(keyPath: String, handler: @escaping (Any) -> Void) {
+        self.keyPath = keyPath
+        self.handler = handler
+        
+        super.init()
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?,
+                               of object: Any?,
+                               change: [NSKeyValueChangeKey : Any]?,
+                               context: UnsafeMutableRawPointer?) {
+        if self.keyPath == keyPath, let value = change?[.newKey] {
+            self.handler(value)
+        }
     }
 }
