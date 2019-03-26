@@ -39,8 +39,8 @@ public struct Weak<T: AnyObject> {
 }
 
 extension Weak: Hashable {
-    public var hashValue: Int {
-        return id.hashValue
+    public func hash(into hasher: inout Hasher) {
+        self.id.hash(into: &hasher)
     }
     
     public static func == (lhs: Weak<T>, rhs: Weak<T>) -> Bool {
