@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A65DBAB224B2850002D88BA /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65DBAA224B2850002D88BA /* Alias.swift */; };
 		B630B98B22369E3E0007FEE9 /* EventableValueHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B630B98A22369E3E0007FEE9 /* EventableValueHolder.swift */; };
 		B65F618021F9FD0C0094AA09 /* RelayableValueHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65F617F21F9FD0C0094AA09 /* RelayableValueHolder.swift */; };
 		B6B09C95220B22A900B483BC /* SendTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B09C94220B22A900B483BC /* SendTo.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A65DBAA224B2850002D88BA /* Alias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alias.swift; sourceTree = "<group>"; };
 		B630B98A22369E3E0007FEE9 /* EventableValueHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventableValueHolder.swift; sourceTree = "<group>"; };
 		B65F617F21F9FD0C0094AA09 /* RelayableValueHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableValueHolder.swift; sourceTree = "<group>"; };
 		B6B09C94220B22A900B483BC /* SendTo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTo.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		B6FABBA521F4B8F40045872A /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				1A65DBAA224B2850002D88BA /* Alias.swift */,
 				B6FABBAB21F4B8F40045872A /* Chain.swift */,
 				B6E0701A224317A0006EBC4F /* Chainable.swift */,
 				B6FABBB021F4B8F40045872A /* Combine.swift */,
@@ -277,6 +280,7 @@
 				B6FABBCE21F4B8F40045872A /* ValueHolder.swift in Sources */,
 				B6B09C9B220B29C900B483BC /* Tuple.swift in Sources */,
 				B6FABBC221F4B8F40045872A /* Guard.swift in Sources */,
+				1A65DBAB224B2850002D88BA /* Alias.swift in Sources */,
 				B6E0701B224317A1006EBC4F /* Chainable.swift in Sources */,
 				B6FABBC021F4B8F40045872A /* Observer.swift in Sources */,
 				B6E0701D224317A8006EBC4F /* Syncable.swift in Sources */,

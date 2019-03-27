@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A65DBAD224B2861002D88BA /* AliasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65DBAC224B2860002D88BA /* AliasTests.swift */; };
 		B620297621F9F7B8005574D0 /* RelayableValueHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B620297521F9F7B8005574D0 /* RelayableValueHolderTests.swift */; };
 		B630B98D22369E520007FEE9 /* EventableValueHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B630B98C22369E510007FEE9 /* EventableValueHolderTests.swift */; };
 		B630B99A223E1C1C0007FEE9 /* MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B630B999223E1C1C0007FEE9 /* MapTests.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A65DBAC224B2860002D88BA /* AliasTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AliasTests.swift; sourceTree = "<group>"; };
 		B620297521F9F7B8005574D0 /* RelayableValueHolderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayableValueHolderTests.swift; sourceTree = "<group>"; };
 		B630B98C22369E510007FEE9 /* EventableValueHolderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventableValueHolderTests.swift; sourceTree = "<group>"; };
 		B630B999223E1C1C0007FEE9 /* MapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTests.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		B6FABBED21F4B9F50045872A /* SwiftChainingTests */ = {
 			isa = PBXGroup;
 			children = (
+				1A65DBAC224B2860002D88BA /* AliasTests.swift */,
 				B6FABBFE21F4B9F50045872A /* ArrayHolderTests.swift */,
 				B6FABBF221F4B9F50045872A /* CombineTests.swift */,
 				B6FABBEF21F4B9F50045872A /* DictionaryHolderTests.swift */,
@@ -236,6 +239,7 @@
 				B6B09CA1220C553500B483BC /* OptionalTests.swift in Sources */,
 				B630B99A223E1C1C0007FEE9 /* MapTests.swift in Sources */,
 				B6FABC0A21F4B9F50045872A /* ObserverTests.swift in Sources */,
+				1A65DBAD224B2861002D88BA /* AliasTests.swift in Sources */,
 				B6FABC0021F4B9F50045872A /* KVOAdapterTests.swift in Sources */,
 				B6B09CA5220C634900B483BC /* SuspenderTests.swift in Sources */,
 				B630B99C223E1C2D0007FEE9 /* RetainReceiverTests.swift in Sources */,
