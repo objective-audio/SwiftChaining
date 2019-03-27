@@ -1,10 +1,10 @@
 //
-//  Alias.swift
+//  ReadOnly.swift
 //
 
 import Foundation
 
-public class Alias<Chainer: Chainable> {
+public class ReadOnly<Chainer: Chainable> {
     private weak var chainer: Chainer?
     
     public init(_ chainer: Chainer) {
@@ -12,13 +12,13 @@ public class Alias<Chainer: Chainable> {
     }
 }
 
-extension Alias where Chainer: Sendable {
+extension ReadOnly where Chainer: Sendable {
     public func chain() -> Chainer.FirstChain? {
         return self.chainer?.chain()
     }
 }
 
-extension Alias where Chainer: Fetchable {
+extension ReadOnly where Chainer: Fetchable {
     public func value() -> Chainer.ChainValue {
         return self.chainer!.fetchedValue()
     }

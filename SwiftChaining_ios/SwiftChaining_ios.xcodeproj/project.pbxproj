@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A4163CD220C25ED00AEE119 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4163CC220C25ED00AEE119 /* Optional.swift */; };
 		1A4163D1220C380600AEE119 /* Suspender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4163D0220C380600AEE119 /* Suspender.swift */; };
-		1A65DBA7224B256C002D88BA /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65DBA6224B256C002D88BA /* Alias.swift */; };
+		1A65DBA7224B256C002D88BA /* ReadOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65DBA6224B256C002D88BA /* ReadOnly.swift */; };
 		B630B987223693900007FEE9 /* EventableValueHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B630B986223693900007FEE9 /* EventableValueHolder.swift */; };
 		B634EFB421F9EB3100D61E3F /* RelayableValueHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634EFB321F9EB3100D61E3F /* RelayableValueHolder.swift */; };
 		B63A59482233FEAC008D4647 /* UIBarButtonItemAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63A59472233FEAC008D4647 /* UIBarButtonItemAdapter.swift */; };
@@ -50,7 +50,7 @@
 /* Begin PBXFileReference section */
 		1A4163CC220C25ED00AEE119 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		1A4163D0220C380600AEE119 /* Suspender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suspender.swift; sourceTree = "<group>"; };
-		1A65DBA6224B256C002D88BA /* Alias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alias.swift; sourceTree = "<group>"; };
+		1A65DBA6224B256C002D88BA /* ReadOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnly.swift; sourceTree = "<group>"; };
 		B630B986223693900007FEE9 /* EventableValueHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventableValueHolder.swift; sourceTree = "<group>"; };
 		B634EFB321F9EB3100D61E3F /* RelayableValueHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableValueHolder.swift; sourceTree = "<group>"; };
 		B63A59472233FEAC008D4647 /* UIBarButtonItemAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemAdapter.swift; sourceTree = "<group>"; };
@@ -132,7 +132,6 @@
 		B6FABC2721F4BDB70045872A /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				1A65DBA6224B256C002D88BA /* Alias.swift */,
 				B6FABC2D21F4BDB70045872A /* Chain.swift */,
 				B6E070162243170B006EBC4F /* Chainable.swift */,
 				B6FABC3221F4BDB70045872A /* Combine.swift */,
@@ -147,6 +146,7 @@
 				B6FABC3121F4BDB70045872A /* Merge.swift */,
 				B6FABC2921F4BDB70045872A /* Observer.swift */,
 				1A4163CC220C25ED00AEE119 /* Optional.swift */,
+				1A65DBA6224B256C002D88BA /* ReadOnly.swift */,
 				B6FABC2E21F4BDB70045872A /* Receivable.swift */,
 				B6B8BB70223CB5C800DE6734 /* Retainer.swift */,
 				B6FABC3321F4BDB70045872A /* Sendable.swift */,
@@ -302,7 +302,7 @@
 				B6FABC4321F4BDB70045872A /* Joint.swift in Sources */,
 				B6D4C62021FC1743004A95A8 /* RelayableDictionaryHolder.swift in Sources */,
 				B6FABC4E21F4BDB70045872A /* Each.swift in Sources */,
-				1A65DBA7224B256C002D88BA /* Alias.swift in Sources */,
+				1A65DBA7224B256C002D88BA /* ReadOnly.swift in Sources */,
 				B6FABC4921F4BDB70045872A /* Fetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
