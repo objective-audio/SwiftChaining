@@ -1,11 +1,11 @@
 //
-//  AliasTests.swift
+//  ReadOnlyTests.swift
 //
 
 import XCTest
 import Chaining
 
-class AliasTests: XCTestCase {
+class ReadOnlyTests: XCTestCase {
 
     override func setUp() {
     }
@@ -15,7 +15,7 @@ class AliasTests: XCTestCase {
 
     func testSendable() {
         let sender = Notifier<Int>()
-        let alias = Alias(sender)
+        let alias = ReadOnly(sender)
         
         var received: [Int] = []
         
@@ -31,7 +31,7 @@ class AliasTests: XCTestCase {
     
     func testSyncable() {
         let holder = ValueHolder<Int>(0)
-        let alias = Alias(holder)
+        let alias = ReadOnly(holder)
         
         var received: [Int] = []
         
@@ -50,7 +50,7 @@ class AliasTests: XCTestCase {
     
     func testValue() {
         let holder = ValueHolder<Int>(0)
-        let alias = Alias(holder)
+        let alias = ReadOnly(holder)
         
         XCTAssertEqual(alias.value(), 0)
         
@@ -60,11 +60,11 @@ class AliasTests: XCTestCase {
     }
     
     func testSafeValueChainerReleased() {
-        var alias: Alias<ValueHolder<Int>>?
+        var alias: ReadOnly<ValueHolder<Int>>?
         
         do {
             let holder = ValueHolder<Int>(0)
-            alias = Alias(holder)
+            alias = ReadOnly(holder)
             
             XCTAssertEqual(alias?.safeValue(), 0)
             
@@ -80,7 +80,7 @@ class AliasTests: XCTestCase {
         var canFetch = true
         
         let fetcher = Fetcher<Int>({ 1 }, canFetch: { canFetch })
-        let alias = Alias(fetcher)
+        let alias = ReadOnly(fetcher)
         
         XCTAssertEqual(alias.safeValue(), 1)
         
