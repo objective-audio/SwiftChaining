@@ -52,11 +52,11 @@ class ReadOnlyTests: XCTestCase {
         let holder = ValueHolder<Int>(0)
         let alias = ReadOnly(holder)
         
-        XCTAssertEqual(alias.value(), 0)
+        XCTAssertEqual(alias.value, 0)
         
         holder.value = 1
         
-        XCTAssertEqual(alias.value(), 1)
+        XCTAssertEqual(alias.value, 1)
     }
     
     func testSafeValueChainerReleased() {
@@ -66,14 +66,14 @@ class ReadOnlyTests: XCTestCase {
             let holder = ValueHolder<Int>(0)
             alias = ReadOnly(holder)
             
-            XCTAssertEqual(alias?.safeValue(), 0)
+            XCTAssertEqual(alias?.safeValue, 0)
             
             holder.value = 1
             
-            XCTAssertEqual(alias?.safeValue(), 1)
+            XCTAssertEqual(alias?.safeValue, 1)
         }
         
-        XCTAssertNil(alias?.safeValue())
+        XCTAssertNil(alias?.safeValue)
     }
     
     func testSafeValueCanFetchIsFalse() {
@@ -82,10 +82,10 @@ class ReadOnlyTests: XCTestCase {
         let fetcher = Fetcher<Int>({ 1 }, canFetch: { canFetch })
         let alias = ReadOnly(fetcher)
         
-        XCTAssertEqual(alias.safeValue(), 1)
+        XCTAssertEqual(alias.safeValue, 1)
         
         canFetch = false
         
-        XCTAssertNil(alias.safeValue())
+        XCTAssertNil(alias.safeValue)
     }
 }
