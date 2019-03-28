@@ -19,11 +19,11 @@ extension ReadOnly where Chainer: Sendable {
 }
 
 extension ReadOnly where Chainer: Fetchable {
-    public func value() -> Chainer.ChainValue {
+    public var value: Chainer.ChainValue {
         return self.chainer!.fetchedValue()
     }
     
-    public func safeValue() -> Chainer.ChainValue? {
+    public var safeValue: Chainer.ChainValue? {
         if let chainer = self.chainer, chainer.canFetch() {
             return chainer.fetchedValue()
         } else {
