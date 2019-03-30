@@ -1,13 +1,11 @@
-osx_image: xcode10.1
+osx_image: xcode10.2
 language: objective-c
 branches:
   only:
     - master
 notifications:
   email: false
-before_install:
-- gem install cocoapods -v 1.6.0
 script:
 - xcodebuild -workspace SwiftChaining_mac.xcworkspace -scheme SwiftChaining_mac_tests -configuration Debug OBJROOT=build -sdk macosx clean test
-- xcodebuild -workspace SwiftChaining_ios.xcworkspace -scheme SwiftChaining_ios_tests -configuration Debug OBJROOT=build -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=12.1' clean test
+- xcodebuild -workspace SwiftChaining_ios.xcworkspace -scheme SwiftChaining_ios_tests -configuration Debug OBJROOT=build -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=12.2' clean test
 - pod lib lint
