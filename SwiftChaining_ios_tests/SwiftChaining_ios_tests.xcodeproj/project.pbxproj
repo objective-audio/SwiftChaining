@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1A4163CF220C26B600AEE119 /* OptionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4163CE220C26B600AEE119 /* OptionalTests.swift */; };
-		1A65DBA9224B2643002D88BA /* ReadOnlyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65DBA8224B2643002D88BA /* ReadOnlyTests.swift */; };
 		B630B9892236946D0007FEE9 /* EventableValueHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B630B9882236946D0007FEE9 /* EventableValueHolderTests.swift */; };
 		B634EFB621F9ECFA00D61E3F /* RelayableValueHolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634EFB521F9ECFA00D61E3F /* RelayableValueHolderTests.swift */; };
 		B6517EFE220EC56C0082F37F /* PropertyAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6517EFD220EC56C0082F37F /* PropertyAdapterTests.swift */; };
@@ -41,7 +40,6 @@
 
 /* Begin PBXFileReference section */
 		1A4163CE220C26B600AEE119 /* OptionalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalTests.swift; sourceTree = "<group>"; };
-		1A65DBA8224B2643002D88BA /* ReadOnlyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyTests.swift; sourceTree = "<group>"; };
 		B630B9882236946D0007FEE9 /* EventableValueHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventableValueHolderTests.swift; sourceTree = "<group>"; };
 		B634EFB521F9ECFA00D61E3F /* RelayableValueHolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayableValueHolderTests.swift; sourceTree = "<group>"; };
 		B6517EFD220EC56C0082F37F /* PropertyAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyAdapterTests.swift; sourceTree = "<group>"; };
@@ -142,7 +140,6 @@
 				1A4163CE220C26B600AEE119 /* OptionalTests.swift */,
 				B6B09CB72210387900B483BC /* PropertyAdapterCommonTests.swift */,
 				B6517EFD220EC56C0082F37F /* PropertyAdapterTests.swift */,
-				1A65DBA8224B2643002D88BA /* ReadOnlyTests.swift */,
 				B6D4C62521FC2EC0004A95A8 /* RelayableArrayHolderTests.swift */,
 				B6D4C62721FC2ED2004A95A8 /* RelayableDictionaryHolderTests.swift */,
 				B634EFB521F9ECFA00D61E3F /* RelayableValueHolderTests.swift */,
@@ -240,7 +237,6 @@
 				B6B09CB82210387900B483BC /* PropertyAdapterCommonTests.swift in Sources */,
 				B6FABD1121F751DE0045872A /* CombineTests.swift in Sources */,
 				B6FABD1521F752890045872A /* KVOAdapterTests.swift in Sources */,
-				1A65DBA9224B2643002D88BA /* ReadOnlyTests.swift in Sources */,
 				B6FABD0C21F751840045872A /* ValueHolderTests.swift in Sources */,
 				B6FABD1321F752500045872A /* NotificationAdapterTests.swift in Sources */,
 				B65C1E4C2220E92D002EAC54 /* MapTests.swift in Sources */,
