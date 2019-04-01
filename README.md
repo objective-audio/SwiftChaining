@@ -8,7 +8,7 @@
 
 ## Requirements
 
-Swift4.2  
+Swift5.0  
 
 ## Installation
 
@@ -35,12 +35,12 @@ import Chaining
 ```swift
 public protocol Chainable: class {
     associatedtype ChainValue
-    typealias BeginChain = Chain<ChainValue, Self>
+    typealias FirstChain = Chain<ChainValue, Self>
 }
 
 extension Chainable {
     public func retain() -> Retainer<Self> { ... }
-    public func chain() -> BeginChain { ... }
+    public func chain() -> FirstChain { ... }
 }
 ```
 
@@ -56,7 +56,7 @@ extension Sendable {
 ```swift
 class MySender: Sendable {
     // 送信する値の型を指定する
-    typealias SendValue = Int
+    typealias ChainValue = Int
 }
 
 let sender = MySender()
@@ -83,10 +83,10 @@ extension Fetchable {
 ```swift
 class MyFetcher: Fetchable {
     // 送信する値の型を指定する
-    typealias SendValue = Int
+    typealias ChainValue = Int
 
     // 送信する値を返す
-    func fetchedValue() -> SendValue {
+    func fetchedValue() -> ChainValue {
         return 1
     }
 }
@@ -175,17 +175,6 @@ let observer = notifier.chain().do { print($0) }.end()
 // notify(value:)で値を送信
 notifier.notify(value: 1)
 ```
-### Fetcher: Syncable, Receivable
-```swift
-// 送信する値をクロージャで返す
-let fetcher = Fetcher { 1 }
-
-// sync()で値が送信される
-let observer = fetcher.chain().do { print($0) }.sync()
-
-// 強制的に送信
-fetcher.broadcast()
-```
 ### ValueHolder: Syncable, Receivable
 ```swift
 let holder = ValueHolder(0)
@@ -226,7 +215,7 @@ let observer = holder
         switch $0 {
         case .fetched(let elements):
             print("fetched:\(elements)")
-        case .any(let elements):
+        case .set(let elements):
             print("any:\(elements)")
         case .inserted(let index, let element):
             print("inserted at:\(index) element:\(element)")
@@ -252,8 +241,8 @@ holder.replace(4, at: 1)
 // movedが送信される
 holder.move(at: 0, to: 2)
 
-// anyが送信される
-holder.replace([0, 1])
+// setが送信される
+holder.set([0, 1])
 ```
 ### NotificationAdapter: Sendable
 ```swift
