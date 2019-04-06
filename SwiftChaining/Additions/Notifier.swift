@@ -8,8 +8,8 @@ final public class Notifier<T> {
     public init() {}
 }
 
-extension Notifier: Sendable {
-    public typealias ChainValue = T
+extension Notifier: Chainable {
+    public typealias ChainType = Sendable<T>
     
     public func notify(value: T) {
         self.broadcast(value: value)

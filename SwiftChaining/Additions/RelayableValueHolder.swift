@@ -4,7 +4,7 @@
 
 import Foundation
 
-final public class RelayableValueHolder<T: Sendable> {
+final public class RelayableValueHolder<T: Chainable> {
     public enum Event {
         case fetched(T)
         case current(T)
@@ -38,8 +38,8 @@ final public class RelayableValueHolder<T: Sendable> {
     }
 }
 
-extension RelayableValueHolder: Syncable {
-    public typealias ChainValue = Event
+extension RelayableValueHolder: Chainable {
+    public typealias ChainType = Syncable<Event>
     
     public func fetchedValue() -> Event {
         return .fetched(self.value)

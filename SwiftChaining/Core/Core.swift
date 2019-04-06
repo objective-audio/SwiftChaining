@@ -7,8 +7,8 @@ import Foundation
 public protocol AnyCore: class {
 }
 
-public class Core<T: Chainable>: AnyCore {
-    private var joints: [Weak<Joint<T>>] = []
+public class Core<ChainType: ChainableProtocol>: AnyCore {
+    private var joints: [Weak<Joint<ChainType>>] = []
     private let removeId: ObjectIdentifier
     
     internal init(removeId: ObjectIdentifier) {
@@ -19,13 +19,13 @@ public class Core<T: Chainable>: AnyCore {
         CoreGlobal.removeCore(for: self.removeId)
     }
     
-    internal func broadcast(value: T.ChainValue) {
+    internal func broadcast(value: ChainType.ChainValue) {
         for joint in self.joints {
             joint.value?.call(first: value)
         }
     }
     
-    internal func send(value: T.ChainValue, to target: JointClass) {
+    internal func send(value: ChainType.ChainValue, to target: JointClass) {
         let targetId = ObjectIdentifier(target)
         for joint in self.joints {
             if joint.id == targetId {
@@ -35,13 +35,13 @@ public class Core<T: Chainable>: AnyCore {
         }
     }
     
-    internal func addJoint(chainer: Reference<T>) -> Joint<T> {
-        let joint = Joint(chainer: chainer, core: self)
+    internal func addJoint(chainer: Reference<AnyObject>) -> Joint<ChainType> {
+        let joint = Joint<ChainType>(chainer: chainer, core: self)
         self.joints.append(Weak(joint))
         return joint
     }
     
-    internal func remove(joint: Joint<T>) {
+    internal func remove(joint: Joint<ChainType>) {
         let id = ObjectIdentifier(joint)
         self.joints = self.joints.filter { $0.id != id }
     }
@@ -64,14 +64,14 @@ internal class CoreGlobal {
         CoreGlobal.shared.cores.removeValue(forKey: id)
     }
     
-    internal class func core<Chainer: Chainable>(for chainer: Chainer) -> Core<Chainer>? {
-        return CoreGlobal.shared.cores[ObjectIdentifier(chainer)]?.core as? Core<Chainer>
+    internal class func core(for chainer: AnyObject) -> AnyCore? {
+        return CoreGlobal.shared.cores[ObjectIdentifier(chainer)]?.core
     }
     
-    internal class func makeChain<Chainer: Chainable>(chainer: Chainer, retained: Bool) -> Chainer.FirstChain {
+    internal class func makeChain<Chainer: Chainable>(chainer: Chainer, retained: Bool) -> FirstChain<Chainer.ChainType> {
         let core = self.getOrCreateCore(for: chainer)
         
-        let chainer: Reference<Chainer> = retained ? .strong(chainer) : .weak(Weak(chainer))
+        let chainer: Reference<AnyObject> = retained ? .strong(chainer) : .weak(Weak(chainer))
         
         let joint = core.addJoint(chainer: chainer)
         
@@ -83,15 +83,15 @@ internal class CoreGlobal {
         
         joint.appendHandler(handler0)
         
-        return Chainer.FirstChain(joint: joint)
+        return FirstChain(joint: joint)
     }
     
-    private class func getOrCreateCore<Chainer: Chainable>(for chainer: Chainer) -> Core<Chainer> {
-        if let core = self.core(for: chainer) {
+    private class func getOrCreateCore<Chainer: Chainable>(for chainer: Chainer) -> Core<Chainer.ChainType> {
+        if let core = self.core(for: chainer) as? Core<Chainer.ChainType> {
             return core
         } else {
             let id = ObjectIdentifier(chainer)
-            let core = Core<Chainer>(removeId: id)
+            let core = Core<Chainer.ChainType>(removeId: id)
             self.set(core: core, for: id)
             return core
         }

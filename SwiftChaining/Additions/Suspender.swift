@@ -19,7 +19,7 @@ public class Suspender {
         self.observer = self.holder.chain().sendTo(self.notifier).end()
     }
     
-    public func chain() -> ValueHolder<Bool>.FirstChain {
+    public func chain() -> FirstChain<Syncable<Bool>> {
         return self.holder.chain()
     }
 }
@@ -33,13 +33,13 @@ extension Suspender: Receivable {
 }
 
 extension Chain {
-    public func suspend(_ suspender: Suspender) -> Chain<Out, Chainer> {
+    public func suspend(_ suspender: Suspender) -> Chain<Out, ChainType> {
         return self.guard { [weak suspender] _ in !(suspender?.isSuspend ?? false) }
     }
 }
 
-extension Chain where Chainer: Fetchable {
-    public func suspend(_ suspender: Suspender) -> Chain<Out, Chainer> {
+extension Chain where ChainType: FetchableProtocol {
+    public func suspend(_ suspender: Suspender) -> Chain<Out, ChainType> {
         var cache: Out?
         
         let chain = self

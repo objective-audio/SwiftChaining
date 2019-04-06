@@ -39,8 +39,8 @@ final public class UIControlAdapter<T: UIControl>: NSObject {
     }
 }
 
-extension UIControlAdapter: Sendable {
-    public typealias ChainValue = T
+extension UIControlAdapter: Chainable {
+    public typealias ChainType = Sendable<T>
 }
 
 #endif

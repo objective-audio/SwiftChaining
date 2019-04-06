@@ -58,8 +58,8 @@ public final class PropertyAdapter<Root: AnyObject, T>: AnyPropertyAdapter {
     }
 }
 
-extension PropertyAdapter: Syncable {
-    public typealias ChainValue = T
+extension PropertyAdapter: Chainable {
+    public typealias ChainType = Syncable<T>
     
     public func canFetch() -> Bool {
         return self.target != nil

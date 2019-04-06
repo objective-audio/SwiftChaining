@@ -117,8 +117,8 @@ final public class KVOAdapter<Root: NSObject, T> {
     }
 }
 
-extension KVOAdapter: Syncable {
-    public typealias ChainValue = T
+extension KVOAdapter: Chainable {
+    public typealias ChainType = Syncable<T>
     
     public func canFetch() -> Bool {
         switch self.kind {

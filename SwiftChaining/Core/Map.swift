@@ -5,7 +5,7 @@
 import Foundation
 
 extension Chain {
-    public typealias MapChain<Next> = Chain<Next, Chainer>
+    public typealias MapChain<Next> = Chain<Next, ChainType>
     
     public func map<Next>(_ transform: @escaping (Out) -> Next) -> MapChain<Next> {
         guard let joint = self.pullJoint() else {
@@ -29,7 +29,7 @@ extension Chain {
         return self.map { _ in value }
     }
     
-    public func replaceWithVoid() -> Chain<Void, Chainer> {
+    public func replaceWithVoid() -> Chain<Void, ChainType> {
         return self.map { _ in () }
     }
 }
