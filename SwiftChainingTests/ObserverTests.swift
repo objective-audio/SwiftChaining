@@ -147,4 +147,16 @@ class ObserverTests: XCTestCase {
         
         XCTAssertEqual(received.count, 1)
     }
+    
+    func testInvalidateOnDo() {
+        let notifier = Notifier<Int>()
+        
+        var observer: AnyObserver?
+        
+        observer = notifier.chain().do { _ in
+            observer?.invalidate()
+        }.end()
+        
+        notifier.notify(value: 0)
+    }
 }

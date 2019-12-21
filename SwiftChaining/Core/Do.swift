@@ -16,7 +16,8 @@ extension Chain {
         
         let handler: JointHandler<Out> = { value, joint in
             doHandler(value)
-            if let nextHandler = joint.handlers[nextIndex] as? JointHandler<Out> {
+            if nextIndex < joint.handlers.count,
+                let nextHandler = joint.handlers[nextIndex] as? JointHandler<Out> {
                 nextHandler(value, joint)
             }
         }
