@@ -70,7 +70,7 @@ final public class KVOAdapter<Root: NSObject, T> {
         let observation =
             target.observe(keyPath,
                            options: [.new]) { [unowned self] (root, change) in
-                            if let value = change.newValue {
+                            if let value = self.safeValue {
                                 self.broadcast(value: value)
                             } else if case .value(let value) = self.default {
                                 self.broadcast(value: value)
@@ -85,7 +85,7 @@ final public class KVOAdapter<Root: NSObject, T> {
         self.default = def
         
         let observer = KVOAdapterUntypedObserver(keyPath: keyPath) { [unowned self] change in
-            if let value = change[.newKey] as? T {
+            if let value = self.safeValue {
                 self.broadcast(value: value)
             } else if case .value(let value) = self.default {
                 self.broadcast(value: value)

@@ -166,8 +166,8 @@ class KVOAdapterTests: XCTestCase {
         
         object.optText = nil
         
-        // nilの通知は無視されてしまう
-        XCTAssertEqual(received.count, 2)
+        XCTAssertEqual(received.count, 3)
+        XCTAssertNil(received[2])
         
         observer.invalidate()
     }
@@ -392,8 +392,8 @@ class KVOAdapterTests: XCTestCase {
         
         object.optText = nil
         
-        // nilの通知は無視されてしまう
-        XCTAssertEqual(received.count, 2)
+        XCTAssertEqual(received.count, 3)
+        XCTAssertNil(received[2])
         
         observer.invalidate()
     }
