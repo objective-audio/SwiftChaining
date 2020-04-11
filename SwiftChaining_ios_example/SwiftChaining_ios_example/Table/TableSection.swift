@@ -39,7 +39,7 @@ final class TableSection {
     }
 }
 
-extension TableSection: Syncable {
+extension TableSection: SyncableType {
     typealias ChainValue = Event
     
     func fetchedValue() -> Event {

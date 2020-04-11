@@ -4,7 +4,7 @@
 
 import Foundation
 
-final public class RelayableDictionaryHolder<Key: Hashable, Value: Sendable> {
+final public class RelayableDictionaryHolder<Key: Hashable, Value: Chainable> {
     public private(set) var raw: [Key: Value] = [:]
     
     public var count: Int { return self.raw.count }
@@ -143,8 +143,8 @@ final public class RelayableDictionaryHolder<Key: Hashable, Value: Sendable> {
 
 extension RelayableDictionaryHolder: DictionaryReadable {}
 
-extension RelayableDictionaryHolder: Syncable {
-    public typealias ChainValue = Event
+extension RelayableDictionaryHolder: Chainable {
+    public typealias ChainType = Syncable<Event>
     
     public func fetchedValue() -> Event {
         return .fetched(self.raw)

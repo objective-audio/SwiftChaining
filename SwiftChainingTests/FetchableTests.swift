@@ -6,8 +6,8 @@ import XCTest
 import Chaining
 
 class FetchableTests: XCTestCase {
-    class TestFetcher<T>: Fetchable {
-        typealias ChainValue = T
+    class TestFetcher<T>: Chainable {
+        typealias ChainType = Fetchable<T>
         
         var value: T
         var can: Bool = true

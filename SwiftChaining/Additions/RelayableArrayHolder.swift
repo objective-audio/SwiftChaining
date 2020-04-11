@@ -4,7 +4,7 @@
 
 import Foundation
 
-final public class RelayableArrayHolder<Element: Sendable> {
+final public class RelayableArrayHolder<Element: Chainable> {
     public private(set) var raw: [Element] = []
     
     public var count: Int { return self.raw.count }
@@ -152,8 +152,8 @@ extension RelayableArrayHolder: ArrayWritable {
     }
 }
 
-extension RelayableArrayHolder: Syncable {
-    public typealias ChainValue = Event
+extension RelayableArrayHolder: Chainable {
+    public typealias ChainType = Syncable<Event>
     
     public func fetchedValue() -> Event {
         return .fetched(self.raw)

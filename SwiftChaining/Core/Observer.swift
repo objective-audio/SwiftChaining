@@ -8,10 +8,10 @@ public protocol AnyObserver: class {
     func invalidate()
 }
 
-public class Observer<Chainer: Chainable> {
-    private let joint: Joint<Chainer>
+public class Observer<ChainType: ChainableProtocol> {
+    private let joint: Joint<ChainType>
     
-    internal init(joint: Joint<Chainer>) {
+    internal init(joint: Joint<ChainType>) {
         precondition(joint.checkAllReferencesRetained(), "Chainer must be retained while chaining.")
         
         self.joint = joint
@@ -33,7 +33,7 @@ public class Observer<Chainer: Chainable> {
 extension Observer: AnyObserver {
 }
 
-extension Observer where Chainer: Fetchable {
+extension Observer where ChainType: FetchableProtocol {
     internal func fetch() {
         self.joint.fetch()
     }

@@ -15,25 +15,27 @@ internal protocol AnyJoint: JointClass {
 
 internal typealias JointHandler<T> = (T, AnyJoint) -> Void
 
-internal class Joint<Chainer: Chainable> {
+internal class Joint<Chainer: ChainableProtocol> {
     internal typealias Value = Chainer.ChainValue
     
-    internal var chainer: Chainer? { return self.chainerRef?.value }
-    private var chainerRef: Reference<Chainer>?
+    internal var chainer: AnyObject? { return self.chainerRef?.value }
+    private var chainerRef: Reference<AnyObject>?
     internal private(set) var handlers: [Any] = []
     private var subJoints: [AnyJoint] = []
     private var core: AnyCore?
     private var references: [AnyReference] = []
     private let lock = NSLock()
     
-    internal init(chainer: Reference<Chainer>, core: AnyCore) {
+    internal init(chainer: Reference<AnyObject>, core: AnyCore) {
         self.chainerRef = chainer
         self.core = core
     }
     
     deinit {
         if let chainer = self.chainer {
-            CoreGlobal.core(for: chainer)?.remove(joint: self)
+            if let core = CoreGlobal.core(for: chainer) as? Core<Chainer> {
+                core.remove(joint: self)
+            }
         }
     }
     
@@ -75,7 +77,9 @@ internal class Joint<Chainer: Chainable> {
 
 extension Joint: AnyJoint {
     internal func fetch() {
-        self.chainer?.fetch(for: self)
+        if let chainer = self.chainer as? AnyChainable {
+            chainer.fetch(for: self)
+        }
         
         for subJoint in self.subJoints {
             subJoint.fetch()
@@ -88,7 +92,9 @@ extension Joint: AnyJoint {
         }
         
         if let chainer = self.chainer {
-            CoreGlobal.core(for: chainer)?.remove(joint: self)
+            if let core = CoreGlobal.core(for: chainer) as? Core<Chainer> {
+                core.remove(joint: self)
+            }
         }
         
         self.chainerRef = nil

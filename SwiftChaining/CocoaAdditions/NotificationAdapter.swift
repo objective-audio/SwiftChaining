@@ -35,6 +35,6 @@ final public class NotificationAdapter {
     }
 }
 
-extension NotificationAdapter: Sendable {
-    public typealias ChainValue = Notification
+extension NotificationAdapter: Chainable {
+    public typealias ChainType = Sendable<Notification>
 }

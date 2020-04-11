@@ -4,28 +4,28 @@
 
 import Foundation
 
-extension Chain where Chainer: Fetchable {
-    public func merge<Chainer1>(_ chain1: Chain<Out, Chainer1>) -> Chain<Out, Chainer> where Chainer1: Fetchable {
+extension Chain where ChainType: FetchableProtocol {
+    public func merge<Chainer1>(_ chain1: Chain<Out, Chainer1>) -> Chain<Out, ChainType> where Chainer1: FetchableProtocol {
         return _merge(chain0: self, chain1: chain1)
     }
     
-    public func merge<Chainer1>(_ chain1: Chain<Out, Chainer1>) -> Chain<Out, Chainer> {
+    public func merge<Chainer1>(_ chain1: Chain<Out, Chainer1>) -> Chain<Out, ChainType> {
         return _merge(chain0: self, chain1: chain1)
     }
 }
 
 extension Chain {
-    public func merge<Chainer1>(_ chain1: Chain<Out, Chainer1>) -> Chain<Out, Chainer1> where Chainer1: Fetchable {
+    public func merge<ChainType1>(_ chain1: Chain<Out, ChainType1>) -> Chain<Out, ChainType1> where ChainType1: FetchableProtocol {
         return _merge(chain0: chain1, chain1: self)
     }
     
-    public func merge<Chainer1>(_ chain1: Chain<Out, Chainer1>) -> Chain<Out, Chainer> {
+    public func merge<ChainType1>(_ chain1: Chain<Out, ChainType1>) -> Chain<Out, ChainType> {
         return _merge(chain0: self, chain1: chain1)
     }
 }
 
-private func _merge<Out0, Chainer0, Chainer1>(chain0: Chain<Out0, Chainer0>,
-                                              chain1: Chain<Out0, Chainer1>) -> Chain<Out0, Chainer0> {
+private func _merge<Out0, ChainType0, ChainType1>(chain0: Chain<Out0, ChainType0>,
+                                                  chain1: Chain<Out0, ChainType1>) -> Chain<Out0, ChainType0> {
     guard let joint0 = chain0.pullJoint(), let joint1 = chain1.pullJoint() else {
         fatalError()
     }
@@ -49,5 +49,5 @@ private func _merge<Out0, Chainer0, Chainer1>(chain0: Chain<Out0, Chainer0>,
     joint0.appendHandler(handler0)
     joint0.appendSubJoint(joint1)
     
-    return Chain<Out0, Chainer0>(joint: joint0)
+    return Chain<Out0, ChainType0>(joint: joint0)
 }

@@ -4,4 +4,6 @@
 
 import Foundation
 
-public typealias Syncable = Fetchable & Sendable
+//public protocol Syncable: Fetchable & Sendable {
+//    associatedtype ChainType = Syncer<ChainValue>
+//}
