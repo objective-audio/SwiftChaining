@@ -4,7 +4,7 @@
 
 import Foundation
 
-public protocol AnyPropertyAdapter: class {}
+public protocol AnyPropertyAdapter: AnyObject {}
 
 public final class PropertyAdapter<Root: AnyObject, T>: AnyPropertyAdapter {
     

@@ -6,7 +6,7 @@ import Foundation
 
 public typealias Receivable = ValueReceivable & ReceiveReferencable
 
-public protocol ValueReceivable: class {
+public protocol ValueReceivable: AnyObject {
     associatedtype ReceiveValue
     
     func receive(value: ReceiveValue)

@@ -4,7 +4,7 @@
 
 import Foundation
 
-public protocol AnyObserver: class {
+public protocol AnyObserver: AnyObject {
     func invalidate()
 }
 

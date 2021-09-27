@@ -4,7 +4,7 @@
 
 import Foundation
 
-public protocol AnyCore: class {
+public protocol AnyCore: AnyObject {
 }
 
 public class Core<T: Chainable>: AnyCore {
