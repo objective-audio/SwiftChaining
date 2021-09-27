@@ -4,7 +4,7 @@
 
 import Foundation
 
-public protocol JointClass: class {}
+public protocol JointClass: AnyObject {}
 
 internal protocol AnyJoint: JointClass {
     var handlers: [Any] { get }

@@ -4,7 +4,7 @@
 
 import Foundation
 
-public protocol Chainable: class {
+public protocol Chainable: AnyObject {
     associatedtype ChainValue
     typealias FirstChain = Chain<ChainValue, Self>
     
